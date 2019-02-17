@@ -1,6 +1,7 @@
-package TwentyThreeProductions;
+package TwentyThreeProductions.Controller;
 
 
+import TwentyThreeProductions.Model.DBLogic;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -9,9 +10,9 @@ import javafx.event.ActionEvent;
 
 import java.sql.SQLException;
 
-public class Controller {
+public class LoginController {
 
-    private SQLShenanigans sqlController;
+    private DBLogic sqlController;
 
     @FXML
     private JFXTextField usernameField;
@@ -50,7 +51,7 @@ public class Controller {
     }
 
     public void initialize() {
-        sqlController = new SQLShenanigans();
+        sqlController = new DBLogic();
     }
 
 }

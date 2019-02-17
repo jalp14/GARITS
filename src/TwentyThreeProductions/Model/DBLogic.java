@@ -1,9 +1,9 @@
-package TwentyThreeProductions;
+package TwentyThreeProductions.Model;
 
 import java.sql.*;
 import org.h2.tools.Server;
 
-public class SQLShenanigans {
+public class DBLogic {
 
     // JDBC Drivers
     static final String JDBC_DRIVER = "org.h2.Driver";
@@ -20,7 +20,7 @@ public class SQLShenanigans {
     // Query Result
     ResultSet result;
 
-    SQLShenanigans() {
+    public DBLogic() {
         init();
     }
 
