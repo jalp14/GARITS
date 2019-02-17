@@ -46,11 +46,16 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </JFXButton>
-      <Label layoutX="293.0" layoutY="151.0" text="Welcome" textFill="WHITE">
+      <Label layoutX="286.0" layoutY="151.0" text="Welcome" textFill="WHITE">
          <font>
             <Font name="System Bold" size="46.0" />
          </font>
       </Label>
       <JFXBadge />
+      <ImageView fitHeight="67.0" fitWidth="71.0" layoutX="511.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@GARITSassests/gartisLoading.gif" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
