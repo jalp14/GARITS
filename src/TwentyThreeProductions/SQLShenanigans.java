@@ -113,12 +113,12 @@ public class SQLShenanigans {
             System.out.println("Connecting to database");
             dbConnection = DriverManager.getConnection(DB_URL, user, pass);
             dbStatement = dbConnection.createStatement();
-            String sql1 = "SELECT * FROM GARAGE.REG";
+            String sql1 = "SELECT * FROM GARAGE.ADMIN";
             result = dbStatement.executeQuery(sql1);
             while (result.next()) {
             // Retrieve by column name
-            first = result.getString("FIRST");
-            last = result.getString("LAST");
+            first = result.getString("USERNAME");
+            last = result.getString("PASSWORD");
         }
             result.close();
 
