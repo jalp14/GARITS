@@ -19,10 +19,22 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class LoginController {
 
     private DBLogic sqlController;
+
+    public enum user_type {
+        NONE,
+        ADMIN,
+        FRANCHISEE,
+        RECEPTIONIST,
+        FOREPERSON,
+        MECHANIC
+    }
+
+    private user_type type = user_type.NONE;
 
     @FXML
     private Pane mainPane;
@@ -42,19 +54,20 @@ public class LoginController {
     @FXML
     void forgotClicked(ActionEvent event) throws IOException  {
         System.out.println("Forgot clicked");
-        blackMagic();
+
     }
 
     @FXML
-    void loginClicked(ActionEvent event) {
-        sqlController = new DBLogic();
+    void loginClicked(ActionEvent event) throws IOException {
         System.out.println("Login Clicked");
         String temp1, temp2;
         temp1 = usernameField.getText();
         temp2 = passwordField.getText();
         try {
-            if (sqlController.readFromTable(temp1, temp2) == true) {
+            if (sqlController.verifyUser(temp1, temp2) == true) {
                 System.out.println("User verified");
+                detectUserType();
+                showMainScene();
             } else {
                 System.out.println("Wrong credentials");
             }
@@ -67,13 +80,31 @@ public class LoginController {
 
     public void initialize() {
         System.out.println("New Login Controller");
+        System.out.println("Init DB");
+        sqlController = new DBLogic();
 
     }
 
-    public void blackMagic() throws IOException {
-        URL url = new File("src/TwentyThreeProductions/View/Garits.fxml").toURI().toURL();
+    public void showMainScene() throws IOException {
+        URL url = new File("src/TwentyThreeProductions/View/MainScreen.fxml").toURI().toURL();
         SceneSwitch sceneSwitch = new SceneSwitch(url,url, forgotPasswordButton.getScene());
         sceneSwitch.switchScene();
+    }
+
+    public void detectUserType() {
+        System.out.println("Detecting User");
+        if (sqlController.getUser_type().equals("ADMIN")) {
+            type = user_type.ADMIN;
+        } else if (sqlController.getUser_type().equals("FRANCHISEE")) {
+            type = user_type.FRANCHISEE;
+        } else if (sqlController.getUser_type().equals("RECEPTIONIST")) {
+            type = user_type.RECEPTIONIST;
+        } else if (sqlController.getUser_type().equals("FOREPERSON")) {
+            type = user_type.FOREPERSON;
+        } else if (sqlController.getUser_type().equals("MECHANIC")) {
+            type = user_type.MECHANIC;
+        }
+        System.out.println("Detected User : " + type);
     }
 
 }

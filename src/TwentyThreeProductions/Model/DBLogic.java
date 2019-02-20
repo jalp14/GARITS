@@ -20,6 +20,9 @@ public class DBLogic {
     // Query Result
     ResultSet result;
 
+    // User Type
+    String user_type;
+
     public DBLogic() {
         init();
     }
@@ -42,7 +45,7 @@ public class DBLogic {
         }
     }
 
-    public void createTable() {
+    public void createTable(String sqlQuery) {
         try {
             System.out.println("Attempting to connect to the db");
             Class.forName(JDBC_DRIVER);
@@ -52,10 +55,7 @@ public class DBLogic {
             // Exec query
             System.out.println("Creating a test table");
             dbStatement = dbConnection.createStatement();
-            String sql2 = "CREATE TABLE Garage.Reg " + "(id INTEGER not NULL, "
-                    + "first VARCHAR(255), " + "last VARCHAR(255), " +
-                    "age INTEGER, " + "PRIMARY KEY (id))";
-            dbStatement.execute(sql2);
+            dbStatement.execute(sqlQuery);
             System.out.println("Created table REGISTRATION");
 
             // Clean up
@@ -76,7 +76,7 @@ public class DBLogic {
         }
     }
 
-    public void insertTable() {
+    public void insertTable(String sqlQuery) {
         try {
             System.out.println("Attempting to connect to the db");
             Class.forName(JDBC_DRIVER);
@@ -84,9 +84,7 @@ public class DBLogic {
 
             dbConnection = DriverManager.getConnection(DB_URL, user, pass);
             dbStatement = dbConnection.createStatement();
-            String sql = "INSERT INTO GARAGE.REG VALUES (1, 'Ramesh', 'Ahmedabad', 2000)";
-            dbStatement.execute(sql);
-
+            dbStatement.execute(sqlQuery);
             dbStatement.close();
             dbConnection.close();
 
@@ -105,7 +103,7 @@ public class DBLogic {
         }
     }
 
-    public boolean readFromTable(String username, String password) throws SQLException, ClassNotFoundException {
+    public boolean verifyUser(String username, String password) throws SQLException, ClassNotFoundException {
         String first = "";
         String last = "";
             System.out.println("Attempting to connect to the db");
@@ -113,12 +111,13 @@ public class DBLogic {
             System.out.println("Connecting to database");
             dbConnection = DriverManager.getConnection(DB_URL, user, pass);
             dbStatement = dbConnection.createStatement();
-            String sql1 = "SELECT * FROM GARAGE.ADMIN";
+            String sql1 = "SELECT * FROM GARAGE.USER";
             result = dbStatement.executeQuery(sql1);
             while (result.next()) {
             // Retrieve by column name
             first = result.getString("USERNAME");
             last = result.getString("PASSWORD");
+            user_type = result.getString("ROLE");
         }
             result.close();
 
@@ -129,6 +128,9 @@ public class DBLogic {
             }
     }
 
+    public String getUser_type() {
+        return user_type;
+    }
 
 
 }
