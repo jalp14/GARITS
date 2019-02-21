@@ -1,23 +1,17 @@
 package TwentyThreeProductions;
 
-import TwentyThreeProductions.Controller.LoginController;
-import TwentyThreeProductions.Model.SceneSwitch;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-
 
 public class Main extends Application {
 
-    static LoginController loginController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Init main method
         primaryStage.setTitle("Welcome to GARITS");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("View/LoginScreen.fxml"));
         Parent root = loader.load();
