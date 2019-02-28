@@ -23,12 +23,22 @@ public class DBLogic {
     // User Type
     String user_type;
 
-    public DBLogic() {
+    // DB Instance
+    private static DBLogic dbLogic = null;
+
+    private DBLogic() {
         init();
     }
 
     public void init() {
       startSQLServer();
+    }
+
+    public static DBLogic getDBInstance() {
+        if (dbLogic == null) {
+            dbLogic = new DBLogic();
+        }
+        return dbLogic;
     }
 
     public void startSQLServer() {

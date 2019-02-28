@@ -5,36 +5,49 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
-import java.lang.invoke.SwitchPoint;
 import java.net.URL;
 import java.util.HashMap;
 
 public class SceneSwitch {
 
     private Scene scene;
-    private URL currentURL;
-    private URL previousURL;
+    private Parent parent;
     private Parent currentRoot;
-    private Parent previousRoot;
+    private HashMap<String, Parent> sceneMap;
+    private static SceneSwitch sceneSwitch = null;
 
 
-    public SceneSwitch(URL sceneFile, URL currentURL, Scene scene) {
-        this.currentURL = sceneFile;
-        this.previousURL = currentURL;
+    private SceneSwitch() {
+        sceneMap = new HashMap<>();
+    }
+
+    public static SceneSwitch getInstance() {
+        if (sceneSwitch == null) {
+            sceneSwitch = new SceneSwitch();
+        }
+        return sceneSwitch;
+    }
+
+    public void activateScene(String name) throws IOException {
+        currentRoot = FXMLLoader.load(NavigationModel.getURL(name));
+        scene.setRoot(currentRoot);
+    }
+
+    public void addScene(Scene scene, Parent parent, String name) {
+        this.parent = parent;
         this.scene = scene;
+        sceneMap.put(name, parent);
     }
 
-    public void switchScene() throws IOException {
-        currentRoot = FXMLLoader.load(currentURL);
-        scene.setRoot(currentRoot);
+    public void switchScene(String name) throws IOException {
+        scene.setRoot(sceneMap.get(name));
     }
 
-    public void previousScene() throws IOException {
-        previousRoot = FXMLLoader.load(previousURL);
-        scene.setRoot(currentRoot);
-    }
+
 
 }
 

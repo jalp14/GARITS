@@ -134,7 +134,7 @@
          <font>
             <Font name="Avenir Next Bold" size="13.0" />
          </font></Text>
-      <JFXButton layoutX="712.0" layoutY="45.0" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
+      <JFXButton fx:id="logoutButton" layoutX="712.0" layoutY="45.0" onAction="#logoutPressed" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
          <font>
             <Font name="Avenir Next Bold" size="13.0" />
          </font></JFXButton>
