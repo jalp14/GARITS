@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Model;
 
 import TwentyThreeProductions.Controller.LoginController;
+import com.sun.javafx.fxml.FXMLLoaderHelper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -43,10 +44,9 @@ public class SceneSwitch {
         sceneMap.put(name, parent);
     }
 
-    public void switchScene(String name) throws IOException {
+    public void switchScene(String name) {
         scene.setRoot(sceneMap.get(name));
     }
-
 
 
 }

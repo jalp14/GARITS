@@ -1,9 +1,12 @@
 package TwentyThreeProductions.Controller;
 
 
+import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
@@ -13,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class TestController {
+public class MainController {
 
     @FXML
     private Button backButton;
@@ -34,6 +37,10 @@ public class TestController {
 
     public void initialize() {
         System.out.println("New Login Controller");
+        if (NavigationModel.getType().toString().equals("ADMIN")) {
+            System.out.println("Type : ADMIN");
+            logoutButton.setVisible(false);
+        }
 
     }
 

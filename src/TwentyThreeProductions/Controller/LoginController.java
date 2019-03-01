@@ -28,17 +28,8 @@ public class LoginController {
     private SceneSwitch sceneSwitch;
     private URL currentURL;
     private URL previousURL;
-    public enum user_type {
-        NONE,
-        ADMIN,
-        FRANCHISEE,
-        RECEPTIONIST,
-        FOREPERSON,
-        MECHANIC
-    }
 
-    private user_type type = user_type.NONE;
-    
+
     private DBLogic dbController;
 
     @FXML
@@ -62,6 +53,10 @@ public class LoginController {
 
     }
 
+    public JFXButton getInstance() {
+        return forgotPasswordButton;
+    }
+
     @FXML
     void loginClicked(ActionEvent event) throws IOException {
         System.out.println("Login Clicked");
@@ -71,7 +66,7 @@ public class LoginController {
         try {
             if (dbController.verifyUser(temp1, temp2) == true) {
                 System.out.println("User verified");
-                detectUserType();
+                NavigationModel.detectUserType();
                 showMainScene();
             } else {
                 System.out.println("Wrong credentials");
@@ -100,21 +95,8 @@ public class LoginController {
         sceneSwitch.activateScene("Main");
     }
 
-    public void detectUserType() {
-        System.out.println("Detecting User");
-        if (dbController.getUser_type().equals("ADMIN")) {
-            type = user_type.ADMIN;
-        } else if (dbController.getUser_type().equals("FRANCHISEE")) {
-            type = user_type.FRANCHISEE;
-        } else if (dbController.getUser_type().equals("RECEPTIONIST")) {
-            type = user_type.RECEPTIONIST;
-        } else if (dbController.getUser_type().equals("FOREPERSON")) {
-            type = user_type.FOREPERSON;
-        } else if (dbController.getUser_type().equals("MECHANIC")) {
-            type = user_type.MECHANIC;
-        }
-        System.out.println("Detected User : " + type);
-    }
+
+
 
 
 
