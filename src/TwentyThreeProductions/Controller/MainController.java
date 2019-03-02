@@ -39,7 +39,7 @@ public class MainController {
         System.out.println("New Login Controller");
         if (NavigationModel.getType().toString().equals("ADMIN")) {
             System.out.println("Type : ADMIN");
-            logoutButton.setVisible(false);
+         //   logoutButton.setVisible(false);
         }
 
     }
