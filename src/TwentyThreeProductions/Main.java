@@ -21,12 +21,10 @@ public class Main extends Application {
         primaryStage.setTitle("Welcome to GARITS");
         URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        Scene scene = new Scene(root,800,600);
+        Scene scene = new Scene(root,1200,750);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-
 
 
     public static void main(String[] args) {

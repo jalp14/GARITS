@@ -53,10 +53,6 @@ public class LoginController {
 
     }
 
-    public JFXButton getInstance() {
-        return forgotPasswordButton;
-    }
-
     @FXML
     void loginClicked(ActionEvent event) throws IOException {
         System.out.println("Login Clicked");
@@ -87,12 +83,12 @@ public class LoginController {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(forgotPasswordButton.getScene(), forgotPasswordButton.getParent(), "Login");
 
+
     }
 
     public void showMainScene() throws IOException {
-        URL url = new File(NavigationModel.MAIN_URL).toURI().toURL();
-        sceneSwitch.addScene(forgotPasswordButton.getScene(), forgotPasswordButton.getParent(), "Main");
-        sceneSwitch.activateScene("Main");
+        sceneSwitch.addScene(forgotPasswordButton.getScene(), forgotPasswordButton.getParent(), "MainAdmin");
+        sceneSwitch.activateScene("MainAdmin");
     }
 
 

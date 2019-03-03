@@ -10,42 +10,61 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 
-public class MainController {
-
-    @FXML
-    private Button backButton;
+public class MainAdminController {
 
     @FXML
-    void goBack(ActionEvent event) {
+    private JFXButton usersBtn;
+
+    @FXML
+    private JFXButton backuprestoreBtn;
+
+    @FXML
+    private JFXButton notifsBtn;
+
+    @FXML
+    private JFXButton logoutBtn;
+
+    @FXML
+    private Label welcomeMessage;
+
+
+    @FXML
+    void backuprestoreBtnClicked(ActionEvent event) {
 
     }
 
     @FXML
-    private Button logoutButton;
-
-    @FXML
-    void logoutPressed(ActionEvent event) throws IOException {
+    void logoutBtnPressed(ActionEvent event) {
         System.out.println("Logout pressed");
         backToLogin();
     }
 
-    public void initialize() {
-        System.out.println("New Login Controller");
-        if (NavigationModel.getType().toString().equals("ADMIN")) {
-            System.out.println("Type : ADMIN");
-         //   logoutButton.setVisible(false);
-        }
+    @FXML
+    void notifsBtnClicked(ActionEvent event) {
 
     }
 
-    public void backToLogin() throws IOException {
-        Stage tmpStage = (Stage) logoutButton.getScene().getWindow();
+
+    @FXML
+    void usersClicked(ActionEvent event) {
+
+    }
+
+    public void initialize() {
+        System.out.println("New Login Controller");
+    }
+
+
+    public void backToLogin() {
+        Stage tmpStage = (Stage) logoutBtn.getScene().getWindow();
         SceneSwitch sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.switchScene("Login");
     }
