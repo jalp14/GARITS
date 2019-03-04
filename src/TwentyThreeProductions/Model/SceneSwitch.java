@@ -48,5 +48,4 @@ public class SceneSwitch {
         scene.setRoot(sceneMap.get(name));
     }
 
-
 }

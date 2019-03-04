@@ -12,6 +12,10 @@ public class DBLogic {
     // DB Creds
     static final String user = "root";
     static final String pass = "alpine";
+
+    // User Inputs
+    String username;
+    String password;
     
     // DB Connection
     Connection dbConnection;
@@ -81,9 +85,15 @@ public class DBLogic {
         }
     }
 
-    public boolean verifyUser(String username, String password) throws SQLException, ClassNotFoundException {
-        String first = "";
-        String last = "";
+    public void setLoginDetails(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public boolean verifyUser() throws SQLException, ClassNotFoundException {
+        Boolean accountFound = false;
+        String dbUsername = "";
+        String dbPassword = "";
         System.out.println("Attempting to connect to the db");
         dbConnection = DriverManager.getConnection(DB_URL, user, pass);
         System.out.println("Connected to db");
@@ -92,18 +102,19 @@ public class DBLogic {
         result = dbStatement.executeQuery(sql1);
         while (result.next()) {
          // Retrieve by column name
-           first = result.getString("USERNAME");
-           last = result.getString("PASSWORD");
-           user_type = result.getString("ROLE");
+           dbUsername = result.getString("USERNAME");
+           dbPassword = result.getString("PASSWORD");
+           if ((username.equals(dbUsername)) && (password.equals(dbPassword))) {
+               System.out.println("User details matched");
+               user_type = result.getString("ROLE");
+               accountFound = true;
+           }
         }
         result.close();
         dbStatement.close();
         dbConnection.close();
-        if ((username.equals(first)) && (password.equals(last))) {
-           return true;
-        } else {
-          return false;
-        }
+        System.out.println("User is " + username + " Role is " + user_type);
+        return accountFound;
     }
 
     public String getUser_type() {

@@ -54,24 +54,18 @@ public class LoginController {
     }
 
     @FXML
-    void loginClicked(ActionEvent event) throws IOException {
+    void loginClicked(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         System.out.println("Login Clicked");
-        String temp1, temp2;
-        temp1 = usernameField.getText();
-        temp2 = passwordField.getText();
-        try {
-            if (dbController.verifyUser(temp1, temp2) == true) {
-                System.out.println("User verified");
-                NavigationModel.detectUserType();
-                showMainScene();
-            } else {
-                System.out.println("Wrong credentials");
-            }
-        } catch (SQLException se){
-            se.printStackTrace();
-        } catch (ClassNotFoundException c) {
-            c.printStackTrace();
+        // Passing user inputs to the DB
+        dbController.setLoginDetails(usernameField.getText(), passwordField.getText());
+        // Check if login details match
+        if (dbController.verifyUser() == true) {
+            NavigationModel.detectUserType(forgotPasswordButton.getScene(), forgotPasswordButton.getParent());
+            System.out.println("Setting up homescreen");
+        } else {
+            System.out.println("User not found, please try again    ");
         }
+
     }
 
     public void initialize() throws IOException {
@@ -82,18 +76,7 @@ public class LoginController {
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(forgotPasswordButton.getScene(), forgotPasswordButton.getParent(), "Login");
-
-
     }
-
-    public void showMainScene() throws IOException {
-        sceneSwitch.addScene(forgotPasswordButton.getScene(), forgotPasswordButton.getParent(), "MainAdmin");
-        sceneSwitch.activateScene("MainAdmin");
-    }
-
-
-
-
 
 
 }
