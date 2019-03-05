@@ -45,6 +45,18 @@ public class DBLogic {
         return dbLogic;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserType() {
+        return user_type;
+    }
+
     public void startSQLServer() {
         try {
             Server server1 = Server.createTcpServer().start();

@@ -1,8 +1,12 @@
 package TwentyThreeProductions.Controller;
 
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class MainFFRController {
 
@@ -10,7 +14,22 @@ public class MainFFRController {
     private JFXButton jobsBtn;
 
     @FXML
-    private JFXButton customerBtn;
+    private JFXButton customersBtn;
+
+    @FXML
+    private JFXButton notifsBtn;
+
+    @FXML
+    private Text usernameLbl;
+
+    @FXML
+    private Text userTypeLbl;
+
+    @FXML
+    private JFXButton logoutBtn;
+
+    @FXML
+    private Label welcomeMessage;
 
     @FXML
     private JFXButton partsBtn;
@@ -19,24 +38,7 @@ public class MainFFRController {
     private JFXButton reportsBtn;
 
     @FXML
-    private JFXButton usersBtn;
-
-    @FXML
-    private JFXButton backuprestoreBtn;
-
-    @FXML
-    private JFXButton notifsBtn;
-
-    @FXML
-    private JFXButton logoutBtn;
-
-    @FXML
-    void backuprestoreBtnClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void customerBtnClicked(ActionEvent event) {
+    void customersBtnClicked(ActionEvent event) {
 
     }
 
@@ -47,7 +49,7 @@ public class MainFFRController {
 
     @FXML
     void logoutBtnPressed(ActionEvent event) {
-
+        backToLogin();
     }
 
     @FXML
@@ -65,9 +67,10 @@ public class MainFFRController {
 
     }
 
-    @FXML
-    void usersClicked(ActionEvent event) {
-
+    public void backToLogin() {
+        Stage tmpStage = (Stage) logoutBtn.getScene().getWindow();
+        SceneSwitch sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.switchScene("Login");
     }
 
     public void initialize() {

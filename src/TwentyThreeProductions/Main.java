@@ -11,7 +11,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.net.URL;
 
-public class Main extends Application {
+public class  Main extends Application {
 
 
     @Override

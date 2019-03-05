@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.MainAdminController">
    <children>
-      <JFXButton fx:id="usersBtn" alignment="CENTER_RIGHT" layoutX="250.0" layoutY="350.0" onAction="#usersClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Users" textAlignment="RIGHT">
+      <JFXButton fx:id="usersBtn" alignment="CENTER_RIGHT" layoutX="405.0" layoutY="350.0" onAction="#usersClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Users" textAlignment="RIGHT">
          <font>
             <Font name="Arial" size="29.0" />
          </font>
@@ -19,12 +19,12 @@
             <Insets />
          </opaqueInsets>
       </JFXButton>
-      <ImageView fitHeight="80.0" fitWidth="57.0" layoutX="256.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="57.0" layoutX="411.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../GARITSassests/users.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="backuprestoreBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="          " layoutX="800.0" layoutY="350.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#backuprestoreBtnClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="      Backup/ Restore" textAlignment="JUSTIFY" wrapText="true">
+      <JFXButton fx:id="backuprestoreBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="          " layoutX="671.0" layoutY="350.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#backuprestoreBtnClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="      Backup/ Restore" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
@@ -32,7 +32,7 @@
             <Insets />
          </opaqueInsets>
       </JFXButton>
-      <ImageView fitHeight="71.0" fitWidth="58.0" layoutX="803.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="71.0" fitWidth="58.0" layoutX="674.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../GARITSassests/backup.png" />
          </image>
@@ -48,12 +48,12 @@
             <Image url="@../GARITSassests/garits.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="980.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="112.5">
+      <Text fx:id="usernameLbl" fill="WHITE" layoutX="980.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="112.5">
          <font>
             <Font name="Avenir Next Bold" size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="1046.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+      <Text fx:id="userTypeLbl" fill="WHITE" layoutX="1046.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
          <font>
             <Font name="Avenir Next Bold" size="13.0" />
          </font></Text>
