@@ -5,6 +5,10 @@
 **Planned Features** 
 
 
+**Downloads**
+OpenJDK : https://openjdk.java.net/
+OpenJFX : https://openjfx.io/
+
 
 **Run this in Terminal/CMD**
 
