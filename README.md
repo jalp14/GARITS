@@ -5,6 +5,7 @@
 **Planned Features** 
 
 
+
 **Requirements**
 
 IntelliJ Ultimate
@@ -16,6 +17,7 @@ OpenJFX
 Some Patience
 
 
+
 **Downloads**
 
 IntelliJ Ultimate : https://www.jetbrains.com/idea/download/#section=windows
@@ -23,6 +25,7 @@ IntelliJ Ultimate : https://www.jetbrains.com/idea/download/#section=windows
 OpenJDK : https://openjdk.java.net/
 
 OpenJFX : https://openjfx.io/
+
 
 
 **Setup**
@@ -53,6 +56,7 @@ Add this to your VM options
 --module-path={PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml
 
 Click Apply
+
 
 
  **Backup/Restore Command**
