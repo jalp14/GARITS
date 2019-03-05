@@ -4,6 +4,7 @@
 
 **Planned Features** 
 
+https://docs.google.com/document/d/1cHOFNcVIK1OWNApO_lTYs3NArSjsSaeqyVOjFu4Yy1I/edit
 
 
 **Requirements**
