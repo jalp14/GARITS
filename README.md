@@ -54,7 +54,7 @@ Run -> Edit Configurations
 
 Add this to your VM options
 
---module-path={PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml
+--module-path ${PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml
 
 Click Apply
 
