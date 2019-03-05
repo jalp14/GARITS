@@ -5,6 +5,17 @@
 **Planned Features** 
 
 
+**Requirements**
+
+IntelliJ Ultimate
+
+OpenJDK
+
+OpenJFX
+
+Some Patience
+
+
 **Downloads**
 
 OpenJDK : https://openjdk.java.net/
@@ -12,14 +23,28 @@ OpenJDK : https://openjdk.java.net/
 OpenJFX : https://openjfx.io/
 
 
-**Run this in Terminal/CMD**
+**Setup**
 
-export path_to_your_javafx-sdk
+Open Intellij and clone the project 
 
-**Add this to your VM options**
+File -> Preferences -> Appereance & Behaviour -> Path Variable : Add New 
 
- --module-path="/home/jd/Downloads/javafx-sdk-11.0.2/lib" --add-modules=javafx.controls,javafx.fxml
- 
+Name : PATH_TO_FX    
+Value : Copy the path to javafx-sdk-11.0.2/lib
+
+Save it!
+
+Now build the project 
+
+Run -> Edit Configurations
+
+Add this to your VM options
+
+--module-path={PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml
+
+Click Apply
+
+
  **Backup/Restore Command**
  Navigate to the assests folder and open a cmd/termial window and run :
  
