@@ -18,6 +18,8 @@ Some Patience
 
 **Downloads**
 
+IntelliJ Ultimate : https://www.jetbrains.com/idea/download/#section=windows
+
 OpenJDK : https://openjdk.java.net/
 
 OpenJFX : https://openjfx.io/
@@ -25,7 +27,15 @@ OpenJFX : https://openjfx.io/
 
 **Setup**
 
+Move the OpenJFX SDK in your Docuemnts Folder
+
 Open Intellij and clone the project 
+
+File -> Project Structure -> Libraries -> + 
+
+Select the lib folder in your JavaFX folder 
+
+Click Apply!
 
 File -> Preferences -> Appereance & Behaviour -> Path Variable : Add New 
 
