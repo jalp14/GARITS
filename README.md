@@ -65,3 +65,21 @@ Click Apply
  Navigate to the assests folder and open a cmd/termial window and run :
  
  `` java -cp h2*.jar org.h2.tools.Backup -file "~/backup.zip" -dir "~" ``
+ 
+ ## How SceneSwitch works
+ 
+ **Initialising view for the first time**
+ 
+ - Get instance of SceneSwitch and call the func : `` activateScene(String name, Scene scene) ``
+ 
+ - This will present the view on your main screen
+ 
+ - Inside the `` initialize() `` instantiate SceneSwitch and call the func : `` addScene(Parent parent, String name) ``
+ 
+ - This will add the current parent(view) to SceneMap
+ 
+ **Switching between scenes**
+ 
+ - To switch to a different scene call the func : `` switchScene(String name) ``
+ 
+ - This will change the parent(view) to the specified one given that you have initialised it before 
