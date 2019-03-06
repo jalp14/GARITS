@@ -45,7 +45,6 @@ public class MainMechanicController {
     }
 
     public void backToLogin() {
-        Stage tmpStage = (Stage) logoutBtn.getScene().getWindow();
         SceneSwitch sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.switchScene("Login");
     }

@@ -33,14 +33,14 @@ public class SceneSwitch {
         return sceneSwitch;
     }
 
-    public void activateScene(String name) throws IOException {
+    public void activateScene(String name, Scene scene) throws IOException {
+        this.scene = scene;
         currentRoot = FXMLLoader.load(NavigationModel.getURL(name));
         scene.setRoot(currentRoot);
     }
 
-    public void addScene(Scene scene, Parent parent, String name) {
+    public void addScene(Parent parent, String name) {
         this.parent = parent;
-        this.scene = scene;
         sceneMap.put(name, parent);
     }
 
