@@ -31,32 +31,32 @@ https://docs.google.com/document/d/1cHOFNcVIK1OWNApO_lTYs3NArSjsSaeqyVOjFu4Yy1I/
 
 ## Setup
 
-- Move the OpenJFX SDK in your Docuemnts Folder
+Move the OpenJFX SDK in your Docuemnts Folder
 
-- Open Intellij and clone the project 
+Open Intellij and clone the project 
 
-- File -> Project Structure -> Libraries -> + 
+File -> Project Structure -> Libraries -> + 
 
-Select the lib folder in your JavaFX folder 
+- Select the lib folder in your JavaFX folder 
 
-Click Apply!
+- Click Apply!
 
-- File -> Preferences -> Appereance & Behaviour -> Path Variable : Add New 
+File -> Preferences -> Appereance & Behaviour -> Path Variable : Add New 
 
-Name :`` PATH_TO_FX ``   
-Value : Copy the path to javafx-sdk-11.0.2/lib
+- Name :`` PATH_TO_FX ``   
+- Value : Copy the path to javafx-sdk-11.0.2/lib
 
-- Save it!
+Save it!
 
-- Now build the project 
+Now build the project 
 
-- Run -> Edit Configurations
+Run -> Edit Configurations
 
-Add this to your VM options
+- Add this to your VM options
 
 `` --module-path ${PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml ``
 
-- Click Apply
+Click Apply
 
 
 
