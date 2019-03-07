@@ -20,6 +20,8 @@ import java.util.HashMap;
 
 public class MainAdminController {
 
+    private SceneSwitch sceneSwitch;
+
     @FXML
     private JFXButton usersBtn;
 
@@ -42,9 +44,9 @@ public class MainAdminController {
     }
 
     @FXML
-    void logoutBtnPressed(ActionEvent event) {
+    void logoutBtnPressed(ActionEvent event) throws IOException {
         System.out.println("Logout pressed");
-        backToLogin();
+        sceneSwitch.switchScene("Login");
     }
 
     @FXML
@@ -54,19 +56,21 @@ public class MainAdminController {
 
 
     @FXML
-    void usersClicked(ActionEvent event) {
+    void usersClicked(ActionEvent event) throws IOException {
+        System.out.println("Users Clicked");
+        sceneSwitch.activateScene("Users", logoutBtn.getScene());
+
+    }
+
+    public void setMessageFields(String welcomeMessage, String userType, String userName) {
 
     }
 
     public void initialize() {
         System.out.println("New Login Controller");
-    }
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(logoutBtn.getParent(),"MainAdmin");
 
-
-    public void backToLogin() {
-        Stage tmpStage = (Stage) logoutBtn.getScene().getWindow();
-        SceneSwitch sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.switchScene("Login");
     }
 
 }

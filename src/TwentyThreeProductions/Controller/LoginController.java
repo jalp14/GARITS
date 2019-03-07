@@ -60,10 +60,10 @@ public class LoginController {
         dbController.setLoginDetails(usernameField.getText(), passwordField.getText());
         // Check if login details match
         if (dbController.verifyUser() == true) {
-            NavigationModel.detectUserType(forgotPasswordButton.getScene(), forgotPasswordButton.getParent());
+            NavigationModel.detectUserType(loginButton.getScene());
             System.out.println("Setting up homescreen");
         } else {
-            System.out.println("User not found, please try again    ");
+            System.out.println("User not found, please try again");
         }
 
     }
@@ -75,7 +75,7 @@ public class LoginController {
         previousURL = null;
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(forgotPasswordButton.getScene(), forgotPasswordButton.getParent(), "Login");
+        sceneSwitch.addScene(forgotPasswordButton.getParent(), "Login");
     }
 
 
