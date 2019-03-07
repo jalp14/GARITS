@@ -21,18 +21,18 @@
       </JFXButton>
       <ImageView fitHeight="71.0" fitWidth="58.0" layoutX="535.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../GARITSassests/jobs.png" />
+            <Image url="@../../GARITSassests/jobs.png" />
          </image>
       </ImageView>
       <JFXButton fx:id="notifsBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="555.0" layoutY="638.0" onAction="#notifsBtnClicked" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #ff1640; -fx-background-radius: 4pt;" text="Notifications" textAlignment="JUSTIFY" textFill="WHITE" />
       <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="556.0" layoutY="639.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../GARITSassests/notifications.png" />
+            <Image url="@../../GARITSassests/notifications.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../GARITSassests/garits.png" />
+            <Image url="@../../GARITSassests/garits.png" />
          </image>
       </ImageView>
       <Text fx:id="usernameLbl" fill="WHITE" layoutX="980.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="112.5">
