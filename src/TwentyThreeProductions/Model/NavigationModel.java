@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class NavigationModel {
-
+    // Add URL of a scene you want to instantiate
     public static String LOGIN_URL = "src/TwentyThreeProductions/View/LoginScreen.fxml";
     public static String MAIN_ADMIN_URL = "src/TwentyThreeProductions/View/MainScreenAdmin.fxml";
     public static String MAIN_FFR_URL = "src/TwentyThreeProductions/View/MainScreenFFR.fxml";
@@ -17,7 +17,7 @@ public class NavigationModel {
     public static String USER_MANAGEMENT_URL = "src/TwentyThreeProductions/View/UserManagement.fxml";
     public static URL tmpURL;
     private static DBLogic dbController = DBLogic.getDBInstance();
-    private static SceneSwitch sceneSwitch = SceneSwitch.getInstance();
+    private static SceneSwitch sceneSwitch = SceneSwitch.getInstance ();
 
     public enum user_type {
         NONE,
@@ -37,7 +37,7 @@ public class NavigationModel {
 
     private NavigationModel() {
     }
-    // Add URL for other Views
+    // Add constraints for views you want to instantiate
     public static URL getURL(String name) throws IOException {
         if (name.equals("Login")) {
             return tmpURL = new File(LOGIN_URL).toURI().toURL();

@@ -62,10 +62,15 @@ public class MainAdminController {
 
     }
 
+    public void setMessageFields(String welcomeMessage, String userType, String userName) {
+
+    }
+
     public void initialize() {
         System.out.println("New Login Controller");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(logoutBtn.getParent(),"MainAdmin");
+
     }
 
 }
