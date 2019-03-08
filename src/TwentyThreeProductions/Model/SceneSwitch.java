@@ -33,6 +33,7 @@ public class SceneSwitch {
         return sceneSwitch;
     }
 
+
     public void activateScene(String name, Scene scene) throws IOException {
         this.scene = scene;
         currentRoot = FXMLLoader.load(NavigationModel.getURL(name));

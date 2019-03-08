@@ -15,7 +15,8 @@ public class NavigationModel {
     public static String MAIN_FFR_URL = "src/TwentyThreeProductions/View/MainScreen/FFR/MainScreenFFR.fxml";
     public static String MAIN_MECHANIC_URL = "src/TwentyThreeProductions/View/MainScreen/Mechanic/MainScreenMechanic.fxml";
     public static String USER_MANAGEMENT_URL = "src/TwentyThreeProductions/View/MainScreen/Admin/UserManagement.fxml";
-    public static String DB_MANAGEMENT_URL = "src/TwentyThreeProductions/View/Database/DbManagement.fxml";
+    public static String DB_MANAGEMENT_URL = "src/TwentyThreeProductions/View/MainScreen/Admin/Database/DbManagement.fxml";
+    public static String DB_RESTORE_URL = "src/TwentyThreeProductions/View/MainScreen/Admin/Database/DbRestore.fxml";
     public static URL tmpURL;
     private static DBLogic dbController = DBLogic.getDBInstance();
     private static SceneSwitch sceneSwitch = SceneSwitch.getInstance ();
@@ -52,6 +53,8 @@ public class NavigationModel {
             return tmpURL = new File(USER_MANAGEMENT_URL).toURI().toURL();
         } else if ((name.equals("DBManagement"))) {
             return tmpURL = new File(DB_MANAGEMENT_URL).toURI().toURL();
+        } else if ((name.equals("DBRestore"))) {
+            return tmpURL = new File(DB_RESTORE_URL).toURI().toURL();
         }
         else {
             System.out.println("User type not found");

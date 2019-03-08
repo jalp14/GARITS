@@ -38,13 +38,19 @@ public class DbManagementController {
     private JFXButton restoreBackupBtn;
 
     @FXML
-    void addUserBtnClicked(ActionEvent event) {
+    void newBackupBtnClicked(ActionEvent event) {
         try {
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-            Process proc = Runtime.getRuntime().exec(new String[]{"./test.sh", timeStamp});
+            Process proc = Runtime.getRuntime().exec(new String[]{"./backup.sh", timeStamp});
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    @FXML
+    void restoreBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Backup/Restore pressed");
+        sceneSwitch.activateScene("DBRestore", backBtn.getScene());
     }
 
     @FXML

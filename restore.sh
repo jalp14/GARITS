@@ -1,3 +1,3 @@
 #!/bin/bash
-cd src/TwentyThreeProductions/GARITSpayload
-java -cp h2*.jar org.h2.tools.Restore -file "$1.zip" -dir "~"
+cd src/TwentyThreeProductions/GARITSpayload/
+java -cp h2*.jar org.h2.tools.Restore -file "DBBackups/$1" -dir "~"
