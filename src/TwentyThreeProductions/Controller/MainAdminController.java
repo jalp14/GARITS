@@ -39,8 +39,9 @@ public class MainAdminController {
 
 
     @FXML
-    void backuprestoreBtnClicked(ActionEvent event) {
-
+    void backuprestoreBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Backup/Restore pressed");
+        sceneSwitch.activateScene("DBManagement", logoutBtn.getScene());
     }
 
     @FXML
