@@ -47,8 +47,20 @@ public class DbRestoreController {
             selectedDBName = dbList.getSelectionModel().getSelectedItem().getText();
             System.out.println(selectedDBName);
             Process proc = Runtime.getRuntime().exec(new String[]{"./restore.sh", selectedDBName});
+
+            // Wait for 5 seconds
+            Thread.sleep(5000);
+
+            System.out.println("Restarting the sql server");
+            dbController.restartServer();
+
+            System.out.println("Server restarted, please login again");
+            sceneSwitch.switchScene("Login");
+
         } catch (IOException io) {
             io.printStackTrace();
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
         }
     }
 

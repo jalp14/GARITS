@@ -33,6 +33,11 @@ public class SceneSwitch {
         return sceneSwitch;
     }
 
+    public void resetSceneMap() {
+        sceneSwitch = null;
+        sceneSwitch = SceneSwitch.getInstance();
+    }
+
 
     public void activateScene(String name, Scene scene) throws IOException {
         this.scene = scene;
