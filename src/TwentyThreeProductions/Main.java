@@ -17,7 +17,7 @@ public class  Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Init main method
-       // primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
         primaryStage.setTitle("Welcome to GARITS");
         URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();

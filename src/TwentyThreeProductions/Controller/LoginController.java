@@ -6,21 +6,28 @@ import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class LoginController {
@@ -68,6 +75,7 @@ public class LoginController {
 
     }
 
+
     public void initialize() throws IOException {
         System.out.println("New Login Controller");
         System.out.println("System Command Generate DB Element");
@@ -76,7 +84,7 @@ public class LoginController {
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(forgotPasswordButton.getParent(), "Login");
+        loginButton.setDefaultButton(true);
     }
-
 
 }

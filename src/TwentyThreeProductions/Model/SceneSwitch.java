@@ -33,10 +33,20 @@ public class SceneSwitch {
         return sceneSwitch;
     }
 
+    public void resetSceneMap() {
+        sceneSwitch = null;
+        sceneSwitch = SceneSwitch.getInstance();
+    }
+
+
     public void activateScene(String name, Scene scene) throws IOException {
         this.scene = scene;
         currentRoot = FXMLLoader.load(NavigationModel.getURL(name));
         scene.setRoot(currentRoot);
+    }
+
+    public Parent getCurrentRoot() {
+        return currentRoot;
     }
 
     public void addScene(Parent parent, String name) {
