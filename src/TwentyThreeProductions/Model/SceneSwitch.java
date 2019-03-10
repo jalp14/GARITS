@@ -45,6 +45,10 @@ public class SceneSwitch {
         scene.setRoot(currentRoot);
     }
 
+    public Parent getCurrentRoot() {
+        return currentRoot;
+    }
+
     public void addScene(Parent parent, String name) {
         this.parent = parent;
         sceneMap.put(name, parent);

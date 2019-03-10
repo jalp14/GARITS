@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -73,6 +75,7 @@ public class LoginController {
 
     }
 
+
     public void initialize() throws IOException {
         System.out.println("New Login Controller");
         System.out.println("System Command Generate DB Element");
@@ -81,6 +84,7 @@ public class LoginController {
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(forgotPasswordButton.getParent(), "Login");
+        loginButton.setDefaultButton(true);
     }
 
 }
