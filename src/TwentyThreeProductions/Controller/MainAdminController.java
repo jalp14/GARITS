@@ -1,26 +1,23 @@
 package TwentyThreeProductions.Controller;
 
-
-import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
 
 public class MainAdminController {
 
     private SceneSwitch sceneSwitch;
+
 
     @FXML
     private JFXButton usersBtn;
@@ -32,11 +29,19 @@ public class MainAdminController {
     private JFXButton notifsBtn;
 
     @FXML
+    private Text usernameLbl;
+
+    @FXML
+    private Text userTypeLbl;
+
+    @FXML
     private JFXButton logoutBtn;
 
     @FXML
     private Label welcomeMessage;
 
+    @FXML
+    private StackPane stackPane;
 
     @FXML
     void backuprestoreBtnClicked(ActionEvent event) throws IOException {
@@ -45,27 +50,37 @@ public class MainAdminController {
     }
 
     @FXML
-    void logoutBtnPressed(ActionEvent event) throws IOException {
+    void logoutBtnPressed(ActionEvent event) {
         System.out.println("Logout pressed");
         sceneSwitch.switchScene("Login");
     }
 
     @FXML
     void notifsBtnClicked(ActionEvent event) {
-
+        JFXDialog dialog;
+        JFXDialogLayout dialogLayout;
+        JFXButton okbtn;
+        okbtn = new JFXButton("Ok");
+        dialogLayout = new JFXDialogLayout();
+        dialog = new JFXDialog(stackPane, dialogLayout, JFXDialog.DialogTransition.CENTER);
+        dialogLayout.setHeading(new Text("Hello"));
+        dialogLayout.setBody(new Text("soakok asokfokdgo ogkod odkgo"));
+        okbtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+        dialogLayout.setActions(okbtn);
+        dialog.show();
     }
-
 
     @FXML
     void usersClicked(ActionEvent event) throws IOException {
         System.out.println("Users Clicked");
         sceneSwitch.activateScene("Users", logoutBtn.getScene());
-
     }
 
-    public void setMessageFields(String welcomeMessage, String userType, String userName) {
-
-    }
 
     public void initialize() {
         System.out.println("New Login Controller");

@@ -6,65 +6,72 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.MainAdminController">
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.MainAdminController">
    <children>
-      <JFXButton fx:id="usersBtn" alignment="CENTER_RIGHT" layoutX="405.0" layoutY="350.0" onAction="#usersClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Users" textAlignment="RIGHT">
-         <font>
-            <Font name="Arial" size="29.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </JFXButton>
-      <ImageView fitHeight="80.0" fitWidth="57.0" layoutX="411.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../GARITSassests/users.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="backuprestoreBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="          " layoutX="671.0" layoutY="350.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#backuprestoreBtnClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="      Backup/ Restore" textAlignment="JUSTIFY" wrapText="true">
-         <font>
-            <Font name="Arial" size="26.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </JFXButton>
-      <ImageView fitHeight="71.0" fitWidth="58.0" layoutX="674.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../GARITSassests/backup.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="notifsBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="555.0" layoutY="638.0" onAction="#notifsBtnClicked" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #ff1640; -fx-background-radius: 4pt;" text="Notifications" textAlignment="JUSTIFY" textFill="WHITE" />
-      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="556.0" layoutY="639.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../GARITSassests/notifications.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../GARITSassests/garits.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="usernameLbl" fill="WHITE" layoutX="980.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="112.5">
-         <font>
-            <Font name="Avenir Next Bold" size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="userTypeLbl" fill="WHITE" layoutX="1046.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-         <font>
-            <Font name="Avenir Next Bold" size="13.0" />
-         </font></Text>
-      <JFXButton fx:id="logoutBtn" layoutX="1105.0" layoutY="79.0" onAction="#logoutBtnPressed" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
-         <font>
-            <Font name="Avenir Next Bold" size="13.0" />
-         </font></JFXButton>
-      <Label fx:id="welcomeMessage" layoutX="435.0" layoutY="212.0" prefHeight="68.0" prefWidth="353.0" text="Welcome Jimin">
-         <font>
-            <Font name="Avenir Next Bold" size="47.0" />
-         </font>
-      </Label>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXButton fx:id="usersBtn" alignment="CENTER_RIGHT" layoutX="405.0" layoutY="350.0" onAction="#usersClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Users" textAlignment="RIGHT">
+               <font>
+                  <Font name="Arial" size="29.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <ImageView fitHeight="80.0" fitWidth="57.0" layoutX="411.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GARITSassests/users.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="backuprestoreBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="          " layoutX="671.0" layoutY="350.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#backuprestoreBtnClicked" prefHeight="101.0" prefWidth="174.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="      Backup/ Restore" textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font name="Arial" size="26.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <ImageView fitHeight="71.0" fitWidth="58.0" layoutX="674.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GARITSassests/backup.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="notifsBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="555.0" layoutY="638.0" onAction="#notifsBtnClicked" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #ff1640; -fx-background-radius: 4pt;" text="Notifications" textAlignment="JUSTIFY" textFill="WHITE" />
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="556.0" layoutY="639.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GARITSassests/notifications.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GARITSassests/garits.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="980.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="112.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="userTypeLbl" fill="WHITE" layoutX="1046.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+               <font>
+                  <Font name="Avenir Next Bold" size="13.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="logoutBtn" layoutX="1105.0" layoutY="79.0" onAction="#logoutBtnPressed" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
+               <font>
+                  <Font name="Avenir Next Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="welcomeMessage" layoutX="435.0" layoutY="212.0" prefHeight="68.0" prefWidth="353.0" text="Welcome Jimin">
+               <font>
+                  <Font name="Avenir Next Bold" size="47.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>
