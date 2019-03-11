@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.DbManagementController">
     <children>
-        <JFXButton fx:id="newBackupBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="334.0" onAction="#addUserBtnClicked" prefHeight="90.0" prefWidth="350.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Create new backup" textAlignment="RIGHT" AnchorPane.leftAnchor="33.0">
+        <JFXButton fx:id="newBackupBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="334.0" onAction="#addUserBtnClicked" prefHeight="90.0" prefWidth="356.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text=" Create new backup" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="33.0">
             <font>
                 <Font name="Avenir Next Bold" size="22.0" />
             </font>
@@ -47,10 +47,10 @@
             </font></Text>
         <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="546.0" text="Database Management">
             <font>
-                <Font name="Avenir Next Bold" size="47.0" />
+                <Font name="Avenir Next Bold" size="40.0" />
             </font>
         </Label>
-        <JFXButton fx:id="backBtn" alignment="CENTER_RIGHT" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Back">
+        <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
             <font>
                 <Font name="Avenir Next Bold" size="22.0" />
             </font>
@@ -65,7 +65,7 @@
               </ImageView>
          </graphic>
         </JFXButton>
-      <JFXButton fx:id="restoreBackupBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="452.0" onAction="#addUserBtnClicked" prefHeight="90.0" prefWidth="350.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text=" Restore existing backup" textAlignment="RIGHT">
+      <JFXButton fx:id="restoreBackupBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="452.0" onAction="#addUserBtnClicked" prefHeight="90.0" prefWidth="356.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Restore existing backup" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Avenir Next Bold" size="22.0" />
          </font>
