@@ -1,19 +1,18 @@
 package TwentyThreeProductions.Controller.Parts;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-public class PartsMainController {
+public class RemovePartController {
 
     @FXML
-    private StackPane partsMainStackPane;
-
-    @FXML
-    private JFXButton addNewPartBtn;
+    private StackPane removePartStackPane;
 
     @FXML
     private Text usernameLbl;
@@ -31,12 +30,16 @@ public class PartsMainController {
     private JFXButton removePartBtn;
 
     @FXML
-    private JFXButton updatePartStockBtn;
+    private Label formLabel;
 
     @FXML
-    void addNewPartBtnClicked(ActionEvent event) {
+    private JFXTextField searchField;
 
-    }
+    @FXML
+    private JFXButton searchBtn;
+
+    @FXML
+    private JFXListView<?> partList;
 
     @FXML
     void backBtnClicked(ActionEvent event) {
@@ -49,7 +52,7 @@ public class PartsMainController {
     }
 
     @FXML
-    void updatePartStockBtnClicked(ActionEvent event) {
+    void searchBtnClick(ActionEvent event) {
 
     }
 
@@ -58,3 +61,4 @@ public class PartsMainController {
     }
 
 }
+

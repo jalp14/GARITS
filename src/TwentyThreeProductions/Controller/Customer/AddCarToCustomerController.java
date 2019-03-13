@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Customer;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -8,7 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+
 public class AddCarToCustomerController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane addCarToCustomerStackPane;
@@ -74,10 +79,14 @@ public class AddCarToCustomerController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
     }
 
-    public void initialize() {}
+    public void initialize() {
+        System.out.println("AddCartoCustomer controller init");
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(addCarToCustomerStackPane, NavigationModel.ADD_CUSTOMER_TO_CAR_ID);
+    }
 
 
 }

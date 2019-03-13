@@ -47,8 +47,8 @@ public class MainFFRController {
    private JFXButton reportsBtn;
 
    @FXML
-   void customersBtnClicked(ActionEvent event) {
-
+   void customersBtnClicked(ActionEvent event) throws IOException {
+      sceneSwitch.activateScene(NavigationModel.CUSTOMER_MAIN_ID, logoutBtn.getScene());
    }
 
    @FXML
