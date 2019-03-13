@@ -8,45 +8,50 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.LoginController">
+<StackPane fx:id="loginStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.LoginController">
    <children>
-      <ImageView id="CompanyImage" fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../GARITSassests/garits.png" />
-         </image>
-      </ImageView>
-      <JFXTextField id="usernameField" fx:id="usernameField" focusColor="#fc370f" labelFloat="true" layoutX="450.0" layoutY="356.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-text-inner-color: black;" unFocusColor="BLACK">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </JFXTextField>
-      <JFXPasswordField id="passwordField" fx:id="passwordField" focusColor="#eb270d" labelFloat="true" layoutX="450.0" layoutY="479.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-text-inner-color: black;" unFocusColor="BLACK">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </JFXPasswordField>
-      <JFXButton id="loginButton" fx:id="loginButton" defaultButton="true" layoutX="360.0" layoutY="610.0" onAction="#loginClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #0f6aed; -fx-background-radius: 6pt;" text="Login" textFill="#ffffff">
-         <font>
-            <Font name="Avenir Next Bold" size="24.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="forgotPasswordButton" layoutX="631.0" layoutY="610.0" onAction="#forgotClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #ed340f; -fx-background-radius: 6pt;" text="Forgot Password" textFill="#ffffff">
-         <font>
-            <Font name="Avenir Next Bold" size="22.0" />
-         </font>
-      </JFXButton>
-      <Label layoutX="453.0" layoutY="238.0" prefHeight="67.0" prefWidth="244.0" text="Welcome">
-         <font>
-            <Font name="Arial Bold" size="54.0" />
-         </font>
-      </Label>
-      <JFXBadge />
-      <ImageView fitHeight="67.0" fitWidth="71.0" layoutX="705.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../GARITSassests/gartisLoading.gif" />
-         </image>
-      </ImageView>
+      <Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView id="CompanyImage" fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../GARITSassests/garits.png" />
+               </image>
+            </ImageView>
+            <JFXTextField id="usernameField" fx:id="usernameField" focusColor="#fc370f" labelFloat="true" layoutX="450.0" layoutY="356.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-text-inner-color: black;" unFocusColor="BLACK">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField id="passwordField" fx:id="passwordField" focusColor="#eb270d" labelFloat="true" layoutX="450.0" layoutY="479.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-text-inner-color: black;" unFocusColor="BLACK">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton id="loginButton" fx:id="loginButton" layoutX="360.0" layoutY="610.0" onAction="#loginClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #0f6aed; -fx-background-radius: 6pt;" text="Login" textFill="#ffffff">
+               <font>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="forgotPasswordButton" layoutX="631.0" layoutY="610.0" onAction="#forgotClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #ed340f; -fx-background-radius: 6pt;" text="Forgot Password" textFill="#ffffff">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="453.0" layoutY="238.0" prefHeight="67.0" prefWidth="244.0" text="Welcome">
+               <font>
+                  <Font name="Arial Bold" size="54.0" />
+               </font>
+            </Label>
+            <JFXBadge />
+            <ImageView fitHeight="67.0" fitWidth="71.0" layoutX="705.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../GARITSassests/gartisLoading.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
-</Pane>
+</StackPane>

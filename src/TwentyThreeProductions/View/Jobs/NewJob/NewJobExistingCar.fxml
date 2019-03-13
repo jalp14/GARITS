@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane fx:id="newJobExistingCarStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GARITSassests/garits.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+               <font>
+                  <Font name="Avenir Next Bold" size="16.0" />
+               </font>
+            </Text>
+            <Label fx:id="welcomeMessage" layoutX="178.0" layoutY="217.0" prefHeight="68.0" prefWidth="474.0" text="Choose existing car for new job">
+               <font>
+                  <Font name="Avenir Next Bold" size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../GARITSassests/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label fx:id="customerNameLbl" layoutX="178.0" layoutY="270.0" prefHeight="30.0" prefWidth="375.0" text="Customer name">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="nextBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1051.0" layoutY="665.0" onAction="#nextBtnClicked" prefHeight="48.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Next" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXListView fx:id="customerCarList" layoutX="33.0" layoutY="317.0" prefHeight="270.0" prefWidth="408.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -3,6 +3,7 @@ package TwentyThreeProductions;
 import TwentyThreeProductions.Model.SceneSwitch;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,10 +21,15 @@ public class  Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
         primaryStage.setTitle("Welcome to GARITS");
-        URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+          URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();
+       // Parent root = FXMLLoader.load(url);
+       // Scene scene = new Scene(root,1200,750);
+       // primaryStage.setScene(scene);
+        Group root = new Group();
+        root.getChildren().add(FXMLLoader.load(url));
         Scene scene = new Scene(root,1200,750);
         primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 
