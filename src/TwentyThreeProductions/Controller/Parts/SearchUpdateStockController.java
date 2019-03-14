@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Parts;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -9,7 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class SearchUpdateStockController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane searchUpdateStockStackPane;
@@ -43,12 +49,12 @@ public class SearchUpdateStockController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
     @FXML
-    void removePartBtnClicked(ActionEvent event) {
-
+    void removePartBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.REMOVE_PART_ID, backBtn.getScene());
     }
 
     @FXML
@@ -57,7 +63,8 @@ public class SearchUpdateStockController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(searchUpdateStockStackPane, NavigationModel.SEARCH_UPDATE_STOCK_ID);
     }
 
 }

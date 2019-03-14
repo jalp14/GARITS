@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Users;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -10,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class EditUserController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane editUserStackPane;
@@ -64,7 +68,7 @@ public class EditUserController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);
     }
 
     @FXML
@@ -73,7 +77,8 @@ public class EditUserController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(editUserStackPane, NavigationModel.EDIT_USER_ID);
     }
 
 }

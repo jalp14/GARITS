@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Parts;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -10,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class UpdateStockController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane updateStockStackPane;
@@ -43,7 +47,7 @@ public class UpdateStockController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
     @FXML
@@ -52,7 +56,8 @@ public class UpdateStockController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(updateStockStackPane, NavigationModel.UPDATE_STOCK_ID);
     }
 
 }

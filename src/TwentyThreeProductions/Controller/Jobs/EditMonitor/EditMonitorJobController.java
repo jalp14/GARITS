@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -11,6 +13,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class EditMonitorJobController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane editMonitorJobStackPane;
@@ -105,7 +109,8 @@ public class EditMonitorJobController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(editMonitorJobStackPane, NavigationModel.EDIT_MONITOR_JOB_ID);
     }
 
 }

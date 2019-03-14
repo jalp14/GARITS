@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Users;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -9,7 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class AddNewUserController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane addNewUserStackPane;
@@ -60,17 +66,18 @@ public class AddNewUserController {
     private JFXComboBox<?> roleCombi;
 
     @FXML
-    void addUserBtnClicked(ActionEvent event) {
-
+    void addUserBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.ADD_NEW_USER_ID, backBtn.getScene());
     }
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(addNewUserStackPane, NavigationModel.ADD_NEW_USER_ID);
     }
 
 }

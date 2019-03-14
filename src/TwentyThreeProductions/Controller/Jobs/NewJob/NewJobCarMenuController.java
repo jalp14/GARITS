@@ -1,13 +1,18 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class NewJobCarMenuController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane newJobCarMenuStackPane;
@@ -57,7 +62,8 @@ public class NewJobCarMenuController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(newJobCarMenuStackPane, NavigationModel.NEW_JOB_CAR_MENU_ID);
     }
 
 }

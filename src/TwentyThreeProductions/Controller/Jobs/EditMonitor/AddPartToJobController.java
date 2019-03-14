@@ -1,15 +1,20 @@
 package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class AddPartToJobController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane addPartToJobStackPane;
@@ -51,7 +56,7 @@ public class AddPartToJobController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.JOBS_MAIN_ID);
     }
 
     @FXML
@@ -60,7 +65,8 @@ public class AddPartToJobController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(addPartToJobStackPane, NavigationModel.ADD_PART_TO_JOB_ID);
     }
 
 }

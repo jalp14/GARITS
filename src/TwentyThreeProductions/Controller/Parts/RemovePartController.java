@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Parts;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -10,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class RemovePartController {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane removePartStackPane;
@@ -43,7 +47,7 @@ public class RemovePartController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
     @FXML
@@ -57,7 +61,8 @@ public class RemovePartController {
     }
 
     public void initialize() {
-
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(removePartStackPane, NavigationModel.REMOVE_PART_ID);
     }
 
 }
