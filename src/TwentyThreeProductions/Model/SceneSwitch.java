@@ -1,29 +1,32 @@
 package TwentyThreeProductions.Model;
 
-import TwentyThreeProductions.Controller.LoginController;
-import com.sun.javafx.fxml.FXMLLoaderHelper;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class SceneSwitch {
 
     private Scene scene;
     private Parent parent;
     private Parent currentRoot;
-    private HashMap<String, Parent> sceneMap;
+    private HashMap<String, StackPane> sceneMap;
     private static SceneSwitch sceneSwitch = null;
 
 
     private SceneSwitch() {
         sceneMap = new HashMap<>();
+    }
+
+    public void resetSceneMap() {
+        sceneMap.clear();
+        System.out.println(sceneMap.size());
     }
 
     public static SceneSwitch getInstance() {
@@ -33,29 +36,37 @@ public class SceneSwitch {
         return sceneSwitch;
     }
 
-    public void resetSceneMap() {
-        sceneSwitch = null;
-        sceneSwitch = SceneSwitch.getInstance();
-    }
-
-
     public void activateScene(String name, Scene scene) throws IOException {
-        this.scene = scene;
-        currentRoot = FXMLLoader.load(NavigationModel.getURL(name));
-        scene.setRoot(currentRoot);
+        if (sceneMap.containsKey(name)) {
+            switchScene(name);
+        } else {
+            this.scene = scene;
+            currentRoot = FXMLLoader.load(NavigationModel.getURL(name));
+            scene.setRoot(currentRoot);
+        }
     }
 
-    public Parent getCurrentRoot() {
-        return currentRoot;
-    }
 
-    public void addScene(Parent parent, String name) {
-        this.parent = parent;
-        sceneMap.put(name, parent);
+    public Node getScene(String name) {
+        return sceneMap.get(name);
     }
 
     public void switchScene(String name) {
         scene.setRoot(sceneMap.get(name));
+    }
+
+
+    public void addScene(StackPane pane, String name) {
+        sceneMap.put(name, pane);
+    }
+
+    public boolean removeScene(String name) {
+        if (sceneMap.remove(name) == null) {
+            System.out.println("Screen didn't exist");
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

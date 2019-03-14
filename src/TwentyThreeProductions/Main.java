@@ -3,6 +3,7 @@ package TwentyThreeProductions;
 import TwentyThreeProductions.Model.SceneSwitch;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,7 +12,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.net.URL;
 
-public class  Main extends Application {
+public class Main extends Application {
 
 
     @Override
@@ -20,7 +21,7 @@ public class  Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
         primaryStage.setTitle("Welcome to GARITS");
-        URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();
+          URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root,1200,750);
         primaryStage.setScene(scene);

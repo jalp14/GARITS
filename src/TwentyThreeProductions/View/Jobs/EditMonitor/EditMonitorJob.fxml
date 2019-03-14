@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="editMonitorJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.EditMonitorJobController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GARITSassests/garits.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+               <font>
+                  <Font name="Avenir Next Bold" size="16.0" />
+               </font>
+            </Text>
+            <Label fx:id="welcomeMessage" layoutX="188.0" layoutY="221.0" prefHeight="32.0" prefWidth="126.0" text="Edit job">
+               <font>
+                  <Font name="Avenir Next Bold" size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../GARITSassests/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1069.0" layoutY="665.0" onAction="#saveBtnClicked" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <Label fx:id="tasksHeading" layoutX="39.0" layoutY="302.0" prefHeight="32.0" prefWidth="62.0" text="Tasks">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="addTaskBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="415.0" layoutY="302.0" onAction="#addTaskBtnClick" prefHeight="28.0" prefWidth="117.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add task" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXListView fx:id="taskList" layoutX="38.0" layoutY="336.0" prefHeight="158.0" prefWidth="496.0" />
+            <Label fx:id="jobDetailsLbl" layoutX="188.0" layoutY="261.0" prefHeight="32.0" prefWidth="591.0" text="Job date, Customer name, Car registration">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="partsHeading" layoutX="38.0" layoutY="519.0" prefHeight="32.0" prefWidth="62.0" text="Parts">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="addPartBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="415.0" layoutY="520.0" onAction="#addPartBtnClick" prefHeight="28.0" prefWidth="117.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add part" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXListView fx:id="partList" layoutX="40.0" layoutY="556.0" prefHeight="158.0" prefWidth="496.0" />
+            <Label fx:id="mechanicHeading" layoutX="674.0" layoutY="305.0" prefHeight="32.0" prefWidth="102.0" text="Mechanic">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="mechanicComboBox" layoutX="781.0" layoutY="305.0" onAction="#mechanicComboBoxClicked" prefHeight="27.0" prefWidth="245.0" />
+            <Label fx:id="mechanicHeading1" layoutX="620.0" layoutY="350.0" prefHeight="32.0" prefWidth="155.0" text="Job completed">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="mechanicHeading2" layoutX="683.0" layoutY="393.0" prefHeight="32.0" prefWidth="89.0" text="Job paid">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXCheckBox fx:id="jobCompletedCheckbox" ellipsisString="" layoutX="783.0" layoutY="357.0" onAction="#jobCompletedCheckboxClicked" prefHeight="19.0" prefWidth="24.0" />
+            <JFXCheckBox fx:id="jobPaidCheckbox" ellipsisString="" layoutX="783.0" layoutY="400.0" onAction="#jobPaidCheckboxClicked" prefHeight="19.0" prefWidth="24.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

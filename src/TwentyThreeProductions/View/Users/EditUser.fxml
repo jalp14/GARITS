@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="editUserStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Users.EditUserController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GARITSassests/garits.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+               <font>
+                  <Font name="Avenir Next Bold" size="16.0" />
+               </font>
+            </Text>
+            <Label fx:id="welcomeMessage" layoutX="186.0" layoutY="216.0" prefHeight="68.0" prefWidth="262.0" text="Edit existing user">
+               <font>
+                  <Font name="Avenir Next Bold" size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GARITSassests/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1063.0" layoutY="665.0" onAction="#saveBtnClicked" prefHeight="48.0" prefWidth="101.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <Label fx:id="fNameHeading" layoutX="40.0" layoutY="345.0" prefHeight="32.0" prefWidth="146.0" text="First name">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="firstNameField" layoutX="193.0" layoutY="339.0" prefHeight="35.0" prefWidth="309.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="lNameHeading" layoutX="40.0" layoutY="385.0" prefHeight="32.0" prefWidth="146.0" text="Last name">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameHeading" layoutX="40.0" layoutY="423.0" prefHeight="32.0" prefWidth="146.0" text="Username">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="passwordHeading" layoutX="40.0" layoutY="460.0" prefHeight="32.0" prefWidth="146.0" text="Password">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="roleHeading" layoutX="40.0" layoutY="499.0" prefHeight="32.0" prefWidth="146.0" text="Role">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="lastNameField" layoutX="193.0" layoutY="379.0" prefHeight="35.0" prefWidth="309.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="usernameField" layoutX="193.0" layoutY="417.0" prefHeight="35.0" prefWidth="309.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="passwordField" layoutX="193.0" layoutY="454.0" prefHeight="35.0" prefWidth="309.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXComboBox fx:id="roleCombi" layoutX="193.0" layoutY="502.0" prefHeight="27.0" prefWidth="309.0" />
+            <Label fx:id="usernameTitle" layoutX="186.0" layoutY="271.0" prefHeight="27.0" prefWidth="262.0" text="User name">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
