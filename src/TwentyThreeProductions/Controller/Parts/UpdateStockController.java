@@ -51,7 +51,17 @@ public class UpdateStockController {
     }
 
     @FXML
-    void removePartBtnClicked(ActionEvent event) {
+    void saveBtnClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void reduceStockBtnClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void increaseStockBtnClicked(ActionEvent event) {
 
     }
 
