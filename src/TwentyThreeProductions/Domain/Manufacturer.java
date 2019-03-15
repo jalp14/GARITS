@@ -1,6 +1,6 @@
 package TwentyThreeProductions.Domain;
 
-import java.lang.management.ManagementFactory;
+import java.util.List;
 
 public class Manufacturer {
     private int manufacturerID;
@@ -8,6 +8,8 @@ public class Manufacturer {
     private String companyID;
     private int phoneNumber;
     private int faxNumber;
+    private List<Car> cars;
+    private List<Part> parts;
 
     public Manufacturer(){}
 

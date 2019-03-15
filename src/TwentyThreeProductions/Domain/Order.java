@@ -1,11 +1,14 @@
 package TwentyThreeProductions.Domain;
 
+import java.util.List;
+
 public class Order {
 
     private int orderID;
     private String username;
     private String description;
     private int items;
+    private List<OrderPart> orderParts;
 
     public Order(){}
 
@@ -39,5 +42,13 @@ public class Order {
 
     public void setItems(int items) {
         this.items = items;
+    }
+
+    public List<OrderPart> getOrderParts() {
+        return orderParts;
+    }
+
+    public void setOrderParts(List<OrderPart> orderParts) {
+        this.orderParts = orderParts;
     }
 }

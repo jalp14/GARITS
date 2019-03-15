@@ -2,6 +2,7 @@ package TwentyThreeProductions.Domain;
 
 import java.sql.Time;
 import java.sql.Date;
+import java.util.List;
 
 public class Job {
 
@@ -14,6 +15,8 @@ public class Job {
     private String sparePartsUsed;
     private String status;
     private String paidFor;
+    private Time duration;
+    private List<JobTask> jobTasks;
 
     public Job(){}
 
@@ -97,6 +100,11 @@ public class Job {
         this.duration = duration;
     }
 
-    private Time duration;
+    public List<JobTask> getJobTasks() {
+        return jobTasks;
+    }
 
+    public void setJobTasks(List<JobTask> jobTasks) {
+        this.jobTasks = jobTasks;
+    }
 }

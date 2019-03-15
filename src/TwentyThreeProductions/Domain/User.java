@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Domain;
 
+import java.util.List;
+
 public class User {
 
     private String username;
@@ -7,6 +9,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String userRole;
+    private List<Order> orders;
+    private List<Report> reports;
 
     public User() {
 
@@ -50,5 +54,21 @@ public class User {
 
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
     }
 }

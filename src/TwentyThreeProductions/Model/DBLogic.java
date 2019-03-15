@@ -107,7 +107,7 @@ public class DBLogic {
         dbConnection = DriverManager.getConnection(DB_URL, user, pass);
         System.out.println("Connected to db");
         dbStatement = dbConnection.createStatement();
-        String sql1 = "SELECT * FROM GARAGE.USER";
+        String sql1 = "SELECT * FROM GARAGE.\"User\"";
         result = dbStatement.executeQuery(sql1);
         while (result.next()) {
          // Retrieve by column name

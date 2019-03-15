@@ -1,5 +1,8 @@
 package TwentyThreeProductions.Domain;
 
+import java.util.List;
+import java.util.List;
+
 public class Part {
 
     private String partID;
@@ -9,6 +12,7 @@ public class Part {
     private int year;
     private float price;
     private int stockLevel;
+    private List<OrderPart> orderParts;
 
     public Part(){}
 
@@ -66,5 +70,13 @@ public class Part {
 
     public void setStockLevel(int stockLevel) {
         this.stockLevel = stockLevel;
+    }
+
+    public List<OrderPart> getOrderParts() {
+        return orderParts;
+    }
+
+    public void setOrderParts(List<OrderPart> orderParts) {
+        this.orderParts = orderParts;
     }
 }
