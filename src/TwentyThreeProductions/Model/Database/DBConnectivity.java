@@ -10,35 +10,12 @@ import java.sql.SQLException;
 
 public class DBConnectivity implements DBConnectivityInterface {
 
-    private static DBConnectivity dbConnectivity = null;
     private Server dbServer;
     private Server webServer;
     private Connection connection = null;
 
-    private DBConnectivity() {
-        startServer();
-    }
-
-    private void startServer() {
-        try {
-            dbServer = Server.createTcpServer().start();
-            System.out.println("Starting SQL Server...");
-            System.out.println(dbServer.getStatus());
-            webServer = Server.createWebServer("-webPort", "8082", "-tcpAllowOthers");
-            webServer.start();
-            System.out.println(webServer.getStatus());
-            System.out.println(webServer.getURL());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static DBConnectivity getInstance() {
-        if (dbConnectivity == null) {
-            dbConnectivity = new DBConnectivity();
-        }
-        return dbConnectivity;
+    public DBConnectivity() {
+        System.out.println("New DBConnectivity instance");
     }
 
     public void connectDB() {

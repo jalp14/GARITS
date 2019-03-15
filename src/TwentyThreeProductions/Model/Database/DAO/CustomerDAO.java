@@ -16,8 +16,7 @@ public class CustomerDAO implements ICustomer {
 
     public CustomerDAO() {
         customers = new ArrayList<>();
-        dbConnectivity = DBConnectivity.getInstance();
-
+        dbConnectivity = new DBConnectivity();
     }
 
 
@@ -32,7 +31,8 @@ public class CustomerDAO implements ICustomer {
     }
 
     @Override
-    public void update(Customer customer) {
+    public void update(Customer customer) {;
+
 
 
     }
