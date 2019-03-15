@@ -36,22 +36,16 @@ public class AddNewPartController {
     private JFXButton addPartBtn;
 
     @FXML
-    private Label formLabel;
+    private Label partNameLabel;
 
     @FXML
-    private Label formLabel1;
+    private Label manufacturerLabel;
 
     @FXML
-    private Label formLabel11;
+    private Label vehicleTypeLabel;
 
     @FXML
-    private Label formLabel12;
-
-    @FXML
-    private Label formLabel121;
-
-    @FXML
-    private Label formLabel1211;
+    private Label yearsLabel;
 
     @FXML
     private JFXTextField partNameField;
@@ -66,13 +60,13 @@ public class AddNewPartController {
     private JFXTextField yearsField;
 
     @FXML
-    private Label formLabel1212;
+    private Label priceSymbolLabel;
 
     @FXML
     private JFXTextField priceWholeNumField;
 
     @FXML
-    private Label formLabel12121;
+    private Label priceDecimalLabel;
 
     @FXML
     private JFXTextField priceDecimalField;
@@ -82,6 +76,8 @@ public class AddNewPartController {
 
     @FXML
     void addPartBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Add Part clicked");
+
         sceneSwitch.activateScene(NavigationModel.ADD_NEW_PART_ID, backBtn.getScene());
     }
 

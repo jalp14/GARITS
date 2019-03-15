@@ -63,32 +63,32 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <Label fx:id="formLabel" layoutX="33.0" layoutY="327.0" prefHeight="32.0" prefWidth="137.0" text="Name">
+            <Label fx:id="partNameLabel" layoutX="33.0" layoutY="327.0" prefHeight="32.0" prefWidth="137.0" text="Name">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="formLabel1" layoutX="33.0" layoutY="379.0" prefHeight="32.0" prefWidth="137.0" text="Manufacturer">
+            <Label fx:id="manufacturerLabel" layoutX="33.0" layoutY="379.0" prefHeight="32.0" prefWidth="137.0" text="Manufacturer">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="formLabel11" layoutX="33.0" layoutY="431.0" prefHeight="32.0" prefWidth="137.0" text="Vehicle type">
+            <Label fx:id="vehicleTypeLabel" layoutX="33.0" layoutY="431.0" prefHeight="32.0" prefWidth="137.0" text="Vehicle type">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="formLabel12" layoutX="33.0" layoutY="483.0" prefHeight="32.0" prefWidth="137.0" text="Years">
+            <Label fx:id="yearsLabel" layoutX="33.0" layoutY="483.0" prefHeight="32.0" prefWidth="137.0" text="Years">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="formLabel121" layoutX="33.0" layoutY="535.0" prefHeight="32.0" prefWidth="137.0" text="Price">
+            <Label fx:id="priceLabel" layoutX="33.0" layoutY="535.0" prefHeight="32.0" prefWidth="137.0" text="Price">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="formLabel1211" layoutX="33.0" layoutY="587.0" prefHeight="32.0" prefWidth="137.0" text="Stock level">
+            <Label fx:id="stockLevelLabel" layoutX="33.0" layoutY="587.0" prefHeight="32.0" prefWidth="137.0" text="Stock level">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
@@ -113,7 +113,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="formLabel1212" layoutX="187.0" layoutY="536.0" prefHeight="32.0" prefWidth="18.0" text="£">
+            <Label fx:id="priceSymbolLabel" layoutX="187.0" layoutY="536.0" prefHeight="32.0" prefWidth="18.0" text="£">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
@@ -123,7 +123,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="formLabel12121" layoutX="381.0" layoutY="546.0" prefHeight="32.0" prefWidth="18.0" text=".">
+            <Label fx:id="priceDecimalLabel" layoutX="381.0" layoutY="546.0" prefHeight="32.0" prefWidth="18.0" text=".">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
