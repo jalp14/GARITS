@@ -1,7 +1,10 @@
 package TwentyThreeProductions.Controller.Users;
 
+
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -11,11 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
 public class AddNewUserController {
 
     private SceneSwitch sceneSwitch;
+    private DBLogic dbLogic;
+    private SystemAlert systemAlert;
 
     @FXML
     private StackPane addNewUserStackPane;
@@ -63,11 +66,22 @@ public class AddNewUserController {
     private JFXTextField passwordField;
 
     @FXML
-    private JFXComboBox<?> roleCombi;
+    private JFXComboBox<Label> roleCombi;
 
     @FXML
-    void addUserBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.ADD_NEW_USER_ID, backBtn.getScene());
+    void addUserBtnClicked(ActionEvent event) {
+       // performChecks();
+        if (dbLogic.addUser(firstNameField.getText(), lastNameField.getText(), usernameField.getText(), passwordField.getText(), roleCombi.getSelectionModel().getSelectedItem().getText())) {
+             systemAlert = new SystemAlert(addNewUserStackPane, "Success!", "Created new user. Please restart the program to use the new account");
+        } else {
+            systemAlert = new SystemAlert(addNewUserStackPane, "Failed", "Please try again");
+        }
+    }
+
+    public void performChecks() {
+        if (usernameField.getText().isBlank()) {
+             systemAlert = new SystemAlert(addNewUserStackPane, "Username error", "No username typed in");
+        }
     }
 
     @FXML
@@ -75,9 +89,19 @@ public class AddNewUserController {
         sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);
     }
 
+    public void setupRole() {
+        roleCombi.getItems().add(new Label("ADMIN"));
+        roleCombi.getItems().add(new Label("FRANCHISEE"));
+        roleCombi.getItems().add(new Label("RECEPTIONIST"));
+        roleCombi.getItems().add(new Label("FOREPERSON"));
+        roleCombi.getItems().add(new Label("MECHANIC"));
+    }
+
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(addNewUserStackPane, NavigationModel.ADD_NEW_USER_ID);
+        dbLogic = DBLogic.getDBInstance();
+        setupRole();
     }
 
 }

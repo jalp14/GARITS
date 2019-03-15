@@ -90,8 +90,8 @@ public class DBLogic {
         } catch (InterruptedException ie) {
             ie.printStackTrace();
         }
-
     }
+
 
     public void insertTable(String sqlQuery) {
         try {
@@ -99,8 +99,10 @@ public class DBLogic {
             Class.forName(JDBC_DRIVER);
             System.out.println("Connecting to database");
             dbConnection = DriverManager.getConnection(DB_URL, user, pass);
+
             dbStatement = dbConnection.createStatement();
             dbStatement.execute(sqlQuery);
+
             dbStatement.close();
             dbConnection.close();
 
@@ -153,6 +155,16 @@ public class DBLogic {
 
     public String getUser_type() {
         return user_type;
+    }
+
+    public boolean addUser(String firstName, String lastName, String userName, String passWord, String userRole) {
+        try {
+            dbConnection = DriverManager.getConnection(DB_URL, user, pass);
+        }  catch (SQLException sqle) {
+            System.out.println("SQL Exception");
+            return false;
+        }
+        return false;
     }
 
     public ResultSet readFromTable(String sqlQuery) throws SQLException {

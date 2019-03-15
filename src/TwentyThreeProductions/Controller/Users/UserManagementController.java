@@ -40,8 +40,9 @@ public class UserManagementController {
     private JFXButton backBtn;
 
     @FXML
-    void addNewUserBtnClicked(ActionEvent event) {
-
+    void addNewUserBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Add user btn clicked");
+        sceneSwitch.activateScene(NavigationModel.ADD_NEW_USER_ID, backBtn.getScene());
     }
 
     @FXML
