@@ -1,17 +1,14 @@
 package TwentyThreeProductions.Model.Database.DAO;
-
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Model.Database.DBConnectivity;
-import TwentyThreeProductions.Model.Database.DBConnectivityInterface;
-import TwentyThreeProductions.Model.Database.DataAccess.ICustomer;
+import TwentyThreeProductions.Model.Database.Interfaces.DBConnectivityInterface;
+import TwentyThreeProductions.Model.Database.Interfaces.ICustomer;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public class CustomerDAO implements ICustomer {
 
     private ArrayList<Customer> customers;
-    private Connection connection;
     private DBConnectivityInterface dbConnectivity;
 
     public CustomerDAO() {
@@ -31,9 +28,7 @@ public class CustomerDAO implements ICustomer {
     }
 
     @Override
-    public void update(Customer customer) {;
-
-
+    public void update(Customer customer) {
 
     }
 

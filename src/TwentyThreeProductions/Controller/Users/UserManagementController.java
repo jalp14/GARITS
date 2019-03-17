@@ -51,8 +51,8 @@ public class UserManagementController {
     }
 
     @FXML
-    void editUserBtnClicked(ActionEvent event) {
-
+    void editUserBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.EDIT_USER_ID, backBtn.getScene());
     }
 
     @FXML

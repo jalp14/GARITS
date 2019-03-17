@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
@@ -67,8 +68,16 @@ public class EditUserController {
     private Label usernameTitle;
 
     @FXML
+    private JFXTextField searchBar;
+
+    @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);
+    }
+
+    @FXML
+    void searchBarValueChanged(KeyEvent event) {
+        System.out.println("Changed");
     }
 
     @FXML

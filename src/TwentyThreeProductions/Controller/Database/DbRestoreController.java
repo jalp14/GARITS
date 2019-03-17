@@ -63,7 +63,7 @@ public class DbRestoreController {
             Thread.sleep(5000);
 
             System.out.println("Restarting the sql server");
-            dbController.restartServer();
+          //  dbController.restartServer();
 
             System.out.println("Server restarted, please login again");
           //  sceneSwitch.switchScene("Login", backBtn.getScene());

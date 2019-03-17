@@ -1,8 +1,7 @@
 package TwentyThreeProductions.Model.Database;
 
-import TwentyThreeProductions.Model.Database.DataAccess.DBHelper;
+import TwentyThreeProductions.Model.Database.Interfaces.DBConnectivityInterface;
 import org.h2.tools.Server;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,30 +11,11 @@ public class DBConnectivity implements DBConnectivityInterface {
 
     private Server dbServer;
     private Server webServer;
-    private Connection connection = null;
+
 
     public DBConnectivity() {
+
         System.out.println("New DBConnectivity instance");
-    }
-
-    public void connectDB() {
-        try {
-            System.out.println("Attempting to connect to the database");
-            Class.forName(DBHelper.JDBC_DRIVER);
-            connection = DriverManager.getConnection(DBHelper.DB_URL, DBHelper.user, DBHelper.pass);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void disconnectDB() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -64,13 +44,28 @@ public class DBConnectivity implements DBConnectivityInterface {
     }
 
     @Override
-    public Connection connection(String con) {
-        return null;
+    public Connection connection(Connection connection) {
+        try {
+            Class.forName(DBHelper.JDBC_DRIVER);
+            connection = DriverManager.getConnection(DBHelper.DB_URL, DBHelper.user, DBHelper.pass);
+            connection.setAutoCommit(true);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
     }
 
     @Override
     public boolean closeConnection(Connection connection) {
-        return false;
+        try {
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

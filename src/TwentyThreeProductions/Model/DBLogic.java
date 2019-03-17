@@ -130,15 +130,6 @@ public class DBLogic {
         return user_type;
     }
 
-    public boolean addUser(String firstName, String lastName, String userName, String passWord, String userRole) {
-        try {
-            dbConnection = DriverManager.getConnection(DB_URL, user, pass);
-        }  catch (SQLException sqle) {
-            System.out.println("SQL Exception");
-            return false;
-        }
-        return false;
-    }
 
     public ResultSet readFromTable(String sqlQuery) throws SQLException {
         dbConnection = DriverManager.getConnection(DB_URL, user, pass);

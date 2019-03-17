@@ -1,7 +1,9 @@
 package TwentyThreeProductions.Controller.Users;
 
 
+import TwentyThreeProductions.Domain.User;
 import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
@@ -70,12 +72,16 @@ public class AddNewUserController {
 
     @FXML
     void addUserBtnClicked(ActionEvent event) {
-       // performChecks();
-        if (dbLogic.addUser(firstNameField.getText(), lastNameField.getText(), usernameField.getText(), passwordField.getText(), roleCombi.getSelectionModel().getSelectedItem().getText())) {
-             systemAlert = new SystemAlert(addNewUserStackPane, "Success!", "Created new user. Please restart the program to use the new account");
-        } else {
-            systemAlert = new SystemAlert(addNewUserStackPane, "Failed", "Please try again");
-        }
+        User user = new User();
+       user.setUsername(usernameField.getText());
+       user.setPassword(passwordField.getText());
+       user.setFirstName(firstNameField.getText());
+       user.setLastName(lastNameField.getText());
+       user.setUserRole(roleCombi.getSelectionModel().getSelectedItem().getText());
+       UserDAO userDAO = new UserDAO();
+       userDAO.save(user);
+       SystemAlert systemAlert = new SystemAlert(addNewUserStackPane, "Success", "Added user");
+
     }
 
     public void performChecks() {
