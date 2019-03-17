@@ -83,13 +83,7 @@ public class AddNewUserController {
        SystemAlert systemAlert = new SystemAlert(addNewUserStackPane, "Success", "Added user");
 
     }
-
-    public void performChecks() {
-        if (usernameField.getText().isBlank()) {
-             systemAlert = new SystemAlert(addNewUserStackPane, "Username error", "No username typed in");
-        }
-    }
-
+    
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);

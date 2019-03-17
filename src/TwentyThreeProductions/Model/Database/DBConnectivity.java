@@ -2,10 +2,8 @@ package TwentyThreeProductions.Model.Database;
 
 import TwentyThreeProductions.Model.Database.Interfaces.DBConnectivityInterface;
 import org.h2.tools.Server;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class DBConnectivity implements DBConnectivityInterface {
 
@@ -35,11 +33,54 @@ public class DBConnectivity implements DBConnectivityInterface {
 
     @Override
     public boolean write(String sql, Connection connection) {
+        PreparedStatement statement;
+        connection = connection(connection);
+        try {
+            statement = connection.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean writePrepared(String sql, Connection connection, String[] args) {
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sql);
+            if (args.length <= 0) {
+                System.out.println("No need to use writePrepared");
+            } else {
+                for (int i = 0; i < args.length; i++) {
+                    statement.setString(i + 1, args[i]);
+                }
+                statement.execute();
+                connection.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
         return false;
     }
 
     @Override
     public ResultSet read(String sql, Connection connection) {
+        PreparedStatement statement;
+        connection = connection(connection);
+        try {
+            statement = connection.prepareStatement(sql);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
         return null;
     }
 
@@ -48,7 +89,7 @@ public class DBConnectivity implements DBConnectivityInterface {
         try {
             Class.forName(DBHelper.JDBC_DRIVER);
             connection = DriverManager.getConnection(DBHelper.DB_URL, DBHelper.user, DBHelper.pass);
-            connection.setAutoCommit(true);
+            connection.setAutoCommit(false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

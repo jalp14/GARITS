@@ -50,41 +50,22 @@ public class UserDAO implements IUser {
 
     @Override
     public void save(User user) {
-        PreparedStatement preparedStatement;
+        String[] args = {user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getUserRole()};
         connection = dbConnectivity.connection(connection);
-        try {
-            preparedStatement = connection.prepareStatement("INSERT INTO Garage.\"User\" (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, ROLE)\n" +
-                    "VALUES (?, ?, ?, ?,?)");
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getFirstName());
-            preparedStatement.setString(4, user.getLastName());
-            preparedStatement.setString(5, user.getUserRole());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            dbConnectivity.closeConnection(connection);
-        }
+        String saveQuery = "INSERT INTO Garage.\"User\" (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, ROLE)\n" +
+                "VALUES (?, ?, ?, ?,?)";
+        connection = dbConnectivity.connection(connection);
+        dbConnectivity.writePrepared(saveQuery, connection, args);
+
     }
 
 
     @Override
     public void update(User user) {
-        PreparedStatement preparedStatement = null;
+        String updateQuery = "UPDATE GARAGE.\"User\" SET PASSWORD=?, FIRSNAME=?, LASTNAME=?, ROLE=? WHERE USERNAME=?";
         connection = dbConnectivity.connection(connection);
-        try {
-            preparedStatement = connection.prepareStatement("UPDATE GARAGE.\"User\" SET PASSWORD=?, FIRSNAME=?, LASTNAME=?, ROLE=? WHERE USERNAME=?");
-            preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setString(2, user.getFirstName());
-            preparedStatement.setString(3, user.getLastName());
-            preparedStatement.setString(4, user.getUserRole());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            dbConnectivity.closeConnection(connection);
-        }
+        String args[] = {user.getPassword(), user.getFirstName(), user.getLastName(), user.getUserRole()};
+        dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
     @Override
