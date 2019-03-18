@@ -1,7 +1,12 @@
 package TwentyThreeProductions.Controller.Users;
 
+
+import TwentyThreeProductions.Domain.User;
+import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -11,11 +16,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
 public class AddNewUserController {
 
     private SceneSwitch sceneSwitch;
+    private DBLogic dbLogic;
+    private SystemAlert systemAlert;
 
     @FXML
     private StackPane addNewUserStackPane;
@@ -63,11 +68,20 @@ public class AddNewUserController {
     private JFXTextField passwordField;
 
     @FXML
-    private JFXComboBox<?> roleCombi;
+    private JFXComboBox<Label> roleCombi;
 
     @FXML
-    void addUserBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.ADD_NEW_USER_ID, backBtn.getScene());
+    void addUserBtnClicked(ActionEvent event) {
+        User user = new User();
+       user.setUsername(usernameField.getText());
+       user.setPassword(passwordField.getText());
+       user.setFirstName(firstNameField.getText());
+       user.setLastName(lastNameField.getText());
+       user.setUserRole(roleCombi.getSelectionModel().getSelectedItem().getText());
+       UserDAO userDAO = new UserDAO();
+       userDAO.save(user);
+       SystemAlert systemAlert = new SystemAlert(addNewUserStackPane, "Success", "Added user");
+
     }
 
     @FXML
@@ -75,9 +89,19 @@ public class AddNewUserController {
         sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);
     }
 
+    public void setupRole() {
+        roleCombi.getItems().add(new Label("ADMIN"));
+        roleCombi.getItems().add(new Label("FRANCHISEE"));
+        roleCombi.getItems().add(new Label("RECEPTIONIST"));
+        roleCombi.getItems().add(new Label("FOREPERSON"));
+        roleCombi.getItems().add(new Label("MECHANIC"));
+    }
+
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(addNewUserStackPane, NavigationModel.ADD_NEW_USER_ID);
+        dbLogic = DBLogic.getDBInstance();
+        setupRole();
     }
 
 }

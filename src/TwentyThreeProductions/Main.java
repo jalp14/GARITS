@@ -1,9 +1,8 @@
 package TwentyThreeProductions;
 
-import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.Database.DBServer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,7 +12,6 @@ import java.io.File;
 import java.net.URL;
 
 public class Main extends Application {
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -26,8 +24,8 @@ public class Main extends Application {
         Scene scene = new Scene(root,1200,750);
         primaryStage.setScene(scene);
         primaryStage.show();
+        DBServer dbServer = DBServer.getInstance();
     }
-
 
     public static void main(String[] args) {
         launch(args);

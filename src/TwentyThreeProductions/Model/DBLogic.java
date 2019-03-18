@@ -62,36 +62,9 @@ public class DBLogic {
     }
 
     public void startSQLServer() {
-        try {
-            sqlServer = Server.createTcpServer().start();
-            System.out.println("Starting SQL Server...");
-            System.out.println(sqlServer.getStatus());
-            webServer = Server.createWebServer("-webPort", "8082", "-tcpAllowOthers");
-            webServer.start();
-            System.out.println(webServer.getStatus());
-            System.out.println(webServer.getURL());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void restartServer() {
-        try {
-         // Stop the server
-         sqlServer.stop();
-         webServer.stop();
 
-         // Wait for 5 seconds
-         Thread.sleep(5000);
-
-         // Start the server
-         startSQLServer();
-
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
-        }
-
-    }
 
     public void insertTable(String sqlQuery) {
         try {
@@ -99,8 +72,10 @@ public class DBLogic {
             Class.forName(JDBC_DRIVER);
             System.out.println("Connecting to database");
             dbConnection = DriverManager.getConnection(DB_URL, user, pass);
+
             dbStatement = dbConnection.createStatement();
             dbStatement.execute(sqlQuery);
+
             dbStatement.close();
             dbConnection.close();
 
@@ -132,7 +107,7 @@ public class DBLogic {
         dbConnection = DriverManager.getConnection(DB_URL, user, pass);
         System.out.println("Connected to db");
         dbStatement = dbConnection.createStatement();
-        String sql1 = "SELECT * FROM GARAGE.USER";
+        String sql1 = "SELECT * FROM GARAGE.\"User\"";
         result = dbStatement.executeQuery(sql1);
         while (result.next()) {
          // Retrieve by column name
@@ -154,6 +129,7 @@ public class DBLogic {
     public String getUser_type() {
         return user_type;
     }
+
 
     public ResultSet readFromTable(String sqlQuery) throws SQLException {
         dbConnection = DriverManager.getConnection(DB_URL, user, pass);
