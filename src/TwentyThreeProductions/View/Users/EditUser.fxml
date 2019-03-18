@@ -110,7 +110,7 @@
                   <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="searchBar" layoutX="193.0" layoutY="323.0" onKeyTyped="#searchBarValueChanged" prefHeight="47.0" prefWidth="283.0" />
+            <JFXComboBox fx:id="currentUserCombi" layoutX="195.0" layoutY="334.0" onAction="#currentUserCombiSelected" prefHeight="32.0" prefWidth="307.0" />
          </children>
       </AnchorPane>
    </children>

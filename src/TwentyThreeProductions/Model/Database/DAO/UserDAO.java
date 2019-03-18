@@ -19,10 +19,11 @@ public class UserDAO implements IUser {
         dbConnectivity = new DBConnectivity();
     }
 
+
     @Override
     public ArrayList<User> getAll() {
         Statement statement;
-        String query = "SELECT * FROM GARAGE.USER";
+        String query = "SELECT * FROM GARAGE.\"User\"";
         ResultSet result;
         connection = dbConnectivity.connection(connection);
         try {
@@ -35,7 +36,6 @@ public class UserDAO implements IUser {
                 user.setFirstName(result.getString("FIRSTNAME"));
                 user.setLastName(result.getString("LASTNAME"));
                 user.setUserRole(result.getString("ROLE"));
-
                 users.add(user);
             }
 
@@ -56,7 +56,6 @@ public class UserDAO implements IUser {
                 "VALUES (?, ?, ?, ?,?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
-
     }
 
 
@@ -70,6 +69,7 @@ public class UserDAO implements IUser {
 
     @Override
     public void delete(User user) {
+        connection = dbConnectivity.connection(connection);
         users.remove(user);
     }
 }

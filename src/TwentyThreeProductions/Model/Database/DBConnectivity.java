@@ -12,7 +12,6 @@ public class DBConnectivity implements DBConnectivityInterface {
 
 
     public DBConnectivity() {
-
         System.out.println("New DBConnectivity instance");
     }
 
