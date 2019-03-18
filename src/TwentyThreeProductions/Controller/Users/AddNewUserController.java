@@ -72,7 +72,7 @@ public class AddNewUserController {
 
     @FXML
     void addUserBtnClicked(ActionEvent event) {
-        User user = new User();
+       User user = new User();
        user.setUsername(usernameField.getText());
        user.setPassword(passwordField.getText());
        user.setFirstName(firstNameField.getText());

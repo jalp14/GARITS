@@ -61,15 +61,18 @@ public class UserDAO implements IUser {
 
     @Override
     public void update(User user) {
-        String updateQuery = "UPDATE GARAGE.\"User\" SET PASSWORD=?, FIRSNAME=?, LASTNAME=?, ROLE=? WHERE USERNAME=?";
+        String updateQuery = "UPDATE GARAGE.\"User\" SET PASSWORD=?, FIRSTNAME=?, LASTNAME=?, ROLE=? WHERE USERNAME=?";
         connection = dbConnectivity.connection(connection);
-        String args[] = {user.getPassword(), user.getFirstName(), user.getLastName(), user.getUserRole()};
+        String args[] = {user.getPassword(), user.getFirstName(), user.getLastName(), user.getUserRole(), user.getUsername()};
         dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
     @Override
     public void delete(User user) {
+        String deleteUser = "DELETE FROM GARAGE.\"User\" WHERE USERNAME=?";
         connection = dbConnectivity.connection(connection);
+        String args[] = {user.getUsername()};
+        dbConnectivity.writePrepared(deleteUser, connection, args);
         users.remove(user);
     }
 }
