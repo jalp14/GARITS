@@ -1,7 +1,12 @@
 package TwentyThreeProductions.Controller.Parts;
 
+import TwentyThreeProductions.Domain.Part;
+import TwentyThreeProductions.Domain.Manufacturer;
+import TwentyThreeProductions.Model.Database.DAO.ManufacturerDAO;
+import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -36,7 +41,10 @@ public class AddNewPartController {
     private JFXButton addPartBtn;
 
     @FXML
-    private Label partNameLabel;
+    private Label nameLabel;
+
+    @FXML
+    private Label partIDLabel;
 
     @FXML
     private Label manufacturerLabel;
@@ -48,7 +56,19 @@ public class AddNewPartController {
     private Label yearsLabel;
 
     @FXML
-    private JFXTextField partNameField;
+    private Label priceSymbolLabel;
+
+    @FXML
+    private Label priceDecimalLabel;
+
+    @FXML
+    private Label stockLevelLabel;
+
+    @FXML
+    private JFXTextField nameField;
+
+    @FXML
+    private JFXTextField partIDField;
 
     @FXML
     private JFXTextField manufacturerField;
@@ -60,13 +80,7 @@ public class AddNewPartController {
     private JFXTextField yearsField;
 
     @FXML
-    private Label priceSymbolLabel;
-
-    @FXML
     private JFXTextField priceWholeNumField;
-
-    @FXML
-    private Label priceDecimalLabel;
 
     @FXML
     private JFXTextField priceDecimalField;
@@ -76,9 +90,82 @@ public class AddNewPartController {
 
     @FXML
     void addPartBtnClicked(ActionEvent event) throws IOException {
-        System.out.println("Add Part clicked");
+        // If there is at least one blank field when the details for the new part are submitted,
+        // the system presents an alert stating that the new part could not be added to the system
+        // database due to the blank field(s).
+        if (nameField.getText().isEmpty() || /*partIDField.getText().isEmpty() ||*/
+                manufacturerField.getText().isEmpty() || vehicleTypeField.getText().isEmpty() ||
+                yearsField.getText().isEmpty() || priceWholeNumField.getText().isEmpty() ||
+                priceDecimalField.getText().isEmpty() || stockLevelField.getText().isEmpty()) {
+            SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                    "Failure", "Blank field(s)");
+        }
 
-        sceneSwitch.activateScene(NavigationModel.ADD_NEW_PART_ID, backBtn.getScene());
+        // Otherwise, the system will take the inputs from this page and add them to the
+        // appropriate fields for the new part object that will be put into the system database.
+        else {
+            Part part = new Part();
+            PartDAO partDAO = new PartDAO();
+            ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
+            part.setName(nameField.getText());
+            part.setPartID(/*partIDField.getText()*/"E");
+
+            // The system will set the Manufacturer ID to -1, which is a value that cannot be achieved
+            // normally, to check whether a proper ID can be given. The system gets the data for every
+            // manufacturer within the system database and checks to see if the name that was inputted
+            // matches any of the names within the system database. If it does, it will replace the
+            // manufacturer ID with the actual ID for the company and break out of the loop.
+            part.setManufacturerID(-1);
+            for (Manufacturer m : manufacturerDAO.getAll()) {
+                if (m.getCompanyName().equals(manufacturerField.getText())) {
+                    part.setManufacturerID(m.getManufacturerID());
+                    break;
+                }
+            }
+
+            // The system checks whether the Manufacturer ID has remained as -1 or has changed to an
+            // acceptable value. If it has remained as -1, the system will produce another alert stating
+            // that the part could not be added as the company name that was inputted does not belong to an
+            // actual company within the system database, so an ID could not be retrieved.
+            if(part.getManufacturerID() == -1) {
+                SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                        "Failure", "Manufacturer does not exist");
+            }
+
+            // Once the system has confirmed that the company name inputted by the user is valid
+            // and set the manufacturer ID to the appropriate value, the system continues adding
+            // the user's inputs to the part object to be put into the system database.
+            else {
+                part.setVehicleType(vehicleTypeField.getText());
+                part.setYear(Integer.parseInt(yearsField.getText()));
+
+                // The system checks that whether or not the decimal value that has been inputted
+                // is below 100. If it is not below 100, the system will produce another alert stating
+                // that the part could not be added to the system database as the decimal value provided
+                // was too high
+                if(Integer.parseInt(priceDecimalField.getText()) > 99) {
+                    SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                            "Failure", "Decimal price value too high");
+                }
+
+                // Once the system has confirmed that the decimal value is below 100, and thus
+                // accurate for the possible decimal values, the system adds the whole number value to the
+                // corrected decimal value to create a value for the total price, adding it to the part object
+                // to be added to the system database, as well as adding the stock level.
+                else {
+                    part.setPrice(Integer.parseInt(priceWholeNumField.getText()) +
+                            (Float.parseFloat(priceDecimalField.getText()) / 100));
+                    part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
+
+                    // After each entry has been added to the part object, the system runs the operation to
+                    // add the part to the system database. Once this operation is complete, the system produces
+                    // an alert stating that the addition of the part to the system database was a success
+                    partDAO.save(part);
+                    SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                            "Success", "Added part");
+                }
+            }
+        }
     }
 
     @FXML
