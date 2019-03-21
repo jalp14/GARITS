@@ -64,20 +64,38 @@ public class RemovePartController {
 
         // Otherwise, the system creates an object which holds the selected part, so that ic can be passed through to
         // an operation to remove a part from the system database. Once this is done, the system produces an alert stating
-        // that a part was successfully removed from the system database.
+        // that a part was successfully removed from the system database and refreshes the list view.
         else {
             Part part = partList.getSelectionModel().getSelectedItem();
             PartDAO partDAO = new PartDAO();
             partDAO.delete(part);
             SystemAlert systemAlert = new SystemAlert(removePartStackPane,
                     "Success", "Removed part");
+            partList.getItems().clear();
+            for(Part p: partDAO.getAll()) {
+                partList.getItems().add(p);
+            }
         }
 
     }
 
     @FXML
     void searchBtnClick(ActionEvent event) {
-
+        PartDAO partDAO = new PartDAO();
+        String searchTerm = searchField.getText();
+        partList.getItems().clear();
+        if(searchTerm.isEmpty()) {
+            for(Part p: partDAO.getAll()) {
+                partList.getItems().add(p);
+            }
+        }
+        else {
+            for(Part p: partDAO.getAll()) {
+                if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm)) {
+                    partList.getItems().add(p);
+                }
+            }
+        }
     }
 
     public void initialize() {

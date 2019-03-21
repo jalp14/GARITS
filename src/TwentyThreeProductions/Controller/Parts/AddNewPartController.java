@@ -137,32 +137,43 @@ public class AddNewPartController {
             // the user's inputs to the part object to be put into the system database.
             else {
                 part.setVehicleType(vehicleTypeField.getText());
-                part.setYear(Integer.parseInt(yearsField.getText()));
 
-                // The system checks that whether or not the decimal value that has been inputted
-                // is below 100. If it is not below 100, the system will produce another alert stating
-                // that the part could not be added to the system database as the decimal value provided
-                // was too high
-                if(Integer.parseInt(priceDecimalField.getText()) > 99) {
-                    SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
-                            "Failure", "Decimal price value too high");
+                // The system tests whether the values for the Years field and Price fields are number
+                // values as they should be. If they are, then the system will continue to add their values
+                // to the part object to be put into the system database. Otherwise, the system will produce
+                // another alert stating that there are fields with invalid characters inputted into them.
+                try {
+                    part.setYear(Integer.parseInt(yearsField.getText()));
+
+                    // The system checks that whether or not the decimal value that has been inputted
+                    // is below 100. If it is not below 100, the system will produce another alert stating
+                    // that the part could not be added to the system database as the decimal value provided
+                    // was too high
+                    if (Integer.parseInt(priceDecimalField.getText()) > 99) {
+                        SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                                "Failure", "Decimal price value too high");
+                    }
+
+                    // Once the system has confirmed that the decimal value is below 100, and thus
+                    // accurate for the possible decimal values, the system adds the whole number value to the
+                    // corrected decimal value to create a value for the total price, adding it to the part object
+                    // to be added to the system database, as well as adding the stock level.
+                    else {
+                        part.setPrice(Integer.parseInt(priceWholeNumField.getText()) +
+                                (Float.parseFloat(priceDecimalField.getText()) / 100));
+                        part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
+
+                        // After each entry has been added to the part object, the system runs the operation to
+                        // add the part to the system database. Once this operation is complete, the system produces
+                        // an alert stating that the addition of the part to the system database was a success
+                        partDAO.save(part);
+                        SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                                "Success", "Added part");
+                    }
                 }
-
-                // Once the system has confirmed that the decimal value is below 100, and thus
-                // accurate for the possible decimal values, the system adds the whole number value to the
-                // corrected decimal value to create a value for the total price, adding it to the part object
-                // to be added to the system database, as well as adding the stock level.
-                else {
-                    part.setPrice(Integer.parseInt(priceWholeNumField.getText()) +
-                            (Float.parseFloat(priceDecimalField.getText()) / 100));
-                    part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
-
-                    // After each entry has been added to the part object, the system runs the operation to
-                    // add the part to the system database. Once this operation is complete, the system produces
-                    // an alert stating that the addition of the part to the system database was a success
-                    partDAO.save(part);
+                catch(Exception e) {
                     SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
-                            "Success", "Added part");
+                            "Failure", "Invalid characters found in field(s)");
                 }
             }
         }

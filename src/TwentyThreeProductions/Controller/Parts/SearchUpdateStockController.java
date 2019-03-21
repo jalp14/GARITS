@@ -75,8 +75,22 @@ public class SearchUpdateStockController {
 
     @FXML
     void searchBtnClick(ActionEvent event) {
-
-    }
+            PartDAO partDAO = new PartDAO();
+            String searchTerm = searchField.getText();
+            partList.getItems().clear();
+            if(searchTerm.isEmpty()) {
+                for(Part p: partDAO.getAll()) {
+                    partList.getItems().add(p);
+                }
+            }
+            else {
+                for(Part p: partDAO.getAll()) {
+                    if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm)) {
+                        partList.getItems().add(p);
+                    }
+                }
+            }
+        }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
