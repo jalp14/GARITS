@@ -143,7 +143,8 @@ public class AddNewPartController {
                 // to the part object to be put into the system database. Otherwise, the system will produce
                 // another alert stating that there are fields with invalid characters inputted into them.
                 try {
-                    part.setYear(Integer.parseInt(yearsField.getText()));
+                    Integer.parseInt(yearsField.getText());
+                    part.setYear(yearsField.getText());
 
                     // The system checks that whether or not the decimal value that has been inputted
                     // is below 100. If it is not below 100, the system will produce another alert stating
@@ -159,9 +160,10 @@ public class AddNewPartController {
                     // corrected decimal value to create a value for the total price, adding it to the part object
                     // to be added to the system database, as well as adding the stock level.
                     else {
-                        part.setPrice(Integer.parseInt(priceWholeNumField.getText()) +
-                                (Float.parseFloat(priceDecimalField.getText()) / 100));
-                        part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
+                        part.setPrice(String.valueOf(Integer.parseInt(priceWholeNumField.getText()) +
+                                (Float.parseFloat(priceDecimalField.getText()) / 100)));
+                        Integer.parseInt(stockLevelField.getText());
+                        part.setStockLevel(stockLevelField.getText());
 
                         // After each entry has been added to the part object, the system runs the operation to
                         // add the part to the system database. Once this operation is complete, the system produces

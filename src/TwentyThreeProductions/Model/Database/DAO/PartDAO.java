@@ -39,9 +39,9 @@ public class PartDAO implements IPart {
                 part.setManufacturerID(result.getInt("MANUFACTURERID"));
                 part.setName(result.getString("NAME"));
                 part.setVehicleType(result.getString("VEHICLETYPE"));
-                part.setYear(result.getInt("YEAR"));
-                part.setPrice(result.getFloat("PRICE"));
-                part.setStockLevel(result.getInt("STOCK_LEVEL"));
+                part.setYear(result.getString("YEAR"));
+                part.setPrice(result.getString("PRICE"));
+                part.setStockLevel(result.getString("STOCK_LEVEL"));
                 parts.add(part);
             }
         } catch (SQLException e) {

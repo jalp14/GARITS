@@ -72,7 +72,8 @@ public class UpdateStockController {
             else {
                 Part part = new Part();
                 PartDAO partDAO = new PartDAO();
-                part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
+                Integer.parseInt(stockLevelField.getText());
+                part.setStockLevel(stockLevelField.getText());
                 partDAO.update(part);
                 SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
                         "Success", "Stock updated");

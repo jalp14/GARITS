@@ -6,8 +6,8 @@ public class Manufacturer {
     private int manufacturerID;
     private String companyName;
     private String companyAddress;
-    private int phoneNumber;
-    private int faxNumber;
+    private String phoneNumber;
+    private String faxNumber;
     private List<Car> cars;
     private List<Part> parts;
 
@@ -37,19 +37,19 @@ public class Manufacturer {
         this.companyAddress = companyAddress;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getFaxNumber() {
+    public String getFaxNumber() {
         return faxNumber;
     }
 
-    public void setFaxNumber(int faxNumber) {
+    public void setFaxNumber(String faxNumber) {
         this.faxNumber = faxNumber;
     }
 }

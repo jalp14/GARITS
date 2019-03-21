@@ -70,7 +70,7 @@ public class RemovePartController {
         // an operation to remove a part from the system database. Once this is done, the system produces an alert stating
         // that a part was successfully removed from the system database and refreshes the list view.
         else {
-            Part part = partHashMap.get(partList.getSelectionModel().getSelectedItem());
+            Part part = partHashMap.get(partList.getSelectionModel().getSelectedItem().getText());
             PartDAO partDAO = new PartDAO();
             partDAO.delete(part);
             SystemAlert systemAlert = new SystemAlert(removePartStackPane,
