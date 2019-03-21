@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 public interface ICar {
     ArrayList<Car> getAll();
+    ArrayList<Car> getAvailableCars();
     void save(Car car);
+    void updateCustomer(String customerID, String registraionID);
     void update(Car car);
     void delete(Car car);
 }

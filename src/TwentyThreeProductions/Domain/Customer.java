@@ -1,32 +1,37 @@
 package TwentyThreeProductions.Domain;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
 
-    private int customerID;
+    private String customerID;
     private String firstName;
     private String lastName;
     private String customerType;
     private String customerAddress;
+    private String customerPostcode;
     private String customerPhone;
     private String customerEmail;
-    private List<Car> cars;
-    private List<Invoice> invoices;
-    private List<Job> jobs;
-    private List<Payment> payments;
+    private boolean latePayment;
+    private Date currentDate;
+    private ArrayList<Car> cars;
+    private ArrayList<Invoice> invoices;
+    private ArrayList<Job> jobs;
+    private ArrayList<Payment> payments;
 
     public Customer(){}
     // missing customerID and car from the constructor
-    public Customer(int customerID) {
+    public Customer(String customerID) {
         this.customerID = customerID;
     }
 
-    public int getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(int customerID) {
+    public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
@@ -36,6 +41,36 @@ public class Customer {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void setCustomerPostcode(String customerPostcode) {
+        this.customerPostcode = customerPostcode;
+    }
+
+    public String getCustomerPostcode() {
+        return customerPostcode;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setLatePayment(boolean latePayment) {
+        this.latePayment = latePayment;
+    }
+
+    public String isLatePayment() {
+        String answer;
+        if (latePayment) {
+            answer = "TRUE";
+        } else {
+            answer = "FALSE";
+        }
+        return answer;
     }
 
     public String getLastName() {
@@ -82,7 +117,7 @@ public class Customer {
         return cars;
     }
 
-    public void setCars(List<Car> cars) {
+    public void setCars(ArrayList<Car> cars) {
         this.cars = cars;
     }
 
@@ -90,7 +125,7 @@ public class Customer {
         return invoices;
     }
 
-    public void setInvoices(List<Invoice> invoices) {
+    public void setInvoices(ArrayList<Invoice> invoices) {
         this.invoices = invoices;
     }
 
@@ -98,7 +133,7 @@ public class Customer {
         return jobs;
     }
 
-    public void setJobs(List<Job> jobs) {
+    public void setJobs(ArrayList<Job> jobs) {
         this.jobs = jobs;
     }
 
@@ -106,7 +141,7 @@ public class Customer {
         return payments;
     }
 
-    public void setPayments(List<Payment> payments) {
+    public void setPayments(ArrayList<Payment> payments) {
         this.payments = payments;
     }
 }
