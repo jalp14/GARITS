@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class JobsMainController {
 
     private SceneSwitch sceneSwitch;
@@ -40,13 +42,13 @@ public class JobsMainController {
     }
 
     @FXML
-    void monitorEditJobBtnClicked(ActionEvent event) {
-
+    void monitorEditJobBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.EDIT_MONITOR_CHOOSE_ID, backBtn.getScene());
     }
 
     @FXML
-    void newJobBtnClicked(ActionEvent event) {
-
+    void newJobBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.NEW_JOB_MENU_ID, backBtn.getScene());
     }
 
     public void initialize() {
