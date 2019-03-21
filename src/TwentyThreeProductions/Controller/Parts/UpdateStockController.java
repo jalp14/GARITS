@@ -3,6 +3,7 @@ package TwentyThreeProductions.Controller.Parts;
 import TwentyThreeProductions.Domain.Part;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.PartReference;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
@@ -19,6 +20,8 @@ import java.io.IOException;
 public class UpdateStockController {
 
     private SceneSwitch sceneSwitch;
+
+    private PartReference partReference;
 
     @FXML
     private StackPane updateStockStackPane;
@@ -57,7 +60,6 @@ public class UpdateStockController {
 
     @FXML
     void saveBtnClicked(ActionEvent event) {
-
         try {
             // If the current value of the system stock is set to a value below zero, the system produces an alert stating
             // that the stock cannot be updated because the stock must be a value of zero or greater.
@@ -70,8 +72,9 @@ public class UpdateStockController {
             // part object is passed through an operation to update the stock level within the system database, after which the
             // system produces an alert to state that the stock has been successfully updated.
             else {
-                Part part = new Part();
+                Part part = partReference.getPart();
                 PartDAO partDAO = new PartDAO();
+                System.out.println(partReference.getPart().getPartID());
                 Integer.parseInt(stockLevelField.getText());
                 part.setStockLevel(stockLevelField.getText());
                 partDAO.update(part);
@@ -118,6 +121,8 @@ public class UpdateStockController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(updateStockStackPane, NavigationModel.UPDATE_STOCK_ID);
+        partReference = PartReference.getInstance();
+        //stockLevelField.setText(partReference.getPart().getStockLevel());
     }
 
 }

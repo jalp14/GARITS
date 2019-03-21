@@ -19,6 +19,8 @@ public class RemovePartController {
 
     private SceneSwitch sceneSwitch;
 
+    private HashMap<String, Part> partHashMap;
+
     @FXML
     private StackPane removePartStackPane;
 
@@ -49,8 +51,6 @@ public class RemovePartController {
     @FXML
     private JFXListView<Label> partList;
 
-    private HashMap<String, Part> partHashMap;
-
     @FXML
     void backBtnClicked(ActionEvent event) {
         partList.getSelectionModel().select(null);
@@ -79,7 +79,7 @@ public class RemovePartController {
             partList.getItems().clear();
             partHashMap.clear();
             for(Part p: partDAO.getAll()) {
-                Label partLabel = new Label(p.getPartID() + " " + p.getName());
+                Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
                 partHashMap.put(partLabel.getText(), p);
                 partList.getItems().add(partLabel);
             }
@@ -95,15 +95,15 @@ public class RemovePartController {
         partHashMap.clear();
         if(searchTerm.isEmpty()) {
             for(Part p: partDAO.getAll()) {
-                Label partLabel = new Label(p.getPartID() + " " + p.getName());
+                Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
                 partHashMap.put(partLabel.getText(), p);
                 partList.getItems().add(partLabel);
             }
         }
         else {
             for(Part p: partDAO.getAll()) {
-                if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm)) {
-                    Label partLabel = new Label(p.getPartID() + " " + p.getName());
+                if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || p.getStockLevel().contains(searchTerm)) {
+                    Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
                     partHashMap.put(partLabel.getText(), p);
                     partList.getItems().add(partLabel);
                 }
@@ -117,7 +117,7 @@ public class RemovePartController {
         PartDAO partDAO = new PartDAO();
         partHashMap = new HashMap<>();
         for(Part p: partDAO.getAll()) {
-            Label partLabel = new Label(p.getPartID() + " " + p.getName());
+            Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
             partHashMap.put(partLabel.getText(), p);
             partList.getItems().add(partLabel);
         }

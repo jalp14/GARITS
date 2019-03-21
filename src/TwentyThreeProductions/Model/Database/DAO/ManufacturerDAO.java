@@ -36,7 +36,7 @@ public class ManufacturerDAO implements IManufacturer {
                 Manufacturer manufacturer = new Manufacturer();
                 manufacturer.setManufacturerID(result.getInt("MANUFACTURERID"));
                 manufacturer.setCompanyName(result.getString("COMPANYNAME"));
-                manufacturer.setCompanyAddress(result.getString("COMPANYADRESS"));
+                manufacturer.setCompanyAddress(result.getString("COMPANYADDRESS"));
                 manufacturer.setPhoneNumber(result.getString("PHONE"));
                 manufacturer.setFaxNumber(result.getString("FAX"));
                 manufacturers.add(manufacturer);

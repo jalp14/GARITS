@@ -3,6 +3,7 @@ package TwentyThreeProductions.Controller.Parts;
 import TwentyThreeProductions.Domain.Part;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.PartReference;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
@@ -20,6 +21,10 @@ import java.util.HashMap;
 public class SearchUpdateStockController {
 
     private SceneSwitch sceneSwitch;
+
+    private HashMap<String, Part> partHashMap;
+
+    private PartReference partReference;
 
     @FXML
     private StackPane searchUpdateStockStackPane;
@@ -51,8 +56,6 @@ public class SearchUpdateStockController {
     @FXML
     private JFXListView<Label> partList;
 
-    private HashMap<String, Part> partHashMap;
-
     @FXML
     void backBtnClicked(ActionEvent event) {
         partList.getSelectionModel().select(null);
@@ -72,6 +75,7 @@ public class SearchUpdateStockController {
         // the next screen for updating the stock of a part. Once this is done, the system moves onto the next screen.
         else {
             Part part = partHashMap.get(partList.getSelectionModel().getSelectedItem());
+            partReference.setPart(part);
             partList.getSelectionModel().select(null);
             sceneSwitch.activateScene(NavigationModel.UPDATE_STOCK_ID, backBtn.getScene());
         }
@@ -85,15 +89,15 @@ public class SearchUpdateStockController {
             partHashMap.clear();
             if(searchTerm.isEmpty()) {
                 for(Part p: partDAO.getAll()) {
-                    Label partLabel = new Label(p.getPartID() + " " + p.getName());
+                    Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
                     partHashMap.put(partLabel.getText(), p);
                     partList.getItems().add(partLabel);
                 }
             }
             else {
                 for(Part p: partDAO.getAll()) {
-                    if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm)) {
-                        Label partLabel = new Label(p.getPartID() + " " + p.getName());
+                    if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || p.getStockLevel().contains(searchTerm)) {
+                        Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
                         partHashMap.put(partLabel.getText(), p);
                         partList.getItems().add(partLabel);
                     }
@@ -104,10 +108,11 @@ public class SearchUpdateStockController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(searchUpdateStockStackPane, NavigationModel.SEARCH_UPDATE_STOCK_ID);
+        partReference = PartReference.getInstance();
         partHashMap = new HashMap<>();
         PartDAO partDAO = new PartDAO();
         for(Part p: partDAO.getAll()) {
-            Label partLabel = new Label(p.getPartID() + " " + p.getName());
+            Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
             partHashMap.put(partLabel.getText(), p);
             partList.getItems().add(partLabel);
         }
