@@ -52,12 +52,12 @@ public class SearchUpdateStockController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        partList.getSelectionModel().select(null);
         sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
     @FXML
     void updateStockBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.UPDATE_STOCK_ID, backBtn.getScene());
         // The system checks to make sure that a part was selected to be removed and, if a part was not selected, the
         // system produces an alert stating that a part was not selected and thus no part could be removed.
         if(partList.getSelectionModel().isEmpty()) {
@@ -69,6 +69,7 @@ public class SearchUpdateStockController {
         // the next screen for updating the stock of a part. Once this is done, the system moves onto the next screen.
         else {
             Part part = partList.getSelectionModel().getSelectedItem();
+            partList.getSelectionModel().select(null);
             sceneSwitch.activateScene(NavigationModel.UPDATE_STOCK_ID, backBtn.getScene());
         }
     }

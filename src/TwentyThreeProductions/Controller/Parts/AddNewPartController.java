@@ -93,7 +93,7 @@ public class AddNewPartController {
         // If there is at least one blank field when the details for the new part are submitted,
         // the system presents an alert stating that the new part could not be added to the system
         // database due to the blank field(s).
-        if (nameField.getText().isEmpty() || /*partIDField.getText().isEmpty() ||*/
+        if (nameField.getText().isEmpty() || partIDField.getText().isEmpty() ||
                 manufacturerField.getText().isEmpty() || vehicleTypeField.getText().isEmpty() ||
                 yearsField.getText().isEmpty() || priceWholeNumField.getText().isEmpty() ||
                 priceDecimalField.getText().isEmpty() || stockLevelField.getText().isEmpty()) {
@@ -108,7 +108,7 @@ public class AddNewPartController {
             PartDAO partDAO = new PartDAO();
             ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
             part.setName(nameField.getText());
-            part.setPartID(/*partIDField.getText()*/"E");
+            part.setPartID(partIDField.getText());
 
             // The system will set the Manufacturer ID to -1, which is a value that cannot be achieved
             // normally, to check whether a proper ID can be given. The system gets the data for every
@@ -169,6 +169,7 @@ public class AddNewPartController {
                         partDAO.save(part);
                         SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
                                 "Success", "Added part");
+                        clearFields();
                     }
                 }
                 catch(Exception e) {
@@ -181,12 +182,24 @@ public class AddNewPartController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        clearFields();
         sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(addNewPartStackPane, NavigationModel.ADD_NEW_PART_ID);
+    }
+
+    public void clearFields() {
+        nameField.setText("");
+        partIDField.setText("");
+        manufacturerField.setText("");
+        vehicleTypeField.setText("");
+        yearsField.setText("");
+        priceWholeNumField.setText("");
+        priceDecimalField.setText("");
+        stockLevelField.setText("");
     }
 
 }

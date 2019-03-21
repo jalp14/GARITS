@@ -50,6 +50,7 @@ public class RemovePartController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        partList.getSelectionModel().select(null);
         sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
@@ -71,6 +72,7 @@ public class RemovePartController {
             partDAO.delete(part);
             SystemAlert systemAlert = new SystemAlert(removePartStackPane,
                     "Success", "Removed part");
+            partList.getSelectionModel().select(null);
             partList.getItems().clear();
             for(Part p: partDAO.getAll()) {
                 partList.getItems().add(p);

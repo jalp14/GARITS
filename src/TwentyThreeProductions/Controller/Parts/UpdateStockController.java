@@ -52,7 +52,7 @@ public class UpdateStockController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-        sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
+        sceneSwitch.switchScene(NavigationModel.SEARCH_UPDATE_STOCK_ID);
     }
 
     @FXML
