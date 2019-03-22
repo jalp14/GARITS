@@ -133,7 +133,7 @@ public class NavigationModel {
         } else if (name.equals(ADD_NEW_CUSTOMER_ID)) {
             return tmpURL = new File(ADD_NEW_CUSTOMER_URL).toURI().toURL();
         } else if (name.equals(ADD_CUSTOMER_TO_CAR_ID)) {
-            return tmpURL = new File(ADD_NEW_CUSTOMER_URL).toURI().toURL();
+            return tmpURL = new File(ADD_CUSTOMER_TO_CAR_URL).toURI().toURL();
         } else if (name.equals(CONFIGURE_DISCOUNT_ID)) {
             return tmpURL = new File(CONFIGURE_DISCOUNT_URL).toURI().toURL();
         } else if (name.equals(CUSTOMER_MAIN_ID)) {

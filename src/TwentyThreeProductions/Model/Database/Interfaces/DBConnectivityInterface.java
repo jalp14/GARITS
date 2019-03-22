@@ -9,6 +9,7 @@ public interface DBConnectivityInterface {
     void clearBatch();
     boolean write(String sql, Connection connection);
     boolean writePrepared(String sql, Connection connection, String[] args);
+    ResultSet queryPrepared(String sql, Connection connection, String[] args);
     ResultSet read(String sql, Connection connection);
     Connection connection(Connection connection);
     boolean closeConnection(Connection connection);

@@ -69,6 +69,28 @@ public class DBConnectivity implements DBConnectivityInterface {
     }
 
     @Override
+    public ResultSet queryPrepared(String sql, Connection connection, String[] args) {
+        PreparedStatement statement;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            if (args.length <= 0) {
+                System.out.println("No need to user updatePrepared");
+            } else {
+                for (int j = 0; j < args.length; j++) {
+                    statement.setString(j + 1, args[j]);
+                }
+                resultSet = statement.executeQuery();
+                connection.commit();
+                return resultSet;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    @Override
     public ResultSet read(String sql, Connection connection) {
         PreparedStatement statement;
         connection = connection(connection);
