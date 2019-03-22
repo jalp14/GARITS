@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="selectUserStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+            <children>
+                <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="556.0" layoutY="639.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../GARITSassests/notifications.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../GARITSassests/garits.png" />
+                    </image>
+                </ImageView>
+                <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
+                    <font>
+                        <Font name="Avenir Next Bold" size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+                    <font>
+                        <Font name="Avenir Next Bold" size="16.0" />
+                    </font>
+                </Text>
+                <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="293.0" text="Automatic Reports">
+                    <font>
+                        <Font name="Avenir Next Bold" size="30.0" />
+                    </font>
+                </Label>
+                <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
+                    <font>
+                        <Font name="Avenir Next Bold" size="22.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../GARITSassests/back.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="removeBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="218.0" layoutY="598.0" onAction="#editUserBtnClicked" prefHeight="48.0" prefWidth="179.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Remove" textAlignment="RIGHT" textFill="WHITE">
+                    <font>
+                        <Font name="Avenir Next Bold" size="22.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </JFXButton>
+                <JFXListView fx:id="autoReportsList" layoutX="33.0" layoutY="313.0" prefHeight="270.0" prefWidth="447.0" />
+                <JFXButton fx:id="viewDetailsBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="598.0" onAction="#removeUserBtnClicked" prefHeight="48.0" prefWidth="172.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="View details" textAlignment="RIGHT" textFill="WHITE">
+                    <font>
+                        <Font name="Avenir Next Bold" size="22.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </JFXButton>
+            <JFXButton fx:id="newAutoReportBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="526.0" layoutY="240.0" onAction="#removeUserBtnClicked" prefHeight="48.0" prefWidth="217.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Add new report" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
