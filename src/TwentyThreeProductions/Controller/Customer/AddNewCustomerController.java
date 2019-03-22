@@ -134,6 +134,7 @@ public class AddNewCustomerController {
 
     @FXML
     void saveBtnClicked(ActionEvent event) {
+        String customerRowCount;
         customerDAO = new CustomerDAO();
         customer = new Customer();
         carDAO = new CarDAO();
@@ -144,22 +145,18 @@ public class AddNewCustomerController {
         customer.setCustomerPhone(phoneNoField.getText());
         customer.setCustomerEmail(emailField.getText());
         customer.setCustomerType(determineType());
-        // Add selected cars to the array list
-        for (int i = 0; i < selectedCarList.getItems().size(); i++) {
-            cars.add(getCar(selectedCarList.getItems().get(i).getText()));
-        }
-        customer.setLatePayment(latePaymentCheckbox.isDisable());
+        customer.setLatePayment(latePaymentCheckbox.isSelected());
         customerDAO.save(customer);
+        customerRowCount = Integer.toString(customerDAO.getCount());
+        System.out.println(customerRowCount);
+        for (int j = 0; j < selectedCarList.getItems().size(); j++) {
+            String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+            System.out.println("Reg ID : " + regID);
+            carDAO.updateCustomer(customerRowCount, regID);
+            System.out.println(cars.get(j).getRegistrationID());
+        }
         SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Success!", "Added customer to the db");
 
-    }
-
-    public void assignCarToLabel(String label, Car car) {
-        carHashMap.put(label, car);
-    }
-
-    public Car getCar(String label) {
-        return carHashMap.get(label);
     }
 
     @FXML
@@ -190,8 +187,8 @@ public class AddNewCustomerController {
             Car tmpCar = cars.get(i);
             Label tmpLabel = new Label(tmpCar.getModel());
             availableCarsCombi.getItems().add(tmpLabel);
-            assignCarToLabel(tmpLabel.getText(), tmpCar);
-            System.out.println(carHashMap.size());
+            carHashMap.put(tmpLabel.getText(), tmpCar);
+            System.out.println(" Car Hash Map Size : " + carHashMap.size());
         }
 
     }

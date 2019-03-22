@@ -73,6 +73,14 @@ public class Customer {
         return answer;
     }
 
+    public boolean getLatePayment() {
+        if (isLatePayment().equals("TRUE")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getLastName() {
         return lastName;
     }

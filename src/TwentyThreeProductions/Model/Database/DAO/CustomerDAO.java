@@ -67,6 +67,7 @@ public class CustomerDAO implements ICustomer {
                 customer.setCustomerPostcode(result.getString("POSTCODE"));
                 customer.setCustomerPhone(result.getString("PHONE"));
                 customer.setCurrentDate(result.getDate("Date"));
+                customer.setCustomerType(result.getString("TYPE"));
                 customer.setLatePayment(result.getBoolean("LATEPAYMENT"));
                 customers.add(customer);
             }
@@ -92,8 +93,30 @@ public class CustomerDAO implements ICustomer {
     }
 
     @Override
-    public void update(Customer customer) {
+    public int getCount() {
+        Statement statement;
+        ResultSet resultSet;
+        int tmp = 0;
+        String query = "SELECT COUNT(*) AS TOTAL FROM GARAGE.CUSTOMER";
+        connection = dbConnectivity.connection(connection);
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            resultSet.next();
+            tmp = resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tmp;
+    }
 
+    @Override
+    public void update(Customer customer) {
+        String updateQuery = "UPDATE GARAGE.CUSTOMER SET FIRSTNAME=?, LASTNAME=?, TYPE=?, ADDRESS=?, POSTCODE=?, PHONE=?, EMAIL=?, LATEPAYMENT=? WHERE CUSTOMERID=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerAddress(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerEmail(), customer.isLatePayment(), customer.getCustomerID()};
+        dbConnectivity.writePrepared(updateQuery, connection, args);
+        System.out.println("Successfully updated ");
     }
 
     @Override
