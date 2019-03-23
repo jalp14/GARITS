@@ -56,7 +56,7 @@ public class PartsMainController {
 
     @FXML
     void updatePartStockBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.UPDATE_STOCK_ID, backBtn.getScene());
+        sceneSwitch.activateScene(NavigationModel.SEARCH_UPDATE_STOCK_ID, backBtn.getScene());
     }
 
     public void initialize() {

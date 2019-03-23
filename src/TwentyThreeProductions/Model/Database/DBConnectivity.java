@@ -36,6 +36,9 @@ public class DBConnectivity implements DBConnectivityInterface {
         connection = connection(connection);
         try {
             statement = connection.prepareStatement(sql);
+            statement.execute();
+            connection.commit();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

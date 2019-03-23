@@ -1,7 +1,6 @@
 package TwentyThreeProductions.Domain;
 
 import java.util.List;
-import java.util.List;
 
 public class Part {
 
@@ -9,9 +8,9 @@ public class Part {
     private int manufacturerID;
     private String name;
     private String vehicleType;
-    private int year;
-    private float price;
-    private int stockLevel;
+    private String year;
+    private String price;
+    private String stockLevel;
     private List<OrderPart> orderParts;
 
     public Part(){}
@@ -48,27 +47,27 @@ public class Part {
         this.vehicleType = vehicleType;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getStockLevel() {
+    public String getStockLevel() {
         return stockLevel;
     }
 
-    public void setStockLevel(int stockLevel) {
+    public void setStockLevel(String stockLevel) {
         this.stockLevel = stockLevel;
     }
 
