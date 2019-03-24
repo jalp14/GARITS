@@ -94,6 +94,7 @@ public class EditUserController {
         userDAO = new UserDAO();
         userDAO.delete(currentUser);
         SystemAlert systemAlert = new SystemAlert(editUserStackPane, "Deleted Successfully", "Please logout to apply changes");
+
     }
 
     @FXML
@@ -116,6 +117,7 @@ public class EditUserController {
         userDAO = new UserDAO();
         userDAO.update(currentUser);
         SystemAlert systemAlert = new SystemAlert(editUserStackPane, "Edited Successfully", "Please logout to apply changes");
+
     }
 
     public void initialize() {
@@ -132,6 +134,7 @@ public class EditUserController {
         roleCombi.getItems().add(new Label("FOREPERSON"));
         roleCombi.getItems().add(new Label("MECHANIC"));
     }
+
 
     public int getRoleNo(String userRole) {
         if (userRole.equals("ADMIN")) {

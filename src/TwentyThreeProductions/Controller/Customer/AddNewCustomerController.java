@@ -1,22 +1,33 @@
 package TwentyThreeProductions.Controller.Customer;
 
+import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Customer;
+import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
+import TwentyThreeProductions.Model.SystemAlert;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AddNewCustomerController {
 
     private SceneSwitch sceneSwitch;
+    private Customer customer;
+    private CarDAO carDAO;
+    private CustomerDAO customerDAO;
+    private ArrayList<Car> cars;
+    private HashMap<String,Car> carHashMap;
 
     @FXML
     private StackPane AddNewCustomerStackPane;
@@ -49,7 +60,7 @@ public class AddNewCustomerController {
     private Label latePaymentHeading;
 
     @FXML
-    private JFXCheckBox jobPaidCheckbox;
+    private JFXCheckBox latePaymentCheckbox;
 
     @FXML
     private JFXRadioButton casualCustomerRadio;
@@ -59,9 +70,6 @@ public class AddNewCustomerController {
 
     @FXML
     private Label lNameHeading;
-
-    @FXML
-    private Label address2Heading;
 
     @FXML
     private Label postcodeHeading;
@@ -85,10 +93,10 @@ public class AddNewCustomerController {
     private JFXTextField addressOneField;
 
     @FXML
-    private JFXTextField addressTwoField;
+    private JFXTextField postcodeField;
 
     @FXML
-    private JFXTextField postcodeField;
+    private ToggleGroup Type;
 
     @FXML
     private JFXTextField cityField;
@@ -100,56 +108,99 @@ public class AddNewCustomerController {
     private JFXTextField phoneNoField;
 
     @FXML
-    private Label discountDescription;
+    private Label availableCarsHeading;
 
     @FXML
-    private JFXButton configureDiscountBtn;
+    private Label selectedCarsHeading;
 
     @FXML
-    private Label carsHeading;
+    private JFXListView<Label> selectedCarList;
 
     @FXML
-    private JFXListView<?> carsList;
+    private JFXComboBox<Label> availableCarsCombi;
 
     @FXML
-    private JFXButton configureDiscountBtn1;
+    private JFXButton addNewCarBtn;
 
     @FXML
-    private JFXButton configureDiscountBtn11;
+    private JFXButton removeCarBtn;
 
-    @FXML
-    void accountHolderRadioClicked(ActionEvent event) {
-
-    }
 
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
     }
 
-    @FXML
-    void casualCustomerRadioClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void configureDiscountBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void jobPaidCheckboxClicked(ActionEvent event) {
-
-    }
 
     @FXML
     void saveBtnClicked(ActionEvent event) {
+        String customerRowCount;
+        customerDAO = new CustomerDAO();
+        customer = new Customer();
+        carDAO = new CarDAO();
+        customer.setFirstName(firstNameField.getText());
+        customer.setLastName(lastNameField.getText());
+        customer.setCustomerAddress(addressOneField.getText());
+        customer.setCustomerPostcode(postcodeField.getText());
+        customer.setCustomerPhone(phoneNoField.getText());
+        customer.setCustomerEmail(emailField.getText());
+        customer.setCustomerType(determineType());
+        customer.setLatePayment(latePaymentCheckbox.isSelected());
+        customerDAO.save(customer);
+        customerRowCount = Integer.toString(customerDAO.getCount());
+        System.out.println(customerRowCount);
+        for (int j = 0; j < selectedCarList.getItems().size(); j++) {
+            String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+            System.out.println("Reg ID : " + regID);
+            carDAO.updateCustomer(customerRowCount, regID);
+            System.out.println(cars.get(j).getRegistrationID());
+        }
+        SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Success!", "Added customer to the db");
 
+    }
+
+    @FXML
+    void addNewCarBtnClicked(ActionEvent event) throws IOException {
+        int i = availableCarsCombi.getSelectionModel().getSelectedIndex();
+        selectedCarList.getItems().add((availableCarsCombi.getItems().get(i)));
+        availableCarsCombi.getItems().remove(i);
+    }
+
+    @FXML
+    void removeCarBtnClicked(ActionEvent event) {
+        int j = selectedCarList.getSelectionModel().getSelectedIndex();
+        availableCarsCombi.getItems().add(selectedCarList.getItems().get(j));
+        selectedCarList.getItems().remove(j);
     }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(AddNewCustomerStackPane, NavigationModel.ADD_NEW_CUSTOMER_ID);
+        carHashMap = new HashMap<>();
+        loadCars();
+    }
+
+    public void loadCars() {
+        carDAO = new CarDAO();
+        cars = carDAO.getAvailableCars();
+        for (int i = 0; i < cars.size(); i++) {
+            Car tmpCar = cars.get(i);
+            Label tmpLabel = new Label(tmpCar.getModel());
+            availableCarsCombi.getItems().add(tmpLabel);
+            carHashMap.put(tmpLabel.getText(), tmpCar);
+            System.out.println(" Car Hash Map Size : " + carHashMap.size());
+        }
+
+    }
+
+    public String determineType() {
+        String type;
+        if (accountHolderRadio.isSelected()) {
+            type = "ACCOUNT";
+        } else {
+            type = "CASUAL";
+        }
+        return type;
     }
 
 }

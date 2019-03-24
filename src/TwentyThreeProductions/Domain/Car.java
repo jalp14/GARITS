@@ -1,10 +1,12 @@
 package TwentyThreeProductions.Domain;
 
-public class Car {
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
+public class Car extends RecursiveTreeObject<Car> {
 
     private String registrationID;
-    private int customerID;
-    private int manufacturerID;
+    private String customerID;
+    private String manufacturerID;
     private String make;
     private String model;
     private String engSerial;
@@ -21,19 +23,19 @@ public class Car {
         this.registrationID = registrationID;
     }
 
-    public int getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(int customerID) {
+    public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
-    public int getManufacturerID() {
+    public String getManufacturerID() {
         return manufacturerID;
     }
 
-    public void setManufacturerID(int manufacturerID) {
+    public void setManufacturerID(String manufacturerID) {
         this.manufacturerID = manufacturerID;
     }
 
