@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class NewJobMenuController {
 
     private SceneSwitch sceneSwitch;
@@ -36,17 +38,17 @@ public class NewJobMenuController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.JOBS_MAIN_ID);
     }
 
     @FXML
-    void existingCustomerBtnClicked(ActionEvent event) {
-
+    void existingCustomerBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.NEW_JOB_EXISTING_CUSTOMER_ID, backBtn.getScene());
     }
 
     @FXML
-    void newCustomerBtnClicked(ActionEvent event) {
-
+    void newCustomerBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.NEW_JOB_NEW_CUSTOMER_ID, backBtn.getScene());
     }
 
     public void initialize() {

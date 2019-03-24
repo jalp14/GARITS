@@ -61,7 +61,7 @@ public class PartDAO implements IPart {
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
-    }
+}
 
     @Override
     public void update(Part part) {

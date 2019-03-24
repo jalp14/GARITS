@@ -38,7 +38,12 @@ public class JobsMainController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        if(usertypeLbl.getText().equals("Mechanic")) {
+            sceneSwitch.switchScene(NavigationModel.MAIN_MECHANIC_ID);
+        }
+        else {
+            sceneSwitch.switchScene(NavigationModel.MAIN_FFR_ID);
+        }
     }
 
     @FXML

@@ -31,6 +31,7 @@ public class CarDAO implements ICar {
             result = statement.executeQuery(query);
             while (result.next()) {
                 Car car = new Car();
+                car.setRegistrationID(result.getString("REGISTRATIONID"));
                 car.setCustomerID(result.getString("CUSTOMERID"));
                 car.setColour(result.getString("COLOUR"));
                 car.setChassisNumber(result.getString("CHASSISNUMBER"));
