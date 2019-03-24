@@ -129,6 +129,13 @@ public class CarDAO implements ICar {
     }
 
     @Override
+    public void removeCustomer(String customerID) {
+        String[] args = {customerID};
+        connection = dbConnectivity.connection(connection);
+        String removeCustomerQuery = "UPDATE GARAGE.CAR SET CUSTOMERID=null WHERE CUSTOMERID=?";
+    }
+
+    @Override
     public void update(Car car) {
         String updateQuery = "UPDATE GARAGE.CAR SET CUSTOMERID=?, MANUFACTURERID=?, COLOUR=?, CHASSISNUMBER=?, ENGSERIAL=?, MAKE=?, MODEL=? WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
@@ -138,9 +145,9 @@ public class CarDAO implements ICar {
     }
 
 
-
     @Override
     public void delete(Car car) {
+        cars = getAll();
         String deleteUser = "DELETE FROM GARAGE.CAR WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
         String args[] = {car.getRegistrationID()};
