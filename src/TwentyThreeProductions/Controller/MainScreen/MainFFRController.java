@@ -74,8 +74,8 @@ public class MainFFRController {
    }
 
    @FXML
-   void reportsBtnClicked(ActionEvent event) {
-
+   void reportsBtnClicked(ActionEvent event) throws IOException {
+      sceneSwitch.activateScene(NavigationModel.REPORTS_MAIN_ID, logoutBtn.getScene());
    }
 
    public void initialize() {
