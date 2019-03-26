@@ -74,7 +74,6 @@ public class UpdateStockController {
             else {
                 Part part = partReference.getPart();
                 PartDAO partDAO = new PartDAO();
-                System.out.println(partReference.getPart().getPartID());
                 Integer.parseInt(stockLevelField.getText());
                 part.setStockLevel(stockLevelField.getText());
                 partDAO.update(part);

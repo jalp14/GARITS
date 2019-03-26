@@ -11,7 +11,7 @@ public class Part {
     private String year;
     private String price;
     private String stockLevel;
-    private List<JobPart> jobParts;
+    private List<PartJob> partJobs;
     private List<OrderPart> orderParts;
 
     public Part(){}
@@ -72,12 +72,12 @@ public class Part {
         this.stockLevel = stockLevel;
     }
 
-    public List<JobPart> getJobParts() {
-        return jobParts;
+    public List<PartJob> getPartJobs() {
+        return partJobs;
     }
 
-    public void setJobParts(List<JobPart> jobParts) {
-        this.jobParts = jobParts;
+    public void setPartJobs(List<PartJob> partJobs) {
+        this.partJobs = partJobs;
     }
 
     public List<OrderPart> getOrderParts() {

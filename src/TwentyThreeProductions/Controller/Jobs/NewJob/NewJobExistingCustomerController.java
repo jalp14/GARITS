@@ -78,7 +78,7 @@ public class NewJobExistingCustomerController {
             customerList.getItems().clear();
             customerHashMap.clear();
             refreshList();
-            sceneSwitch.activateScene(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
+            sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
         }
     }
 

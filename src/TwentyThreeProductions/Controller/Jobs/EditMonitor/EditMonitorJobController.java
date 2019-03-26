@@ -86,12 +86,18 @@ public class EditMonitorJobController {
 
     @FXML
     void addPartBtnClick(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.ADD_PART_TO_JOB_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.ADD_PART_TO_JOB_ID, backBtn.getScene());
     }
 
     @FXML
     void addTaskBtnClick(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.ADD_TASK_TO_JOB_ID, backBtn.getScene());
+        if(jobDetailsLbl.getText().contains("/ Part-only job")) {
+            SystemAlert systemAlert = new SystemAlert(editMonitorJobStackPane,
+                    "Failure", "Cannot add tasks to a part-only job");
+        }
+        else {
+            sceneSwitch.activateSceneAlways(NavigationModel.ADD_TASK_TO_JOB_ID, backBtn.getScene());
+        }
     }
 
     @FXML
@@ -104,6 +110,7 @@ public class EditMonitorJobController {
         partList.getItems().clear();
         mechanicComboBox.getSelectionModel().select(null);
         mechanicComboBox.getItems().clear();
+        mechanicHashMap.clear();
         refreshList();
         sceneSwitch.switchScene(NavigationModel.EDIT_MONITOR_CHOOSE_ID);
     }
@@ -133,9 +140,12 @@ public class EditMonitorJobController {
     }
 
     @FXML
-    void mechanicComboBoxClicked(ActionEvent event) {
-        Mechanic mechanic = mechanicHashMap.get(mechanicComboBox.getSelectionModel().getSelectedItem().getText());
-        jobReference.getJob().setUsername(mechanic.getUsername());
+    void mechanicComboBoxClicked(ActionEvent event) throws IOException {
+        try {
+            Mechanic mechanic = mechanicHashMap.get(mechanicComboBox.getSelectionModel().getSelectedItem().getText());
+            jobReference.getJob().setUsername(mechanic.getUsername());
+        }
+        catch(Exception e) {}
     }
 
     @FXML
@@ -153,6 +163,7 @@ public class EditMonitorJobController {
         partList.getItems().clear();
         mechanicComboBox.getSelectionModel().select(null);
         mechanicComboBox.getItems().clear();
+        mechanicHashMap.clear();
         refreshList();
     }
 
@@ -168,7 +179,7 @@ public class EditMonitorJobController {
         JobDAO jobDAO = new JobDAO();
         MechanicDAO mechanicDAO = new MechanicDAO();
         JobTaskDAO jobTaskDAO = new JobTaskDAO();
-        JobPartDAO jobPartDAO = new JobPartDAO();
+        PartJobDAO partJobDAO = new PartJobDAO();
         TaskDAO taskDAO = new TaskDAO();
         PartDAO partDAO = new PartDAO();
         for(Mechanic m: mechanicDAO.getAll()) {
@@ -177,6 +188,7 @@ public class EditMonitorJobController {
             mechanicComboBox.getItems().add(mechanicLabel);
             if(jobReference.getJob().getUsername().equals(m.getUsername())) {
                 mechanicComboBox.getSelectionModel().select(mechanicLabel);
+                break;
             }
         }
         for(JobTask jt: jobTaskDAO.getAll()) {
@@ -189,23 +201,36 @@ public class EditMonitorJobController {
                 }
             }
         }
-        /*for(JobPart jp: jobPartDAO.getAll()) {
-            for(Job j: jobDAO.getAll()) {
-                if (jp.getJobID() == j.getJobID()) {
-                    for(Part p: partDAO.getAll()) {
-                        if(jp.getPartID() == p.getPartID()) {
-                            Label jobPartLabel = new Label("Part: " + p.getName() + " / Amount: " + jp.getStockUsed());
-                            partList.getItems().add(jobPartLabel);
-                        }
+        for(PartJob pj: partJobDAO.getAll()) {
+            if (pj.getJobID() == jobReference.getJob().getJobID()) {
+                for(Part p: partDAO.getAll()) {
+                    if(pj.getPartID() == p.getPartID()) {
+                        Label jobPartLabel = new Label("Part: " + p.getName() + " / Amount: " + pj.getStockUsed());
+                        partList.getItems().add(jobPartLabel);
                     }
                 }
             }
-        }*/
+        }
         if(jobReference.getJob().getStatus().equals("Completed")) {
             jobCompletedCheckbox.setSelected(true);
         }
         if(jobReference.getJob().getPaidFor().equals("True")) {
             jobPaidCheckbox.setSelected(true);
+        }
+        Customer customer = new Customer();
+        CustomerDAO customerDAO = new CustomerDAO();
+        for(Customer c: customerDAO.getAll()) {
+            if(jobReference.getJob().getCustomerID() == Integer.parseInt(c.getCustomerID())) {
+                customer.setFirstName(c.getFirstName());
+                customer.setLastName(c.getLastName());
+                break;
+            }
+        }
+        if(jobReference.getJob().getRegistrationID() == null) {
+            jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Part-only job");
+        }
+        else {
+            jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + jobReference.getJob().getRegistrationID());
         }
     }
 }

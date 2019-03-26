@@ -1,6 +1,5 @@
 package TwentyThreeProductions.Model.Database.DAO;
 
-import TwentyThreeProductions.Domain.JobPart;
 import TwentyThreeProductions.Domain.JobTask;
 import TwentyThreeProductions.Model.Database.DBConnectivity;
 import TwentyThreeProductions.Model.Database.Interfaces.IJobTask;
@@ -56,7 +55,10 @@ public class JobTaskDAO implements IJobTask {
 
     @Override
     public void update(JobTask jobTask) {
-
+        String updateQuery = "UPDATE GARAGE.JOB_TASK SET ALTEREDDURATION=? WHERE JOBJOBID=? AND TASKTASK_ID=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {String.valueOf(jobTask.getAlteredDuration()), String.valueOf(jobTask.getJobID()), String.valueOf(jobTask.getTaskID())};
+        dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
     @Override

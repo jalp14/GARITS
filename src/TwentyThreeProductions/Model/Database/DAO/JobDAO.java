@@ -66,7 +66,6 @@ public class JobDAO implements IJob {
         connection = dbConnectivity.connection(connection);
         String args[] = {job.getUsername(), job.getStatus(), job.getPaidFor(), String.valueOf(job.getJobID())};
         dbConnectivity.writePrepared(updateQuery, connection, args);
-        System.out.println("Successfully updated ");
     }
 
     @Override

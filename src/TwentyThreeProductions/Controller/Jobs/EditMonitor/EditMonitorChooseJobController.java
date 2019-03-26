@@ -97,6 +97,7 @@ public class EditMonitorChooseJobController {
                     if(Integer.parseInt(c.getCustomerID()) == (j.getCustomerID())) {
                         customer.setFirstName(c.getFirstName());
                         customer.setLastName(c.getLastName());
+                        break;
                     }
                 }
                 if(String.valueOf(j.getDateBookedIn()).contains(searchTerm) || (customer.getFirstName() + " " + customer.getLastName()).contains(searchTerm) || j.getRegistrationID().contains(searchTerm)) {
@@ -124,9 +125,16 @@ public class EditMonitorChooseJobController {
                 if(Integer.parseInt(c.getCustomerID()) == (j.getCustomerID())) {
                     customer.setFirstName(c.getFirstName());
                     customer.setLastName(c.getLastName());
+                    break;
                 }
             }
-            Label jobLabel = new Label("Job ID: " + j.getJobID() +  " / Date: " + j.getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + j.getRegistrationID());
+            Label jobLabel;
+            if(j.getRegistrationID() == null) {
+                jobLabel = new Label("Job ID: " + j.getJobID() + " / Date: " + j.getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Part-only job");
+            }
+            else {
+                jobLabel = new Label("Job ID: " + j.getJobID() + " / Date: " + j.getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + j.getRegistrationID());
+            }
             jobHashMap.put(jobLabel.getText(), j);
             jobList.getItems().add(jobLabel);
         }

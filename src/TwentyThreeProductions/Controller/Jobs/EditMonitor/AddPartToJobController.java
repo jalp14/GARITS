@@ -1,8 +1,10 @@
 package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 
-import TwentyThreeProductions.Domain.JobPart;
+import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Part;
-import TwentyThreeProductions.Model.Database.DAO.JobPartDAO;
+import TwentyThreeProductions.Domain.PartJob;
+import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
+import TwentyThreeProductions.Model.Database.DAO.PartJobDAO;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.JobReference;
 import TwentyThreeProductions.Model.NavigationModel;
@@ -13,11 +15,11 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class AddPartToJobController {
@@ -62,6 +64,12 @@ public class AddPartToJobController {
     private JFXListView<Label> partList;
 
     @FXML
+    private JFXTextField stockUsedField;
+
+    @FXML
+    private Label stockUsedLabel;
+
+    @FXML
     void addPartBtnClicked(ActionEvent event) {
         if(partList.getSelectionModel().isEmpty()) {
             SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
@@ -69,28 +77,63 @@ public class AddPartToJobController {
         }
         else {
             Part part = partHashMap.get(partList.getSelectionModel().getSelectedItem().getText());
-            JobPart jobPart = new JobPart();
-            JobPartDAO jobPartDAO = new JobPartDAO();
-            jobPart.setJobID(jobReference.getJob().getJobID());
-            jobPart.setPartID(part.getPartID());
-            jobPart.setStockUsed("1");
-            jobPartDAO.save(jobPart);
-            SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
-                    "Success", "Added task to job");
-            partList.getSelectionModel().select(null);
-            partList.getItems().clear();
-            partHashMap.clear();
-            refreshList();
+            PartJob partJob = new PartJob();
+            PartJobDAO partJobDAO = new PartJobDAO();
+            PartDAO partDAO = new PartDAO();
+            partJob.setJobID(jobReference.getJob().getJobID());
+            partJob.setPartID(part.getPartID());
+            try {
+                if (Integer.parseInt(stockUsedField.getText()) < 1 || Integer.parseInt(part.getStockLevel()) < Integer.parseInt(stockUsedField.getText())) {
+                    SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
+                            "Failure", "Stock out of bounds");
+                } else {
+                    partJob.setStockUsed(stockUsedField.getText());
+                    boolean isPartInJob = false;
+                    int stockDifference = 0;
+                    for (PartJob pj : partJobDAO.getAll()) {
+                        if (pj.getPartID().equals(partJob.getPartID()) && pj.getJobID() == partJob.getJobID()) {
+                            isPartInJob = true;
+                            stockDifference = Integer.parseInt(pj.getStockUsed()) + Integer.parseInt(partJob.getStockUsed());
+                        }
+                    }
+                    if (stockDifference > Integer.parseInt(part.getStockLevel())) {
+                        SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
+                                "Failure", "Stock out of bounds");
+                    }
+                    else {
+                        if (isPartInJob) {
+                            partJobDAO.update(partJob);
+                            part.setStockLevel(String.valueOf(Integer.parseInt(part.getStockLevel()) - stockDifference));
+                            SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
+                                    "Success", "Stock used updated");
+                        } else {
+                            partJobDAO.save(partJob);
+                            part.setStockLevel(String.valueOf(Integer.parseInt(part.getStockLevel()) - Integer.parseInt(stockUsedField.getText())));
+                            SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
+                                    "Success", "Added part to job");
+                        }
+                        partDAO.update(part);
+                        partList.getSelectionModel().select(null);
+                        partList.getItems().clear();
+                        partHashMap.clear();
+                        refreshList();
+                    }
+                }
+            }
+            catch(Exception e) {
+                SystemAlert systemAlert = new SystemAlert(addPartToJobStackPane,
+                        "Failure", "Invalid stock given");
+            }
         }
     }
 
     @FXML
-    void backBtnClicked(ActionEvent event) {
+    void backBtnClicked(ActionEvent event) throws IOException {
         partList.getItems().clear();
         partHashMap.clear();
         searchField.setText("");
         refreshList();
-        sceneSwitch.switchScene(NavigationModel.EDIT_MONITOR_JOB_ID);
+        sceneSwitch.activateSceneAlways(NavigationModel.EDIT_MONITOR_JOB_ID, backBtn.getScene());
     }
 
     @FXML
@@ -131,6 +174,22 @@ public class AddPartToJobController {
                 partList.getItems().add(partLabel);
             }
         }
+        Customer customer = new Customer();
+        CustomerDAO customerDAO = new CustomerDAO();
+        for(Customer c: customerDAO.getAll()) {
+            if(jobReference.getJob().getCustomerID() == Integer.parseInt(c.getCustomerID())) {
+                customer.setFirstName(c.getFirstName());
+                customer.setLastName(c.getLastName());
+                break;
+            }
+        }
+        if(jobReference.getJob().getRegistrationID() == null) {
+            jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Part-only job");
+        }
+        else {
+            jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + jobReference.getJob().getRegistrationID());
+        }
+        stockUsedField.setText("1");
     }
 }
 

@@ -68,7 +68,7 @@
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="193.0" layoutY="339.0" prefHeight="35.0" prefWidth="309.0" promptText="Reg No">
+            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="193.0" layoutY="339.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -119,6 +119,16 @@
                </font>
             </JFXTextField>
             <JFXTextField fx:id="colourField" layoutX="688.0" layoutY="469.0" prefHeight="35.0" prefWidth="309.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="manufacturerHeading" layoutX="40.0" layoutY="538.0" prefHeight="32.0" prefWidth="146.0" text="Manufacturer">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="manufacturerField" layoutX="193.0" layoutY="535.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>

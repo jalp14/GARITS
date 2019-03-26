@@ -157,7 +157,7 @@ public class NewJobNewCustomerController {
             System.out.println(cars.get(j).getRegistrationID());
         }
         customerReference.setCustomer(customer);
-        sceneSwitch.activateScene(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
     }
 
     @FXML

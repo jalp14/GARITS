@@ -3,9 +3,11 @@ package TwentyThreeProductions.Controller.Jobs.NewJob;
 import TwentyThreeProductions.Domain.Car;
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Job;
+import TwentyThreeProductions.Domain.Mechanic;
 import TwentyThreeProductions.Model.CustomerReference;
 import TwentyThreeProductions.Model.Database.DAO.CarDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
+import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
@@ -72,6 +74,7 @@ public class NewJobExistingCarController {
             Job job = new Job();
             CarDAO carDAO = new CarDAO();
             JobDAO jobDAO = new JobDAO();
+            MechanicDAO mechanicDAO = new MechanicDAO();
             int jobID = 1;
             for(Job j: jobDAO.getAll()) {
                 jobID++;
@@ -81,7 +84,10 @@ public class NewJobExistingCarController {
                 job.setUsername(usernameLbl.getText().substring(8));
             }
             else {
-                job.setUsername("Kaneki");
+                    for (Mechanic m : mechanicDAO.getAll()) {
+                        job.setUsername(m.getUsername());
+                        break;
+                    }
             }
             job.setCustomerID(Integer.parseInt(customer.getCustomerID()));
             job.setRegistrationID(car.getRegistrationID());
@@ -89,7 +95,6 @@ public class NewJobExistingCarController {
             java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
             job.setDateBookedIn(sqlDate);
             job.setDescription("Work done on car");
-            job.setSparePartsUsed(null);
             job.setStatus("Pending");
             job.setPaidFor("False");
             jobDAO.save(job);
@@ -118,5 +123,6 @@ public class NewJobExistingCarController {
             carHashMap.put(carLabel.getText(), c);
             customerCarList.getItems().add(carLabel);
         }
+        customerNameLbl.setText("Name: " + customerReference.getCustomer().getFirstName() + " " + customerReference.getCustomer().getLastName());
     }
 }

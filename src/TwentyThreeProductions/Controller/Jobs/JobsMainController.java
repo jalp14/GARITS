@@ -48,7 +48,7 @@ public class JobsMainController {
 
     @FXML
     void monitorEditJobBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.EDIT_MONITOR_CHOOSE_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.EDIT_MONITOR_CHOOSE_ID, backBtn.getScene());
     }
 
     @FXML

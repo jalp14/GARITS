@@ -1,7 +1,9 @@
 package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 
+import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.JobTask;
 import TwentyThreeProductions.Domain.Task;
+import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobTaskDAO;
 import TwentyThreeProductions.Model.Database.DAO.TaskDAO;
 import TwentyThreeProductions.Model.JobReference;
@@ -17,6 +19,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.HashMap;
 
 public class AddTaskToJobController {
@@ -61,6 +66,12 @@ public class AddTaskToJobController {
     private JFXListView<Label> taskList;
 
     @FXML
+    private JFXTextField alteredDurationField;
+
+    @FXML
+    private Label alteredDurationLabel;
+
+    @FXML
     void addTaskBtnClicked(ActionEvent event) {
         if(taskList.getSelectionModel().isEmpty()) {
             SystemAlert systemAlert = new SystemAlert(addTaskToJobStackPane,
@@ -72,24 +83,48 @@ public class AddTaskToJobController {
             JobTaskDAO jobTaskDAO = new JobTaskDAO();
             jobTask.setJobID(jobReference.getJob().getJobID());
             jobTask.setTaskID(task.getTaskID());
-            jobTask.setAlteredDuration(task.getDefaultDuration());
-            jobTaskDAO.save(jobTask);
-            SystemAlert systemAlert = new SystemAlert(addTaskToJobStackPane,
-                    "Success", "Added task to job");
-            taskList.getSelectionModel().select(null);
-            taskList.getItems().clear();
-            taskHashMap.clear();
-            refreshList();
+            try {
+                if(alteredDurationField.getText().isEmpty()) {
+                    jobTask.setAlteredDuration(task.getDefaultDuration());
+                }
+                else {
+                    jobTask.setAlteredDuration(Time.valueOf(alteredDurationField.getText()));
+                }
+                boolean isTaskInJob = false;
+                for(JobTask jt: jobTaskDAO.getAll()) {
+                    if (jt.getTaskID() == jobTask.getTaskID() && jt.getJobID() == jobTask.getJobID()) {
+                        isTaskInJob = true;
+                    }
+                }
+                if(isTaskInJob) {
+                    jobTaskDAO.update(jobTask);
+                    SystemAlert systemAlert = new SystemAlert(addTaskToJobStackPane,
+                            "Success", "Updated task duration");
+                }
+                else {
+                    jobTaskDAO.save(jobTask);
+                    SystemAlert systemAlert = new SystemAlert(addTaskToJobStackPane,
+                            "Success", "Added task to job");
+                }
+                taskList.getSelectionModel().select(null);
+                taskList.getItems().clear();
+                taskHashMap.clear();
+                refreshList();
+            }
+            catch(Exception e) {
+                SystemAlert systemAlert = new SystemAlert(addTaskToJobStackPane,
+                        "Failure", "Invalid duration given");
+            }
         }
     }
 
     @FXML
-    void backBtnClicked(ActionEvent event) {
+    void backBtnClicked(ActionEvent event) throws IOException {
         taskList.getItems().clear();
         taskHashMap.clear();
         searchField.setText("");
         refreshList();
-        sceneSwitch.switchScene(NavigationModel.EDIT_MONITOR_JOB_ID);
+        sceneSwitch.activateSceneAlways(NavigationModel.EDIT_MONITOR_JOB_ID, backBtn.getScene());
     }
 
     @FXML
@@ -126,6 +161,21 @@ public class AddTaskToJobController {
             Label taskLabel = new Label("ID: " + t.getTaskID() + " / Name: " + t.getName() + " / Default Duration: " + t.getDefaultDuration());
             taskHashMap.put(taskLabel.getText(), t);
             taskList.getItems().add(taskLabel);
+        }
+        Customer customer = new Customer();
+        CustomerDAO customerDAO = new CustomerDAO();
+        for(Customer c: customerDAO.getAll()) {
+            if(jobReference.getJob().getCustomerID() == Integer.parseInt(c.getCustomerID())) {
+                customer.setFirstName(c.getFirstName());
+                customer.setLastName(c.getLastName());
+                break;
+            }
+        }
+        if(jobReference.getJob().getRegistrationID() == null) {
+            jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Part-only job");
+        }
+        else {
+            jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + jobReference.getJob().getRegistrationID());
         }
     }
 }

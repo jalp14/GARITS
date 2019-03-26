@@ -43,7 +43,7 @@ public class NewJobMenuController {
 
     @FXML
     void existingCustomerBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.NEW_JOB_EXISTING_CUSTOMER_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_EXISTING_CUSTOMER_ID, backBtn.getScene());
     }
 
     @FXML

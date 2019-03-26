@@ -1,12 +1,12 @@
 package TwentyThreeProductions.Domain;
 
-public class JobPart {
+public class PartJob {
 
     private int jobID;
     private String partID;
     private String stockUsed;
 
-    public JobPart(){}
+    public PartJob(){}
 
     public int getJobID() {
         return jobID;
