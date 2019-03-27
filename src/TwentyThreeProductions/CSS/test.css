@@ -1,0 +1,29 @@
+.jfx-snackbar-content {
+    -fx-background-color: #000000;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.jfx-snackbar-toast {
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: false;
+    -fx-font-family: Arial;
+    -fx-font-size: 19;
+}
+
+.jfx-list-cell {
+    -fx-background-insets: 0.0;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.jfx-list-view {
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin : 10.0;
+    -fx-vertical-gap : 15;
+}
+
+.jfx-list-view .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+

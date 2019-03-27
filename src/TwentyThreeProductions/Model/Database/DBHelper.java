@@ -10,7 +10,7 @@ public class DBHelper {
     public static final String user = "root";
     public static final String pass = "alpine";
 
-    private DBHelper(){}
+
 
 
 }

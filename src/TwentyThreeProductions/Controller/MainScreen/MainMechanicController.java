@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.MainScreen;
 
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -30,7 +31,7 @@ public class MainMechanicController {
     private Text usernameLbl;
 
     @FXML
-    private Text usertypeLbl;
+    private Text userTypeLbl;
 
     @FXML
     private JFXButton logoutBtn;
@@ -59,6 +60,14 @@ public class MainMechanicController {
         System.out.println("Init Mechanic Controller");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(mainScreenMechanicStackPane, NavigationModel.MAIN_MECHANIC_ID);
+        setLblConstraints();
+    }
+
+
+    public void setLblConstraints() {
+        welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        userTypeLbl.setText(DBLogic.getDBInstance().getUserType());
     }
 
 }
