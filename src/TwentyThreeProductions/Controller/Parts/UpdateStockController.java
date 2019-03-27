@@ -54,8 +54,9 @@ public class UpdateStockController {
     private JFXTextField stockLevelField;
 
     @FXML
-    void backBtnClicked(ActionEvent event) {
-        sceneSwitch.switchScene(NavigationModel.SEARCH_UPDATE_STOCK_ID);
+    void backBtnClicked(ActionEvent event) throws IOException {
+        stockLevelField.clear();
+        sceneSwitch.activateSceneAlways(NavigationModel.SEARCH_UPDATE_STOCK_ID, backBtn.getScene());
     }
 
     @FXML
@@ -79,6 +80,7 @@ public class UpdateStockController {
                 partDAO.update(part);
                 SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
                         "Success", "Stock updated");
+                stockLevelField.setText(part.getStockLevel());
             }
         }
         catch(Exception e) {
@@ -121,7 +123,7 @@ public class UpdateStockController {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(updateStockStackPane, NavigationModel.UPDATE_STOCK_ID);
         partReference = PartReference.getInstance();
-        //stockLevelField.setText(partReference.getPart().getStockLevel());
+        stockLevelField.setText(partReference.getPart().getStockLevel());
     }
 
 }

@@ -116,18 +116,27 @@ public class AddNewPartController {
             // matches any of the names within the system database. If it does, it will replace the
             // manufacturer ID with the actual ID for the company and break out of the loop.
             part.setManufacturerID(-1);
-            for (Manufacturer m : manufacturerDAO.getAll()) {
-                if (m.getCompanyName().equals(manufacturerField.getText())) {
-                    part.setManufacturerID(m.getManufacturerID());
-                    break;
+            boolean isManufacturerTableEmpty = false;
+            if ((manufacturerDAO.getAll().isEmpty())) {
+                isManufacturerTableEmpty = true;
+            } else {
+                for (Manufacturer m : manufacturerDAO.getAll()) {
+                    if (m.getCompanyName().equals(manufacturerField.getText())) {
+                        part.setManufacturerID(m.getManufacturerID());
+                        break;
+                    }
                 }
             }
-
+            if (isManufacturerTableEmpty) {
+                SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
+                        "Failure", "No manufacturer in system database");
+            }
+            
             // The system checks whether the Manufacturer ID has remained as -1 or has changed to an
             // acceptable value. If it has remained as -1, the system will produce another alert stating
             // that the part could not be added as the company name that was inputted does not belong to an
             // actual company within the system database, so an ID could not be retrieved.
-            if(part.getManufacturerID() == -1) {
+            else if (part.getManufacturerID() == -1) {
                 SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
                         "Failure", "Manufacturer does not exist");
             }
@@ -194,14 +203,14 @@ public class AddNewPartController {
     }
 
     public void clearFields() {
-        nameField.setText("");
-        partIDField.setText("");
-        manufacturerField.setText("");
-        vehicleTypeField.setText("");
-        yearsField.setText("");
-        priceWholeNumField.setText("");
-        priceDecimalField.setText("");
-        stockLevelField.setText("");
+        nameField.clear();
+        partIDField.clear();
+        manufacturerField.clear();
+        vehicleTypeField.clear();
+        yearsField.clear();
+        priceWholeNumField.clear();
+        priceDecimalField.clear();
+        stockLevelField.clear();
     }
 
 }

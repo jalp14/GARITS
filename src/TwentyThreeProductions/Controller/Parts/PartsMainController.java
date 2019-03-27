@@ -51,12 +51,12 @@ public class PartsMainController {
 
     @FXML
     void removePartBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.REMOVE_PART_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.REMOVE_PART_ID, backBtn.getScene());
     }
 
     @FXML
     void updatePartStockBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.SEARCH_UPDATE_STOCK_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.SEARCH_UPDATE_STOCK_ID, backBtn.getScene());
     }
 
     public void initialize() {

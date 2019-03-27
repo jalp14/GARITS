@@ -59,6 +59,9 @@ public class SearchUpdateStockController {
     @FXML
     void backBtnClicked(ActionEvent event) {
         partList.getSelectionModel().select(null);
+        partList.getItems().clear();
+        partHashMap.clear();
+        refreshList();
         sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
@@ -74,10 +77,12 @@ public class SearchUpdateStockController {
         // Otherwise, the system creates an object which holds the selected part, so that ic can be passed through to
         // the next screen for updating the stock of a part. Once this is done, the system moves onto the next screen.
         else {
-            Part part = partHashMap.get(partList.getSelectionModel().getSelectedItem());
-            partReference.setPart(part);
+            partReference.setPart(partHashMap.get(partList.getSelectionModel().getSelectedItem().getText()));
             partList.getSelectionModel().select(null);
-            sceneSwitch.activateScene(NavigationModel.UPDATE_STOCK_ID, backBtn.getScene());
+            partList.getItems().clear();
+            partHashMap.clear();
+            refreshList();
+            sceneSwitch.activateSceneAlways(NavigationModel.UPDATE_STOCK_ID, backBtn.getScene());
         }
     }
 
@@ -85,14 +90,11 @@ public class SearchUpdateStockController {
     void searchBtnClick(ActionEvent event) {
             PartDAO partDAO = new PartDAO();
             String searchTerm = searchField.getText();
+            partList.getSelectionModel().select(null);
             partList.getItems().clear();
             partHashMap.clear();
             if(searchTerm.isEmpty()) {
-                for(Part p: partDAO.getAll()) {
-                    Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
-                    partHashMap.put(partLabel.getText(), p);
-                    partList.getItems().add(partLabel);
-                }
+                refreshList();
             }
             else {
                 for(Part p: partDAO.getAll()) {
@@ -110,6 +112,11 @@ public class SearchUpdateStockController {
         sceneSwitch.addScene(searchUpdateStockStackPane, NavigationModel.SEARCH_UPDATE_STOCK_ID);
         partReference = PartReference.getInstance();
         partHashMap = new HashMap<>();
+        refreshList();
+    }
+
+
+    public void refreshList() {
         PartDAO partDAO = new PartDAO();
         for(Part p: partDAO.getAll()) {
             Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
@@ -117,6 +124,5 @@ public class SearchUpdateStockController {
             partList.getItems().add(partLabel);
         }
     }
-
 }
 

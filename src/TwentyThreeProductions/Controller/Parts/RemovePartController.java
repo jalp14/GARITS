@@ -54,6 +54,7 @@ public class RemovePartController {
     @FXML
     void backBtnClicked(ActionEvent event) {
         partList.getSelectionModel().select(null);
+        refreshList();
         sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
@@ -78,11 +79,7 @@ public class RemovePartController {
             partList.getSelectionModel().select(null);
             partList.getItems().clear();
             partHashMap.clear();
-            for(Part p: partDAO.getAll()) {
-                Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
-                partHashMap.put(partLabel.getText(), p);
-                partList.getItems().add(partLabel);
-            }
+            refreshList();
         }
 
     }
@@ -94,11 +91,7 @@ public class RemovePartController {
         partList.getItems().clear();
         partHashMap.clear();
         if(searchTerm.isEmpty()) {
-            for(Part p: partDAO.getAll()) {
-                Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
-                partHashMap.put(partLabel.getText(), p);
-                partList.getItems().add(partLabel);
-            }
+            refreshList();
         }
         else {
             for(Part p: partDAO.getAll()) {
@@ -114,14 +107,17 @@ public class RemovePartController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(removePartStackPane, NavigationModel.REMOVE_PART_ID);
-        PartDAO partDAO = new PartDAO();
         partHashMap = new HashMap<>();
+        refreshList();
+    }
+
+    public void refreshList() {
+        PartDAO partDAO = new PartDAO();
         for(Part p: partDAO.getAll()) {
             Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
             partHashMap.put(partLabel.getText(), p);
             partList.getItems().add(partLabel);
         }
     }
-
 }
 
