@@ -1,0 +1,13 @@
+.jfx-snackbar-content {
+    -fx-background-color: #000000;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.jfx-snackbar-toast {
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: false;
+    -fx-font-family: Arial;
+    -fx-font-size: 19;
+}
+

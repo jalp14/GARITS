@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.MainScreen;
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -82,6 +83,14 @@ public class MainFFRController {
        System.out.println("Init FFR Controller");
        sceneSwitch = SceneSwitch.getInstance();
        sceneSwitch.addScene(mainScreenFFRStackPane, NavigationModel.MAIN_FFR_ID);
+       setLblConstraints();
+   }
+
+
+   public void setLblConstraints() {
+      welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
+      usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+      userTypeLbl.setText(DBLogic.getDBInstance().getUserType());
    }
 
 }
