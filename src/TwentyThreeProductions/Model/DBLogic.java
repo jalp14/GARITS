@@ -48,9 +48,6 @@ public class DBLogic {
         return username;
     }
 
-    public String getUserType() {
-        return user_type;
-    }
 
 
     public void setLoginDetails(String username, String password) {

@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.annotation.processing.Generated;
 import java.io.IOException;
 
 public class MainMechanicController {
@@ -25,7 +26,7 @@ public class MainMechanicController {
     private JFXButton jobsBtn;
 
     @FXML
-    private JFXButton notifsBtn;
+    private JFXButton bellBtn;
 
     @FXML
     private Text usernameLbl;
@@ -52,8 +53,9 @@ public class MainMechanicController {
     }
 
     @FXML
-    void notifsBtnClicked(ActionEvent event) {
-
+    void bellBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Bell Btn Clicked");
+        sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
     }
 
     public void initialize() {
@@ -67,7 +69,7 @@ public class MainMechanicController {
     public void setLblConstraints() {
         welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
-        userTypeLbl.setText(DBLogic.getDBInstance().getUserType());
+        userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
 }

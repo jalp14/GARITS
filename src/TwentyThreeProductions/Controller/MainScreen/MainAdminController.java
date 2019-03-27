@@ -32,8 +32,6 @@ public class MainAdminController {
     @FXML
     private JFXButton backuprestoreBtn;
 
-    @FXML
-    private JFXButton notifsBtn;
 
     @FXML
     private Text usernameLbl;
@@ -93,6 +91,6 @@ public class MainAdminController {
     public void setLblConstraints() {
         welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
-        userTypeLbl.setText(DBLogic.getDBInstance().getUserType());
+        userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 }

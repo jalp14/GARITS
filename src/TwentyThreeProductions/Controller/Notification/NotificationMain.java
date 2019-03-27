@@ -89,13 +89,13 @@ public class NotificationMain {
     @FXML
     void notifSelected(MouseEvent event) {
         if (!(notificationsList.getSelectionModel().getSelectedItem() == null)) {
-            Notification tmpNotification = notificationMap.get(notificationsList.getSelectionModel().getSelectedItem());
-            LocalDateTime ldt = tmpNotification.getPeriod();
-
-            dateLbl.setText(ldt.getDayOfMonth() + "-" + ldt.getMonth() + "-" + ldt.getYear());
-            timeLbl.setText(ldt.getHour() + ":" + ldt.getMinute() + ":" + ldt.getSecond());
-
-            areaLbl.setText(tmpNotification.getView());
+            if (!(notificationsList.getSelectionModel().getSelectedItem().getText().equals("No Notifications"))) {
+                Notification tmpNotification = notificationMap.get(notificationsList.getSelectionModel().getSelectedItem());
+                LocalDateTime ldt = tmpNotification.getPeriod();
+                dateLbl.setText(ldt.getDayOfMonth() + "-" + ldt.getMonth() + "-" + ldt.getYear());
+                timeLbl.setText(ldt.getHour() + ":" + ldt.getMinute() + ":" + ldt.getSecond());
+                areaLbl.setText(tmpNotification.getView());
+            }
         }
     }
 
@@ -107,7 +107,17 @@ public class NotificationMain {
 
     @FXML
     void backBtnPressed(ActionEvent event) {
-        sceneSwitch.switchScene(NavigationModel.MAIN_ADMIN_ID);
+        if (DBLogic.getDBInstance().getUser_type().equals("ADMIN")) {
+            sceneSwitch.switchScene(NavigationModel.MAIN_ADMIN_ID);
+        } else if (DBLogic.getDBInstance().getUser_type().equals("FRANCHISEE")) {
+            sceneSwitch.switchScene(NavigationModel.MAIN_FFR_ID);
+        } else if (DBLogic.getDBInstance().getUser_type().equals("FOREPERSON")) {
+            sceneSwitch.switchScene(NavigationModel.MAIN_FFR_ID);
+        } else if (DBLogic.getDBInstance().getUser_type().equals("RECEPTIONIST")) {
+            sceneSwitch.switchScene(NavigationModel.MAIN_FFR_ID);
+        } else if (DBLogic.getDBInstance().getUser_type().equals("MECHANIC")) {
+            sceneSwitch.switchScene(NavigationModel.MAIN_MECHANIC_ID);
+        }
     }
 
     public void initialize() {
@@ -123,15 +133,19 @@ public class NotificationMain {
         }
         notificationsList.getItems().clear();
         notifications = notificationDAO.getNotification(DBLogic.getDBInstance().getUsername());
-        for (int i = 0; i < notifications.size(); i++) {
-            Notification notification = notifications.get(i);
-            Label label = new Label(notification.getMessage());
-            notificationsList.getItems().add(label);
-            notificationMap.put(label, notification);
+        if (notifications.size() == 0) {
+            notificationsList.getItems().add(new Label("No Notifications"));
+        } else {
+            for (int i = 0; i < notifications.size(); i++) {
+                Notification notification = notifications.get(i);
+                Label label = new Label(notification.getMessage());
+                notificationsList.getItems().add(label);
+                notificationMap.put(label, notification);
+            }
+            notificationsList.setExpanded(true);
+            notificationsList.depthProperty().setValue(1);
+            notificationsList.setVerticalGap(10.0);
         }
-        notificationsList.setExpanded(true);
-        notificationsList.depthProperty().setValue(1);
-        notificationsList.setVerticalGap(10.0);
     }
 
 }

@@ -27,7 +27,6 @@
                   <Image url="@../../GARITSassests/jobs.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="notifsBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="555.0" layoutY="638.0" onAction="#notifsBtnClicked" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #ff1640; -fx-background-radius: 4pt;" text="Notifications" textAlignment="JUSTIFY" textFill="WHITE" />
             <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../GARITSassests/garits.png" />
@@ -53,6 +52,15 @@
                   <Font name="Avenir Next Bold" size="47.0" />
                </font>
             </Label>
+            <JFXButton fx:id="bellBtn" layoutX="991.0" layoutY="70.0" onAction="#bellBtnClicked" prefHeight="34.0" prefWidth="15.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GARITSassests/notifications.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>
