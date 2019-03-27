@@ -129,6 +129,7 @@ public class NewJobNewCustomerController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        clearInputs();
         sceneSwitch.switchScene(NavigationModel.NEW_JOB_MENU_ID);
     }
 
@@ -139,25 +140,36 @@ public class NewJobNewCustomerController {
         customerDAO = new CustomerDAO();
         customer = new Customer();
         carDAO = new CarDAO();
-        customer.setFirstName(firstNameField.getText());
-        customer.setLastName(lastNameField.getText());
-        customer.setCustomerAddress(addressOneField.getText());
-        customer.setCustomerPostcode(postcodeField.getText());
-        customer.setCustomerPhone(phoneNoField.getText());
-        customer.setCustomerEmail(emailField.getText());
-        customer.setCustomerType(determineType());
-        customer.setLatePayment(latePaymentCheckbox.isSelected());
-        customerDAO.save(customer);
-        customerRowCount = Integer.toString(customerDAO.getCount());
-        System.out.println(customerRowCount);
-        for (int j = 0; j < selectedCarList.getItems().size(); j++) {
-            String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
-            System.out.println("Reg ID : " + regID);
-            carDAO.updateCustomer(customerRowCount, regID);
-            System.out.println(cars.get(j).getRegistrationID());
+        if(firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() ||
+                addressOneField.getText().isEmpty() || postcodeField.getText().isEmpty() ||
+                phoneNoField.getText().isEmpty() || emailField.getText().isEmpty() ||
+                (!(casualCustomerRadio.isSelected()) && !(accountHolderRadio.isSelected()))) {
+            SystemAlert systemAlert = new SystemAlert(newJobNewCustomerStackPane,
+                    "Failure", "Blank field(s)");
+        } else {
+            customer.setFirstName(firstNameField.getText());
+            customer.setLastName(lastNameField.getText());
+            customer.setCustomerAddress(addressOneField.getText());
+            customer.setCustomerPostcode(postcodeField.getText());
+            customer.setCustomerPhone(phoneNoField.getText());
+            customer.setCustomerEmail(emailField.getText());
+            customer.setCustomerType(determineType());
+            customer.setLatePayment(latePaymentCheckbox.isSelected());
+            customerDAO.save(customer);
+            for (Customer c : customerDAO.getAll()) {
+                customer.setCustomerID(c.getCustomerID());
+            }
+            customerRowCount = Integer.toString(customerDAO.getCount());
+            for (int j = 0; j < selectedCarList.getItems().size(); j++) {
+                String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+                System.out.println("Reg ID : " + regID);
+                carDAO.updateCustomer(customerRowCount, regID);
+                System.out.println(cars.get(j).getRegistrationID());
+            }
+            customerReference.setCustomer(customer);
+            clearInputs();
+            sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
         }
-        customerReference.setCustomer(customer);
-        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
     }
 
     @FXML
@@ -179,7 +191,7 @@ public class NewJobNewCustomerController {
         sceneSwitch.addScene(newJobNewCustomerStackPane, NavigationModel.NEW_JOB_NEW_CUSTOMER_ID);
         customerReference = customerReference.getInstance();
         carHashMap = new HashMap<>();
-        loadCars();
+        clearInputs();
     }
 
     public void loadCars() {
@@ -190,7 +202,6 @@ public class NewJobNewCustomerController {
             Label tmpLabel = new Label(tmpCar.getModel());
             availableCarsCombi.getItems().add(tmpLabel);
             carHashMap.put(tmpLabel.getText(), tmpCar);
-            System.out.println(" Car Hash Map Size : " + carHashMap.size());
         }
 
     }
@@ -203,6 +214,22 @@ public class NewJobNewCustomerController {
             type = "CASUAL";
         }
         return type;
+    }
+
+    public void clearInputs() {
+        firstNameField.clear();
+        lastNameField.clear();
+        addressOneField.clear();
+        postcodeField.clear();
+        cityField.clear();
+        emailField.clear();
+        phoneNoField.clear();
+        casualCustomerRadio.setSelected(false);
+        accountHolderRadio.setSelected(false);
+        latePaymentCheckbox.setSelected(false);
+        selectedCarList.getItems().clear();
+        availableCarsCombi.getItems().clear();
+        loadCars();
     }
 }
 

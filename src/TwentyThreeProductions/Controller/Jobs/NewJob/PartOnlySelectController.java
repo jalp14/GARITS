@@ -1,11 +1,9 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
-import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Domain.Job;
-import TwentyThreeProductions.Domain.PartJob;
-import TwentyThreeProductions.Domain.Part;
+import TwentyThreeProductions.Domain.*;
 import TwentyThreeProductions.Model.CustomerReference;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
+import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
 import TwentyThreeProductions.Model.Database.DAO.PartJobDAO;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.NavigationModel;
@@ -114,32 +112,41 @@ public class PartOnlySelectController {
             Job job = new Job();
             PartDAO partDAO = new PartDAO();
             JobDAO jobDAO = new JobDAO();
+            MechanicDAO mechanicDAO = new MechanicDAO();
             PartJobDAO partJobDAO = new PartJobDAO();
             int jobID = 1;
             for(Job j: jobDAO.getAll()) {
                 jobID++;
             }
             job.setJobID(jobID);
-            if(usertypeLbl.getText().equals("Mechanic")) {
+            boolean isMechanicTableEmpty = false;
+            if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
                 job.setUsername(usernameLbl.getText().substring(8));
-            }
-            else {
-                job.setUsername("Kaneki");
-            }
-            job.setCustomerID(Integer.parseInt(customer.getCustomerID()));
-            job.setRegistrationID(null);
-            java.util.Date currentDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-            job.setDateBookedIn(sqlDate);
-            job.setDescription("Spare part ordered");
-            job.setStatus("Pending");
-            job.setPaidFor("False");
-            try {
-                if(Integer.parseInt(stockUsedField.getText()) < 1 || Integer.parseInt(part.getStockLevel()) < Integer.parseInt(stockUsedField.getText())) {
-                    SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
-                            "Failure", "Stock out of bounds");
+            } else if (mechanicDAO.getAll().isEmpty()) {
+                isMechanicTableEmpty = true;
+            } else {
+                for (Mechanic m : mechanicDAO.getAll()) {
+                    job.setUsername(m.getUsername());
+                    break;
                 }
-                else {
+            }
+            if (isMechanicTableEmpty) {
+                SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
+                        "Failure", "No mechanic in system database");
+            } else {
+                job.setCustomerID(Integer.parseInt(customer.getCustomerID()));
+                job.setRegistrationID(null);
+                java.util.Date currentDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+                job.setDateBookedIn(sqlDate);
+                job.setDescription("Spare part ordered");
+                job.setStatus("Pending");
+                job.setPaidFor("False");
+                try {
+                    if (Integer.parseInt(stockUsedField.getText()) < 1 || Integer.parseInt(part.getStockLevel()) < Integer.parseInt(stockUsedField.getText())) {
+                        SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
+                                "Failure", "Stock out of bounds");
+                    } else {
                         jobDAO.save(job);
                         part.setStockLevel(String.valueOf(Integer.parseInt(part.getStockLevel()) - Integer.parseInt(stockUsedField.getText())));
                         partDAO.update(part);
@@ -153,11 +160,11 @@ public class PartOnlySelectController {
                         partList.getItems().clear();
                         partHashMap.clear();
                         refreshList();
+                    }
+                } catch (Exception e) {
+                    SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
+                            "Failure", "Invalid stock given");
                 }
-            }
-            catch(Exception e) {
-                SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
-                        "Failure", "Invalid stock given");
             }
         }
     }

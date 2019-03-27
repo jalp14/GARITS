@@ -43,7 +43,7 @@ public class NewJobNewCarController {
     private JFXButton backBtn;
 
     @FXML
-    private JFXButton addPartBtn;
+    private JFXButton addCarBtn;
 
     @FXML
     private Label customerNameLbl;
@@ -91,77 +91,99 @@ public class NewJobNewCarController {
     private JFXTextField manufacturerField;
 
     @FXML
-    void addPartBtnClicked(ActionEvent event) {
-        Car car = new Car();
-        CarDAO carDAO = new CarDAO();
-        Job job = new Job();
-        JobDAO jobDAO = new JobDAO();
-        MechanicDAO mechanicDAO = new MechanicDAO();
-        boolean doesRegistrationIDExist = false;
-        for(Car c: carDAO.getAll()) {
-            if(registrationField.getText().equals(car.getRegistrationID())) {
-                doesRegistrationIDExist = true;
-                break;
-            }
-        }
-        if(doesRegistrationIDExist) {
+    void addCarBtnClicked(ActionEvent event) {
+        if (registrationField.getText().isEmpty() || makeField.getText().isEmpty() ||
+                modelField.getText().isEmpty() || serialField.getText().isEmpty() ||
+                chassisNoField.getText().isEmpty() || colourField.getText().isEmpty() ||
+                manufacturerField.getText().isEmpty()) {
             SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
-                    "Failure", "Registration ID already exists");
-        }
-        else {
-            car.setRegistrationID(registrationField.getText());
-            car.setMake(makeField.getText());
-            try {
-                Integer.parseInt(chassisNoField.getText());
-                car.setChassisNumber(chassisNoField.getText());
-                car.setModel(modelField.getText());
-                car.setEngSerial(serialField.getText());
-                car.setColour(colourField.getText());
-                car.setCustomerID(customerReference.getCustomer().getCustomerID());
-                car.setManufacturerID("-1");
-                ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
-                for (Manufacturer m : manufacturerDAO.getAll()) {
-                    if (m.getCompanyName().equals(manufacturerField.getText())) {
-                        car.setManufacturerID(String.valueOf(m.getManufacturerID()));
-                        break;
-                    }
+                    "Failure", "Blank field(s)");
+        } else {
+            Car car = new Car();
+            CarDAO carDAO = new CarDAO();
+            Job job = new Job();
+            JobDAO jobDAO = new JobDAO();
+            MechanicDAO mechanicDAO = new MechanicDAO();
+            boolean doesRegistrationIDExist = false;
+            for (Car c : carDAO.getAll()) {
+                if (registrationField.getText().equals(car.getRegistrationID())) {
+                    doesRegistrationIDExist = true;
+                    break;
                 }
-                if (car.getManufacturerID().equals("-1")) {
-                    SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
-                            "Failure", "Manufacturer does not exist");
-                }
-                else {
-                    carDAO.save(car);
-                    int jobID = 1;
-                    for (Job j : jobDAO.getAll()) {
-                        jobID++;
-                    }
-                    job.setJobID(jobID);
-                    if (usertypeLbl.getText().equals("Mechanic")) {
-                        job.setUsername(usernameLbl.getText().substring(8));
+            }
+            if (doesRegistrationIDExist) {
+                SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
+                        "Failure", "Registration ID already exists");
+            } else {
+                try {
+                    Integer.parseInt(registrationField.getText());
+                    car.setRegistrationID(registrationField.getText());
+                    car.setMake(makeField.getText());
+                    Integer.parseInt(chassisNoField.getText());
+                    car.setChassisNumber(chassisNoField.getText());
+                    car.setModel(modelField.getText());
+                    car.setEngSerial(serialField.getText());
+                    car.setColour(colourField.getText());
+                    car.setCustomerID(customerReference.getCustomer().getCustomerID());
+                    car.setManufacturerID("-1");
+                    ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
+                    boolean isManufacturerTableEmpty = false;
+                    if ((manufacturerDAO.getAll().isEmpty())) {
+                        isManufacturerTableEmpty = true;
                     } else {
-                        for (Mechanic m : mechanicDAO.getAll()) {
-                            job.setUsername(m.getUsername());
-                            break;
+                        for (Manufacturer m : manufacturerDAO.getAll()) {
+                            if (m.getCompanyName().equals(manufacturerField.getText())) {
+                                car.setManufacturerID(String.valueOf(m.getManufacturerID()));
+                                break;
+                            }
                         }
                     }
-                    job.setCustomerID(Integer.parseInt(customerReference.getCustomer().getCustomerID()));
-                    job.setRegistrationID(car.getRegistrationID());
-                    java.util.Date currentDate = new java.util.Date();
-                    java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-                    job.setDateBookedIn(sqlDate);
-                    job.setDescription("Work done on car");
-                    job.setStatus("Pending");
-                    job.setPaidFor("False");
-                    jobDAO.save(job);
+                    if (isManufacturerTableEmpty) {
+                        SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
+                                "Failure", "No manufacturer in system database");
+                    } else if (car.getManufacturerID().equals("-1")) {
+                        SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
+                                "Failure", "Manufacturer does not exist");
+                    } else {
+                        carDAO.save(car);
+                        int jobID = 1;
+                        for (Job j : jobDAO.getAll()) {
+                            jobID++;
+                        }
+                        job.setJobID(jobID);
+                        boolean isMechanicTableEmpty = false;
+                        if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
+                            job.setUsername(usernameLbl.getText().substring(8));
+                        } else if (mechanicDAO.getAll().isEmpty()) {
+                            isMechanicTableEmpty = true;
+                        } else {
+                            for (Mechanic m : mechanicDAO.getAll()) {
+                                job.setUsername(m.getUsername());
+                                break;
+                            }
+                        }
+                        if (isMechanicTableEmpty) {
+                            SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
+                                    "Failure", "No mechanic in system database");
+                        } else {
+                            job.setCustomerID(Integer.parseInt(customerReference.getCustomer().getCustomerID()));
+                            job.setRegistrationID(car.getRegistrationID());
+                            java.util.Date currentDate = new java.util.Date();
+                            java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+                            job.setDateBookedIn(sqlDate);
+                            job.setDescription("Work done on car");
+                            job.setStatus("Pending");
+                            job.setPaidFor("False");
+                            jobDAO.save(job);
+                            SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
+                                    "Success", "Job added for new car");
+                            clearInputs();
+                        }
+                    }
+                } catch (Exception e) {
                     SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
-                            "Success", "Job added for new car");
-                    clearInputs();
+                            "Failure", "Invalid input type");
                 }
-            }
-            catch(Exception e) {
-                SystemAlert systemAlert = new SystemAlert(newJobNewCarStackPane,
-                        "Failure", "Invalid input type for chassis number");
             }
         }
     }
@@ -185,8 +207,10 @@ public class NewJobNewCarController {
         registrationField.clear();
         makeField.clear();
         chassisNoField.clear();
+        serialField.clear();
         modelField.clear();
         colourField.clear();
+        manufacturerField.clear();
     }
 }
 

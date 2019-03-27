@@ -114,9 +114,8 @@ public class CarDAO implements ICar {
     @Override
     public void save(Car car) {
         String[] args = {car.getCustomerID(), car.getRegistrationID(), car.getManufacturerID(), car.getColour(), car.getChassisNumber(), car.getEngSerial(), car.getMake(), car.getModel()};
-        connection = dbConnectivity.connection(connection);
         String saveQuery = "INSERT INTO GARAGE.CAR (CUSTOMERID, MANUFACTURERID, COLOUR, CHASSISNUMBER, ENGSERIAL, MAKE, MODEL)\n" +
-                "VALUES (?, ?, ?,? , ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }

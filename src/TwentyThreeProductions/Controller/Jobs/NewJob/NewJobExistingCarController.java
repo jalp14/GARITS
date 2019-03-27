@@ -80,30 +80,37 @@ public class NewJobExistingCarController {
                 jobID++;
             }
             job.setJobID(jobID);
-            if(usertypeLbl.getText().equals("Mechanic")) {
+            boolean isMechanicTableEmpty = false;
+            if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
                 job.setUsername(usernameLbl.getText().substring(8));
+            } else if (mechanicDAO.getAll().isEmpty()) {
+                isMechanicTableEmpty = true;
+            } else {
+                for (Mechanic m : mechanicDAO.getAll()) {
+                    job.setUsername(m.getUsername());
+                    break;
+                }
             }
-            else {
-                    for (Mechanic m : mechanicDAO.getAll()) {
-                        job.setUsername(m.getUsername());
-                        break;
-                    }
+            if (isMechanicTableEmpty) {
+                SystemAlert systemAlert = new SystemAlert(newJobExistingCarStackPane,
+                        "Failure", "No mechanic in system database");
+            } else {
+                job.setCustomerID(Integer.parseInt(customer.getCustomerID()));
+                job.setRegistrationID(car.getRegistrationID());
+                java.util.Date currentDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+                job.setDateBookedIn(sqlDate);
+                job.setDescription("Work done on car");
+                job.setStatus("Pending");
+                job.setPaidFor("False");
+                jobDAO.save(job);
+                SystemAlert systemAlert = new SystemAlert(newJobExistingCarStackPane,
+                        "Success", "Added job for existing car");
+                customerCarList.getSelectionModel().select(null);
+                customerCarList.getItems().clear();
+                carHashMap.clear();
+                refreshList();
             }
-            job.setCustomerID(Integer.parseInt(customer.getCustomerID()));
-            job.setRegistrationID(car.getRegistrationID());
-            java.util.Date currentDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-            job.setDateBookedIn(sqlDate);
-            job.setDescription("Work done on car");
-            job.setStatus("Pending");
-            job.setPaidFor("False");
-            jobDAO.save(job);
-            SystemAlert systemAlert = new SystemAlert(newJobExistingCarStackPane,
-                    "Success", "Added job for existing car");
-            customerCarList.getSelectionModel().select(null);
-            customerCarList.getItems().clear();
-            carHashMap.clear();
-            refreshList();
         }
     }
 

@@ -80,6 +80,24 @@ public class CustomerDAO implements ICustomer {
         return customers;
     }
 
+    public String getLatestID() {
+        Statement statement;
+        String query = "SELECT MAX(CUSTOMERID) AS LATESTID FROM GARAGE.CUSTOMER";
+        ResultSet result;
+        connection = dbConnectivity.connection(connection);
+        Customer customer = new Customer();
+        try {
+            statement = connection.createStatement();
+            result = statement.executeQuery(query);
+            customer.setCustomerID(result.getString("LATESTID"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnectivity.closeConnection(connection);
+        }
+        return customer.getCustomerID();
+    }
+
     @Override
     public void save(Customer customer) {
         customers.add(customer);
