@@ -2,19 +2,21 @@ package TwentyThreeProductions.Controller.MainScreen;
 
 import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.Notification.Notification;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemNotification;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 public class MainAdminController {
+
 
     private SceneSwitch sceneSwitch;
 
@@ -45,6 +47,15 @@ public class MainAdminController {
     @FXML
     private Label welcomeMessage;
 
+    @FXML
+    private JFXButton bellBtn;
+
+
+    @FXML
+    void bellBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Bell Btn Clicked");
+        sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
+    }
 
     @FXML
     void backuprestoreBtnClicked(ActionEvent event) throws IOException {
@@ -62,9 +73,7 @@ public class MainAdminController {
     @FXML
     void notifsBtnClicked(ActionEvent event) {
         System.out.println("Notifications Btn Clicked");
-        Notification notification = new Notification(mainScreenAdminStackPane);
-        notification.setNotificationMessage("This is a test notification");
-        notification.showNotification();
+
     }
 
 

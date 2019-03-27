@@ -70,6 +70,15 @@
                   <Font name="Avenir Next Bold" size="13.0" />
                </font>
             </Text>
+            <JFXButton fx:id="bellBtn" buttonType="RAISED" layoutX="991.0" layoutY="70.0" onAction="#bellBtnClicked" prefHeight="34.0" prefWidth="15.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GARITSassests/notifications.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>
