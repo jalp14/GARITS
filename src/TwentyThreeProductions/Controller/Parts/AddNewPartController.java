@@ -65,6 +65,12 @@ public class AddNewPartController {
     private Label stockLevelLabel;
 
     @FXML
+    private Label thresholdLevelLabel;
+
+    @FXML
+    private Label descLabel;
+
+    @FXML
     private JFXTextField nameField;
 
     @FXML
@@ -87,6 +93,12 @@ public class AddNewPartController {
 
     @FXML
     private JFXTextField stockLevelField;
+
+    @FXML
+    private JFXTextField thresholdLevelField;
+
+    @FXML
+    private JFXTextField descField;
 
     @FXML
     void addPartBtnClicked(ActionEvent event) throws IOException {
@@ -169,10 +181,12 @@ public class AddNewPartController {
                     // corrected decimal value to create a value for the total price, adding it to the part object
                     // to be added to the system database, as well as adding the stock level.
                     else {
-                        part.setPrice(String.valueOf(Integer.parseInt(priceWholeNumField.getText()) +
-                                (Float.parseFloat(priceDecimalField.getText()) / 100)));
+                        part.setPrice(Integer.parseInt(priceWholeNumField.getText()) +
+                                (Float.parseFloat(priceDecimalField.getText()) / 100));
                         Integer.parseInt(stockLevelField.getText());
-                        part.setStockLevel(stockLevelField.getText());
+                        part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
+                        part.setThresholdLevel(Integer.parseInt(thresholdLevelField.getText()));
+                        part.setDesc(descField.getText());
 
                         // After each entry has been added to the part object, the system runs the operation to
                         // add the part to the system database. Once this operation is complete, the system produces

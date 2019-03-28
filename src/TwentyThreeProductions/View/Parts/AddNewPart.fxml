@@ -148,6 +148,26 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
+            <Label fx:id="thresholdLevelLabel" layoutX="33.0" layoutY="697.0" prefHeight="32.0" prefWidth="155.0" text="Threshold level">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="thresholdLevelField" layoutX="187.0" layoutY="694.0" prefHeight="27.0" prefWidth="329.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="descLabel" layoutX="544.0" layoutY="331.0" prefHeight="32.0" prefWidth="137.0" text="Description">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="descField" layoutX="668.0" layoutY="327.0" prefHeight="27.0" prefWidth="329.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
          </children>
       </AnchorPane>
    </children>

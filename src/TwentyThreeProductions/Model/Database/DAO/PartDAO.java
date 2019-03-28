@@ -40,8 +40,10 @@ public class PartDAO implements IPart {
                 part.setName(result.getString("NAME"));
                 part.setVehicleType(result.getString("VEHICLETYPE"));
                 part.setYear(result.getString("YEAR"));
-                part.setPrice(result.getString("PRICE"));
-                part.setStockLevel(result.getString("STOCK_LEVEL"));
+                part.setPrice(result.getFloat("PRICE"));
+                part.setStockLevel(result.getInt("STOCK_LEVEL"));
+                part.setThresholdLevel(result.getInt("THRESHOLD_LEVEL"));
+                part.setDesc(result.getString("DESCRIPTION"));
                 parts.add(part);
             }
         } catch (SQLException e) {
@@ -56,9 +58,11 @@ public class PartDAO implements IPart {
     public void save(Part part) {
         // This method sends an SQL query to the system database in which a series of fields are added to a new entry
         // within the Part table.
-        String[] args = {part.getPartID(), String.valueOf(part.getManufacturerID()), part.getName(), part.getVehicleType(), String.valueOf(part.getYear()), String.valueOf(part.getPrice()), String.valueOf(part.getStockLevel())};
-        String saveQuery = "INSERT INTO GARAGE.PART (PARTID, MANUFACTURERID, NAME, VEHICLETYPE, YEAR, PRICE, STOCK_LEVEL)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String[] args = {part.getPartID(), String.valueOf(part.getManufacturerID()), part.getName(), part.getVehicleType(),
+                part.getYear(), String.valueOf(part.getPrice()), String.valueOf(part.getStockLevel()),
+                String.valueOf(part.getThresholdLevel()), part.getDesc()};
+        String saveQuery = "INSERT INTO GARAGE.PART (PARTID, MANUFACTURERID, NAME, VEHICLETYPE, YEAR, PRICE, STOCK_LEVEL, THRESHOLD_LEVEL, DESCRIPTION)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
 }
@@ -69,6 +73,7 @@ public class PartDAO implements IPart {
         // existing entry within the Part table, determined by the part ID.
         String updateQuery = "UPDATE GARAGE.PART\n" +
                 "SET STOCK_LEVEL = " + part.getStockLevel() +
+                "THRESHOLD_LEVEL = " + part.getThresholdLevel() +
                 "WHERE PARTID = '" + part.getPartID() + "'";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.write(updateQuery, connection);
