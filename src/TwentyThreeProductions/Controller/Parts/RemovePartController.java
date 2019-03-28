@@ -95,7 +95,7 @@ public class RemovePartController {
         }
         else {
             for(Part p: partDAO.getAll()) {
-                if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || p.getStockLevel().contains(searchTerm)) {
+                if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || String.valueOf(p.getStockLevel()).contains(searchTerm)) {
                     Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName());
                     partHashMap.put(partLabel.getText(), p);
                     partList.getItems().add(partLabel);

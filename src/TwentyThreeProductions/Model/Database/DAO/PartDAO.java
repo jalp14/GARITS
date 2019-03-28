@@ -73,8 +73,8 @@ public class PartDAO implements IPart {
         // existing entry within the Part table, determined by the part ID.
         String updateQuery = "UPDATE GARAGE.PART\n" +
                 "SET STOCK_LEVEL = " + part.getStockLevel() +
-                "THRESHOLD_LEVEL = " + part.getThresholdLevel() +
-                "WHERE PARTID = '" + part.getPartID() + "'";
+                ", THRESHOLD_LEVEL = " + part.getThresholdLevel() +
+                " WHERE PARTID = '" + part.getPartID() + "'";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.write(updateQuery, connection);
     }

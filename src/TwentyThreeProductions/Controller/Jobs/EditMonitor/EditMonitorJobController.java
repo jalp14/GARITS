@@ -170,13 +170,12 @@ public class EditMonitorJobController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(editMonitorJobStackPane, NavigationModel.EDIT_MONITOR_JOB_ID);
-        jobReference = jobReference.getInstance();
+        jobReference = JobReference.getInstance();
         mechanicHashMap = new HashMap<>();
         refreshList();
     }
 
     public void refreshList() {
-        JobDAO jobDAO = new JobDAO();
         MechanicDAO mechanicDAO = new MechanicDAO();
         JobTaskDAO jobTaskDAO = new JobTaskDAO();
         PartJobDAO partJobDAO = new PartJobDAO();
