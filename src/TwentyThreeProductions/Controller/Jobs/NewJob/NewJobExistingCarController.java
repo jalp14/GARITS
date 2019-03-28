@@ -76,8 +76,10 @@ public class NewJobExistingCarController {
             JobDAO jobDAO = new JobDAO();
             MechanicDAO mechanicDAO = new MechanicDAO();
             int jobID = 1;
-            for(Job j: jobDAO.getAll()) {
-                jobID++;
+            if(!(jobDAO.getAll().isEmpty())) {
+                for (Job j : jobDAO.getAll()) {
+                    jobID++;
+                }
             }
             job.setJobID(jobID);
             boolean isMechanicTableEmpty = false;
