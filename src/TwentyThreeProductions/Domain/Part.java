@@ -9,8 +9,10 @@ public class Part {
     private String name;
     private String vehicleType;
     private String year;
-    private String price;
-    private String stockLevel;
+    private float price;
+    private int stockLevel;
+    private int thresholdLevel;
+    private String desc;
     private List<PartJob> partJobs;
     private List<OrderPart> orderParts;
 
@@ -56,20 +58,36 @@ public class Part {
         this.year = year;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
-    public String getStockLevel() {
+    public int getStockLevel() {
         return stockLevel;
     }
 
-    public void setStockLevel(String stockLevel) {
+    public void setStockLevel(int stockLevel) {
         this.stockLevel = stockLevel;
+    }
+
+    public int getThresholdLevel() {
+        return thresholdLevel;
+    }
+
+    public void setThresholdLevel(int thresholdLevel) {
+        this.thresholdLevel = thresholdLevel;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public List<PartJob> getPartJobs() {

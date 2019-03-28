@@ -45,13 +45,28 @@ public class UpdateStockController {
     private Label partNameLbl;
 
     @FXML
+    private Label stockLevelLbl;
+
+    @FXML
+    private Label thresholdLevelLbl;
+
+    @FXML
     private JFXButton reduceStockBtn;
 
     @FXML
     private JFXButton increaseStockBtn;
 
     @FXML
+    private JFXButton reduceThresholdBtn;
+
+    @FXML
+    private JFXButton increaseThresholdBtn;
+
+    @FXML
     private JFXTextField stockLevelField;
+
+    @FXML
+    private JFXTextField thresholdLevelField;
 
     @FXML
     void backBtnClicked(ActionEvent event) throws IOException {
@@ -75,17 +90,17 @@ public class UpdateStockController {
             else {
                 Part part = partReference.getPart();
                 PartDAO partDAO = new PartDAO();
-                Integer.parseInt(stockLevelField.getText());
-                part.setStockLevel(stockLevelField.getText());
+                part.setStockLevel(Integer.parseInt(stockLevelField.getText()));
+                part.setThresholdLevel(Integer.parseInt(thresholdLevelField.getText()));
                 partDAO.update(part);
                 SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
-                        "Success", "Stock updated");
-                stockLevelField.setText(part.getStockLevel());
+                        "Success", "Stock/Threshold updated");
+                stockLevelField.setText(String.valueOf(part.getStockLevel()));
             }
         }
         catch(Exception e) {
             SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
-                    "Failure", "Invalid character in field");
+                    "Failure", "Invalid character in field(s)");
         }
     }
 
@@ -100,7 +115,7 @@ public class UpdateStockController {
         }
         catch(Exception e) {
             SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
-                    "Failure", "Invalid character in field");
+                    "Failure", "Invalid character in stock field");
         }
     }
 
@@ -115,7 +130,37 @@ public class UpdateStockController {
         }
         catch(Exception e) {
             SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
-                    "Failure", "Invalid character in field");
+                    "Failure", "Invalid character in stock field");
+        }
+    }
+
+    @FXML
+    void reduceThresholdBtnClicked(ActionEvent event) throws IOException {
+
+        //The system checks to see if an integer has been inputted into the field. If it has, then the system decreases
+        // the stock of the selected part by one. Otherwise, the system produces an alert stating that there is an
+        // invalid character within the field.
+        try {
+            thresholdLevelField.setText(String.valueOf(Integer.parseInt(thresholdLevelField.getText()) - 1));
+        }
+        catch(Exception e) {
+            SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
+                    "Failure", "Invalid character in threshold field");
+        }
+    }
+
+    @FXML
+    void increaseThresholdBtnClicked(ActionEvent event) {
+
+        //The system checks to see if an integer has been inputted into the field. If it has, then the system increases
+        // the stock of the selected part by one. Otherwise, the system produces an alert stating that there is an
+        // invalid character within the field.
+        try {
+            thresholdLevelField.setText(String.valueOf(Integer.parseInt(thresholdLevelField.getText()) + 1));
+        }
+        catch(Exception e) {
+            SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
+                    "Failure", "Invalid character in threshold field");
         }
     }
 
@@ -123,7 +168,9 @@ public class UpdateStockController {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(updateStockStackPane, NavigationModel.UPDATE_STOCK_ID);
         partReference = PartReference.getInstance();
-        stockLevelField.setText(partReference.getPart().getStockLevel());
+        stockLevelField.setText(String.valueOf(partReference.getPart().getStockLevel()));
+        thresholdLevelField.setText(String.valueOf(partReference.getPart().getThresholdLevel()));
+        partNameLbl.setText(partReference.getPart().getName());
     }
 
 }

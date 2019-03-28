@@ -89,8 +89,8 @@ public class PartOnlySelectController {
         else {
             PartDAO partDAO = new PartDAO();
             for(Part p: partDAO.getAll()) {
-                if((p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || p.getStockLevel().contains(searchTerm))
-                && Integer.parseInt(p.getStockLevel()) > 0) {
+                if((p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || ((String.valueOf(p.getStockLevel()).contains(searchTerm))
+                && p.getStockLevel() > 0))) {
                     Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
                     partHashMap.put(partLabel.getText(), p);
                     partList.getItems().add(partLabel);
@@ -145,12 +145,12 @@ public class PartOnlySelectController {
                 job.setStatus("Pending");
                 job.setPaidFor("False");
                 try {
-                    if (Integer.parseInt(stockUsedField.getText()) < 1 || Integer.parseInt(part.getStockLevel()) < Integer.parseInt(stockUsedField.getText())) {
+                    if (Integer.parseInt(stockUsedField.getText()) < 1 || part.getStockLevel() < Integer.parseInt(stockUsedField.getText())) {
                         SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
                                 "Failure", "Stock out of bounds");
                     } else {
                         jobDAO.save(job);
-                        part.setStockLevel(String.valueOf(Integer.parseInt(part.getStockLevel()) - Integer.parseInt(stockUsedField.getText())));
+                        part.setStockLevel(part.getStockLevel() - Integer.parseInt(stockUsedField.getText()));
                         partDAO.update(part);
                         partJob.setJobID(jobID);
                         partJob.setPartID(part.getPartID());
@@ -182,7 +182,7 @@ public class PartOnlySelectController {
     public void refreshList() {
         PartDAO partDAO = new PartDAO();
         for(Part p: partDAO.getAll()) {
-            if (Integer.parseInt(p.getStockLevel()) > 0) {
+            if (p.getStockLevel() > 0) {
                 Label partLabel = new Label("ID: " + p.getPartID() + " / Name: " + p.getName() + " / Stock: " + p.getStockLevel());
                 partHashMap.put(partLabel.getText(), p);
                 partList.getItems().add(partLabel);
