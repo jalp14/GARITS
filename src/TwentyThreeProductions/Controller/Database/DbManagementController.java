@@ -1,8 +1,11 @@
 package TwentyThreeProductions.Controller.Database;
 
+import TwentyThreeProductions.Domain.Backup;
 import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.BackupDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemNotification;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +16,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.jfoenix.controls.JFXButton;
@@ -29,6 +33,7 @@ public class DbManagementController {
 
     private SceneSwitch sceneSwitch;
     private DBLogic dbController;
+    private Backup backup;
 
     @FXML
     private JFXButton newBackupBtn;
@@ -58,9 +63,18 @@ public class DbManagementController {
 
     @FXML
     void newBackupBtnClicked(ActionEvent event) {
+        backup = new Backup();
+        BackupDAO backupDAO = new BackupDAO();
         try {
-            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+            String timeStamp = sdf.format(new Date());
+            backup.setDate(timeStamp);
+            backup.setFileLocation(timeStamp + ".zip");
+            System.out.println("Backup Date : " + backup.getDate());
             Process proc = Runtime.getRuntime().exec(new String[]{"./backup.sh", timeStamp});
+            backupDAO.save(backup);
+            SystemNotification notification = new SystemNotification(dbMngtStackPane);
+            notification.setNotificationMessage("Backup Successful");
         } catch (IOException io) {
             io.printStackTrace();
         }

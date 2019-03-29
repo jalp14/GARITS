@@ -1,6 +1,9 @@
 package TwentyThreeProductions.Controller.Database;
 
+import TwentyThreeProductions.Domain.Backup;
 import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.BackupDAO;
+import TwentyThreeProductions.Model.Database.DBServer;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -18,12 +21,17 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DbRestoreController {
 
     private DBLogic dbController;
     private SceneSwitch sceneSwitch;
     private String selectedDBName;
+    private ArrayList<Backup> backups;
+    private Backup backup;
+    private HashMap<String, Backup> backupHashMap;
 
     @FXML
     private StackPane restoreDBStackPane;
@@ -54,24 +62,15 @@ public class DbRestoreController {
     @FXML
     void restoreBtnClicked(ActionEvent event) {
         System.out.println("Restore button clicked");
+
         try {
-            selectedDBName = backupList.getSelectionModel().getSelectedItem().getText();
-            System.out.println(selectedDBName);
-            Process proc = Runtime.getRuntime().exec(new String[]{"./restore.sh", selectedDBName});
-
-            // Wait for 5 seconds
-            Thread.sleep(5000);
-
+            Backup backup = backupHashMap.get(backupList.getSelectionModel().getSelectedItem().getText());
+            Process proc = Runtime.getRuntime().exec(new String[]{"./restore.sh", backup.getFileLocation()});
             System.out.println("Restarting the sql server");
-          //  dbController.restartServer();
-
+            DBServer.getInstance().restartServer();
             System.out.println("Server restarted, please login again");
-          //  sceneSwitch.switchScene("Login", backBtn.getScene());
-
         } catch (IOException io) {
             io.printStackTrace();
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
         }
     }
 
@@ -82,19 +81,20 @@ public class DbRestoreController {
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(restoreDBStackPane, NavigationModel.DB_RESTORE_ID);
-        addToList();
+        backups = new ArrayList<>();
+        backupHashMap = new HashMap<>();
+       // addToList();
+        loadBackups();
     }
 
-    public void addToList() {
-        File folder = new File("src/TwentyThreeProductions/GARITSpayload/DBBackups");
-        File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
-                backupList.getItems().add(new Label(listOfFiles[i].getName()));
-            } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
-            }
+    public void loadBackups() {
+        BackupDAO backupDAO = new BackupDAO();
+        backups = backupDAO.getAll();
+        for (int i = 0; i < backups.size(); i++) {
+            backup = backups.get(i);
+            Label label = new Label(backup.getFileLocation());
+            backupHashMap.put(label.getText(), backup);
+            backupList.getItems().add(label);
         }
     }
 }

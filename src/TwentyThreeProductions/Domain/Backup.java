@@ -1,11 +1,12 @@
 package TwentyThreeProductions.Domain;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class Backup {
 
     private int backupID;
-    private Date date;
+    private String date;
     private String fileLocation;
 
     public Backup(){}
@@ -18,11 +19,11 @@ public class Backup {
         this.backupID = backupID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
