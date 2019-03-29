@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXBadge?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="loginStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.SettingsController">
+   <children>
+      <Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView id="CompanyImage" fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../GARITSassests/garits.png" />
+               </image>
+            </ImageView>
+            <JFXButton id="loginButton" fx:id="restoreBtn" buttonType="RAISED" layoutX="668.0" layoutY="355.0" onAction="#restoreBtnClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #0f6aed; -fx-background-radius: 6pt;" text="Restore" textFill="#ffffff">
+               <font>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="CENTER_RIGHT" layoutX="466.0" layoutY="214.0" prefHeight="67.0" prefWidth="231.0" text="Settings">
+               <font>
+                  <Font name="Arial Bold" size="54.0" />
+               </font>
+            </Label>
+            <JFXBadge />
+            <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="42.0" layoutY="223.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GARITSassests/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label layoutX="39.0" layoutY="351.0" prefHeight="50.0" prefWidth="253.0" text="Restore Backup">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="restoreList" layoutX="304.0" layoutY="356.0" prefHeight="37.0" prefWidth="313.0" />
+            <Line endX="759.6666870117188" layoutX="131.0" layoutY="447.0" startX="-100.0" />
+            <Label layoutX="39.0" layoutY="501.0" prefHeight="50.0" prefWidth="253.0" text="Change Theme">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="themeList" layoutX="302.0" layoutY="505.0" prefHeight="37.0" prefWidth="313.0" />
+            <JFXButton id="loginButton" fx:id="changeThemeBtn" buttonType="RAISED" layoutX="667.0" layoutY="492.0" onAction="#changeThemeBtnClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #0f6aed; -fx-background-radius: 6pt;" text="Change" textFill="#ffffff">
+               <font>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <Line endX="759.6666870117188" layoutX="133.0" layoutY="595.0" startX="-100.0" />
+            <Label layoutX="24.0" layoutY="637.0" text="Developed by : TwentyThreeProductions">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="685.0" text="Copyright : TwentyThreeProductions 2019">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</StackPane>

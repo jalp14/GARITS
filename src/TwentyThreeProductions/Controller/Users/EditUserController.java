@@ -8,6 +8,7 @@ import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -152,13 +153,15 @@ public class EditUserController {
     }
 
     public void injectAvailableUsers() {
-        userDAO = new UserDAO();
-        currentUsers = new ArrayList<>();
-        currentUsers = userDAO.getAll();
-        for (int i = 0; i < currentUsers.size(); i++) {
-            User tmpUser = currentUsers.get(i);
-            currentUserCombi.getItems().add(new Label(tmpUser.getUsername()));
-        }
+
+            userDAO = new UserDAO();
+            currentUsers = new ArrayList<>();
+            currentUsers = userDAO.getAll();
+            for (int i = 0; i < currentUsers.size(); i++) {
+                User tmpUser = currentUsers.get(i);
+                currentUserCombi.getItems().add(new Label(tmpUser.getUsername()));
+            }
+
     }
 
     public void getSelectedUser() {

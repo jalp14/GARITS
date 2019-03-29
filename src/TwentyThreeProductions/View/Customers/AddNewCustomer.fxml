@@ -126,7 +126,7 @@
                 <JFXTextField fx:id="emailField" layoutX="191.0" layoutY="561.0" prefHeight="27.0" prefWidth="256.0" />
                 <JFXTextField fx:id="phoneNoField" layoutX="191.0" layoutY="598.0" prefHeight="27.0" prefWidth="256.0" />
                 <Line endX="-100.0" endY="409.0" layoutX="666.0" layoutY="316.0" startX="-100.0" />
-                <JFXButton fx:id="addNewCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="1029.0" layoutY="458.0" onAction="#addNewCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new car" textFill="WHITE">
+                <JFXButton fx:id="addNewCarBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1029.0" layoutY="458.0" onAction="#addNewCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new car" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="18.0" />
                     </font>
@@ -142,7 +142,6 @@
                         <Insets />
                     </opaqueInsets>
                 </JFXButton>
-            <JFXComboBox fx:id="discountCombi" layoutX="723.0" layoutY="382.0" prefHeight="25.0" prefWidth="116.0" />
             <Label fx:id="discountHeading" alignment="CENTER" layoutX="585.0" layoutY="382.0" prefHeight="32.0" prefWidth="114.0" text="Discount">
                <font>
                   <Font name="Avenir Book" size="22.0" />
@@ -160,6 +159,14 @@
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
+            <JFXButton fx:id="configureBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="729.0" layoutY="385.0" onAction="#configureBtnClicked" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Configure" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
             </children>
         </AnchorPane>
     </children>

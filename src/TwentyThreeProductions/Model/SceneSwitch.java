@@ -11,13 +11,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class SceneSwitch {
+public class SceneSwitch{
 
     private Scene scene;
     private Parent parent;
     private Parent currentRoot;
     private HashMap<String, StackPane> sceneMap;
     private static SceneSwitch sceneSwitch = null;
+
 
 
     private SceneSwitch() {
