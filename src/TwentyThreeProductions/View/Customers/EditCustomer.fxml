@@ -69,7 +69,7 @@
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="address1Heading" layoutX="38.0" layoutY="507.0" prefHeight="19.0" prefWidth="153.0" text="Address line 1">
+            <Label fx:id="address1Heading" layoutX="38.0" layoutY="500.0" prefHeight="19.0" prefWidth="153.0" text="House Name">
                <font>
                   <Font name="Avenir Book" size="20.0" />
                </font>
@@ -98,33 +98,33 @@
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="postcodeHeading" layoutX="38.0" layoutY="551.0" prefHeight="19.0" prefWidth="153.0" text="Postcode">
+            <Label fx:id="postcodeHeading" layoutX="38.0" layoutY="598.0" prefHeight="19.0" prefWidth="153.0" text="Postcode">
                <font>
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="cityHeading" layoutX="38.0" layoutY="588.0" prefHeight="19.0" prefWidth="153.0" text="City">
+            <Label fx:id="cityHeading" layoutX="38.0" layoutY="632.0" prefHeight="19.0" prefWidth="153.0" text="City">
                <font>
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="emailHeading" layoutX="38.0" layoutY="626.0" prefHeight="19.0" prefWidth="153.0" text="Email">
+            <Label fx:id="emailHeading" layoutX="38.0" layoutY="662.0" prefHeight="19.0" prefWidth="153.0" text="Email">
                <font>
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="phoneNoHeading" layoutX="38.0" layoutY="663.0" prefHeight="19.0" prefWidth="153.0" text="Phone number">
+            <Label fx:id="phoneNoHeading" layoutX="38.0" layoutY="698.0" prefHeight="19.0" prefWidth="153.0" text="Phone number">
                <font>
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
             <JFXTextField fx:id="firstNameField" layoutX="191.0" layoutY="428.0" prefHeight="27.0" prefWidth="256.0" />
             <JFXTextField fx:id="lastNameField" layoutX="191.0" layoutY="468.0" prefHeight="27.0" prefWidth="256.0" />
-            <JFXTextField fx:id="addressOneField" layoutX="191.0" layoutY="509.0" prefHeight="27.0" prefWidth="256.0" />
-            <JFXTextField fx:id="postcodeField" layoutX="191.0" layoutY="553.0" prefHeight="27.0" prefWidth="256.0" />
-            <JFXTextField fx:id="cityField" layoutX="191.0" layoutY="590.0" prefHeight="27.0" prefWidth="256.0" />
-            <JFXTextField fx:id="emailField" layoutX="191.0" layoutY="628.0" prefHeight="27.0" prefWidth="256.0" />
-            <JFXTextField fx:id="phoneNoField" layoutX="191.0" layoutY="665.0" prefHeight="27.0" prefWidth="256.0" />
+            <JFXTextField fx:id="houseNameField" layoutX="191.0" layoutY="502.0" prefHeight="27.0" prefWidth="256.0" />
+            <JFXTextField fx:id="postcodeField" layoutX="191.0" layoutY="600.0" prefHeight="27.0" prefWidth="256.0" />
+            <JFXTextField fx:id="cityField" layoutX="191.0" layoutY="634.0" prefHeight="27.0" prefWidth="256.0" />
+            <JFXTextField fx:id="emailField" layoutX="191.0" layoutY="664.0" prefHeight="27.0" prefWidth="256.0" />
+            <JFXTextField fx:id="phoneNoField" layoutX="191.0" layoutY="700.0" prefHeight="27.0" prefWidth="256.0" />
             <Line endX="-100.0" endY="409.0" layoutX="666.0" layoutY="316.0" startX="-100.0" />
             <JFXButton fx:id="addNewCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="1029.0" layoutY="458.0" onAction="#addNewCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new car" textFill="WHITE">
                <font>
@@ -181,6 +181,18 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
+            <Label fx:id="address1Heading1" layoutX="38.0" layoutY="537.0" prefHeight="19.0" prefWidth="153.0" text="Building Name">
+               <font>
+                  <Font name="Avenir Book" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="buildingNameField" layoutX="191.0" layoutY="539.0" prefHeight="27.0" prefWidth="256.0" />
+            <Label fx:id="address1Heading11" layoutX="38.0" layoutY="568.0" prefHeight="19.0" prefWidth="153.0" text="Street Name">
+               <font>
+                  <Font name="Avenir Book" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="streetNameField" layoutX="191.0" layoutY="570.0" prefHeight="27.0" prefWidth="256.0" />
          </children>
       </AnchorPane>
    </children>

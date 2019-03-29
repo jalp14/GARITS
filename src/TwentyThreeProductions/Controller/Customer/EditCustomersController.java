@@ -102,7 +102,13 @@ public class EditCustomersController {
     private JFXTextField lastNameField;
 
     @FXML
-    private JFXTextField addressOneField;
+    private JFXTextField houseNameField;
+
+    @FXML
+    private JFXTextField streetNameField;
+
+    @FXML
+    private JFXTextField buildingNameField;
 
     @FXML
     private JFXTextField postcodeField;
@@ -174,7 +180,9 @@ public class EditCustomersController {
         // Set all the fields
         firstNameField.setText(customer.getFirstName());
         lastNameField.setText(customer.getLastName());
-        addressOneField.setText(customer.getCustomerAddress());
+        houseNameField.setText(customer.getCustomerHouseName());
+        buildingNameField.setText(customer.getCustomerBuildingName());
+        streetNameField.setText(customer.getCustomerStreetName());
         postcodeField.setText(customer.getCustomerPostcode());
         phoneNoField.setText(customer.getCustomerPhone());
         emailField.setText(customer.getCustomerEmail());
@@ -242,7 +250,9 @@ public class EditCustomersController {
         customer.setLastName(lastNameField.getText());
         customer.setCustomerType(determineType());
         customer.setCustomerCity(cityField.getText());
-        customer.setCustomerAddress(addressOneField.getText());
+        customer.setCustomerHouseName(houseNameField.getText());
+        customer.setCustomerBuildingName(buildingNameField.getText());
+        customer.setCustomerStreetName(streetNameField.getText());
         customer.setCustomerPostcode(postcodeField.getText());
         customer.setCustomerPhone(phoneNoField.getText());
         customer.setCustomerEmail(emailField.getText());

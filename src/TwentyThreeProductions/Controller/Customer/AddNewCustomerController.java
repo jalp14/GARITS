@@ -93,7 +93,13 @@ public class AddNewCustomerController {
     private JFXTextField lastNameField;
 
     @FXML
-    private JFXTextField addressOneField;
+    private JFXTextField houseNameField;
+
+    @FXML
+    private JFXTextField streetNameField;
+
+    @FXML
+    private JFXTextField buildingNameField;
 
     @FXML
     private JFXTextField postcodeField;
@@ -166,7 +172,9 @@ public class AddNewCustomerController {
         discountDAO = new DiscountDAO();
         customer.setFirstName(firstNameField.getText());
         customer.setLastName(lastNameField.getText());
-        customer.setCustomerAddress(addressOneField.getText());
+        customer.setCustomerHouseName(houseNameField.getText());
+        customer.setCustomerBuildingName(buildingNameField.getText());
+        customer.setCustomerStreetName(streetNameField.getText());
         customer.setCustomerPostcode(postcodeField.getText());
         customer.setCustomerPhone(phoneNoField.getText());
         customer.setCustomerCity(cityField.getText());
@@ -182,7 +190,9 @@ public class AddNewCustomerController {
             vehicleDAO.updateCustomer(customerRowCount, regID);
             System.out.println(vehicles.get(j).getRegistrationID());
         }
-        discountDAO.save(CustomerHelper.getInstance().getDiscount());
+        if (accountHolderRadio.isSelected()) {
+            discountDAO.save(CustomerHelper.getInstance().getDiscount());
+        }
         SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Success!", "Added customer to the db");
 
     }

@@ -64,7 +64,9 @@ public class CustomerDAO implements ICustomer {
                 customer.setCustomerType(result.getString("TYPE"));
                 customer.setCustomerCity(result.getString("CITY"));
                 customer.setCustomerEmail(result.getString("EMAIL"));
-                customer.setCustomerAddress(result.getString("ADDRESS"));
+                customer.setCustomerHouseName(result.getString("HOUSENAME"));
+                customer.setCustomerBuildingName(result.getString("BUILDINGNAME"));
+                customer.setCustomerStreetName(result.getString("STREETNAME"));
                 customer.setCustomerPostcode(result.getString("POSTCODE"));
                 customer.setCustomerPhone(result.getString("PHONE"));
                 customer.setCurrentDate(result.getDate("Date"));
@@ -86,9 +88,9 @@ public class CustomerDAO implements ICustomer {
         customers.add(customer);
         java.util.Date currentDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerAddress(), customer.getCustomerPostcode(), customer.getCustomerCity(), customer.getCustomerPhone(), customer.getCustomerEmail(), sqlDate.toString(), customer.isLatePayment()};
-        String query = "INSERT INTO GARAGE.CUSTOMER (FIRSTNAME, LASTNAME, TYPE, ADDRESS, POSTCODE, CITY, PHONE, EMAIL, \"Date\", LATEPAYMENT)\n" +
-                "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(),customer.getCustomerHouseName(), customer.getCustomerBuildingName(), customer.getCustomerStreetName(), customer.getCustomerPostcode(), customer.getCustomerCity(), customer.getCustomerPhone(), customer.getCustomerEmail(), sqlDate.toString(), customer.isLatePayment()};
+        String query = "INSERT INTO GARAGE.CUSTOMER (FIRSTNAME, LASTNAME, TYPE, HOUSENAME, BUILDINGNAME, STREETNAME, POSTCODE, CITY, PHONE, EMAIL, \"Date\", LATEPAYMENT)\n" +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(query, connection, args);
     }
@@ -113,9 +115,9 @@ public class CustomerDAO implements ICustomer {
 
     @Override
     public void update(Customer customer) {
-        String updateQuery = "UPDATE GARAGE.CUSTOMER SET FIRSTNAME=?, LASTNAME=?, TYPE=?, ADDRESS=?, POSTCODE=?, PHONE=?, EMAIL=?, LATEPAYMENT=?, CITY=? WHERE CUSTOMERID=?";
+        String updateQuery = "UPDATE GARAGE.CUSTOMER SET FIRSTNAME=?, LASTNAME=?, TYPE=?, HOUSENAME=?, BUILDINGNAME=?, STREETNAME=?, POSTCODE=?, PHONE=?, EMAIL=?, LATEPAYMENT=?, CITY=? WHERE CUSTOMERID=?";
         connection = dbConnectivity.connection(connection);
-        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerAddress(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerEmail(), customer.isLatePayment(), customer.getCustomerCity(), customer.getCustomerID()};
+        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerHouseName(), customer.getCustomerBuildingName(), customer.getCustomerStreetName(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerEmail(), customer.isLatePayment(), customer.getCustomerCity(), customer.getCustomerID()};
         dbConnectivity.writePrepared(updateQuery, connection, args);
         System.out.println("Successfully updated ");
     }

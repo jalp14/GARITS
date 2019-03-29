@@ -10,7 +10,9 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String customerType;
-    private String customerAddress;
+    private String customerHouseName;
+    private String customerStreetName;
+    private String customerBuildingName;
     private String customerPostcode;
     private String customerPhone;
     private String customerEmail;
@@ -106,12 +108,28 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public String getCustomerAddress() {
-        return customerAddress;
+    public String getCustomerHouseName() {
+        return customerHouseName;
     }
 
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
+    public void setCustomerHouseName(String customerHouseName) {
+        this.customerHouseName = customerHouseName;
+    }
+
+    public String getCustomerStreetName() {
+        return customerStreetName;
+    }
+
+    public void setCustomerStreetName(String customerStreetName) {
+        this.customerStreetName = customerStreetName;
+    }
+
+    public String getCustomerBuildingName() {
+        return customerBuildingName;
+    }
+
+    public void setCustomerBuildingName(String customerBuildingName) {
+        this.customerBuildingName = customerBuildingName;
     }
 
     public String getCustomerPhone() {
