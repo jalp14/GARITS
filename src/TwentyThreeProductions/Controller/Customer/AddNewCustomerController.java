@@ -133,6 +133,18 @@ public class AddNewCustomerController {
 
 
     @FXML
+    void accountHolderRadioSelected(ActionEvent event) {
+        configureBtn.setDisable(false);
+        configureBtn.setDisableVisualFocus(false);
+    }
+
+    @FXML
+    void casualCustomerRadioSelected(ActionEvent event) {
+        configureBtn.setDisable(true);
+        configureBtn.setDisableVisualFocus(true);
+    }
+
+    @FXML
     void configureBtnClicked(ActionEvent event) throws IOException {
         customerDAO = new CustomerDAO();
         CustomerHelper.getInstance().setCurrentCustomerID(customerDAO.getCount() + 1);

@@ -149,8 +149,21 @@ public class EditCustomersController {
     @FXML
     void checkDiscountBtnClicked(ActionEvent event) throws IOException {
         System.out.println("Current customer id : " + currentCustomerID);
+        CustomerHelper.getInstance().setCustomerCasual(casualCustomerRadio.isSelected());
         CustomerHelper.getInstance().setCurrentCustomerID(Integer.parseInt(currentCustomerID));
         sceneSwitch.activateScene(NavigationModel.EDIT_DISCOUNT_ID, backBtn.getScene());
+    }
+
+    @FXML
+    void accountHolderRadioSelected(ActionEvent event) {
+        checkDiscountBtn.setDisable(false);
+        checkDiscountBtn.setDisableVisualFocus(false);
+    }
+
+    @FXML
+    void casualCustomerRadioSelected(ActionEvent event) {
+        checkDiscountBtn.setDisable(true);
+        checkDiscountBtn.setDisableVisualFocus(true);
     }
 
     @FXML
@@ -165,12 +178,16 @@ public class EditCustomersController {
         postcodeField.setText(customer.getCustomerPostcode());
         phoneNoField.setText(customer.getCustomerPhone());
         emailField.setText(customer.getCustomerEmail());
-
+        cityField.setText(customer.getCustomerCity());
         // Type Determination
         if (customer.getCustomerType().equals("ACCOUNT")) {
             accountHolderRadio.setSelected(true);
-        } else {
+            checkDiscountBtn.setDisable(false);
+            checkDiscountBtn.setDisableVisualFocus(false);
+        } else if (customer.getCustomerType().equals("CASUAL")){
             casualCustomerRadio.setSelected(true);
+            checkDiscountBtn.setDisable(true);
+            checkDiscountBtn.setDisableVisualFocus(true);
         }
 
         latePaymentCheckbox.setDisable(customer.getLatePayment());
@@ -224,6 +241,7 @@ public class EditCustomersController {
         customer.setFirstName(firstNameField.getText());
         customer.setLastName(lastNameField.getText());
         customer.setCustomerType(determineType());
+        customer.setCustomerCity(cityField.getText());
         customer.setCustomerAddress(addressOneField.getText());
         customer.setCustomerPostcode(postcodeField.getText());
         customer.setCustomerPhone(phoneNoField.getText());
@@ -243,7 +261,19 @@ public class EditCustomersController {
             vehicleDAO.updateCustomer(currentCustomerID, regID);
         }
 
-        discountDAO.update(CustomerHelper.getInstance().getDiscount());
+        if (accountHolderRadio.isSelected()) {
+            if (CustomerHelper.getInstance().getI() == 1) {
+                discountDAO.update(CustomerHelper.getInstance().getDiscount());
+                System.out.println("Updating Discount");
+            } else if (CustomerHelper.getInstance().getI() == 0) {
+                discountDAO.save(CustomerHelper.getInstance().getDiscount());
+                System.out.println("Adding new discount");
+            }
+        } else {
+            discountDAO.delete(Integer.parseInt(currentCustomerID));
+        }
+
+
         SystemAlert alert = new SystemAlert(EditCustomerStackPane, "Success!", "Updated customer");
 
 

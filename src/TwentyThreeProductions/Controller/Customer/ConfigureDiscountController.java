@@ -105,7 +105,7 @@ public class ConfigureDiscountController {
             domainDiscount.setPartValue(Double.parseDouble(partsDiscount.getText()));
             domainDiscount.setPartValue(0);
         }
-        helper.setDiscount(domainDiscount);
+        helper.setDiscount(domainDiscount,0);
         SystemNotification notification = new SystemNotification(ConfigureDiscountStackPane);
         notification.setNotificationMessage("Configured Discount");
         notification.showNotification(NavigationModel.CONFIGURE_DISCOUNT_ID, DBLogic.getDBInstance().getUsername());

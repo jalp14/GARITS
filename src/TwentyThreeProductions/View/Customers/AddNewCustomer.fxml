@@ -80,7 +80,7 @@
                     </font>
                 </Label>
                 <JFXCheckBox fx:id="latePaymentCheckbox" ellipsisString="" layoutX="758.0" layoutY="324.0" prefHeight="19.0" prefWidth="13.0" />
-                <JFXRadioButton fx:id="casualCustomerRadio" layoutX="41.0" layoutY="319.0" text="Casual customer">
+                <JFXRadioButton fx:id="casualCustomerRadio" layoutX="41.0" layoutY="319.0" onAction="#casualCustomerRadioSelected" text="Casual customer">
                     <font>
                         <Font name="Avenir Book" size="18.0" />
                     </font>
@@ -88,7 +88,7 @@
                   <ToggleGroup fx:id="Type" />
                </toggleGroup>
                 </JFXRadioButton>
-                <JFXRadioButton fx:id="accountHolderRadio" layoutX="232.0" layoutY="319.0" text="Account holder" toggleGroup="$Type">
+                <JFXRadioButton fx:id="accountHolderRadio" layoutX="232.0" layoutY="319.0" onAction="#accountHolderRadioSelected" text="Account holder" toggleGroup="$Type">
                     <font>
                         <Font name="Avenir Book" size="18.0" />
                     </font>

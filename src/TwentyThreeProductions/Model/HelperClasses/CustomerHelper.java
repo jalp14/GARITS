@@ -7,10 +7,13 @@ public class CustomerHelper {
     private static CustomerHelper customerHelper = null;
     private Discount discount;
     private int currentCustomerID;
+    private boolean isCustomerCasual = false;
 
     public static String DISCOUNT_FIXED_NAME = "FIXED";
     public static String DISCOUNT_FLEXIBLE_NAME = "FLEXIBLE";
     public static String DISCOUNT_VARIABLE_NAME = "VARIABLE";
+
+    private int i;
 
     private CustomerHelper() {}
 
@@ -45,12 +48,26 @@ public class CustomerHelper {
         return answer;
     }
 
-    public void setDiscount(Discount discount) {
+    public boolean isCustomerCasual() {
+        return isCustomerCasual;
+    }
+
+
+    public void setCustomerCasual(boolean customerCasual) {
+        isCustomerCasual = customerCasual;
+    }
+
+    public void setDiscount(Discount discount, int i) {
         this.discount = discount;
+        this.i = i;
     }
 
     public Discount getDiscount() {
         return discount;
+    }
+
+    public int getI() {
+        return i;
     }
 
     public int getCurrentCustomerID() {

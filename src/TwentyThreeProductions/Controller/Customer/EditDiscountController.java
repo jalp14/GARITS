@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.Customer;
 
 
+import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Discount;
 import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
@@ -25,6 +26,7 @@ public class EditDiscountController {
     private DiscountDAO discountDAO;
     private CustomerHelper helper;
     private Discount domainDiscount;
+    private boolean isNew = false;
 
     @FXML
     private StackPane ConfigureDiscountStackPane;
@@ -109,7 +111,15 @@ public class EditDiscountController {
             domainDiscount.setPartValue(Double.parseDouble(partsDiscount.getText()));
             domainDiscount.setPartValue(0);
         }
-        helper.setDiscount(domainDiscount);
+        if (isNew == true) {
+            // 0 for New Discount
+            helper.setDiscount(domainDiscount, 0);
+            System.out.println("New Discount");
+        } else {
+            // 1 for existing Discount
+            helper.setDiscount(domainDiscount, 1);
+            System.out.println("Updating Discount");
+        }
         SystemNotification notification = new SystemNotification(ConfigureDiscountStackPane);
         notification.setNotificationMessage("Discount edited successfully");
         notification.showNotification(NavigationModel.EDIT_DISCOUNT_ID, DBLogic.getDBInstance().getUsername());
@@ -120,7 +130,14 @@ public class EditDiscountController {
         sceneSwitch = SceneSwitch.getInstance();
         helper = CustomerHelper.getInstance();
         setupBands();
-        setupDiscount();
+        discountDAO = new DiscountDAO();
+        if (CustomerHelper.getInstance().isCustomerCasual()) {
+            setupDiscount();
+            isNew = false;
+        } else {
+            isNew = true;
+        }
+
     }
 
     public void setupBands() {
@@ -134,20 +151,18 @@ public class EditDiscountController {
         int currentCustomerID = CustomerHelper.getInstance().getCurrentCustomerID();
         System.out.println("CustomerID : " + currentCustomerID);
         Discount tmpDiscount = discountDAO.getDiscount(currentCustomerID);
-
-        if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_FIXED_NAME)) {
-            fixedDiscountRadioBtn.setSelected(true);
-            fixedDiscountField.setText(Double.toString(tmpDiscount.getValue()));
-        } else if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_FLEXIBLE_NAME)) {
-            flexibleDiscountRadioBtn.setSelected(true);
-            bandCombi.getSelectionModel().select(helper.getBandNo(tmpDiscount.getBand()));
-        } else if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_VARIABLE_NAME)) {
-            variableDiscountRadioBtn.setSelected(true);
-            variableDiscountField.setText(Double.toString(tmpDiscount.getValue()));
-            vatDiscount.setText(Double.toString(tmpDiscount.getVatValue()));
-            partsDiscount.setText(Double.toString(tmpDiscount.getPartValue()));
+            if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_FIXED_NAME)) {
+                fixedDiscountRadioBtn.setSelected(true);
+                fixedDiscountField.setText(Double.toString(tmpDiscount.getValue()));
+            } else if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_FLEXIBLE_NAME)) {
+                flexibleDiscountRadioBtn.setSelected(true);
+                bandCombi.getSelectionModel().select(helper.getBandNo(tmpDiscount.getBand()));
+            } else if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_VARIABLE_NAME)) {
+                variableDiscountRadioBtn.setSelected(true);
+                variableDiscountField.setText(Double.toString(tmpDiscount.getValue()));
+                vatDiscount.setText(Double.toString(tmpDiscount.getVatValue()));
+                partsDiscount.setText(Double.toString(tmpDiscount.getPartValue()));
+            }
         }
-    }
-
 }
 

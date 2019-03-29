@@ -126,6 +126,7 @@ public class VehicleDAO implements IVehicle {
         String[] args = {customerID};
         connection = dbConnectivity.connection(connection);
         String removeCustomerQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=null WHERE CUSTOMERID=?";
+        dbConnectivity.writePrepared(removeCustomerQuery,connection, args);
     }
 
     @Override
