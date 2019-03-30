@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.MainScreen;
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -26,7 +27,7 @@ public class MainFFRController {
    private JFXButton customersBtn;
 
    @FXML
-   private JFXButton notifsBtn;
+   private JFXButton bellBtn;
 
    @FXML
    private Text usernameLbl;
@@ -47,6 +48,12 @@ public class MainFFRController {
    private JFXButton reportsBtn;
 
    @FXML
+   void bellBtnClicked(ActionEvent event) throws IOException {
+      System.out.println("Bell Btn Clicked");
+      sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
+   }
+
+   @FXML
    void customersBtnClicked(ActionEvent event) throws IOException {
       sceneSwitch.activateScene(NavigationModel.CUSTOMER_MAIN_ID, logoutBtn.getScene());
    }
@@ -63,10 +70,6 @@ public class MainFFRController {
       sceneSwitch.activateScene(NavigationModel.LOGIN_ID, logoutBtn.getScene());
    }
 
-   @FXML
-   void notifsBtnClicked(ActionEvent event) {
-
-   }
 
    @FXML
    void partsBtnClicked(ActionEvent event) throws IOException {
@@ -74,14 +77,22 @@ public class MainFFRController {
    }
 
    @FXML
-   void reportsBtnClicked(ActionEvent event) {
-
+   void reportsBtnClicked(ActionEvent event) throws IOException {
+      sceneSwitch.activateScene(NavigationModel.REPORTS_MAIN_ID, logoutBtn.getScene());
    }
 
    public void initialize() {
        System.out.println("Init FFR Controller");
        sceneSwitch = SceneSwitch.getInstance();
        sceneSwitch.addScene(mainScreenFFRStackPane, NavigationModel.MAIN_FFR_ID);
+       setLblConstraints();
+   }
+
+
+   public void setLblConstraints() {
+      welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
+      usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+      userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
    }
 
 }

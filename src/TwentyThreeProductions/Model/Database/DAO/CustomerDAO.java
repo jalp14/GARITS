@@ -103,7 +103,7 @@ public class CustomerDAO implements ICustomer {
         customers.add(customer);
         java.util.Date currentDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerPhone(), customer.getCustomerEmail(), sqlDate.toString(), customer.isLatePayment()};
+        String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerAddress(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerEmail(), sqlDate.toString(), customer.isLatePayment()};
         String query = "INSERT INTO GARAGE.CUSTOMER (FIRSTNAME, LASTNAME, TYPE, ADDRESS, POSTCODE, PHONE, EMAIL, \"Date\", LATEPAYMENT)\n" +
                 "VALUES (?,?,?,?,?,?,?,?,?)";
         connection = dbConnectivity.connection(connection);
@@ -139,6 +139,13 @@ public class CustomerDAO implements ICustomer {
 
     @Override
     public void delete(Customer customer) {
+        customers = getAll();
+        // Add -> Reset Auto Incremet
+        String deleteCustomer = "DELETE FROM GARAGE.CUSTOMER WHERE CUSTOMERID=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {customer.getCustomerID()};
+        dbConnectivity.writePrepared(deleteCustomer, connection, args);
+        customers.remove(customer);
         customers.remove(customer);
     }
 }

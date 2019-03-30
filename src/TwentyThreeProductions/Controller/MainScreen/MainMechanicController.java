@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.MainScreen;
 
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -11,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.annotation.processing.Generated;
 import java.io.IOException;
 
 public class MainMechanicController {
@@ -24,13 +26,13 @@ public class MainMechanicController {
     private JFXButton jobsBtn;
 
     @FXML
-    private JFXButton notifsBtn;
+    private JFXButton bellBtn;
 
     @FXML
     private Text usernameLbl;
 
     @FXML
-    private Text usertypeLbl;
+    private Text userTypeLbl;
 
     @FXML
     private JFXButton logoutBtn;
@@ -51,14 +53,23 @@ public class MainMechanicController {
     }
 
     @FXML
-    void notifsBtnClicked(ActionEvent event) {
-
+    void bellBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Bell Btn Clicked");
+        sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
     }
 
     public void initialize() {
         System.out.println("Init Mechanic Controller");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(mainScreenMechanicStackPane, NavigationModel.MAIN_MECHANIC_ID);
+        setLblConstraints();
+    }
+
+
+    public void setLblConstraints() {
+        welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
 }

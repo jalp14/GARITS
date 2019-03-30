@@ -53,6 +53,10 @@ public class NavigationModel {
     public static String REMOVE_PART_URL = "src/TwentyThreeProductions/View/Parts/RemovePart.fxml";
     public static String SEARCH_UPDATE_STOCK_URL = "src/TwentyThreeProductions/View/Parts/SearchUpdateStock.fxml";
     public static String UPDATE_STOCK_URL = "src/TwentyThreeProductions/View/Parts/UpdateStock.fxml";
+    // Reports
+    public static String REPORTS_MAIN_URL = "src/TwentyThreeProductions/View/Reports/ReportsMain.fxml";
+    // Notifications
+    public static String NOTIFICATIONS_MAIN_URL = "src/TwentyThreeProductions/View/Notifications/Notification.fxml";
 
     public static URL tmpURL;
     private static DBLogic dbController = DBLogic.getDBInstance();
@@ -93,6 +97,8 @@ public class NavigationModel {
     public static String REMOVE_PART_ID = "RemovePart";
     public static String SEARCH_UPDATE_STOCK_ID = "SearchUpdateStock";
     public static String UPDATE_STOCK_ID = "UpdateStock";
+    public static String REPORTS_MAIN_ID = "ReportsMain";
+    public static String NOTIFICATIONS_MAIN_ID = "NotificationMain";
 
 
 
@@ -184,6 +190,10 @@ public class NavigationModel {
             return tmpURL = new File(SEARCH_UPDATE_STOCK_URL).toURI().toURL();
         } else if (name.equals(UPDATE_STOCK_ID)) {
             return tmpURL = new File(UPDATE_STOCK_URL).toURI().toURL();
+        } else if (name.equals(REPORTS_MAIN_ID)) {
+            return tmpURL = new File(REPORTS_MAIN_URL).toURI().toURL();
+        } else if (name.equals(NOTIFICATIONS_MAIN_ID)) {
+            return tmpURL = new File(NOTIFICATIONS_MAIN_URL).toURI().toURL();
         }
         else {
             System.out.println("User type not found");

@@ -30,17 +30,17 @@
                   <Font size="21.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton id="loginButton" fx:id="loginButton" layoutX="360.0" layoutY="610.0" onAction="#loginClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #0f6aed; -fx-background-radius: 6pt;" text="Login" textFill="#ffffff">
+            <JFXButton id="loginButton" fx:id="loginButton" buttonType="RAISED" layoutX="360.0" layoutY="610.0" onAction="#loginClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #0f6aed; -fx-background-radius: 6pt;" text="Login" textFill="#ffffff">
                <font>
                   <Font name="Avenir Next Bold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="forgotPasswordButton" layoutX="631.0" layoutY="610.0" onAction="#forgotClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #ed340f; -fx-background-radius: 6pt;" text="Forgot Password" textFill="#ffffff">
+            <JFXButton fx:id="forgotPasswordButton" buttonType="RAISED" layoutX="631.0" layoutY="610.0" onAction="#forgotClicked" prefHeight="50.0" prefWidth="215.0" style="-fx-background-color: #ed340f; -fx-background-radius: 6pt;" text="Forgot Password" textFill="#ffffff">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </JFXButton>
-            <Label layoutX="453.0" layoutY="238.0" prefHeight="67.0" prefWidth="244.0" text="Welcome">
+            <Label alignment="CENTER_RIGHT" layoutX="356.0" layoutY="238.0" prefHeight="67.0" prefWidth="341.0" text="Welcome">
                <font>
                   <Font name="Arial Bold" size="54.0" />
                </font>
@@ -51,6 +51,11 @@
                   <Image url="@../GARITSassests/gartisLoading.gif" />
                </image>
             </ImageView>
+            <JFXButton id="loginButton" fx:id="settingsBtn" buttonType="RAISED" layoutX="1014.0" layoutY="70.0" onAction="#settingsBtnClicked" prefHeight="50.0" prefWidth="171.0" style="-fx-background-color: #f44e42; -fx-background-radius: 10pt;" text="Settings" textFill="#ffffff">
+               <font>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
    </children>

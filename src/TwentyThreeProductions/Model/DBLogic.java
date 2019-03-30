@@ -34,13 +34,8 @@ public class DBLogic {
     Server sqlServer;
     Server webServer;
 
-    private DBLogic() {
-        init();
-    }
+    private DBLogic() {}
 
-    public void init() {
-      startSQLServer();
-    }
 
     public static DBLogic getDBInstance() {
         if (dbLogic == null) {
@@ -53,46 +48,7 @@ public class DBLogic {
         return username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public String getUserType() {
-        return user_type;
-    }
-
-    public void startSQLServer() {
-    }
-
-
-
-    public void insertTable(String sqlQuery) {
-        try {
-            System.out.println("Attempting to connect to the db");
-            Class.forName(JDBC_DRIVER);
-            System.out.println("Connecting to database");
-            dbConnection = DriverManager.getConnection(DB_URL, user, pass);
-
-            dbStatement = dbConnection.createStatement();
-            dbStatement.execute(sqlQuery);
-
-            dbStatement.close();
-            dbConnection.close();
-
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (dbStatement != null) {
-                    dbStatement.close();
-                }
-            } catch (SQLException se2) {
-
-            }
-        }
-    }
 
     public void setLoginDetails(String username, String password) {
         this.username = username;
@@ -130,15 +86,6 @@ public class DBLogic {
         return user_type;
     }
 
-
-    public ResultSet readFromTable(String sqlQuery) throws SQLException {
-        dbConnection = DriverManager.getConnection(DB_URL, user, pass);
-        dbStatement = dbConnection.createStatement();
-        result = dbStatement.executeQuery(sqlQuery);
-        dbStatement.close();
-        dbConnection.close();
-        return result;
-    }
 
 }
 

@@ -2,16 +2,20 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="ConfigureDiscountStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.ConfigureDiscountController">
+<StackPane fx:id="ConfigureDiscountStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.ConfigureDiscountController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -63,12 +67,43 @@
                   <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="regHeading" layoutX="40.0" layoutY="323.0" prefHeight="32.0" prefWidth="103.0" text="Type">
+            <JFXRadioButton fx:id="fixedDiscountRadioBtn" layoutX="165.0" layoutY="356.0" text="Fixed Discount">
                <font>
-                  <Font name="Avenir Book" size="22.0" />
+                  <Font size="20.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="discount" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="variableDiscountRadioBtn" layoutX="380.0" layoutY="356.0" text="Variable Discount" toggleGroup="$discount">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <Label fx:id="discountTypeHeading" layoutX="6.0" layoutY="355.0" prefHeight="27.0" prefWidth="168.0" text="Discount Type :">
+               <font>
+                  <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="147.0" layoutY="326.0" prefHeight="27.0" prefWidth="266.0" />
+            <Line endX="26.0" endY="281.0" layoutX="344.0" layoutY="382.0" startX="26.0" startY="-25.0" />
+            <JFXRadioButton fx:id="flexibleDiscountRadioBtn" layoutX="719.0" layoutY="355.0" text="Flexible Discount" toggleGroup="$discount">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <Line endX="26.0" endY="281.0" layoutX="680.0" layoutY="385.0" startX="26.0" startY="-25.0" />
+            <JFXTextField fx:id="discountField" layoutX="418.0" layoutY="423.0" />
+            <Label layoutX="582.0" layoutY="422.0" text="\%">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="bandCombi" layoutX="793.0" layoutY="423.0" prefHeight="26.0" prefWidth="126.0" />
+            <Label layoutX="725.0" layoutY="430.0" text="Band">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

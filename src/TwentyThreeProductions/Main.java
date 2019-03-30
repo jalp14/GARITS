@@ -22,6 +22,7 @@ public class Main extends Application {
           URL url = new File("src/TwentyThreeProductions/View/LoginScreen.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root,1200,750);
+        scene.getStylesheets().add("TwentyThreeProductions/CSS/test.css");
         primaryStage.setScene(scene);
         primaryStage.show();
         DBServer dbServer = DBServer.getInstance();

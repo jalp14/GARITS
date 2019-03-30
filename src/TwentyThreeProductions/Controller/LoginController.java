@@ -46,6 +46,14 @@ public class LoginController {
     private JFXButton forgotPasswordButton;
 
     @FXML
+    private JFXButton settingsBtn;
+
+    @FXML
+    void settingsBtnClicked(ActionEvent event) {
+
+    }
+
+    @FXML
     void forgotClicked(ActionEvent event) throws IOException  {
         System.out.println("Forgot clicked");
 

@@ -3,22 +3,20 @@ package TwentyThreeProductions.Controller.MainScreen;
 import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
+import TwentyThreeProductions.Model.SystemNotification;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 public class MainAdminController {
+
 
     private SceneSwitch sceneSwitch;
 
@@ -34,8 +32,6 @@ public class MainAdminController {
     @FXML
     private JFXButton backuprestoreBtn;
 
-    @FXML
-    private JFXButton notifsBtn;
 
     @FXML
     private Text usernameLbl;
@@ -48,6 +44,16 @@ public class MainAdminController {
 
     @FXML
     private Label welcomeMessage;
+
+    @FXML
+    private JFXButton bellBtn;
+
+
+    @FXML
+    void bellBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Bell Btn Clicked");
+        sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
+    }
 
     @FXML
     void backuprestoreBtnClicked(ActionEvent event) throws IOException {
@@ -64,8 +70,10 @@ public class MainAdminController {
 
     @FXML
     void notifsBtnClicked(ActionEvent event) {
+        System.out.println("Notifications Btn Clicked");
 
     }
+
 
     @FXML
     void usersBtnClicked(ActionEvent event) throws IOException {
@@ -76,5 +84,13 @@ public class MainAdminController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(mainScreenAdminStackPane,NavigationModel.MAIN_ADMIN_ID);
+        setLblConstraints();
+    }
+
+
+    public void setLblConstraints() {
+        welcomeMessage.setText("Welcome " + DBLogic.getDBInstance().getUsername());
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 }

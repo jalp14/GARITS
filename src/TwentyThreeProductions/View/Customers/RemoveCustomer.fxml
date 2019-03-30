@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="RemoveCustomerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.RemoveCustomerController">
+<StackPane fx:id="RemoveCustomerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.RemoveCustomerController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -36,12 +36,12 @@
                   <Font name="Avenir Next Bold" size="16.0" />
                </font>
             </Text>
-            <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="397.0" text="Select customer to remove">
+            <Label fx:id="welcomeMessage" layoutX="173.0" layoutY="229.0" prefHeight="68.0" prefWidth="411.0" text="Select customer to remove">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
+            <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -64,25 +64,12 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <Label fx:id="formLabel" layoutX="33.0" layoutY="327.0" prefHeight="32.0" prefWidth="78.0" text="Search">
-               <font>
-                  <Font name="Avenir Book" size="22.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="searchField" layoutX="111.0" layoutY="326.0" prefHeight="27.0" prefWidth="329.0">
+            <JFXTextField fx:id="searchField" labelFloat="true" layoutX="34.0" layoutY="332.0" onKeyTyped="#searchTyped" prefHeight="33.0" prefWidth="552.0" promptText="Enter FirstName or LastName or CustomerID">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="searchBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="449.0" layoutY="322.0" onAction="#searchBtnClick" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Search" textFill="WHITE">
-               <font>
-                  <Font name="Avenir Next Bold" size="22.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXButton>
-            <JFXListView fx:id="customerList" layoutX="33.0" layoutY="384.0" prefHeight="270.0" prefWidth="408.0" />
+            <JFXListView fx:id="customerList" layoutX="33.0" layoutY="384.0" prefHeight="270.0" prefWidth="552.0" style="-fx-border-radius: 10pt;" />
          </children>
       </AnchorPane>
    </children>
