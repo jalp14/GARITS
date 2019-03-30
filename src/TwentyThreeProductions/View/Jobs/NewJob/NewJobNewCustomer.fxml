@@ -126,7 +126,7 @@
                 <JFXTextField fx:id="emailField" layoutX="191.0" layoutY="561.0" prefHeight="27.0" prefWidth="256.0" />
                 <JFXTextField fx:id="phoneNoField" layoutX="191.0" layoutY="598.0" prefHeight="27.0" prefWidth="256.0" />
                 <Line endX="-100.0" endY="409.0" layoutX="666.0" layoutY="316.0" startX="-100.0" />
-                <JFXButton fx:id="addNewCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="1029.0" layoutY="458.0" onAction="#addNewCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new car" textFill="WHITE">
+                <JFXButton fx:id="addNewVehicleBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="1029.0" layoutY="458.0" onAction="#addNewVehicleBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new vehicle" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="18.0" />
                     </font>
@@ -134,7 +134,7 @@
                         <Insets />
                     </opaqueInsets>
                 </JFXButton>
-                <JFXButton fx:id="removeCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="598.0" layoutY="681.0" onAction="#removeCarBtnClicked" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Remove" textFill="WHITE">
+                <JFXButton fx:id="removeVehicleBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="598.0" layoutY="681.0" onAction="#removeVehicleBtnClicked" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Remove" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="18.0" />
                     </font>
@@ -148,14 +148,14 @@
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXListView fx:id="selectedCarList" layoutX="599.0" layoutY="556.0" prefHeight="118.0" prefWidth="433.0" />
-            <Label fx:id="availableCarsHeading" alignment="CENTER" layoutX="587.0" layoutY="455.0" prefHeight="32.0" prefWidth="154.0" text="Available Cars">
+            <JFXListView fx:id="selectedVehicleList" layoutX="599.0" layoutY="556.0" prefHeight="118.0" prefWidth="433.0" />
+            <Label fx:id="availableVehiclesHeading" alignment="CENTER" layoutX="587.0" layoutY="455.0" prefHeight="32.0" prefWidth="154.0" text="Available Vehicles">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="availableCarsCombi" layoutX="769.0" layoutY="450.0" prefHeight="25.0" prefWidth="225.0" />
-            <Label fx:id="selectedCarsHeading" alignment="CENTER" layoutX="588.0" layoutY="524.0" prefHeight="32.0" prefWidth="154.0" text="Selected Cars">
+            <JFXComboBox fx:id="availableVehiclesCombi" layoutX="769.0" layoutY="450.0" prefHeight="25.0" prefWidth="225.0" />
+            <Label fx:id="selectedVehiclesHeading" alignment="CENTER" layoutX="588.0" layoutY="524.0" prefHeight="32.0" prefWidth="154.0" text="Selected Vehicles">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>

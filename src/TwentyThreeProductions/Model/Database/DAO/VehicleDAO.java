@@ -21,7 +21,7 @@ public class VehicleDAO implements IVehicle {
     @Override
     public ArrayList<Vehicle> getAll() {
         Statement statement;
-        String query = "SELECT * FROM GARAGE.CAR";
+        String query = "SELECT * FROM GARAGE.VEHICLE";
         vehicles = new ArrayList<>();
         ResultSet result;
         connection = dbConnectivity.connection(connection);
@@ -51,7 +51,7 @@ public class VehicleDAO implements IVehicle {
     @Override
     public ArrayList<Vehicle> getExistingVehicles(String customerID) {
         ResultSet result;
-        String query = "SELECT * FROM GARAGE.CAR WHERE CUSTOMERID=?";
+        String query = "SELECT * FROM GARAGE.VEHICLE WHERE CUSTOMERID=?";
         String args[] = {customerID};
         vehicles = new ArrayList<>();
         connection = dbConnectivity.connection(connection);
@@ -78,7 +78,7 @@ public class VehicleDAO implements IVehicle {
     @Override
     public ArrayList<Vehicle> getAvailableVehicles() {
         Statement statement;
-        String query = "SELECT * FROM GARAGE.CAR WHERE CUSTOMERID IS NULL";
+        String query = "SELECT * FROM GARAGE.VEHICLE WHERE CUSTOMERID IS NULL";
         ResultSet result;
         vehicles = new ArrayList<>();
         connection = dbConnectivity.connection(connection);
@@ -107,7 +107,7 @@ public class VehicleDAO implements IVehicle {
     @Override
     public void save(Vehicle vehicle) {
         String[] args = {String.valueOf(vehicle.getCustomerID()), vehicle.getName(), vehicle.getRegistrationNumber(), vehicle.getColour(), String.valueOf(vehicle.getVehicleDate())};
-        String saveQuery = "INSERT INTO GARAGE.CAR (CUSTOMERID, NAME, REGNO, COLOUR, VEHICLEDATE)\n" +
+        String saveQuery = "INSERT INTO GARAGE.VEHICLE (CUSTOMERID, NAME, REGNO, COLOUR, VEHICLEDATE)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
@@ -117,7 +117,7 @@ public class VehicleDAO implements IVehicle {
     public void updateCustomer(String customerID, String registrationID) {
         String[] args = {customerID, registrationID};
         connection = dbConnectivity.connection(connection);
-        String updateCustomerQuery = "UPDATE GARAGE.CAR SET CUSTOMERID=? WHERE REGISTRATIONID=?";
+        String updateCustomerQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=? WHERE REGISTRATIONID=?";
         dbConnectivity.writePrepared(updateCustomerQuery, connection, args);
     }
 
@@ -125,12 +125,12 @@ public class VehicleDAO implements IVehicle {
     public void removeCustomer(String customerID) {
         String[] args = {customerID};
         connection = dbConnectivity.connection(connection);
-        String removeCustomerQuery = "UPDATE GARAGE.CAR SET CUSTOMERID=null WHERE CUSTOMERID=?";
+        String removeCustomerQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=null WHERE CUSTOMERID=?";
     }
 
     @Override
     public void update(Vehicle vehicle) {
-        String updateQuery = "UPDATE GARAGE.CAR SET CUSTOMERID=?, NAME=?, REGNO=?, COLOUR=?, VEHICLEDATE=? WHERE REGISTRATIONID=?";
+        String updateQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=?, NAME=?, REGNO=?, COLOUR=?, VEHICLEDATE=? WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
         String args[] = {String.valueOf(vehicle.getCustomerID()), vehicle.getName(), vehicle.getRegistrationNumber(), vehicle.getColour(), String.valueOf(vehicle.getVehicleDate()), String.valueOf(vehicle.getRegistrationID())};
         dbConnectivity.writePrepared(updateQuery, connection, args);
@@ -141,7 +141,7 @@ public class VehicleDAO implements IVehicle {
     @Override
     public void delete(Vehicle vehicle) {
         vehicles = getAll();
-        String deleteUser = "DELETE FROM GARAGE.CAR WHERE REGISTRATIONID=?";
+        String deleteUser = "DELETE FROM GARAGE.VEHICLE WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
         String args[] = {String.valueOf(vehicle.getRegistrationID())};
         dbConnectivity.writePrepared(deleteUser, connection, args);

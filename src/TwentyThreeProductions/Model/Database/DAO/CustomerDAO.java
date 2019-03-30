@@ -24,7 +24,7 @@ public class CustomerDAO implements ICustomer {
     @Override
     public ArrayList<Vehicle> getCustomerVehicles(String customerID) {
         PreparedStatement statement;
-        String query = "SELECT * FROM GARAGE.CAR WHERE CUSTOMERID=?";
+        String query = "SELECT * FROM GARAGE.VEHICLE WHERE CUSTOMERID=?";
         ResultSet result;
         connection = dbConnectivity.connection(connection);
         try {
@@ -63,7 +63,7 @@ public class CustomerDAO implements ICustomer {
                 customer.setLastName(result.getString("LASTNAME"));
                 customer.setCustomerType(result.getString("TYPE"));
                 customer.setCustomerEmail(result.getString("EMAIL"));
-                customer.setCustomerAddress(result.getString("ADDRESS"));
+                customer.setCustomerAddress(result.getString("STREETNAME"));
                 customer.setCustomerPostcode(result.getString("POSTCODE"));
                 customer.setCustomerPhone(result.getString("PHONE"));
                 customer.setCurrentDate(result.getDate("Date"));
@@ -104,7 +104,7 @@ public class CustomerDAO implements ICustomer {
         java.util.Date currentDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
         String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerAddress(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerEmail(), sqlDate.toString(), customer.isLatePayment()};
-        String query = "INSERT INTO GARAGE.CUSTOMER (FIRSTNAME, LASTNAME, TYPE, ADDRESS, POSTCODE, PHONE, EMAIL, \"Date\", LATEPAYMENT)\n" +
+        String query = "INSERT INTO GARAGE.CUSTOMER (FIRSTNAME, LASTNAME, TYPE, STREETNAME, POSTCODE, PHONE, EMAIL, \"Date\", LATEPAYMENT)\n" +
                 "VALUES (?,?,?,?,?,?,?,?,?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(query, connection, args);
@@ -130,7 +130,7 @@ public class CustomerDAO implements ICustomer {
 
     @Override
     public void update(Customer customer) {
-        String updateQuery = "UPDATE GARAGE.CUSTOMER SET FIRSTNAME=?, LASTNAME=?, TYPE=?, ADDRESS=?, POSTCODE=?, PHONE=?, EMAIL=?, LATEPAYMENT=? WHERE CUSTOMERID=?";
+        String updateQuery = "UPDATE GARAGE.CUSTOMER SET FIRSTNAME=?, LASTNAME=?, TYPE=?, STREETNAME=?, POSTCODE=?, PHONE=?, EMAIL=?, LATEPAYMENT=? WHERE CUSTOMERID=?";
         connection = dbConnectivity.connection(connection);
         String args[] = {customer.getFirstName(), customer.getLastName(), customer.getCustomerType(), customer.getCustomerAddress(), customer.getCustomerPostcode(), customer.getCustomerPhone(), customer.getCustomerEmail(), customer.isLatePayment(), customer.getCustomerID()};
         dbConnectivity.writePrepared(updateQuery, connection, args);
