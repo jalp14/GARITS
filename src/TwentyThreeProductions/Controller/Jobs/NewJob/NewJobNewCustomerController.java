@@ -1,9 +1,9 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
-import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Model.CustomerReference;
-import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -24,10 +24,10 @@ public class NewJobNewCustomerController {
 
     private SceneSwitch sceneSwitch;
     private Customer customer;
-    private CarDAO carDAO;
+    private VehicleDAO vehicleDAO;
     private CustomerDAO customerDAO;
-    private ArrayList<Car> cars;
-    private HashMap<String,Car> carHashMap;
+    private ArrayList<Vehicle> vehicles;
+    private HashMap<String,Vehicle> vehicleHashMap;
     private CustomerReference customerReference;
 
     @FXML
@@ -109,22 +109,22 @@ public class NewJobNewCustomerController {
     private JFXTextField phoneNoField;
 
     @FXML
-    private Label availableCarsHeading;
+    private Label availableVehiclesHeading;
 
     @FXML
-    private Label selectedCarsHeading;
+    private Label selectedVehiclesHeading;
 
     @FXML
-    private JFXListView<Label> selectedCarList;
+    private JFXListView<Label> selectedVehicleList;
 
     @FXML
-    private JFXComboBox<Label> availableCarsCombi;
+    private JFXComboBox<Label> availableVehiclesCombi;
 
     @FXML
-    private JFXButton addNewCarBtn;
+    private JFXButton addNewVehicleBtn;
 
     @FXML
-    private JFXButton removeCarBtn;
+    private JFXButton removeVehicleBtn;
 
 
     @FXML
@@ -139,7 +139,7 @@ public class NewJobNewCustomerController {
         String customerRowCount;
         customerDAO = new CustomerDAO();
         customer = new Customer();
-        carDAO = new CarDAO();
+        vehicleDAO = new VehicleDAO();
         if(firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() ||
                 addressOneField.getText().isEmpty() || postcodeField.getText().isEmpty() ||
                 phoneNoField.getText().isEmpty() || emailField.getText().isEmpty() ||
@@ -160,11 +160,11 @@ public class NewJobNewCustomerController {
                 customer.setCustomerID(c.getCustomerID());
             }
             customerRowCount = Integer.toString(customerDAO.getCount());
-            for (int j = 0; j < selectedCarList.getItems().size(); j++) {
-                String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+            for (int j = 0; j < selectedVehicleList.getItems().size(); j++) {
+                String regID = String.valueOf(vehicleHashMap.get(selectedVehicleList.getItems().get(j).getText()).getRegistrationID());
                 System.out.println("Reg ID : " + regID);
-                carDAO.updateCustomer(customerRowCount, regID);
-                System.out.println(cars.get(j).getRegistrationID());
+                vehicleDAO.updateCustomer(customerRowCount, regID);
+                System.out.println(vehicles.get(j).getRegistrationID());
             }
             customerReference.setCustomer(customer);
             clearInputs();
@@ -173,35 +173,35 @@ public class NewJobNewCustomerController {
     }
 
     @FXML
-    void addNewCarBtnClicked(ActionEvent event) throws IOException {
-        int i = availableCarsCombi.getSelectionModel().getSelectedIndex();
-        selectedCarList.getItems().add((availableCarsCombi.getItems().get(i)));
-        availableCarsCombi.getItems().remove(i);
+    void addNewVehicleBtnClicked(ActionEvent event) throws IOException {
+        int i = availableVehiclesCombi.getSelectionModel().getSelectedIndex();
+        selectedVehicleList.getItems().add((availableVehiclesCombi.getItems().get(i)));
+        availableVehiclesCombi.getItems().remove(i);
     }
 
     @FXML
-    void removeCarBtnClicked(ActionEvent event) {
-        int j = selectedCarList.getSelectionModel().getSelectedIndex();
-        availableCarsCombi.getItems().add(selectedCarList.getItems().get(j));
-        selectedCarList.getItems().remove(j);
+    void removeVehicleBtnClicked(ActionEvent event) {
+        int j = selectedVehicleList.getSelectionModel().getSelectedIndex();
+        availableVehiclesCombi.getItems().add(selectedVehicleList.getItems().get(j));
+        selectedVehicleList.getItems().remove(j);
     }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newJobNewCustomerStackPane, NavigationModel.NEW_JOB_NEW_CUSTOMER_ID);
         customerReference = customerReference.getInstance();
-        carHashMap = new HashMap<>();
+        vehicleHashMap = new HashMap<>();
         clearInputs();
     }
 
-    public void loadCars() {
-        carDAO = new CarDAO();
-        cars = carDAO.getAvailableCars();
-        for (int i = 0; i < cars.size(); i++) {
-            Car tmpCar = cars.get(i);
-            Label tmpLabel = new Label(tmpCar.getModel());
-            availableCarsCombi.getItems().add(tmpLabel);
-            carHashMap.put(tmpLabel.getText(), tmpCar);
+    public void loadVehicles() {
+        vehicleDAO = new VehicleDAO();
+        vehicles = vehicleDAO.getAvailableVehicles();
+        for (int i = 0; i < vehicles.size(); i++) {
+            Vehicle tmpVehicle = vehicles.get(i);
+            Label tmpLabel = new Label(tmpVehicle.getName());
+            availableVehiclesCombi.getItems().add(tmpLabel);
+            vehicleHashMap.put(tmpLabel.getText(), tmpVehicle);
         }
 
     }
@@ -227,9 +227,9 @@ public class NewJobNewCustomerController {
         casualCustomerRadio.setSelected(false);
         accountHolderRadio.setSelected(false);
         latePaymentCheckbox.setSelected(false);
-        selectedCarList.getItems().clear();
-        availableCarsCombi.getItems().clear();
-        loadCars();
+        selectedVehicleList.getItems().clear();
+        availableVehiclesCombi.getItems().clear();
+        loadVehicles();
     }
 }
 

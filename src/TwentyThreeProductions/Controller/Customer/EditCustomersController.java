@@ -1,8 +1,8 @@
 package TwentyThreeProductions.Controller.Customer;
 
-import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -20,7 +20,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,14 +27,14 @@ public class EditCustomersController {
 
     private SceneSwitch sceneSwitch;
     private CustomerDAO customerDAO;
-    private CarDAO carDAO;
-    private ArrayList<Car> existingCars;
-    private ArrayList<Car> availableCars;
-    private ArrayList<String> removedCars;
+    private VehicleDAO vehicleDAO;
+    private ArrayList<Vehicle> existingVehicles;
+    private ArrayList<Vehicle> availableVehicles;
+    private ArrayList<String> removedVehicles;
     private ArrayList<Customer> customers;
     private HashMap<String, Customer> customerMap;
-    private HashMap<String, Car> tmpMap;
-    private HashMap<String, Car> carMap;
+    private HashMap<String, Vehicle> tmpMap;
+    private HashMap<String, Vehicle> vehicleMap;
     private String currentCustomerID;
 
     @FXML
@@ -120,10 +119,10 @@ public class EditCustomersController {
     private JFXComboBox<Label> selectCustomerCombi;
 
     @FXML
-    private JFXButton addNewCarBtn;
+    private JFXButton addNewVehicleBtn;
 
     @FXML
-    private JFXButton removeCarBtn;
+    private JFXButton removeVehicleBtn;
 
     @FXML
     private JFXComboBox<Label> discountCombi;
@@ -132,16 +131,16 @@ public class EditCustomersController {
     private Label discountHeading;
 
     @FXML
-    private JFXListView<Label> selectedCarList;
+    private JFXListView<Label> selectedVehicleList;
 
     @FXML
-    private Label availableCarsHeading;
+    private Label availableVehiclesHeading;
 
     @FXML
-    private JFXComboBox<Label> availableCarsCombi;
+    private JFXComboBox<Label> availableVehiclesCombi;
 
     @FXML
-    private Label selectedCarsHeading;
+    private Label selectedVehiclesHeading;
 
     @FXML
     void selectCustomerBtnClicked(ActionEvent event) {
@@ -165,26 +164,26 @@ public class EditCustomersController {
 
         latePaymentCheckbox.setDisable(customer.getLatePayment());
 
-        if (!(availableCarsCombi.getItems().isEmpty())) {
-            availableCarsCombi.getItems().clear();
+        if (!(availableVehiclesCombi.getItems().isEmpty())) {
+            availableVehiclesCombi.getItems().clear();
         }
 
-        if (!(selectedCarList.getItems().isEmpty())) {
-            selectedCarList.getItems().clear();
+        if (!(selectedVehicleList.getItems().isEmpty())) {
+            selectedVehicleList.getItems().clear();
         }
 
-        loadExistingCars(customer.getCustomerID());
-        loadAvailableCars();
+        loadExistingVehicles(customer.getCustomerID());
+        loadAvailableVehicles();
 
     }
 
     @FXML
-    void addNewCarBtnClicked(ActionEvent event) {
-        int i = availableCarsCombi.getSelectionModel().getSelectedIndex();
-        selectedCarList.getItems().add((availableCarsCombi.getItems().get(i)));
-        String tmp = availableCarsCombi.getItems().get(i).getText();
-        carMap.put(tmp, tmpMap.get(tmp));
-        availableCarsCombi.getItems().remove(i);
+    void addNewVehicleBtnClicked(ActionEvent event) {
+        int i = availableVehiclesCombi.getSelectionModel().getSelectedIndex();
+        selectedVehicleList.getItems().add((availableVehiclesCombi.getItems().get(i)));
+        String tmp = availableVehiclesCombi.getItems().get(i).getText();
+        vehicleMap.put(tmp, tmpMap.get(tmp));
+        availableVehiclesCombi.getItems().remove(i);
     }
 
     @FXML
@@ -193,21 +192,21 @@ public class EditCustomersController {
     }
 
     @FXML
-    void removeCarBtnClicked(ActionEvent event) {
-        int j = selectedCarList.getSelectionModel().getSelectedIndex();
-        availableCarsCombi.getItems().add(selectedCarList.getItems().get(j));
-        String tmp = selectedCarList.getItems().get(j).getText();
-        removedCars = new ArrayList<>();
-        System.out.println(carMap.get(tmp).getRegistrationID());
-        removedCars.add(carMap.get(tmp).getRegistrationID());
-        carMap.remove(tmp);
-        selectedCarList.getItems().remove(j);
+    void removeVehicleBtnClicked(ActionEvent event) {
+        int j = selectedVehicleList.getSelectionModel().getSelectedIndex();
+        availableVehiclesCombi.getItems().add(selectedVehicleList.getItems().get(j));
+        String tmp = selectedVehicleList.getItems().get(j).getText();
+        removedVehicles = new ArrayList<>();
+        System.out.println(vehicleMap.get(tmp).getRegistrationID());
+        removedVehicles.add(String.valueOf(vehicleMap.get(tmp).getRegistrationID()));
+        vehicleMap.remove(tmp);
+        selectedVehicleList.getItems().remove(j);
     }
 
     @FXML
     void saveBtnClicked(ActionEvent event) {
         customerDAO = new CustomerDAO();
-        carDAO = new CarDAO();
+        vehicleDAO = new VehicleDAO();
         Customer customer = new Customer();
         customer.setCustomerID(currentCustomerID);
         customer.setFirstName(firstNameField.getText());
@@ -220,16 +219,16 @@ public class EditCustomersController {
         customer.setLatePayment(latePaymentCheckbox.isSelected());
         customerDAO.update(customer);
 
-        if (removedCars.size() > 0) {
-            for (int l = 0; l < removedCars.size(); l++) {
-                carDAO.updateCustomer(null, removedCars.get(l));
+        if (removedVehicles.size() > 0) {
+            for (int l = 0; l < removedVehicles.size(); l++) {
+                vehicleDAO.updateCustomer(null, removedVehicles.get(l));
             }
         }
 
-        for (int j = 0; j < selectedCarList.getItems().size(); j++) {
-            String regID = carMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+        for (int j = 0; j < selectedVehicleList.getItems().size(); j++) {
+            String regID = String.valueOf(vehicleMap.get(selectedVehicleList.getItems().get(j).getText()).getRegistrationID());
             System.out.println("Reg ID : " + regID);
-            carDAO.updateCustomer(currentCustomerID, regID);
+            vehicleDAO.updateCustomer(currentCustomerID, regID);
         }
 
         SystemAlert alert = new SystemAlert(EditCustomerStackPane, "Success!", "Updated customer");
@@ -241,7 +240,7 @@ public class EditCustomersController {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(EditCustomerStackPane, NavigationModel.EDIT_CUSTOMER_ID);
         customerMap = new HashMap<>();
-        carMap = new HashMap<>();
+        vehicleMap = new HashMap<>();
         tmpMap = new HashMap<>();
         loadCustomers();
     }
@@ -262,28 +261,28 @@ public class EditCustomersController {
 
     }
 
-    // Loads Existing Cars in the Selected Field
-    public void loadExistingCars(String customerID) {
-        carDAO = new CarDAO();
-        existingCars = new ArrayList<>();
-        existingCars = carDAO.getExistingCars(customerID);
-        for (int p = 0; p < existingCars.size(); p++) {
-            Car tmpCar = existingCars.get(p);
-            Label tmpLabel = new Label(tmpCar.getModel());
-            selectedCarList.getItems().add(tmpLabel);
-            carMap.put(tmpLabel.getText(), tmpCar);
+    // Loads Existing Vehicles in the Selected Field
+    public void loadExistingVehicles(String customerID) {
+        vehicleDAO = new VehicleDAO();
+        existingVehicles = new ArrayList<>();
+        existingVehicles = vehicleDAO.getExistingVehicles(customerID);
+        for (int p = 0; p < existingVehicles.size(); p++) {
+            Vehicle tmpVehicle = existingVehicles.get(p);
+            Label tmpLabel = new Label(tmpVehicle.getName());
+            selectedVehicleList.getItems().add(tmpLabel);
+            vehicleMap.put(tmpLabel.getText(), tmpVehicle);
         }
     }
 
-    public void loadAvailableCars() {
-        carDAO = new CarDAO();
-        availableCars = new ArrayList<>();
-        availableCars = carDAO.getAvailableCars();
-        for (int i = 0; i < availableCars.size(); i++) {
-            Car tmpCar = availableCars.get(i);
-            Label tmpLabel = new Label(tmpCar.getModel());
-            availableCarsCombi.getItems().add(tmpLabel);
-            tmpMap.put(tmpLabel.getText(), tmpCar);
+    public void loadAvailableVehicles() {
+        vehicleDAO = new VehicleDAO();
+        availableVehicles = new ArrayList<>();
+        availableVehicles = vehicleDAO.getAvailableVehicles();
+        for (int i = 0; i < availableVehicles.size(); i++) {
+            Vehicle tmpVehicle = availableVehicles.get(i);
+            Label tmpLabel = new Label(tmpVehicle.getName());
+            availableVehiclesCombi.getItems().add(tmpLabel);
+            tmpMap.put(tmpLabel.getText(), tmpVehicle);
         }
 
     }

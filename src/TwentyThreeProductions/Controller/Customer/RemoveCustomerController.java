@@ -1,7 +1,7 @@
 package TwentyThreeProductions.Controller.Customer;
 
 import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -62,11 +62,11 @@ public class RemoveCustomerController {
         if (customerList.getSelectionModel().isEmpty()) {
             SystemAlert alert = new SystemAlert(RemoveCustomerStackPane, "Error", "Please select a customer from the list");
         } else {
-            CarDAO carDAO = new CarDAO();
+            VehicleDAO vehicleDAO = new VehicleDAO();
             CustomerDAO customerDAO = new CustomerDAO();
             Customer customer = customerHashMap.get(customerList.getSelectionModel().getSelectedItem().getText());
             customerList.getSelectionModel().select(null);
-            carDAO.removeCustomer(customer.getCustomerID());
+            vehicleDAO.removeCustomer(customer.getCustomerID());
             customerDAO.delete(customer);
             SystemAlert alert = new SystemAlert(RemoveCustomerStackPane, "Success", "Customer successfully deleted");
         }

@@ -1,6 +1,6 @@
 package TwentyThreeProductions.Model.HelperClasses;
 
-import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Vehicle;
 
 public class CustomerHelper {
 
@@ -15,11 +15,11 @@ public class CustomerHelper {
         return customerHelper;
     }
 
-    public void setCar(Car car) {
+    public void setVehicle(Vehicle vehicle) {
 
     }
 
-    public Car getCar() {
+    public Vehicle getVehicle() {
         return null;
     }
 

@@ -1,6 +1,5 @@
 package TwentyThreeProductions.Model.Database.Interfaces;
 
-import TwentyThreeProductions.Domain.Car;
 import TwentyThreeProductions.Domain.JobTask;
 
 import java.util.ArrayList;

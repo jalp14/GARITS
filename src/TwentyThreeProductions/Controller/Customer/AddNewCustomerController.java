@@ -1,8 +1,9 @@
 package TwentyThreeProductions.Controller.Customer;
 
-import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Domain.Vehicle;
+import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -10,7 +11,6 @@ import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
@@ -24,10 +24,10 @@ public class AddNewCustomerController {
 
     private SceneSwitch sceneSwitch;
     private Customer customer;
-    private CarDAO carDAO;
+    private VehicleDAO vehicleDAO;
     private CustomerDAO customerDAO;
-    private ArrayList<Car> cars;
-    private HashMap<String,Car> carHashMap;
+    private ArrayList<Vehicle> vehicles;
+    private HashMap<String,Vehicle> vehicleHashMap;
 
     @FXML
     private StackPane AddNewCustomerStackPane;
@@ -108,22 +108,22 @@ public class AddNewCustomerController {
     private JFXTextField phoneNoField;
 
     @FXML
-    private Label availableCarsHeading;
+    private Label availableVehiclesHeading;
 
     @FXML
-    private Label selectedCarsHeading;
+    private Label selectedVehiclesHeading;
 
     @FXML
-    private JFXListView<Label> selectedCarList;
+    private JFXListView<Label> selectedVehicleList;
 
     @FXML
-    private JFXComboBox<Label> availableCarsCombi;
+    private JFXComboBox<Label> availableVehiclesCombi;
 
     @FXML
-    private JFXButton addNewCarBtn;
+    private JFXButton addNewVehicleBtn;
 
     @FXML
-    private JFXButton removeCarBtn;
+    private JFXButton removeVehicleBtn;
 
 
     @FXML
@@ -137,7 +137,7 @@ public class AddNewCustomerController {
         String customerRowCount;
         customerDAO = new CustomerDAO();
         customer = new Customer();
-        carDAO = new CarDAO();
+        vehicleDAO = new VehicleDAO();
         customer.setFirstName(firstNameField.getText());
         customer.setLastName(lastNameField.getText());
         customer.setCustomerAddress(addressOneField.getText());
@@ -149,46 +149,46 @@ public class AddNewCustomerController {
         customerDAO.save(customer);
         customerRowCount = Integer.toString(customerDAO.getCount());
         System.out.println(customerRowCount);
-        for (int j = 0; j < selectedCarList.getItems().size(); j++) {
-            String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+        for (int j = 0; j < selectedVehicleList.getItems().size(); j++) {
+            String regID = String.valueOf(vehicleHashMap.get(selectedVehicleList.getItems().get(j).getText()).getRegistrationID());
             System.out.println("Reg ID : " + regID);
-            carDAO.updateCustomer(customerRowCount, regID);
-            System.out.println(cars.get(j).getRegistrationID());
+            vehicleDAO.updateCustomer(customerRowCount, regID);
+            System.out.println(vehicles.get(j).getRegistrationID());
         }
         SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Success!", "Added customer to the db");
 
     }
 
     @FXML
-    void addNewCarBtnClicked(ActionEvent event) throws IOException {
-        int i = availableCarsCombi.getSelectionModel().getSelectedIndex();
-        selectedCarList.getItems().add((availableCarsCombi.getItems().get(i)));
-        availableCarsCombi.getItems().remove(i);
+    void addNewVehicleBtnClicked(ActionEvent event) throws IOException {
+        int i = availableVehiclesCombi.getSelectionModel().getSelectedIndex();
+        selectedVehicleList.getItems().add((availableVehiclesCombi.getItems().get(i)));
+        availableVehiclesCombi.getItems().remove(i);
     }
 
     @FXML
-    void removeCarBtnClicked(ActionEvent event) {
-        int j = selectedCarList.getSelectionModel().getSelectedIndex();
-        availableCarsCombi.getItems().add(selectedCarList.getItems().get(j));
-        selectedCarList.getItems().remove(j);
+    void removeVehicleBtnClicked(ActionEvent event) {
+        int j = selectedVehicleList.getSelectionModel().getSelectedIndex();
+        availableVehiclesCombi.getItems().add(selectedVehicleList.getItems().get(j));
+        selectedVehicleList.getItems().remove(j);
     }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(AddNewCustomerStackPane, NavigationModel.ADD_NEW_CUSTOMER_ID);
-        carHashMap = new HashMap<>();
-        loadCars();
+        vehicleHashMap = new HashMap<>();
+        loadVehicles();
     }
 
-    public void loadCars() {
-        carDAO = new CarDAO();
-        cars = carDAO.getAvailableCars();
-        for (int i = 0; i < cars.size(); i++) {
-            Car tmpCar = cars.get(i);
-            Label tmpLabel = new Label(tmpCar.getModel());
-            availableCarsCombi.getItems().add(tmpLabel);
-            carHashMap.put(tmpLabel.getText(), tmpCar);
-            System.out.println(" Car Hash Map Size : " + carHashMap.size());
+    public void loadVehicles() {
+        vehicleDAO = new VehicleDAO();
+        vehicles = vehicleDAO.getAvailableVehicles();
+        for (int i = 0; i < vehicles.size(); i++) {
+            Vehicle tmpVehicle = vehicles.get(i);
+            Label tmpLabel = new Label(tmpVehicle.getName());
+            availableVehiclesCombi.getItems().add(tmpLabel);
+            vehicleHashMap.put(tmpLabel.getText(), tmpVehicle);
+            System.out.println(" Vehicle Hash Map Size : " + vehicleHashMap.size());
         }
 
     }

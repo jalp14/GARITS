@@ -52,12 +52,12 @@ public class NewJobCarMenuController {
 
     @FXML
     void existingCarBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_EXISTING_CAR_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_EXISTING_VEHICLE_ID, backBtn.getScene());
     }
 
     @FXML
     void newCarBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_NEW_CAR_ID, backBtn.getScene());
+        sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_NEW_VEHICLE_ID, backBtn.getScene());
     }
 
     @FXML

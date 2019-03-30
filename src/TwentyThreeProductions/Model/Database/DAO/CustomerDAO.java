@@ -1,5 +1,5 @@
 package TwentyThreeProductions.Model.Database.DAO;
-import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Model.Database.DBConnectivity;
 import TwentyThreeProductions.Model.Database.Interfaces.DBConnectivityInterface;
@@ -13,16 +13,16 @@ public class CustomerDAO implements ICustomer {
     private ArrayList<Customer> customers;
     private DBConnectivityInterface dbConnectivity;
     private Connection connection;
-    private ArrayList<Car> customerCars;
+    private ArrayList<Vehicle> customerVehicles;
 
     public CustomerDAO() {
         customers = new ArrayList<>();
         dbConnectivity = new DBConnectivity();
-        customerCars = new ArrayList<>();
+        customerVehicles = new ArrayList<>();
     }
 
     @Override
-    public ArrayList<Car> getCustomerCars(String customerID) {
+    public ArrayList<Vehicle> getCustomerVehicles(String customerID) {
         PreparedStatement statement;
         String query = "SELECT * FROM GARAGE.CAR WHERE CUSTOMERID=?";
         ResultSet result;
@@ -32,19 +32,19 @@ public class CustomerDAO implements ICustomer {
             statement.setString(1, customerID);
             result = statement.executeQuery();
             while (result.next()) {
-                Car car = new Car();
-                car.setColour(result.getString("COLOUR"));
-                car.setChassisNumber(result.getString("CHASSISNUMBER"));
-                car.setEngSerial(result.getString("ENGSERIAL"));
-                car.setMake(result.getString("MAKE"));
-                car.setManufacturerID(result.getString("MANUFACTURERID"));
-                car.setModel(result.getString("MODEL"));
-                customerCars.add(car);
+                Vehicle vehicle = new Vehicle();
+                vehicle.setRegistrationID(result.getInt("REGISTRATIONID"));
+                vehicle.setCustomerID(result.getInt("CUSTOMERID"));
+                vehicle.setName(result.getString("NAME"));
+                vehicle.setRegistrationNumber(result.getString("REGNO"));
+                vehicle.setColour(result.getString("COLOUR"));
+                vehicle.setVehicleDate(result.getDate("VEHICLEDATE"));
+                customerVehicles.add(vehicle);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return customerCars;
+        return customerVehicles;
     }
 
     @Override

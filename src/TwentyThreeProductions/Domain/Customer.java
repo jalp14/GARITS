@@ -16,13 +16,13 @@ public class Customer {
     private String customerEmail;
     private boolean latePayment;
     private Date currentDate;
-    private ArrayList<Car> cars;
+    private ArrayList<Vehicle> vehicles;
     private ArrayList<Invoice> invoices;
     private ArrayList<Job> jobs;
     private ArrayList<Payment> payments;
 
     public Customer(){}
-    // missing customerID and car from the constructor
+    // missing customerID and vehicle from the constructor
     public Customer(String customerID) {
         this.customerID = customerID;
     }
@@ -121,12 +121,12 @@ public class Customer {
         this.customerEmail = customerEmail;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setCars(ArrayList<Car> cars) {
-        this.cars = cars;
+    public void setVehicles(ArrayList<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public List<Invoice> getInvoices() {

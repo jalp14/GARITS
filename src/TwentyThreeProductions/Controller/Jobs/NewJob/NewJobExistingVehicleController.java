@@ -1,11 +1,11 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
-import TwentyThreeProductions.Domain.Car;
+import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Job;
 import TwentyThreeProductions.Domain.Mechanic;
 import TwentyThreeProductions.Model.CustomerReference;
-import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
 import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
 import TwentyThreeProductions.Model.NavigationModel;
@@ -21,16 +21,16 @@ import javafx.scene.text.Text;
 
 import java.util.HashMap;
 
-public class NewJobExistingCarController {
+public class NewJobExistingVehicleController {
 
     private SceneSwitch sceneSwitch;
 
     private CustomerReference customerReference;
 
-    private HashMap<String, Car> carHashMap;
+    private HashMap<String, Vehicle> vehicleHashMap;
 
     @FXML
-    private StackPane newJobExistingCarStackPane;
+    private StackPane newJobExistingVehicleStackPane;
 
     @FXML
     private Text usernameLbl;
@@ -51,28 +51,28 @@ public class NewJobExistingCarController {
     private JFXButton nextBtn;
 
     @FXML
-    private JFXListView<Label> customerCarList;
+    private JFXListView<Label> customerVehicleList;
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-        customerCarList.getSelectionModel().select(null);
-        customerCarList.getItems().clear();
-        carHashMap.clear();
+        customerVehicleList.getSelectionModel().select(null);
+        customerVehicleList.getItems().clear();
+        vehicleHashMap.clear();
         refreshList();
         sceneSwitch.switchScene(NavigationModel.NEW_JOB_CAR_MENU_ID);
     }
 
     @FXML
     void nextBtnClicked(ActionEvent event) {
-        if(customerCarList.getSelectionModel().isEmpty()) {
-            SystemAlert systemAlert = new SystemAlert(newJobExistingCarStackPane,
-                    "Failure", "No car selected");
+        if(customerVehicleList.getSelectionModel().isEmpty()) {
+            SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
+                    "Failure", "No vehicle selected");
         }
         else {
-            Car car = carHashMap.get(customerCarList.getSelectionModel().getSelectedItem().getText());
+            Vehicle vehicle = vehicleHashMap.get(customerVehicleList.getSelectionModel().getSelectedItem().getText());
             Customer customer = customerReference.getCustomer();
             Job job = new Job();
-            CarDAO carDAO = new CarDAO();
+            VehicleDAO vehicleDAO = new VehicleDAO();
             JobDAO jobDAO = new JobDAO();
             MechanicDAO mechanicDAO = new MechanicDAO();
             int jobID = 1;
@@ -94,23 +94,23 @@ public class NewJobExistingCarController {
                 }
             }
             if (isMechanicTableEmpty) {
-                SystemAlert systemAlert = new SystemAlert(newJobExistingCarStackPane,
+                SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
                         "Failure", "No mechanic in system database");
             } else {
                 job.setCustomerID(Integer.parseInt(customer.getCustomerID()));
-                job.setRegistrationID(car.getRegistrationID());
+                job.setRegistrationID(String.valueOf(vehicle.getRegistrationID()));
                 java.util.Date currentDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
                 job.setDateBookedIn(sqlDate);
-                job.setDescription("Work done on car");
+                job.setDescription("Work done on vehicle");
                 job.setStatus("Pending");
                 job.setPaidFor("False");
                 jobDAO.save(job);
-                SystemAlert systemAlert = new SystemAlert(newJobExistingCarStackPane,
-                        "Success", "Added job for existing car");
-                customerCarList.getSelectionModel().select(null);
-                customerCarList.getItems().clear();
-                carHashMap.clear();
+                SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
+                        "Success", "Added job for existing vehicle");
+                customerVehicleList.getSelectionModel().select(null);
+                customerVehicleList.getItems().clear();
+                vehicleHashMap.clear();
                 refreshList();
             }
         }
@@ -118,19 +118,19 @@ public class NewJobExistingCarController {
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(newJobExistingCarStackPane, NavigationModel.NEW_JOB_EXISTING_CAR_ID);
+        sceneSwitch.addScene(newJobExistingVehicleStackPane, NavigationModel.NEW_JOB_EXISTING_VEHICLE_ID);
         customerReference = CustomerReference.getInstance();
-        carHashMap = new HashMap<>();
+        vehicleHashMap = new HashMap<>();
         refreshList();
     }
 
     public void refreshList() {
-        CarDAO carDAO = new CarDAO();
+        VehicleDAO vehicleDAO = new VehicleDAO();
         Customer customer = customerReference.getCustomer();
-        for(Car c: carDAO.getExistingCars(customer.getCustomerID())) {
-            Label carLabel = new Label("Registration ID: " + c.getRegistrationID() + " / Make: " + c.getMake() + " / Model: " + c.getModel());
-            carHashMap.put(carLabel.getText(), c);
-            customerCarList.getItems().add(carLabel);
+        for(Vehicle v: vehicleDAO.getExistingVehicles(customer.getCustomerID())) {
+            Label vehicleLabel = new Label("Registration ID: " + v.getRegistrationID() + " / Name: " + v.getName() + " / Reg No: " + v.getRegistrationNumber());
+            vehicleHashMap.put(vehicleLabel.getText(), v);
+            customerVehicleList.getItems().add(vehicleLabel);
         }
         customerNameLbl.setText("Name: " + customerReference.getCustomer().getFirstName() + " " + customerReference.getCustomer().getLastName());
     }
