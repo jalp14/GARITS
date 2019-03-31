@@ -154,15 +154,9 @@ public class NewJobNewCustomerController {
 
     @FXML
     void configureBtnClicked(ActionEvent event) throws IOException {
-        try {
             customerDAO = new CustomerDAO();
             CustomerHelper.getInstance().setCurrentCustomerID(customerDAO.getCount() + 1);
-            sceneSwitch.activateScene(NavigationModel.CONFIGURE_DISCOUNT_ID, backBtn.getScene());
-        }
-        catch(Exception e) {
-            SystemAlert systemAlert = new SystemAlert(newJobNewCustomerStackPane,
-                    "Success", "Job added for new vehicle");
-        }
+            sceneSwitch.activateScene(NavigationModel.NEW_CUSTOMER_CONFIGURE_DISCOUNT_ID, backBtn.getScene());
     }
 
     @FXML
@@ -199,7 +193,9 @@ public class NewJobNewCustomerController {
             System.out.println(vehicles.get(j).getRegistrationID());
         }
         if (accountHolderRadio.isSelected()) {
-            discountDAO.save(CustomerHelper.getInstance().getDiscount());
+            if(!(CustomerHelper.getInstance() == null)) {
+                discountDAO.save(CustomerHelper.getInstance().getDiscount());
+            }
         }
         for(Customer c: customerDAO.getAll()) {
             customer.setCustomerID(c.getCustomerID());
