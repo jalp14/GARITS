@@ -10,7 +10,13 @@ public class DBHelper {
     public static final String user = "root";
     public static final String pass = "alpine";
 
-
+    public static String OS = null;
+    public static String getOSName() {
+        if (OS == null) {
+            OS = System.getProperty("os.name");
+        }
+        return OS;
+    }
 
 
 }

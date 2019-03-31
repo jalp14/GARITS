@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.Customer;
 
 import TwentyThreeProductions.Domain.Customer;
+import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.NavigationModel;
@@ -62,11 +63,13 @@ public class RemoveCustomerController {
         if (customerList.getSelectionModel().isEmpty()) {
             SystemAlert alert = new SystemAlert(RemoveCustomerStackPane, "Error", "Please select a customer from the list");
         } else {
-            VehicleDAO vehicleDAO = new VehicleDAO();
+            DiscountDAO discountDAO = new DiscountDAO();
+            VehicleDAO carDAO = new VehicleDAO();
             CustomerDAO customerDAO = new CustomerDAO();
             Customer customer = customerHashMap.get(customerList.getSelectionModel().getSelectedItem().getText());
             customerList.getSelectionModel().select(null);
-            vehicleDAO.removeCustomer(customer.getCustomerID());
+            carDAO.removeCustomer(customer.getCustomerID());
+            discountDAO.delete(Integer.parseInt(customer.getCustomerID()));
             customerDAO.delete(customer);
             SystemAlert alert = new SystemAlert(RemoveCustomerStackPane, "Success", "Customer successfully deleted");
         }
@@ -79,7 +82,6 @@ public class RemoveCustomerController {
         String searchTerm = searchField.getText();
         customerList.getItems().clear();
         customerHashMap.clear();
-
         // Check if search term is blank or not
         if (searchTerm.isEmpty()) {
             setupListView();
@@ -92,8 +94,8 @@ public class RemoveCustomerController {
                 }
             }
         }
-    }
 
+    }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
@@ -104,6 +106,9 @@ public class RemoveCustomerController {
 
     public void setupListView() {
         CustomerDAO customerDAO = new CustomerDAO();
+        customerList.setExpanded(true);
+        customerList.setVerticalGap(10.0);
+        customerList.setDepth(1);
         for (Customer c : customerDAO.getAll()) {
             Label customerLabel = new Label("ID : " + c.getCustomerID() + " / FirstName : " +  c.getFirstName() + " / LastName : " + c.getLastName());
             customerHashMap.put(customerLabel.getText(), c);

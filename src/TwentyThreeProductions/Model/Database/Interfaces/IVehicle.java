@@ -1,7 +1,7 @@
 package TwentyThreeProductions.Model.Database.Interfaces;
 
-import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Mechanic;
+import TwentyThreeProductions.Domain.Vehicle;
 
 import java.util.ArrayList;
 

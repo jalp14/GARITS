@@ -1,31 +1,40 @@
 package TwentyThreeProductions.Domain;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Vehicle {
 
-    private int registrationID;
-    private int customerID;
+    private String registrationID;
+    private String customerID;
     private String name;
-    private String registrationNumber;
+    private String regNo;
     private String colour;
     private Date vehicleDate;
 
     public Vehicle(){}
 
-    public int getRegistrationID() {
+    public String getRegistrationID() {
         return registrationID;
     }
 
-    public void setRegistrationID(int registrationID) {
+    public void setRegistrationID(String registrationID) {
         this.registrationID = registrationID;
     }
 
-    public int getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(int customerID) {
+    public Date getVehicleDate() {
+        return vehicleDate;
+    }
+
+    public void setVehicleDate(Date vehicleDate) {
+        this.vehicleDate = vehicleDate;
+    }
+
+    public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
@@ -37,12 +46,12 @@ public class Vehicle {
         this.name = name;
     }
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
+    public String getRegNo() {
+        return regNo;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public void setRegNo(String regNo) {
+        this.regNo = regNo;
     }
 
     public String getColour() {
@@ -51,13 +60,5 @@ public class Vehicle {
 
     public void setColour(String colour) {
         this.colour = colour;
-    }
-
-    public Date getVehicleDate() {
-        return vehicleDate;
-    }
-
-    public void setVehicleDate(Date vehicleDate) {
-        this.vehicleDate = vehicleDate;
     }
 }

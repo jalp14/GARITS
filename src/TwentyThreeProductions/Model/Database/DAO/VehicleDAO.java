@@ -30,12 +30,12 @@ public class VehicleDAO implements IVehicle {
             result = statement.executeQuery(query);
             while (result.next()) {
                 Vehicle vehicle = new Vehicle();
-                vehicle.setRegistrationID(result.getInt("REGISTRATIONID"));
-                vehicle.setCustomerID(result.getInt("CUSTOMERID"));
-                vehicle.setName(result.getString("NAME"));
-                vehicle.setRegistrationNumber(result.getString("REGNO"));
+                vehicle.setCustomerID(result.getString("CUSTOMERID"));
                 vehicle.setColour(result.getString("COLOUR"));
+                vehicle.setRegistrationID(result.getString("REGISTRATIONID"));
+                vehicle.setRegNo(result.getString("REGNO"));
                 vehicle.setVehicleDate(result.getDate("VEHICLEDATE"));
+                vehicle.setName(result.getString("NAME"));
                 vehicles.add(vehicle);
             }
 
@@ -50,21 +50,21 @@ public class VehicleDAO implements IVehicle {
 
     @Override
     public ArrayList<Vehicle> getExistingVehicles(String customerID) {
-        ResultSet result;
+        ResultSet resultSet;
         String query = "SELECT * FROM GARAGE.VEHICLE WHERE CUSTOMERID=?";
         String args[] = {customerID};
         vehicles = new ArrayList<>();
         connection = dbConnectivity.connection(connection);
-        result = dbConnectivity.queryPrepared(query, connection, args);
+        resultSet = dbConnectivity.queryPrepared(query, connection, args);
         try {
-            while (result.next()) {
+            while (resultSet.next()) {
                 Vehicle tmpVehicle = new Vehicle();
-                tmpVehicle.setRegistrationID(result.getInt("REGISTRATIONID"));
-                tmpVehicle.setCustomerID(result.getInt("CUSTOMERID"));
-                tmpVehicle.setName(result.getString("NAME"));
-                tmpVehicle.setRegistrationNumber(result.getString("REGNO"));
-                tmpVehicle.setColour(result.getString("COLOUR"));
-                tmpVehicle.setVehicleDate(result.getDate("VEHICLEDATE"));
+                tmpVehicle.setRegistrationID(resultSet.getString("REGISTRATIONID"));
+                tmpVehicle.setColour(resultSet.getString("COLOUR"));
+                tmpVehicle.setCustomerID(resultSet.getString("CUSTOMERID"));
+                tmpVehicle.setRegNo(resultSet.getString("REGNO"));
+                tmpVehicle.setVehicleDate(resultSet.getDate("VEHICLEDATE"));
+                tmpVehicle.setName(resultSet.getString("NAME"));
                 vehicles.add(tmpVehicle);
             }
         } catch (SQLException e) {
@@ -87,11 +87,10 @@ public class VehicleDAO implements IVehicle {
             result = statement.executeQuery(query);
             while (result.next()) {
                 Vehicle vehicle = new Vehicle();
-                vehicle.setRegistrationID(result.getInt("REGISTRATIONID"));
-                vehicle.setCustomerID(result.getInt("CUSTOMERID"));
-                vehicle.setName(result.getString("NAME"));
-                vehicle.setRegistrationNumber(result.getString("REGNO"));
                 vehicle.setColour(result.getString("COLOUR"));
+                vehicle.setRegistrationID(result.getString("REGISTRATIONID"));
+                vehicle.setName(result.getString("NAME"));
+                vehicle.setRegNo(result.getString("REGNO"));
                 vehicle.setVehicleDate(result.getDate("VEHICLEDATE"));
                 vehicles.add(vehicle);
             }
@@ -106,9 +105,10 @@ public class VehicleDAO implements IVehicle {
 
     @Override
     public void save(Vehicle vehicle) {
-        String[] args = {String.valueOf(vehicle.getCustomerID()), vehicle.getName(), vehicle.getRegistrationNumber(), vehicle.getColour(), String.valueOf(vehicle.getVehicleDate())};
-        String saveQuery = "INSERT INTO GARAGE.VEHICLE (CUSTOMERID, NAME, REGNO, COLOUR, VEHICLEDATE)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String[] args = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString()};
+        connection = dbConnectivity.connection(connection);
+        String saveQuery = "INSERT INTO GARAGE.VEHICLE (CUSTOMERID, NAME, COLOUR, REGNO, VEHICLEDATE)\n" +
+                "VALUES (?, ?, ?,? , ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }
@@ -126,13 +126,14 @@ public class VehicleDAO implements IVehicle {
         String[] args = {customerID};
         connection = dbConnectivity.connection(connection);
         String removeCustomerQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=null WHERE CUSTOMERID=?";
+        dbConnectivity.writePrepared(removeCustomerQuery,connection, args);
     }
 
     @Override
     public void update(Vehicle vehicle) {
-        String updateQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=?, NAME=?, REGNO=?, COLOUR=?, VEHICLEDATE=? WHERE REGISTRATIONID=?";
+        String updateQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=?, NAME=?, COLOUR=?, REGNO=?, VEHICLEDATE=? WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
-        String args[] = {String.valueOf(vehicle.getCustomerID()), vehicle.getName(), vehicle.getRegistrationNumber(), vehicle.getColour(), String.valueOf(vehicle.getVehicleDate()), String.valueOf(vehicle.getRegistrationID())};
+        String args[] = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString(), vehicle.getRegistrationID()};
         dbConnectivity.writePrepared(updateQuery, connection, args);
         System.out.println("Successfully updated ");
     }
@@ -143,7 +144,7 @@ public class VehicleDAO implements IVehicle {
         vehicles = getAll();
         String deleteUser = "DELETE FROM GARAGE.VEHICLE WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
-        String args[] = {String.valueOf(vehicle.getRegistrationID())};
+        String args[] = {vehicle.getRegistrationID()};
         dbConnectivity.writePrepared(deleteUser, connection, args);
         vehicles.remove(vehicle);
     }

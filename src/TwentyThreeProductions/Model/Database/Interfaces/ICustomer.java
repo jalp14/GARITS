@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface ICustomer {
     ArrayList<Customer> getAll();
-    ArrayList<Vehicle> getCustomerVehicles(String customerID);
+    ArrayList<Vehicle> getCustomerVehicle(String customerID);
     int getCount();
     void save(Customer customer);
     void update(Customer customer);

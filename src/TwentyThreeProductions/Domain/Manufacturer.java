@@ -5,9 +5,9 @@ import java.util.List;
 public class Manufacturer {
     private int manufacturerID;
     private String companyName;
-    private String companyAddress;
-    private String phoneNumber;
-    private String faxNumber;
+    private String companyID;
+    private int phoneNumber;
+    private int faxNumber;
     private List<Vehicle> vehicles;
     private List<Part> parts;
 
@@ -29,27 +29,27 @@ public class Manufacturer {
         this.companyName = companyName;
     }
 
-    public String getCompanyAddress() {
-        return companyAddress;
+    public String getCompanyID() {
+        return companyID;
     }
 
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress;
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFaxNumber() {
+    public int getFaxNumber() {
         return faxNumber;
     }
 
-    public void setFaxNumber(String faxNumber) {
+    public void setFaxNumber(int faxNumber) {
         this.faxNumber = faxNumber;
     }
 }
