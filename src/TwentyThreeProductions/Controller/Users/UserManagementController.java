@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.Users;
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -64,6 +65,8 @@ public class UserManagementController {
         System.out.println("New Users Controller");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(usersMainStackPane, NavigationModel.USER_MANAGEMENT_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
 }

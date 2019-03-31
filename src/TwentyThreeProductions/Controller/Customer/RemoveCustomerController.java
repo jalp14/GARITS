@@ -1,9 +1,11 @@
 package TwentyThreeProductions.Controller.Customer;
 
 import TwentyThreeProductions.Domain.Customer;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
+import TwentyThreeProductions.Model.Database.DBHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
@@ -100,6 +102,8 @@ public class RemoveCustomerController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(RemoveCustomerStackPane, NavigationModel.REMOVE_CUSTOMER_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerHashMap = new HashMap<>();
         setupListView();
     }

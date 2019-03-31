@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.Database;
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.HelperClasses.SettingsHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -71,6 +72,8 @@ public class AutomaticBackupSettingsController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(autoBackupSettingsStackPane, NavigationModel.AUTOMATIC_BACKUP_SETTINGS_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         helper = SettingsHelper.getInstance();
     }
 
