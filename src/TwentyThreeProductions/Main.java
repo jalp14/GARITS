@@ -2,6 +2,7 @@ package TwentyThreeProductions;
 
 import TwentyThreeProductions.Domain.Backup;
 import TwentyThreeProductions.Model.Database.DAO.BackupDAO;
+import TwentyThreeProductions.Model.Database.DBHelper;
 import TwentyThreeProductions.Model.Database.DBServer;
 import TwentyThreeProductions.Model.HelperClasses.SettingsHelper;
 import TwentyThreeProductions.Model.SystemNotification;
@@ -34,6 +35,8 @@ public class Main extends Application {
         primaryStage.show();
         DBServer dbServer = DBServer.getInstance();
         checkForAutomaticBackup();
+
+
     }
 
     public void checkForAutomaticBackup() {
@@ -48,7 +51,11 @@ public class Main extends Application {
                 backup.setDate(timeStamp);
                 backup.setFileLocation(timeStamp + ".zip");
                 System.out.println("Backup Date : " + backup.getDate());
-                Process proc = Runtime.getRuntime().exec(new String[]{"./backup.sh", timeStamp});
+                if (DBHelper.getOSName().startsWith("Win")) {
+
+                } else {
+                    Process proc = Runtime.getRuntime().exec(new String[]{"./backup.sh", timeStamp});
+                }
                 backupDAO.save(backup);;
             } catch (IOException io) {
                 io.printStackTrace();
