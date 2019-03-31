@@ -1,16 +1,18 @@
 package TwentyThreeProductions.Controller.Customer;
 
-import TwentyThreeProductions.Domain.Car;
 import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Model.Database.DAO.CarDAO;
+import TwentyThreeProductions.Domain.Vehicle;
+import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
+import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
+import TwentyThreeProductions.Model.HelperClasses.CustomerHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
@@ -24,10 +26,11 @@ public class AddNewCustomerController {
 
     private SceneSwitch sceneSwitch;
     private Customer customer;
-    private CarDAO carDAO;
+    private VehicleDAO vehicleDAO;
     private CustomerDAO customerDAO;
-    private ArrayList<Car> cars;
-    private HashMap<String,Car> carHashMap;
+    private DiscountDAO discountDAO;
+    private ArrayList<Vehicle> vehicles;
+    private HashMap<String,Vehicle> vehicleHashMap;
 
     @FXML
     private StackPane AddNewCustomerStackPane;
@@ -90,13 +93,22 @@ public class AddNewCustomerController {
     private JFXTextField lastNameField;
 
     @FXML
-    private JFXTextField addressOneField;
+    private JFXTextField houseNameField;
+
+    @FXML
+    private JFXTextField streetNameField;
+
+    @FXML
+    private JFXTextField buildingNameField;
 
     @FXML
     private JFXTextField postcodeField;
 
     @FXML
     private ToggleGroup Type;
+
+    @FXML
+    private JFXButton configureBtn;
 
     @FXML
     private JFXTextField cityField;
@@ -127,6 +139,25 @@ public class AddNewCustomerController {
 
 
     @FXML
+    void accountHolderRadioSelected(ActionEvent event) {
+        configureBtn.setDisable(false);
+        configureBtn.setDisableVisualFocus(false);
+    }
+
+    @FXML
+    void casualCustomerRadioSelected(ActionEvent event) {
+        configureBtn.setDisable(true);
+        configureBtn.setDisableVisualFocus(true);
+    }
+
+    @FXML
+    void configureBtnClicked(ActionEvent event) throws IOException {
+        customerDAO = new CustomerDAO();
+        CustomerHelper.getInstance().setCurrentCustomerID(customerDAO.getCount() + 1);
+        sceneSwitch.activateScene(NavigationModel.CONFIGURE_DISCOUNT_ID, backBtn.getScene());
+    }
+
+    @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
     }
@@ -137,12 +168,16 @@ public class AddNewCustomerController {
         String customerRowCount;
         customerDAO = new CustomerDAO();
         customer = new Customer();
-        carDAO = new CarDAO();
+        vehicleDAO = new VehicleDAO();
+        discountDAO = new DiscountDAO();
         customer.setFirstName(firstNameField.getText());
         customer.setLastName(lastNameField.getText());
-        customer.setCustomerAddress(addressOneField.getText());
+        customer.setCustomerHouseName(houseNameField.getText());
+        customer.setCustomerBuildingName(buildingNameField.getText());
+        customer.setCustomerStreetName(streetNameField.getText());
         customer.setCustomerPostcode(postcodeField.getText());
         customer.setCustomerPhone(phoneNoField.getText());
+        customer.setCustomerCity(cityField.getText());
         customer.setCustomerEmail(emailField.getText());
         customer.setCustomerType(determineType());
         customer.setLatePayment(latePaymentCheckbox.isSelected());
@@ -150,10 +185,13 @@ public class AddNewCustomerController {
         customerRowCount = Integer.toString(customerDAO.getCount());
         System.out.println(customerRowCount);
         for (int j = 0; j < selectedCarList.getItems().size(); j++) {
-            String regID = carHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
+            String regID = vehicleHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
             System.out.println("Reg ID : " + regID);
-            carDAO.updateCustomer(customerRowCount, regID);
-            System.out.println(cars.get(j).getRegistrationID());
+            vehicleDAO.updateCustomer(customerRowCount, regID);
+            System.out.println(vehicles.get(j).getRegistrationID());
+        }
+        if (accountHolderRadio.isSelected()) {
+            discountDAO.save(CustomerHelper.getInstance().getDiscount());
         }
         SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Success!", "Added customer to the db");
 
@@ -176,20 +214,23 @@ public class AddNewCustomerController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(AddNewCustomerStackPane, NavigationModel.ADD_NEW_CUSTOMER_ID);
-        carHashMap = new HashMap<>();
+        vehicleHashMap = new HashMap<>();
         loadCars();
     }
 
     public void loadCars() {
-        carDAO = new CarDAO();
-        cars = carDAO.getAvailableCars();
-        for (int i = 0; i < cars.size(); i++) {
-            Car tmpCar = cars.get(i);
-            Label tmpLabel = new Label(tmpCar.getModel());
-            availableCarsCombi.getItems().add(tmpLabel);
-            carHashMap.put(tmpLabel.getText(), tmpCar);
-            System.out.println(" Car Hash Map Size : " + carHashMap.size());
-        }
+        Platform.runLater(() -> {
+            vehicleDAO = new VehicleDAO();
+             vehicles = vehicleDAO.getAvailableVehicles();
+            for (int i = 0; i < vehicles.size(); i++) {
+                Vehicle tmpVehicle = vehicles.get(i);
+                Label tmpLabel = new Label(tmpVehicle.getName());
+                availableCarsCombi.getItems().add(tmpLabel);
+                vehicleHashMap.put(tmpLabel.getText(), tmpVehicle);
+                System.out.println(" Car Hash Map Size : " + vehicleHashMap.size());
+            }
+        });
+
 
     }
 

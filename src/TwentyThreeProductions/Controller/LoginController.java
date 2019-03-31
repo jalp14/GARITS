@@ -49,8 +49,8 @@ public class LoginController {
     private JFXButton settingsBtn;
 
     @FXML
-    void settingsBtnClicked(ActionEvent event) {
-
+    void settingsBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.SETTINGS_ID, loginButton.getScene());
     }
 
     @FXML

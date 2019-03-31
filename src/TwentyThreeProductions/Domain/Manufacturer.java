@@ -8,7 +8,7 @@ public class Manufacturer {
     private String companyID;
     private int phoneNumber;
     private int faxNumber;
-    private List<Car> cars;
+    private List<Vehicle> vehicles;
     private List<Part> parts;
 
     public Manufacturer(){}

@@ -10,19 +10,22 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String customerType;
-    private String customerAddress;
+    private String customerHouseName;
+    private String customerStreetName;
+    private String customerBuildingName;
     private String customerPostcode;
     private String customerPhone;
     private String customerEmail;
     private boolean latePayment;
+    private String customerCity;
     private Date currentDate;
-    private ArrayList<Car> cars;
+    private ArrayList<Vehicle> vehicles;
     private ArrayList<Invoice> invoices;
     private ArrayList<Job> jobs;
     private ArrayList<Payment> payments;
 
     public Customer(){}
-    // missing customerID and car from the constructor
+    // missing customerID and Vechicle from the constructor
     public Customer(String customerID) {
         this.customerID = customerID;
     }
@@ -33,6 +36,14 @@ public class Customer {
 
     public void setCustomerID(String customerID) {
         this.customerID = customerID;
+    }
+
+    public String getCustomerCity() {
+        return customerCity;
+    }
+
+    public void setCustomerCity(String customerCity) {
+        this.customerCity = customerCity;
     }
 
     public String getFirstName() {
@@ -97,12 +108,28 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public String getCustomerAddress() {
-        return customerAddress;
+    public String getCustomerHouseName() {
+        return customerHouseName;
     }
 
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
+    public void setCustomerHouseName(String customerHouseName) {
+        this.customerHouseName = customerHouseName;
+    }
+
+    public String getCustomerStreetName() {
+        return customerStreetName;
+    }
+
+    public void setCustomerStreetName(String customerStreetName) {
+        this.customerStreetName = customerStreetName;
+    }
+
+    public String getCustomerBuildingName() {
+        return customerBuildingName;
+    }
+
+    public void setCustomerBuildingName(String customerBuildingName) {
+        this.customerBuildingName = customerBuildingName;
     }
 
     public String getCustomerPhone() {
@@ -121,12 +148,12 @@ public class Customer {
         this.customerEmail = customerEmail;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setCars(ArrayList<Car> cars) {
-        this.cars = cars;
+    public void setVehicles(ArrayList<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public List<Invoice> getInvoices() {

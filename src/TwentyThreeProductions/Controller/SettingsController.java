@@ -1,4 +1,5 @@
-package TwentyThreeProductions.Controller.Database;
+package TwentyThreeProductions.Controller;
+
 
 import TwentyThreeProductions.Domain.Backup;
 import TwentyThreeProductions.Model.DBLogic;
@@ -7,63 +8,63 @@ import TwentyThreeProductions.Model.Database.DBServer;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
-import javax.naming.Name;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DbRestoreController {
+public class SettingsController {
 
     private DBLogic dbController;
-    private SceneSwitch sceneSwitch;
     private String selectedDBName;
     private ArrayList<Backup> backups;
     private Backup backup;
     private HashMap<String, Backup> backupHashMap;
 
-    @FXML
-    private StackPane restoreDBStackPane;
+    private SceneSwitch sceneSwitch;
 
     @FXML
-    private Text usernameLbl;
+    private StackPane settingsStackPane;
 
     @FXML
-    private Text usertypeLbl;
-
-    @FXML
-    private Label welcomeMessage;
-
-    @FXML
-    private JFXButton backBtn;
+    private Pane mainPane;
 
     @FXML
     private JFXButton restoreBtn;
 
     @FXML
-    private JFXListView<Label> backupList;
+    private JFXButton backBtn;
 
     @FXML
-    void backBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.switchScene(NavigationModel.DB_MANAGEMENT_ID);
+    private JFXComboBox<Label> restoreList;
+
+    @FXML
+    private JFXComboBox<Label> themeList;
+
+    @FXML
+    private JFXButton changeThemeBtn;
+
+    @FXML
+    void backBtnClicked(ActionEvent event) {
+        sceneSwitch.switchScene(NavigationModel.LOGIN_ID);
+    }
+
+    @FXML
+    void changeThemeBtnClicked(ActionEvent event) {
+
     }
 
     @FXML
     void restoreBtnClicked(ActionEvent event) {
         System.out.println("Restore button clicked");
         try {
-            Backup backup = backupHashMap.get(backupList.getSelectionModel().getSelectedItem().getText());
+            Backup backup = backupHashMap.get(restoreList.getSelectionModel().getSelectedItem().getText());
             Process proc = Runtime.getRuntime().exec(new String[]{"./restore.sh", backup.getFileLocation()});
             System.out.println("Restarting the sql server");
             DBServer.getInstance().restartServer();
@@ -73,16 +74,13 @@ public class DbRestoreController {
         }
     }
 
-
-    public void initialize() throws IOException {
-        System.out.println("New DB Controller");
-        System.out.println("System Command Generate DB Element");
+    public void initialize() {
+        sceneSwitch = SceneSwitch.getInstance();
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(restoreDBStackPane, NavigationModel.DB_RESTORE_ID);
+        sceneSwitch.addScene(settingsStackPane, NavigationModel.SETTINGS_ID);
         backups = new ArrayList<>();
         backupHashMap = new HashMap<>();
-       // addToList();
         loadBackups();
     }
 
@@ -93,7 +91,9 @@ public class DbRestoreController {
             backup = backups.get(i);
             Label label = new Label(backup.getFileLocation());
             backupHashMap.put(label.getText(), backup);
-            backupList.getItems().add(label);
+            restoreList.getItems().add(label);
         }
     }
+
 }
+
