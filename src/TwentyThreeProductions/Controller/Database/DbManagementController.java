@@ -57,6 +57,15 @@ public class DbManagementController {
     private JFXButton restoreBackupBtn;
 
     @FXML
+    private JFXButton backupSettings;
+
+
+    @FXML
+    void backupSettingsClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.AUTOMATIC_BACKUP_SETTINGS_ID, backBtn.getScene());
+    }
+
+    @FXML
     void backBtnClicked(ActionEvent event) throws IOException {
         sceneSwitch.switchScene(NavigationModel.MAIN_ADMIN_ID);
     }

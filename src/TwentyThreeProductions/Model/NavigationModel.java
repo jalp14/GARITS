@@ -24,6 +24,7 @@ public class NavigationModel {
     // Database Management
     public static String DB_MANAGEMENT_URL = "src/TwentyThreeProductions/View/Database/DbManagement.fxml";
     public static String DB_RESTORE_URL = "src/TwentyThreeProductions/View/Database/DbRestore.fxml";
+    public static String DB_BACKUP_SETTINGS_URL = "src/TwentyThreeProductions/View/Database/AutomaticBackupSettings.fxml";
     // Customers
     public static String ADD_CUSTOMER_TO_CAR_URL = "src/TwentyThreeProductions/View/Customers/AddCarToCustomer.fxml";
     public static String ADD_NEW_CUSTOMER_URL = "src/TwentyThreeProductions/View/Customers/AddNewCustomer.fxml";
@@ -98,6 +99,7 @@ public class NavigationModel {
     public static String NOTIFICATIONS_MAIN_ID = "NotificationMain";
     public static String EDIT_DISCOUNT_ID = "EditDiscount";
     public static String SETTINGS_ID = "Settings";
+    public static String AUTOMATIC_BACKUP_SETTINGS_ID = "AutoBackupSettings";
 
 
     public enum user_type {
@@ -190,6 +192,8 @@ public class NavigationModel {
             return tmpURL = new File(EDIT_DISCOUNT_URL).toURI().toURL();
         } else if (name.equals(SETTINGS_ID)) {
             return  tmpURL = new File(SETTINGS_URL).toURI().toURL();
+        } else if (name.equals(AUTOMATIC_BACKUP_SETTINGS_ID)) {
+            return tmpURL = new File(DB_BACKUP_SETTINGS_URL).toURI().toURL();
         }
         else {
             System.out.println("User type not found");

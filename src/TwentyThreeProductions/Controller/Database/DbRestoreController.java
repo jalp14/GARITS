@@ -62,7 +62,6 @@ public class DbRestoreController {
     @FXML
     void restoreBtnClicked(ActionEvent event) {
         System.out.println("Restore button clicked");
-
         try {
             Backup backup = backupHashMap.get(backupList.getSelectionModel().getSelectedItem().getText());
             Process proc = Runtime.getRuntime().exec(new String[]{"./restore.sh", backup.getFileLocation()});
