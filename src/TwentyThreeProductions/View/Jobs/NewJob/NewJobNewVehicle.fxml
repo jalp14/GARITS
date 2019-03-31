@@ -78,7 +78,7 @@
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="vehicleDateHeading" layoutX="40.0" layoutY="467.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date" promptText="yyyy-mm-dd">
+            <Label fx:id="vehicleDateHeading" layoutX="40.0" layoutY="467.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
@@ -93,7 +93,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="vehicleDateField" layoutX="193.0" layoutY="461.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="vehicleDateField" layoutX="193.0" layoutY="461.0" prefHeight="35.0" prefWidth="309.0" promptText="yyyy-mm-dd">
                <font>
                   <Font size="18.0" />
                </font>

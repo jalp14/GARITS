@@ -108,7 +108,7 @@ public class VehicleDAO implements IVehicle {
         String[] args = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString()};
         connection = dbConnectivity.connection(connection);
         String saveQuery = "INSERT INTO GARAGE.VEHICLE (CUSTOMERID, NAME, COLOUR, REGNO, VEHICLEDATE)\n" +
-                "VALUES (?, ?, ?,? , ?)";
+                "VALUES (?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }

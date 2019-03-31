@@ -1,13 +1,10 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
-import TwentyThreeProductions.Domain.Vehicle;
-import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Domain.Job;
-import TwentyThreeProductions.Domain.Mechanic;
+import TwentyThreeProductions.Domain.*;
 import TwentyThreeProductions.Model.CustomerReference;
+import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
-import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
@@ -74,7 +71,7 @@ public class NewJobExistingVehicleController {
             Job job = new Job();
             VehicleDAO vehicleDAO = new VehicleDAO();
             JobDAO jobDAO = new JobDAO();
-            MechanicDAO mechanicDAO = new MechanicDAO();
+            UserDAO userDAO = new UserDAO();
             int jobID = 1;
             if(!(jobDAO.getAll().isEmpty())) {
                 for (Job j : jobDAO.getAll()) {
@@ -85,11 +82,11 @@ public class NewJobExistingVehicleController {
             boolean isMechanicTableEmpty = false;
             if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
                 job.setUsername(usernameLbl.getText().substring(8));
-            } else if (mechanicDAO.getAll().isEmpty()) {
+            } else if (userDAO.getMechanics().isEmpty()) {
                 isMechanicTableEmpty = true;
             } else {
-                for (Mechanic m : mechanicDAO.getAll()) {
-                    job.setUsername(m.getUsername());
+                for (User u : userDAO.getMechanics()) {
+                    job.setUsername(u.getUsername());
                     break;
                 }
             }
@@ -128,7 +125,7 @@ public class NewJobExistingVehicleController {
         VehicleDAO vehicleDAO = new VehicleDAO();
         Customer customer = customerReference.getCustomer();
         for(Vehicle v: vehicleDAO.getExistingVehicles(customer.getCustomerID())) {
-            Label vehicleLabel = new Label("Registration ID: " + v.getRegistrationID() + " / Name: " + v.getName() + " / Reg No: " + v.getRegistrationNumber());
+            Label vehicleLabel = new Label("Registration ID: " + v.getRegistrationID() + " / Name: " + v.getName() + " / Reg No: " + v.getRegNo());
             vehicleHashMap.put(vehicleLabel.getText(), v);
             customerVehicleList.getItems().add(vehicleLabel);
         }

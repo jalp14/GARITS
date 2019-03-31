@@ -2,10 +2,7 @@ package TwentyThreeProductions.Controller.Jobs.NewJob;
 
 import TwentyThreeProductions.Domain.*;
 import TwentyThreeProductions.Model.CustomerReference;
-import TwentyThreeProductions.Model.Database.DAO.JobDAO;
-import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
-import TwentyThreeProductions.Model.Database.DAO.PartJobDAO;
-import TwentyThreeProductions.Model.Database.DAO.PartDAO;
+import TwentyThreeProductions.Model.Database.DAO.*;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
@@ -112,7 +109,7 @@ public class PartOnlySelectController {
             Job job = new Job();
             PartDAO partDAO = new PartDAO();
             JobDAO jobDAO = new JobDAO();
-            MechanicDAO mechanicDAO = new MechanicDAO();
+            UserDAO userDAO = new UserDAO();
             PartJobDAO partJobDAO = new PartJobDAO();
             int jobID = 1;
             if(!(jobDAO.getAll().isEmpty())) {
@@ -124,11 +121,11 @@ public class PartOnlySelectController {
             boolean isMechanicTableEmpty = false;
             if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
                 job.setUsername(usernameLbl.getText().substring(8));
-            } else if (mechanicDAO.getAll().isEmpty()) {
+            } else if (userDAO.getMechanics().isEmpty()) {
                 isMechanicTableEmpty = true;
             } else {
-                for (Mechanic m : mechanicDAO.getAll()) {
-                    job.setUsername(m.getUsername());
+                for (User u : userDAO.getMechanics()) {
+                    job.setUsername(u.getUsername());
                     break;
                 }
             }

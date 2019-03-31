@@ -2,13 +2,11 @@ package TwentyThreeProductions.Controller.Jobs.NewJob;
 
 import TwentyThreeProductions.Domain.Vehicle;
 import TwentyThreeProductions.Domain.Job;
-import TwentyThreeProductions.Domain.Manufacturer;
-import TwentyThreeProductions.Domain.Mechanic;
+import TwentyThreeProductions.Domain.User;
 import TwentyThreeProductions.Model.CustomerReference;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
-import TwentyThreeProductions.Model.Database.DAO.ManufacturerDAO;
-import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
+import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
@@ -85,7 +83,7 @@ public class NewJobNewVehicleController {
             VehicleDAO vehicleDAO = new VehicleDAO();
             Job job = new Job();
             JobDAO jobDAO = new JobDAO();
-            MechanicDAO mechanicDAO = new MechanicDAO();
+            UserDAO userDAO = new UserDAO();
             boolean doesRegistrationIDExist = false;
             for (Vehicle c : vehicleDAO.getAll()) {
                 if (registrationField.getText().equals(vehicle.getRegistrationID())) {
@@ -100,10 +98,13 @@ public class NewJobNewVehicleController {
                 try {
                     vehicle.setName(nameField.getText());
                     vehicle.setColour(colourField.getText());
-                    vehicle.setRegistrationNumber(registrationField.getText());
+                    vehicle.setRegNo(registrationField.getText());
                     vehicle.setVehicleDate(Date.valueOf(vehicleDateField.getText()));
-                    vehicle.setCustomerID(Integer.parseInt(customerReference.getCustomer().getCustomerID()));
+                    vehicle.setCustomerID(customerReference.getCustomer().getCustomerID());
                     vehicleDAO.save(vehicle);
+                    for(Vehicle v: vehicleDAO.getAll()) {
+                        vehicle.setRegistrationID(v.getRegistrationID());
+                    }
                     int jobID = 1;
                     if(!(jobDAO.getAll().isEmpty())) {
                         for (Job j : jobDAO.getAll()) {
@@ -114,11 +115,11 @@ public class NewJobNewVehicleController {
                     boolean isMechanicTableEmpty = false;
                     if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
                         job.setUsername(usernameLbl.getText().substring(8));
-                    } else if (mechanicDAO.getAll().isEmpty()) {
+                    } else if (userDAO.getMechanics().isEmpty()) {
                         isMechanicTableEmpty = true;
                     } else {
-                        for (Mechanic m : mechanicDAO.getAll()) {
-                            job.setUsername(m.getUsername());
+                        for (User u : userDAO.getMechanics()) {
+                            job.setUsername(u.getUsername());
                             break;
                         }
                     }
