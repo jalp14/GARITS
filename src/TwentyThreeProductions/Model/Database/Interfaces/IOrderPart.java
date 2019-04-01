@@ -1,7 +1,5 @@
 package TwentyThreeProductions.Model.Database.Interfaces;
 
-import TwentyThreeProductions.Domain.Car;
-import TwentyThreeProductions.Domain.Order;
 import TwentyThreeProductions.Domain.OrderPart;
 
 import java.util.ArrayList;

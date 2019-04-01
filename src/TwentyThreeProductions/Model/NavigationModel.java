@@ -42,9 +42,13 @@ public class NavigationModel {
     public static String EDIT_MONITOR_CHOOSE_URL = "src/TwentyThreeProductions/View/Jobs/EditMonitor/EditMonitorChooseJob.fxml";
     public static String EDIT_MONITOR_JOB_URL = "src/TwentyThreeProductions/View/Jobs/EditMonitor/EditMonitorJob.fxml";
     // Jobs - NewJob
+    public static String NEW_CUSTOMER_CONFIGURE_DISCOUNT_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewCustomerConfigureDiscount.fxml";
     public static String NEW_JOB_CAR_MENU_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobCarMenu.fxml";
-    public static String NEW_JOB_EXISTING_CAR_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobExistingCar.fxml";
+    public static String NEW_JOB_EXISTING_CUSTOMER_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobExistingCustomer.fxml";
+    public static String NEW_JOB_EXISTING_VEHICLE_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobExistingVehicle.fxml";
     public static String NEW_JOB_MENU_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobMenu.fxml";
+    public static String NEW_JOB_NEW_CUSTOMER_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobNewCustomer.fxml";
+    public static String NEW_JOB_NEW_VEHICLE_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/NewJobNewVehicle.fxml";
     public static String PART_ONLY_SELECT_URL = "src/TwentyThreeProductions/View/Jobs/NewJob/PartOnlySelect.fxml";
     // Parts
     public static String ADD_NEW_PART_URL = "src/TwentyThreeProductions/View/Parts/AddNewPart.fxml";
@@ -87,8 +91,12 @@ public class NavigationModel {
     public static String EDIT_MONITOR_CHOOSE_ID = "EditMonitorChoose";
     public static String EDIT_MONITOR_JOB_ID = "EditMonitorJob";
     public static String NEW_JOB_CAR_MENU_ID = "NewJobCarMenu";
-    public static String NEW_JOB_EXISTING_CAR_ID = "NewJobExisting";
+    public static String NEW_CUSTOMER_CONFIGURE_DISCOUNT_ID = "NewCustomerConfigureDiscount";
+    public static String NEW_JOB_EXISTING_CUSTOMER_ID = "NewJobExistingCustomer";
+    public static String NEW_JOB_EXISTING_VEHICLE_ID = "NewJobExistingVehicle";
     public static String NEW_JOB_MENU_ID = "NewJobMenu";
+    public static String NEW_JOB_NEW_CUSTOMER_ID = "NewJobNewCustomer";
+    public static String NEW_JOB_NEW_VEHICLE_ID = "NewJobNewVehicle";
     public static String PART_ONLY_SELECT_ID = "PartOnlySelect";
     public static String ADD_NEW_PART_ID = "AddNewPart";
     public static String PARTS_MAIN_ID = "PartsMain";
@@ -164,12 +172,20 @@ public class NavigationModel {
             return tmpURL = new File(EDIT_MONITOR_CHOOSE_URL).toURI().toURL();
         } else if (name.equals(EDIT_MONITOR_JOB_ID)) {
             return tmpURL = new File(EDIT_MONITOR_JOB_URL).toURI().toURL();
+        } else if(name.equals(NEW_CUSTOMER_CONFIGURE_DISCOUNT_ID)) {
+            return tmpURL = new File(NEW_CUSTOMER_CONFIGURE_DISCOUNT_URL).toURI().toURL();
         } else if (name.equals(NEW_JOB_CAR_MENU_ID)) {
             return tmpURL = new File(NEW_JOB_CAR_MENU_URL).toURI().toURL();
-        } else if (name.equals(NEW_JOB_EXISTING_CAR_ID)) {
-            return tmpURL = new File(NEW_JOB_EXISTING_CAR_URL).toURI().toURL();
+        } else if (name.equals(NEW_JOB_EXISTING_CUSTOMER_ID)) {
+            return tmpURL = new File(NEW_JOB_EXISTING_CUSTOMER_URL).toURI().toURL();
+        } else if (name.equals(NEW_JOB_EXISTING_VEHICLE_ID)) {
+            return tmpURL = new File(NEW_JOB_EXISTING_VEHICLE_URL).toURI().toURL();
         } else if (name.equals(NEW_JOB_MENU_ID)) {
             return tmpURL = new File(NEW_JOB_MENU_URL).toURI().toURL();
+        } else if (name.equals(NEW_JOB_NEW_CUSTOMER_ID)) {
+            return tmpURL = new File(NEW_JOB_NEW_CUSTOMER_URL).toURI().toURL();
+        } else if (name.equals(NEW_JOB_NEW_VEHICLE_ID)) {
+            return tmpURL = new File(NEW_JOB_NEW_VEHICLE_URL).toURI().toURL();
         } else if (name.equals(PART_ONLY_SELECT_ID)) {
             return tmpURL = new File(PART_ONLY_SELECT_URL).toURI().toURL();
         } else if (name.equals(JOBS_MAIN_ID)) {
