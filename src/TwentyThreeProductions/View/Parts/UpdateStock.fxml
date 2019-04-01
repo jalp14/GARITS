@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="updateStockStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Parts.UpdateStockController">
+<StackPane fx:id="updateStockStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Parts.UpdateStockController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -55,7 +55,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="959.0" layoutY="665.0" onAction="#removePartBtnClicked" prefHeight="48.0" prefWidth="205.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save new stock" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="959.0" layoutY="665.0" onAction="#saveBtnClicked" prefHeight="48.0" prefWidth="205.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save new stock" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font name="Avenir Next Bold" size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="reduceStockBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="354.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="-" textFill="WHITE">
+            <JFXButton fx:id="reduceStockBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="234.0" layoutY="354.0" onAction="#reduceStockBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="-" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXButton fx:id="increaseStockBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="156.0" layoutY="354.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="+" textFill="WHITE">
+            <JFXButton fx:id="increaseStockBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="357.0" layoutY="354.0" onAction="#increaseStockBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="+" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -84,7 +84,34 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXTextField fx:id="stockLevelField" layoutX="97.0" layoutY="362.0" prefHeight="27.0" prefWidth="52.0" />
+            <JFXTextField fx:id="stockLevelField" layoutX="298.0" layoutY="362.0" prefHeight="27.0" prefWidth="52.0" />
+            <JFXButton fx:id="reduceThresholdBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="234.0" layoutY="426.0" onAction="#reduceThresholdBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="-" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXButton fx:id="increaseThresholdBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="357.0" layoutY="426.0" onAction="#increaseThresholdBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="+" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXTextField fx:id="thresholdLevelField" layoutX="298.0" layoutY="434.0" prefHeight="27.0" prefWidth="52.0" />
+            <Label fx:id="stockLevelLbl" layoutX="33.0" layoutY="358.0" prefHeight="35.0" prefWidth="130.0" text="Stock Level">
+               <font>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="thresholdLevelLbl" layoutX="33.0" layoutY="430.0" prefHeight="35.0" prefWidth="174.0" text="Threshold Level">
+               <font>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

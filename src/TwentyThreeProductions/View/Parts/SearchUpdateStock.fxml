@@ -56,7 +56,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="updateStockBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="924.0" layoutY="665.0" onAction="#removePartBtnClicked" prefHeight="48.0" prefWidth="240.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Update part stock" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="updateStockBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="924.0" layoutY="665.0" onAction="#updateStockBtnClicked" prefHeight="48.0" prefWidth="240.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Update part stock" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>

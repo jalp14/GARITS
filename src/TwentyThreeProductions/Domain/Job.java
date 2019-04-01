@@ -16,6 +16,7 @@ public class Job {
     private String status;
     private String paidFor;
     private Time duration;
+    private List<PartJob> partJobs;
     private List<JobTask> jobTasks;
 
     public Job(){}
@@ -98,6 +99,14 @@ public class Job {
 
     public void setDuration(Time duration) {
         this.duration = duration;
+    }
+
+    public List<PartJob> getPartJobs() {
+        return partJobs;
+    }
+
+    public void setPartJobs(List<PartJob> partJobs) {
+        this.partJobs = partJobs;
     }
 
     public List<JobTask> getJobTasks() {

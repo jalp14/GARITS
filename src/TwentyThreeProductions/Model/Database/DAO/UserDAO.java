@@ -49,6 +49,33 @@ public class UserDAO implements IUser {
     }
 
     @Override
+    public ArrayList<User> getMechanics() {
+        Statement statement;
+        String query = "SELECT * FROM GARAGE.\"User\" WHERE ROLE='MECHANIC' OR ROLE='FOREPERSON'";
+        ResultSet result;
+        connection = dbConnectivity.connection(connection);
+        try {
+            statement = connection.createStatement();
+            result = statement.executeQuery(query);
+            while (result.next()) {
+                User user = new User();
+                user.setUsername(result.getString("USERNAME"));
+                user.setPassword(result.getString("PASSWORD"));
+                user.setFirstName(result.getString("FIRSTNAME"));
+                user.setLastName(result.getString("LASTNAME"));
+                user.setUserRole(result.getString("ROLE"));
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnectivity.closeConnection(connection);
+        }
+        return users;
+    }
+
+    @Override
     public void save(User user) {
         String[] args = {user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getUserRole()};
         connection = dbConnectivity.connection(connection);

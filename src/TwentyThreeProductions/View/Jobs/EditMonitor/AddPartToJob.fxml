@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="addPartToJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.AddPartToJobController">
+<StackPane fx:id="addPartToJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.AddPartToJobController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -83,6 +84,17 @@
                </opaqueInsets>
             </JFXButton>
             <JFXListView fx:id="partList" layoutX="43.0" layoutY="394.0" prefHeight="309.0" prefWidth="495.0" />
+            <JFXTextField fx:id="stockUsedField" layoutX="561.0" layoutY="518.0" prefHeight="25.0" prefWidth="78.0">
+               <font>
+                  <Font name="Avenir Next Bold" size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXMasonryPane />
+            <Label fx:id="stockUsedLabel" alignment="CENTER" layoutX="555.0" layoutY="491.0" prefHeight="21.0" prefWidth="91.0" text="Stock Used" textAlignment="CENTER">
+               <font>
+                  <Font name="Avenir Next Bold" size="17.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

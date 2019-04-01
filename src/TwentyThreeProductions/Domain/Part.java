@@ -1,7 +1,6 @@
 package TwentyThreeProductions.Domain;
 
 import java.util.List;
-import java.util.List;
 
 public class Part {
 
@@ -9,9 +8,12 @@ public class Part {
     private int manufacturerID;
     private String name;
     private String vehicleType;
-    private int year;
+    private String year;
     private float price;
     private int stockLevel;
+    private int thresholdLevel;
+    private String desc;
+    private List<PartJob> partJobs;
     private List<OrderPart> orderParts;
 
     public Part(){}
@@ -48,11 +50,11 @@ public class Part {
         this.vehicleType = vehicleType;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -70,6 +72,30 @@ public class Part {
 
     public void setStockLevel(int stockLevel) {
         this.stockLevel = stockLevel;
+    }
+
+    public int getThresholdLevel() {
+        return thresholdLevel;
+    }
+
+    public void setThresholdLevel(int thresholdLevel) {
+        this.thresholdLevel = thresholdLevel;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public List<PartJob> getPartJobs() {
+        return partJobs;
+    }
+
+    public void setPartJobs(List<PartJob> partJobs) {
+        this.partJobs = partJobs;
     }
 
     public List<OrderPart> getOrderParts() {
