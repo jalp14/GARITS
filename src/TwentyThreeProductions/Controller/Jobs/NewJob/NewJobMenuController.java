@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -54,6 +55,8 @@ public class NewJobMenuController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(NewJobMenuStackPane, NavigationModel.NEW_JOB_MENU_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
 }

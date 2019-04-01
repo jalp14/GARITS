@@ -1,11 +1,8 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
 import TwentyThreeProductions.Domain.Customer;
-import TwentyThreeProductions.Model.CustomerReference;
+import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
-import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.SceneSwitch;
-import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -106,6 +103,8 @@ public class NewJobExistingCustomerController {
         sceneSwitch = SceneSwitch.getInstance();
         customerReference = CustomerReference.getInstance();
         sceneSwitch.addScene(newJobExistingCustomerStackPane, NavigationModel.NEW_JOB_EXISTING_CUSTOMER_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerHashMap = new HashMap<>();
         refreshList();
     }

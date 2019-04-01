@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Jobs;
 
+import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DBServer;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -38,7 +40,7 @@ public class JobsMainController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-        if(usertypeLbl.getText().equals("Mechanic")) {
+        if(usertypeLbl.getText().equals("MECHANIC")) {
             sceneSwitch.switchScene(NavigationModel.MAIN_MECHANIC_ID);
         }
         else {
@@ -59,6 +61,9 @@ public class JobsMainController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(JobsMainStackPane, NavigationModel.JOBS_MAIN_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
+
     }
 
 }

@@ -2,14 +2,11 @@ package TwentyThreeProductions.Controller.Jobs.NewJob;
 
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Vehicle;
-import TwentyThreeProductions.Model.CustomerReference;
+import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.HelperClasses.CustomerHelper;
-import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.SceneSwitch;
-import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -221,6 +218,8 @@ public class NewJobNewCustomerController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newJobNewCustomerStackPane, NavigationModel.NEW_JOB_NEW_CUSTOMER_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         vehicleHashMap = new HashMap<>();
         customerReference = CustomerReference.getInstance();
         loadCars();

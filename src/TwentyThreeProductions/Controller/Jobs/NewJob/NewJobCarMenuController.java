@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
 import TwentyThreeProductions.Model.CustomerReference;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -68,6 +69,8 @@ public class NewJobCarMenuController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newJobCarMenuStackPane, NavigationModel.NEW_JOB_CAR_MENU_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerReference = CustomerReference.getInstance();
         customerNameLbl.setText("Name: " + customerReference.getCustomer().getFirstName() + " " + customerReference.getCustomer().getLastName());
     }

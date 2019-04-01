@@ -112,6 +112,8 @@ public class NewCustomerConfigureDiscountController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newCustomerConfigureDiscountStackPane, NavigationModel.NEW_CUSTOMER_CONFIGURE_DISCOUNT_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         setupBands();
         domainDiscount = new Discount();
         helper = CustomerHelper.getInstance();

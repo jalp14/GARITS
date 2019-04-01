@@ -1,13 +1,10 @@
 package TwentyThreeProductions.Controller.Jobs.NewJob;
 
 import TwentyThreeProductions.Domain.*;
-import TwentyThreeProductions.Model.CustomerReference;
+import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
-import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.SceneSwitch;
-import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
@@ -80,7 +77,7 @@ public class NewJobExistingVehicleController {
             }
             job.setJobID(jobID);
             boolean isMechanicTableEmpty = false;
-            if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
+            if (usertypeLbl.getText().equals("MECHANIC") || usertypeLbl.getText().equals("FOREPERSON")) {
                 job.setUsername(usernameLbl.getText().substring(8));
             } else if (userDAO.getMechanics().isEmpty()) {
                 isMechanicTableEmpty = true;
@@ -116,6 +113,8 @@ public class NewJobExistingVehicleController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newJobExistingVehicleStackPane, NavigationModel.NEW_JOB_EXISTING_VEHICLE_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerReference = CustomerReference.getInstance();
         vehicleHashMap = new HashMap<>();
         refreshList();
