@@ -25,7 +25,7 @@ public class EditMonitorJobController {
 
     private JobReference jobReference;
 
-    private HashMap<String, Mechanic> mechanicHashMap;
+    private HashMap<String, User> mechanicHashMap;
 
     @FXML
     private StackPane editMonitorJobStackPane;
@@ -176,16 +176,16 @@ public class EditMonitorJobController {
     }
 
     public void refreshList() {
-        MechanicDAO mechanicDAO = new MechanicDAO();
+        UserDAO userDAO = new UserDAO();
         JobTaskDAO jobTaskDAO = new JobTaskDAO();
         PartJobDAO partJobDAO = new PartJobDAO();
         TaskDAO taskDAO = new TaskDAO();
         PartDAO partDAO = new PartDAO();
-        for(Mechanic m: mechanicDAO.getAll()) {
-            Label mechanicLabel = new Label("Username: " + m.getUsername());
-            mechanicHashMap.put(mechanicLabel.getText(), m);
+        for(User u: userDAO.getMechanics()) {
+            Label mechanicLabel = new Label("Username: " + u.getUsername());
+            mechanicHashMap.put(mechanicLabel.getText(), u);
             mechanicComboBox.getItems().add(mechanicLabel);
-            if(jobReference.getJob().getUsername().equals(m.getUsername())) {
+            if(jobReference.getJob().getUsername().equals(u.getUsername())) {
                 mechanicComboBox.getSelectionModel().select(mechanicLabel);
                 break;
             }
