@@ -129,6 +129,8 @@ public class EditDiscountController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         helper = CustomerHelper.getInstance();
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         setupBands();
         discountDAO = new DiscountDAO();
         if (CustomerHelper.getInstance().isCustomerCasual()) {

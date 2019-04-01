@@ -102,6 +102,8 @@ public class DbManagementController {
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(dbMngtStackPane, NavigationModel.DB_MANAGEMENT_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
 }

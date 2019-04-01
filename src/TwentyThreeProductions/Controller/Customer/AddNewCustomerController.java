@@ -2,6 +2,7 @@ package TwentyThreeProductions.Controller.Customer;
 
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Vehicle;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
@@ -160,6 +161,23 @@ public class AddNewCustomerController {
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
+        resetView();
+    }
+
+    public void resetView() {
+        cityField.setText("");
+        buildingNameField.setText("");
+        emailField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        houseNameField.setText("");
+        postcodeField.setText("");
+        streetNameField.setText("");
+        phoneNoField.setText("");
+        latePaymentCheckbox.setSelected(false);
+        casualCustomerRadio.setSelected(false);
+        accountHolderRadio.setSelected(false);
+        loadCars();
     }
 
 
@@ -214,24 +232,24 @@ public class AddNewCustomerController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(AddNewCustomerStackPane, NavigationModel.ADD_NEW_CUSTOMER_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         vehicleHashMap = new HashMap<>();
         loadCars();
     }
 
     public void loadCars() {
-        Platform.runLater(() -> {
-            vehicleDAO = new VehicleDAO();
-             vehicles = vehicleDAO.getAvailableVehicles();
-            for (int i = 0; i < vehicles.size(); i++) {
-                Vehicle tmpVehicle = vehicles.get(i);
-                Label tmpLabel = new Label(tmpVehicle.getName());
-                availableCarsCombi.getItems().add(tmpLabel);
-                vehicleHashMap.put(tmpLabel.getText(), tmpVehicle);
-                System.out.println(" Car Hash Map Size : " + vehicleHashMap.size());
-            }
-        });
-
-
+        availableCarsCombi.getItems().clear();
+        selectedCarList.getItems().clear();
+        vehicleDAO = new VehicleDAO();
+        vehicles = vehicleDAO.getAvailableVehicles();
+        for (int i = 0; i < vehicles.size(); i++) {
+            Vehicle tmpVehicle = vehicles.get(i);
+            Label tmpLabel = new Label(tmpVehicle.getName());
+            availableCarsCombi.getItems().add(tmpLabel);
+            vehicleHashMap.put(tmpLabel.getText(), tmpVehicle);
+            System.out.println(" Car Hash Map Size : " + vehicleHashMap.size());
+        }
     }
 
     public String determineType() {
