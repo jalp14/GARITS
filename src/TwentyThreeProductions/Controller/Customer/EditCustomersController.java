@@ -2,6 +2,7 @@ package TwentyThreeProductions.Controller.Customer;
 
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Vehicle;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.DiscountDAO;
 import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
@@ -208,8 +209,9 @@ public class EditCustomersController {
             selectedCarList.getItems().clear();
         }
 
-        loadExistingCars(customer.getCustomerID());
+        getCars(customer.getCustomerID());
         loadAvailableCars();
+        loadExistingCars();
 
     }
 
@@ -225,6 +227,25 @@ public class EditCustomersController {
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
+        resetView();
+    }
+
+
+    public void resetView() {
+        cityField.setText("");
+        buildingNameField.setText("");
+        emailField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        houseNameField.setText("");
+        postcodeField.setText("");
+        streetNameField.setText("");
+        phoneNoField.setText("");
+        latePaymentCheckbox.setSelected(false);
+        casualCustomerRadio.setSelected(false);
+        accountHolderRadio.setSelected(false);
+        loadExistingCars();
+        loadAvailableCars();
     }
 
     @FXML
@@ -292,6 +313,8 @@ public class EditCustomersController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(EditCustomerStackPane, NavigationModel.EDIT_CUSTOMER_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerMap = new HashMap<>();
         vehicleMap = new HashMap<>();
         tmpMap = new HashMap<>();
@@ -315,11 +338,19 @@ public class EditCustomersController {
 
     }
 
-    // Loads Existing Cars in the Selected Field
-    public void loadExistingCars(String customerID) {
+    public void getCars(String customerID) {
         vehicleDAO = new VehicleDAO();
+        // Existing Vehicles
         existingVehicles = new ArrayList<>();
         existingVehicles = vehicleDAO.getExistingVehicles(customerID);
+        // Available Vehicles
+        availableVehicles = new ArrayList<>();
+        availableVehicles = vehicleDAO.getAvailableVehicles();
+    }
+
+    // Loads Existing Cars in the Selected Field
+    public void loadExistingCars() {
+        selectedCarList.getItems().clear();
         for (int p = 0; p < existingVehicles.size(); p++) {
             Vehicle tmpVehicle = existingVehicles.get(p);
             Label tmpLabel = new Label(tmpVehicle.getName());
@@ -329,9 +360,7 @@ public class EditCustomersController {
     }
 
     public void loadAvailableCars() {
-        vehicleDAO = new VehicleDAO();
-        availableVehicles = new ArrayList<>();
-        availableVehicles = vehicleDAO.getAvailableVehicles();
+        availableCarsCombi.getItems().clear();
         for (int i = 0; i < availableVehicles.size(); i++) {
             Vehicle tmpVehicle = availableVehicles.get(i);
             Label tmpLabel = new Label(tmpVehicle.getName());

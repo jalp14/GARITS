@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.Users;
 
 import TwentyThreeProductions.Domain.User;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -124,6 +125,8 @@ public class EditUserController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(editUserStackPane, NavigationModel.EDIT_USER_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         injectAvailableUsers();
         setupRole();
     }
@@ -157,17 +160,16 @@ public class EditUserController {
             userDAO = new UserDAO();
             currentUsers = new ArrayList<>();
             currentUsers = userDAO.getAll();
-            for (int i = 0; i < currentUsers.size(); i++) {
-                User tmpUser = currentUsers.get(i);
-                currentUserCombi.getItems().add(new Label(tmpUser.getUsername()));
-            }
+        for (User tmpUser : currentUsers) {
+            currentUserCombi.getItems().add(new Label(tmpUser.getUsername()));
+        }
 
     }
 
     public void getSelectedUser() {
-        for (int i = 0; i < currentUsers.size(); i++) {
-            if (currentUsers.get(i).getUsername().equals(currentUserCombi.getSelectionModel().getSelectedItem().getText())) {
-                currentUser = currentUsers.get(i);
+        for (User currentUser1 : currentUsers) {
+            if (currentUser1.getUsername().equals(currentUserCombi.getSelectionModel().getSelectedItem().getText())) {
+                currentUser = currentUser1;
             }
         }
     }

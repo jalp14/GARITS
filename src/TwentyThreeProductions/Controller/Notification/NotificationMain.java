@@ -123,6 +123,8 @@ public class NotificationMain {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         notificationDAO = new NotificationDAO();
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         notificationMap = new HashMap<>();
         setupList();
     }

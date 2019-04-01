@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,21 +25,6 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
-            <Label fx:id="welcomeMessage" layoutX="173.0" layoutY="229.0" prefHeight="68.0" prefWidth="411.0" text="Select customer to remove">
-               <font>
-                  <Font name="Avenir Next Bold" size="30.0" />
-               </font>
-            </Label>
             <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
@@ -70,6 +54,16 @@
                </font>
             </JFXTextField>
             <JFXListView fx:id="customerList" layoutX="33.0" layoutY="384.0" prefHeight="270.0" prefWidth="552.0" style="-fx-border-radius: 10pt;" />
+            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1042.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="145.2734375">
+               <font>
+                  <Font name="Avenir Next Bold" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

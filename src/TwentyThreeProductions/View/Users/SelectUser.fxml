@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="selectUserStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Users.SelectUserController">
+<StackPane fx:id="selectUserStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Users.SelectUserController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -20,17 +20,7 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
-            <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="293.0" text="Select existing user">
+            <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="308.0" text="Select existing user">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
                </font>
@@ -67,6 +57,16 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
+            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1042.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="145.2734375">
+               <font>
+                  <Font name="Avenir Next Bold" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

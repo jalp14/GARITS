@@ -47,12 +47,19 @@ public class SceneSwitch{
         }
     }
 
+
+   
+=======
     public void activateSceneAlways(String name, Scene scene) throws IOException {
+
         this.scene = scene;
         currentRoot = FXMLLoader.load(NavigationModel.getURL(name));
         scene.setRoot(currentRoot);
     }
 
+
+
+=======
 
     public Node getScene(String name) {
         return sceneMap.get(name);

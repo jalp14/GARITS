@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.Customer;
 
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -62,6 +63,8 @@ public class CustomersMainController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(CustomersMainStackPane, NavigationModel.CUSTOMER_MAIN_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
 }

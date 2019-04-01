@@ -80,6 +80,8 @@ public class DbRestoreController {
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(restoreDBStackPane, NavigationModel.DB_RESTORE_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         backups = new ArrayList<>();
         backupHashMap = new HashMap<>();
        // addToList();
