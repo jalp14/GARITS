@@ -142,7 +142,7 @@ public class EditMonitorJobController {
     @FXML
     void mechanicComboBoxClicked(ActionEvent event) throws IOException {
         try {
-            Mechanic mechanic = mechanicHashMap.get(mechanicComboBox.getSelectionModel().getSelectedItem().getText());
+            User mechanic = mechanicHashMap.get(mechanicComboBox.getSelectionModel().getSelectedItem().getText());
             jobReference.getJob().setUsername(mechanic.getUsername());
         }
         catch(Exception e) {}
