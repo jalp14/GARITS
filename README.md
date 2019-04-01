@@ -56,7 +56,7 @@ Run -> Edit Configurations
 
 ``--module-path
 ${PATH_TO_FX}
---add-modules=javafx.controls,javafx.fxml
+--add-modules=javafx.controls,javafx.fxml,javafx.web
 --add-opens
 javafx.base/com.sun.javafx.runtime=ALL-UNNAMED
 --add-opens
@@ -68,7 +68,11 @@ javafx.base/com.sun.javafx.binding=ALL-UNNAMED
 --add-opens
 javafx.base/com.sun.javafx.event=ALL-UNNAMED
 --add-opens
-javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED ``
+javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED
+--add-exports=javafx.graphics/com.sun.javafx.util=ALL-UNNAMED
+--add-exports=javafx.base/com.sun.javafx.reflect=ALL-UNNAMED
+--add-exports=javafx.base/com.sun.javafx.beans=ALL-UNNAMED
+--add-exports=javafx.graphics/com.sun.glass.utils=ALL-UNNAMED``
 
 Click Apply
 
