@@ -54,7 +54,21 @@ Run -> Edit Configurations
 
 - Add this to your VM options
 
-`` --module-path ${PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml ``
+``--module-path
+${PATH_TO_FX}
+--add-modules=javafx.controls,javafx.fxml
+--add-opens
+javafx.base/com.sun.javafx.runtime=ALL-UNNAMED
+--add-opens
+javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED
+--add-opens
+javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED
+--add-opens
+javafx.base/com.sun.javafx.binding=ALL-UNNAMED
+--add-opens
+javafx.base/com.sun.javafx.event=ALL-UNNAMED
+--add-opens
+javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED ``
 
 Click Apply
 
