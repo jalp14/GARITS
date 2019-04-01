@@ -1,11 +1,8 @@
 package TwentyThreeProductions.Controller.Parts;
 
 import TwentyThreeProductions.Domain.Part;
+import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
-import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.PartReference;
-import TwentyThreeProductions.Model.SceneSwitch;
-import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -110,6 +107,8 @@ public class SearchUpdateStockController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(searchUpdateStockStackPane, NavigationModel.SEARCH_UPDATE_STOCK_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         partReference = PartReference.getInstance();
         partHashMap = new HashMap<>();
         refreshList();

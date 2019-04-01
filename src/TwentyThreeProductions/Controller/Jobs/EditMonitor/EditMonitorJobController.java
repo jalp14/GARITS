@@ -1,11 +1,8 @@
 package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 
 import TwentyThreeProductions.Domain.*;
+import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.*;
-import TwentyThreeProductions.Model.JobReference;
-import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.SceneSwitch;
-import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -170,6 +167,8 @@ public class EditMonitorJobController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(editMonitorJobStackPane, NavigationModel.EDIT_MONITOR_JOB_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         jobReference = JobReference.getInstance();
         mechanicHashMap = new HashMap<>();
         refreshList();

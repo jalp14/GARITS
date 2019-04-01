@@ -1,6 +1,7 @@
 package TwentyThreeProductions.Controller.Parts;
 
 import TwentyThreeProductions.Domain.Part;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -107,6 +108,8 @@ public class RemovePartController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(removePartStackPane, NavigationModel.REMOVE_PART_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         partHashMap = new HashMap<>();
         refreshList();
     }
