@@ -3,13 +3,10 @@ package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 import TwentyThreeProductions.Domain.Customer;
 import TwentyThreeProductions.Domain.Part;
 import TwentyThreeProductions.Domain.PartJob;
+import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
 import TwentyThreeProductions.Model.Database.DAO.PartJobDAO;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
-import TwentyThreeProductions.Model.JobReference;
-import TwentyThreeProductions.Model.NavigationModel;
-import TwentyThreeProductions.Model.SceneSwitch;
-import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -160,6 +157,8 @@ public class AddPartToJobController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(addPartToJobStackPane, NavigationModel.ADD_PART_TO_JOB_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         jobReference = jobReference.getInstance();
         partHashMap = new HashMap<>();
         refreshList();

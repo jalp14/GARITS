@@ -2,6 +2,7 @@ package TwentyThreeProductions.Controller.Parts;
 
 import TwentyThreeProductions.Domain.Part;
 import TwentyThreeProductions.Domain.Manufacturer;
+import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.ManufacturerDAO;
 import TwentyThreeProductions.Model.Database.DAO.PartDAO;
 import TwentyThreeProductions.Model.NavigationModel;
@@ -214,6 +215,8 @@ public class AddNewPartController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(addNewPartStackPane, NavigationModel.ADD_NEW_PART_ID);
+        usernameLbl.setText(DBLogic.getDBInstance().getUsername());
+        usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
     public void clearFields() {
