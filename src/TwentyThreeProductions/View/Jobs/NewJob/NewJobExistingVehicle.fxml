@@ -2,8 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="newJobExistingVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewJobExistingVehicleController">
+<StackPane fx:id="newJobExistingVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewJobExistingVehicleController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -64,6 +66,24 @@
                </opaqueInsets>
             </JFXButton>
             <JFXListView fx:id="customerVehicleList" layoutX="33.0" layoutY="317.0" prefHeight="270.0" prefWidth="408.0" />
+            <JFXRadioButton layoutX="546.0" layoutY="351.0" text="MoT">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="type" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="544.0" layoutY="408.0" text="Annual Service" toggleGroup="$type">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="545.0" layoutY="474.0" text="Repairs" toggleGroup="$type">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </JFXRadioButton>
          </children>
       </AnchorPane>
    </children>

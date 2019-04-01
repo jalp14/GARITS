@@ -19,7 +19,7 @@
 
 <StackPane fx:id="AddNewCustomerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.AddNewCustomerController">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+        <AnchorPane fx:id="customerMainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
             <children>
                 <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
                     <image>

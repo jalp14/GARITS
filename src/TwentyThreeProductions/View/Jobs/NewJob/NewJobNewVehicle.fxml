@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -63,46 +65,70 @@
                   <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="regHeading" layoutX="40.0" layoutY="345.0" prefHeight="32.0" prefWidth="146.0" text="Registration">
+            <Label fx:id="regHeading" layoutX="40.0" layoutY="421.0" prefHeight="32.0" prefWidth="146.0" text="Registration">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="193.0" layoutY="339.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="193.0" layoutY="415.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="nameHeading" layoutX="600.0" layoutY="345.0" prefHeight="32.0" prefWidth="146.0" text="Name">
+            <Label fx:id="nameHeading" layoutX="600.0" layoutY="421.0" prefHeight="32.0" prefWidth="146.0" text="Name">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="vehicleDateHeading" layoutX="40.0" layoutY="467.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date">
+            <Label fx:id="vehicleDateHeading" layoutX="40.0" layoutY="543.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="colourHeading" alignment="CENTER" layoutX="554.0" layoutY="471.0" prefHeight="32.0" prefWidth="146.0" text="Colour">
+            <Label fx:id="colourHeading" alignment="CENTER" layoutX="554.0" layoutY="547.0" prefHeight="32.0" prefWidth="146.0" text="Colour">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="nameField" layoutX="688.0" layoutY="342.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="nameField" layoutX="688.0" layoutY="418.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="vehicleDateField" layoutX="193.0" layoutY="461.0" prefHeight="35.0" prefWidth="309.0" promptText="yyyy-mm-dd">
+            <JFXTextField fx:id="vehicleDateField" layoutX="193.0" layoutY="537.0" prefHeight="35.0" prefWidth="309.0" promptText="yyyy-mm-dd">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="colourField" layoutX="688.0" layoutY="469.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="colourField" layoutX="688.0" layoutY="545.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
+            <JFXRadioButton layoutX="35.0" layoutY="343.0" text="Annual Service">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="type" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="384.0" layoutY="345.0" text="Repairs">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="type" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="617.0" layoutY="344.0" text="MoT">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="type" />
+               </toggleGroup>
+            </JFXRadioButton>
          </children>
       </AnchorPane>
    </children>

@@ -11,14 +11,23 @@ import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemAlert;
 import com.jfoenix.controls.*;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +41,7 @@ public class AddNewCustomerController {
     private DiscountDAO discountDAO;
     private ArrayList<Vehicle> vehicles;
     private HashMap<String,Vehicle> vehicleHashMap;
+    private RequiredFieldValidator fieldValidator;
 
     @FXML
     private StackPane AddNewCustomerStackPane;
@@ -116,6 +126,9 @@ public class AddNewCustomerController {
 
     @FXML
     private JFXTextField emailField;
+
+    @FXML
+    private AnchorPane customerMainAnchorPane;
 
     @FXML
     private JFXTextField phoneNoField;
@@ -232,10 +245,47 @@ public class AddNewCustomerController {
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(AddNewCustomerStackPane, NavigationModel.ADD_NEW_CUSTOMER_ID);
+        fieldValidator = new RequiredFieldValidator();
+
+        setupFieldValidators();
+
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         vehicleHashMap = new HashMap<>();
         loadCars();
+    }
+
+    public void setupFieldValidators() {
+        // Add Validators
+       // firstNameField.getValidators().add(fieldValidator);
+        fieldValidator.setMessage("Empty field");
+
+        // Add Image
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/TwentyThreeProductions/GARITSassests/error.png"));
+            ImageView view = new ImageView(errorIcon);
+            view.setFitHeight(16);
+            view.setFitWidth(16);
+            fieldValidator.setIcon(view);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        for (Node node : customerMainAnchorPane.getChildren()) {
+            if (node instanceof JFXTextField) {
+                node.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                        ((JFXTextField) node).getValidators().add(fieldValidator);
+                        if (!t1) {
+                            ((JFXTextField) node).validate();
+                        }
+                    }
+                });
+            }
+        }
+
+
     }
 
     public void loadCars() {

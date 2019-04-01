@@ -124,7 +124,6 @@ public class EditUserController {
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(editUserStackPane, NavigationModel.EDIT_USER_ID);
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         injectAvailableUsers();

@@ -58,7 +58,6 @@ public class SelectUserController {
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(selectUserStackPane, NavigationModel.SELECT_USER_ID);
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }

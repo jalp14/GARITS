@@ -99,7 +99,6 @@ public class AddNewUserController {
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(addNewUserStackPane, NavigationModel.ADD_NEW_USER_ID);
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         dbLogic = DBLogic.getDBInstance();

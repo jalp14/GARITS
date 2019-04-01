@@ -16,13 +16,22 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +50,7 @@ public class EditCustomersController {
     private HashMap<String, Vehicle> vehicleMap;
     private String currentCustomerID;
     private DiscountDAO discountDAO;
+    private RequiredFieldValidator fieldValidator;
 
     @FXML
     private StackPane EditCustomerStackPane;
@@ -98,6 +108,9 @@ public class EditCustomersController {
 
     @FXML
     private JFXTextField firstNameField;
+
+    @FXML
+    private AnchorPane editCustomerAnchorPane;
 
     @FXML
     private JFXTextField lastNameField;
@@ -310,9 +323,44 @@ public class EditCustomersController {
 
     }
 
+    public void setupFieldValidators() {
+        // Add Validators
+        // firstNameField.getValidators().add(fieldValidator);
+        fieldValidator = new RequiredFieldValidator();
+        fieldValidator.setMessage("Empty field");
+
+        // Add Image
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/TwentyThreeProductions/GARITSassests/error.png"));
+            ImageView view = new ImageView(errorIcon);
+            view.setFitHeight(16);
+            view.setFitWidth(16);
+            fieldValidator.setIcon(view);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        for (Node node : editCustomerAnchorPane.getChildren()) {
+            if (node instanceof JFXTextField) {
+                node.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                        ((JFXTextField) node).getValidators().add(fieldValidator);
+                        if (!t1) {
+                            ((JFXTextField) node).validate();
+                        }
+                    }
+                });
+            }
+        }
+
+
+    }
+
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(EditCustomerStackPane, NavigationModel.EDIT_CUSTOMER_ID);
+        setupFieldValidators();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerMap = new HashMap<>();
