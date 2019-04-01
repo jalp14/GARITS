@@ -61,10 +61,10 @@ public class NavigationModel {
     public static String EDIT_AUTO_REPORT_URL = "src/TwentyThreeProductions/View/Reports/EditAutoReports.fxml";
     public static String SELECT_REPORT_TO_VIEW_URL = "src/TwentyThreeProductions/View/Reports/SelectReportToView.fxml";
     public static String VIEW_REPORT_URL = "src/TwentyThreeProductions/View/Reports/ViewReport.fxml";
-    public static String NEW_AVE_TIME_PRICE_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewAveTimePrice.fxml";
-    public static String NEW_NO_VEHICLES_MONTHLY_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewNoVehiclesMonthly.fxml";
+    public static String NEW_AVE_TIME_PRICE_URL = "src/TwentyThreeProductions/View/Reports/NewReports/New_AveTimePrice.fxml";
+    public static String NEW_NO_VEHICLES_MONTHLY_URL = "src/TwentyThreeProductions/View/Reports/NewReports/New_NoVehiclesMonthly.fxml";
     public static String NEW_REPORT_MENU_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewReportMenu.fxml";
-    public static String NEW_STOCK_LEVEL_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewStockLevel.fxml";
+    public static String NEW_STOCK_LEVEL_URL = "src/TwentyThreeProductions/View/Reports/NewReports/New_StockLevel.fxml";
     // Notifications
     public static String NOTIFICATIONS_MAIN_URL = "src/TwentyThreeProductions/View/Notifications/Notification.fxml";
     // Settings

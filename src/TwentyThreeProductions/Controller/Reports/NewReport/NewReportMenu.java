@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class NewReportMenu {
 
     private SceneSwitch sceneSwitch;
@@ -38,8 +40,8 @@ public class NewReportMenu {
     private JFXButton stockLevelBtn;
 
     @FXML
-    void aveTimePriceBtnClicked(ActionEvent event) {
-
+    void aveTimePriceBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.NEW_AVE_TIME_PRICE_ID, backBtn.getScene());
     }
 
     @FXML
@@ -48,13 +50,13 @@ public class NewReportMenu {
     }
 
     @FXML
-    void noVehiclesMonthlyBtnClicked(ActionEvent event) {
-
+    void noVehiclesMonthlyBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.NEW_NO_VEHICLES_MONTHLY_ID, backBtn.getScene());
     }
 
     @FXML
-    void stockLevelBtnClicked(ActionEvent event) {
-
+    void stockLevelBtnClicked(ActionEvent event) throws IOException {
+        sceneSwitch.activateScene(NavigationModel.NEW_STOCK_LEVEL_ID, backBtn.getScene());
     }
 
     public void initialize() {

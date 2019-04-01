@@ -1,5 +1,6 @@
 package TwentyThreeProductions.Controller.Reports;
 
+import TwentyThreeProductions.Model.Database.DBConnectivity;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
@@ -8,12 +9,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.AbstractXmlDataSource;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.sql.Connection;
 
 public class ReportsMain {
 
     private SceneSwitch sceneSwitch;
+
+
 
     @FXML
     private StackPane partsMainStackPane;
@@ -29,6 +38,9 @@ public class ReportsMain {
 
     @FXML
     private Label welcomeMessage;
+
+    @FXML
+    private WebView webView;
 
     @FXML
     private JFXButton backBtn;
@@ -63,7 +75,10 @@ public class ReportsMain {
         System.out.println("Reports Main Screen");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(partsMainStackPane, NavigationModel.REPORTS_MAIN_ID);
+
     }
+
+
 
 
 }
