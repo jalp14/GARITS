@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Reports;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
@@ -9,6 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class EditAutoReports {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane selectUserStackPane;
@@ -39,7 +43,7 @@ public class EditAutoReports {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.REPORTS_MAIN_ID);
     }
 
     @FXML
@@ -57,7 +61,10 @@ public class EditAutoReports {
 
     }
 
-    public void initialize() {}
+    public void initialize() {
+        sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(selectUserStackPane, NavigationModel.EDIT_AUTO_REPORTS_ID);
+    }
 
 
 }

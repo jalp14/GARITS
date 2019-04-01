@@ -1,5 +1,7 @@
 package TwentyThreeProductions.Controller.Reports;
 
+import TwentyThreeProductions.Model.NavigationModel;
+import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +11,8 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
 public class ViewReport {
+
+    private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane partsMainStackPane;
@@ -33,7 +37,7 @@ public class ViewReport {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-
+        sceneSwitch.switchScene(NavigationModel.SELECT_REPORT_TO_VIEW_ID);
     }
 
     @FXML
@@ -41,7 +45,9 @@ public class ViewReport {
 
     }
 
-    public void initialize() {}
+    public void initialize() {
+        sceneSwitch = SceneSwitch.getInstance();;
+    }
 
 
 }

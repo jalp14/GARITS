@@ -58,6 +58,13 @@ public class NavigationModel {
     public static String UPDATE_STOCK_URL = "src/TwentyThreeProductions/View/Parts/UpdateStock.fxml";
     // Reports
     public static String REPORTS_MAIN_URL = "src/TwentyThreeProductions/View/Reports/ReportsMain.fxml";
+    public static String EDIT_AUTO_REPORT_URL = "src/TwentyThreeProductions/View/Reports/EditAutoReports.fxml";
+    public static String SELECT_REPORT_TO_VIEW_URL = "src/TwentyThreeProductions/View/Reports/SelectReportToView.fxml";
+    public static String VIEW_REPORT_URL = "src/TwentyThreeProductions/View/Reports/ViewReport.fxml";
+    public static String NEW_AVE_TIME_PRICE_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewAveTimePrice.fxml";
+    public static String NEW_NO_VEHICLES_MONTHLY_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewNoVehiclesMonthly.fxml";
+    public static String NEW_REPORT_MENU_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewReportMenu.fxml";
+    public static String NEW_STOCK_LEVEL_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewStockLevel.fxml";
     // Notifications
     public static String NOTIFICATIONS_MAIN_URL = "src/TwentyThreeProductions/View/Notifications/Notification.fxml";
     // Settings
@@ -108,6 +115,13 @@ public class NavigationModel {
     public static String EDIT_DISCOUNT_ID = "EditDiscount";
     public static String SETTINGS_ID = "Settings";
     public static String AUTOMATIC_BACKUP_SETTINGS_ID = "AutoBackupSettings";
+    public static String EDIT_AUTO_REPORTS_ID = "EditAutoReport";
+    public static String SELECT_REPORT_TO_VIEW_ID = "SelectReportToView";
+    public static String VIEW_REPORT_ID = "ViewReport";
+    public static String NEW_AVE_TIME_PRICE_ID = "NewAveTimePrice";
+    public static String NEW_REPORT_MENU_ID = "NewReportMenu";
+    public static String NEW_STOCK_LEVEL_ID = "NewStockLevel";
+    public static String NEW_NO_VEHICLES_MONTHLY_ID = "NewNoVehiclesMonthly";
 
 
     public enum user_type {
@@ -210,6 +224,20 @@ public class NavigationModel {
             return  tmpURL = new File(SETTINGS_URL).toURI().toURL();
         } else if (name.equals(AUTOMATIC_BACKUP_SETTINGS_ID)) {
             return tmpURL = new File(DB_BACKUP_SETTINGS_URL).toURI().toURL();
+        } else if (name.equals(EDIT_AUTO_REPORTS_ID)) {
+            return tmpURL = new File(EDIT_AUTO_REPORT_URL).toURI().toURL();
+        } else if (name.equals(SELECT_REPORT_TO_VIEW_ID)) {
+            return tmpURL = new File(SELECT_REPORT_TO_VIEW_URL).toURI().toURL();
+        } else if (name.equals(VIEW_REPORT_ID)) {
+            return tmpURL = new File(VIEW_REPORT_URL).toURI().toURL();
+        } else if (name.equals(NEW_AVE_TIME_PRICE_ID)) {
+            return tmpURL = new File(NEW_AVE_TIME_PRICE_URL).toURI().toURL();
+        } else if (name.equals(NEW_NO_VEHICLES_MONTHLY_ID)) {
+            return tmpURL = new File(NEW_NO_VEHICLES_MONTHLY_URL).toURI().toURL();
+        } else if (name.equals(NEW_REPORT_MENU_ID)) {
+            return tmpURL = new File(NEW_REPORT_MENU_URL).toURI().toURL();
+        } else if (name.equals(NEW_STOCK_LEVEL_ID)) {
+            return tmpURL = new File(NEW_STOCK_LEVEL_URL).toURI().toURL();
         }
         else {
             System.out.println("User type not found");
