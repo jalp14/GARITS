@@ -48,8 +48,6 @@ public class SceneSwitch{
     }
 
 
-   
-=======
     public void activateSceneAlways(String name, Scene scene) throws IOException {
 
         this.scene = scene;
@@ -57,9 +55,6 @@ public class SceneSwitch{
         scene.setRoot(currentRoot);
     }
 
-
-
-=======
 
     public Node getScene(String name) {
         return sceneMap.get(name);

@@ -244,8 +244,8 @@ public class EditCustomersController {
         latePaymentCheckbox.setSelected(false);
         casualCustomerRadio.setSelected(false);
         accountHolderRadio.setSelected(false);
-        loadExistingCars();
-        loadAvailableCars();
+        selectedCarList.getItems().clear();
+        availableCarsCombi.getItems().clear();
     }
 
     @FXML
