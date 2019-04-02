@@ -22,6 +22,10 @@ public class NewStockLevel {
 
     private SceneSwitch sceneSwitch;
     private Connection connection;
+    private JasperReport stockReport;
+    private DBConnectivity dbConnectivity;
+    private JasperPrint printReport;
+
 
     @FXML
     private StackPane partsMainStackPane;
@@ -55,11 +59,15 @@ public class NewStockLevel {
 
     @FXML
     void generateReportBtnClicked(ActionEvent event) {
-
+        try {
+            JasperExportManager.exportReportToPdfFile(printReport, "src/TwentyThreeProductions/PDFs/ExportFile/StockReport.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showReport() {
-        File file = new File("test.html");
+        File file = new File("src/TwentyThreeProductions/PDFs/Template/StockReport.html");
 
         try {
             webView.getEngine().load(file.toURI().toURL().toString());
@@ -71,16 +79,14 @@ public class NewStockLevel {
 
     public void setupReport() {
         try {
-            JasperReport report = JasperCompileManager.compileReport("src/TwentyThreeProductions/StockLevelReport.jrxml");
-            JRDataSource source = new JREmptyDataSource();
+            stockReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/StockLevelReport.jrxml");
 
-            DBConnectivity dbConnectivity = new DBConnectivity();
-
+            dbConnectivity = new DBConnectivity();
             connection = dbConnectivity.connection(connection);
+            // PSA : printReport here means view the report
+            printReport = JasperFillManager.fillReport(stockReport, null, connection);
 
-            JasperPrint print = JasperFillManager.fillReport(report, null, connection);
-
-            JasperExportManager.exportReportToHtmlFile(print, "test.html");
+            JasperExportManager.exportReportToHtmlFile(printReport, "src/TwentyThreeProductions/PDFs/Template/StockReport.html");
         } catch (JRException e) {
             e.printStackTrace();
         }
