@@ -70,10 +70,35 @@ public class ConfigureDiscountController {
     private JFXTextField variableDiscountField;
 
     @FXML
-    private JFXComboBox<Label> bandCombi;
+    private JFXTextField fixedDiscountField;
+
 
     @FXML
-    private JFXTextField fixedDiscountField;
+    private JFXTextField band1range1;
+
+    @FXML
+    private JFXTextField band1range2;
+
+    @FXML
+    private JFXTextField band1percentage;
+
+    @FXML
+    private JFXTextField band2range1;
+
+    @FXML
+    private JFXTextField band2range2;
+
+    @FXML
+    private JFXTextField band2percentage;
+
+    @FXML
+    private JFXTextField band3range1;
+
+    @FXML
+    private JFXTextField band3range2;
+
+    @FXML
+    private JFXTextField band3percentage;
 
     @FXML
     void backBtnClicked(ActionEvent event) {
@@ -90,12 +115,7 @@ public class ConfigureDiscountController {
             domainDiscount.setVatValue(0);
             domainDiscount.setPartValue(0);
         } else if (flexibleDiscountRadioBtn.isSelected()) {
-            domainDiscount.setValue(helper.getRate(bandCombi.getSelectionModel().getSelectedIndex()));
-            domainDiscount.setBand(bandCombi.getSelectionModel().getSelectedItem().getText());
-            domainDiscount.setType(CustomerHelper.DISCOUNT_FLEXIBLE_NAME);
-            domainDiscount.setCustomerID(helper.getCurrentCustomerID());
-            domainDiscount.setVatValue(0);
-            domainDiscount.setPartValue(0);
+            setupFlexiDiscount();
         } else if (variableDiscountRadioBtn.isSelected()) {
             domainDiscount.setValue(Double.parseDouble(variableDiscountField.getText()));
             domainDiscount.setBand(null);
@@ -112,20 +132,33 @@ public class ConfigureDiscountController {
 
     }
 
+    public void setupFlexiDiscount() {
+        domainDiscount.setValue(0);
+        domainDiscount.setType(CustomerHelper.DISCOUNT_FLEXIBLE_NAME);
+        domainDiscount.setCustomerID(helper.getCurrentCustomerID());
+        domainDiscount.setVatValue(0);
+        domainDiscount.setPartValue(0);
+
+        // Setup bands
+        domainDiscount.setBand1range1(Double.parseDouble(band1range1.getText()));
+        domainDiscount.setBand1range2(Double.parseDouble(band1range2.getText()));
+        domainDiscount.setBand1percent(Double.parseDouble(band1percentage.getText()));
+        domainDiscount.setBand2range1(Double.parseDouble(band2range1.getText()));
+        domainDiscount.setBand2range2(Double.parseDouble(band2range2.getText()));
+        domainDiscount.setBand2percent(Double.parseDouble(band2percentage.getText()));
+        domainDiscount.setBand3range1(Double.parseDouble(band3range1.getText()));
+        domainDiscount.setBand3range2(Double.parseDouble(band3range2.getText()));
+        domainDiscount.setBand3percent(Double.parseDouble(band3percentage.getText()));
+    }
+
+
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
-        setupBands();
         domainDiscount = new Discount();
         helper = CustomerHelper.getInstance();
-    }
-
-    public void setupBands() {
-        bandCombi.getItems().add(new Label("Band 1"));
-        bandCombi.getItems().add(new Label("Band 2"));
-        bandCombi.getItems().add(new Label("Band 3"));
     }
 
 }

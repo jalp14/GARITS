@@ -38,6 +38,15 @@ public class DiscountDAO implements IDiscount {
                 discount.setValue(resultSet.getDouble("VALUE"));
                 discount.setVatValue(resultSet.getDouble("VATVALUE"));
                 discount.setPartValue(resultSet.getDouble("PARTVALUE"));
+                discount.setBand1range1(resultSet.getDouble("BANDONERANGEONE"));
+                discount.setBand1range2(resultSet.getDouble("BANDONERANGETWO"));
+                discount.setBand1percent(resultSet.getDouble("BANDONEPERCENT"));
+                discount.setBand2range1(resultSet.getDouble("BANDTWORANGEONE"));
+                discount.setBand2range2(resultSet.getDouble("BANDTWORANGETWO"));
+                discount.setBand2percent(resultSet.getDouble("BANDTWOPERCENT"));
+                discount.setBand3range1(resultSet.getDouble("BANDTHREERANGEONE"));
+                discount.setBand3range2(resultSet.getDouble("BANDTHREERANGETWO"));
+                discount.setBand3percent(resultSet.getDouble("BANDTHREEPERCENT"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,9 +56,9 @@ public class DiscountDAO implements IDiscount {
 
     @Override
     public void save(Discount discount) {
-        String args[] = {discount.getType(), discount.getBand(), Double.toString(discount.getValue()), Double.toString(discount.getVatValue()), Double.toString(discount.getPartValue()), Integer.toString(discount.getCustomerID())};
-        String query = "INSERT INTO GARAGE.DISCOUNT (TYPE, BAND, VALUE, VATVALUE, PARTVALUE, CUSTOMERCUSTOMERID)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String args[] = {discount.getType(), discount.getBand(), Double.toString(discount.getValue()), Double.toString(discount.getVatValue()), Double.toString(discount.getPartValue()), Integer.toString(discount.getCustomerID()), Double.toString(discount.getBand1range1()), Double.toString(discount.getBand1range2()), Double.toString(discount.getBand1percent()), Double.toString(discount.getBand2range1()), Double.toString(discount.getBand2range2()), Double.toString(discount.getBand2percent()), Double.toString(discount.getBand3range1()), Double.toString(discount.getBand3range2()), Double.toString(discount.getBand3percent())};
+        String query = "INSERT INTO GARAGE.DISCOUNT (TYPE, BAND, VALUE, VATVALUE, PARTVALUE, CUSTOMERCUSTOMERID, BANDONERANGEONE, BANDONERANGETWO, BANDONEPERCENT, BANDTWORANGEONE, BANDTWORANGETWO, BANDTWOPERCENT, BANDTHREERANGEONE, BANDTHREERANGETWO, BANDTHREEPERCENT)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(query, connection, args);
 
@@ -57,9 +66,9 @@ public class DiscountDAO implements IDiscount {
 
     @Override
     public void update(Discount discount) {
-        String updateQuery = "UPDATE GARAGE.DISCOUNT SET TYPE=?, BAND=?, VALUE=?, VATVALUE=?, PARTVALUE=?";
+        String updateQuery = "UPDATE GARAGE.DISCOUNT SET TYPE=?, BAND=?, VALUE=?, VATVALUE=?, PARTVALUE=?, BANDONERANGEONE=?, BANDONERANGETWO=?, BANDONEPERCENT=?, BANDTWORANGEONE=?, BANDTWORANGETWO=?, BANDTWOPERCENT=?, BANDTHREERANGEONE=?, BANDTHREERANGETWO=?, BANDTHREEPERCENT=?";
         connection = dbConnectivity.connection(connection);
-        String args[] = {discount.getType(), discount.getBand(), Double.toString(discount.getValue()), Double.toString(discount.getVatValue()), Double.toString(discount.getPartValue())};
+        String args[] = {discount.getType(), discount.getBand(), Double.toString(discount.getValue()), Double.toString(discount.getVatValue()), Double.toString(discount.getPartValue()), Double.toString(discount.getBand1range1()), Double.toString(discount.getBand1range2()), Double.toString(discount.getBand1percent()), Double.toString(discount.getBand2range1()), Double.toString(discount.getBand2range2()), Double.toString(discount.getBand2percent()), Double.toString(discount.getBand3range1()), Double.toString(discount.getBand3range2()), Double.toString(discount.getBand3percent())};
         dbConnectivity.writePrepared(updateQuery, connection, args);
         System.out.println("Successfully updated ");
     }

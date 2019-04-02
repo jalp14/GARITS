@@ -74,11 +74,38 @@ public class EditDiscountController {
     @FXML
     private JFXTextField variableDiscountField;
 
-    @FXML
-    private JFXComboBox<Label> bandCombi;
 
     @FXML
     private JFXTextField fixedDiscountField;
+
+
+
+    @FXML
+    private JFXTextField band1range1;
+
+    @FXML
+    private JFXTextField band1range2;
+
+    @FXML
+    private JFXTextField band1percentage;
+
+    @FXML
+    private JFXTextField band2range1;
+
+    @FXML
+    private JFXTextField band2range2;
+
+    @FXML
+    private JFXTextField band2percentage;
+
+    @FXML
+    private JFXTextField band3range1;
+
+    @FXML
+    private JFXTextField band3range2;
+
+    @FXML
+    private JFXTextField band3percentage;
 
     @FXML
     void backBtnClicked(ActionEvent event) {
@@ -96,12 +123,7 @@ public class EditDiscountController {
             domainDiscount.setVatValue(0);
             domainDiscount.setPartValue(0);
         } else if (flexibleDiscountRadioBtn.isSelected()) {
-            domainDiscount.setValue(helper.getRate(bandCombi.getSelectionModel().getSelectedIndex()));
-            domainDiscount.setBand(bandCombi.getSelectionModel().getSelectedItem().getText());
-            domainDiscount.setType(CustomerHelper.DISCOUNT_FLEXIBLE_NAME);
-            domainDiscount.setCustomerID(helper.getCurrentCustomerID());
-            domainDiscount.setVatValue(0);
-            domainDiscount.setPartValue(0);
+            setupFlexiDiscount();
         } else if (variableDiscountRadioBtn.isSelected()) {
             domainDiscount.setValue(Double.parseDouble(variableDiscountField.getText()));
             domainDiscount.setBand(null);
@@ -126,12 +148,31 @@ public class EditDiscountController {
 
     }
 
+
+    public void setupFlexiDiscount() {
+        domainDiscount.setValue(0);
+        domainDiscount.setType(CustomerHelper.DISCOUNT_FLEXIBLE_NAME);
+        domainDiscount.setCustomerID(helper.getCurrentCustomerID());
+        domainDiscount.setVatValue(0);
+        domainDiscount.setPartValue(0);
+
+        // Setup bands
+        domainDiscount.setBand1range1(Double.parseDouble(band1range1.getText()));
+        domainDiscount.setBand1range2(Double.parseDouble(band1range2.getText()));
+        domainDiscount.setBand1percent(Double.parseDouble(band1percentage.getText()));
+        domainDiscount.setBand2range1(Double.parseDouble(band2range1.getText()));
+        domainDiscount.setBand2range2(Double.parseDouble(band2range2.getText()));
+        domainDiscount.setBand2percent(Double.parseDouble(band2percentage.getText()));
+        domainDiscount.setBand3range1(Double.parseDouble(band3range1.getText()));
+        domainDiscount.setBand3range2(Double.parseDouble(band3range2.getText()));
+        domainDiscount.setBand3percent(Double.parseDouble(band3percentage.getText()));
+    }
+
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         helper = CustomerHelper.getInstance();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
-        setupBands();
         discountDAO = new DiscountDAO();
         if (CustomerHelper.getInstance().isCustomerCasual()) {
             setupDiscount();
@@ -142,11 +183,6 @@ public class EditDiscountController {
 
     }
 
-    public void setupBands() {
-        bandCombi.getItems().add(new Label("Band 1"));
-        bandCombi.getItems().add(new Label("Band 2"));
-        bandCombi.getItems().add(new Label("Band 3"));
-    }
 
     public void setupDiscount() {
         discountDAO = new DiscountDAO();
@@ -158,7 +194,15 @@ public class EditDiscountController {
                 fixedDiscountField.setText(Double.toString(tmpDiscount.getValue()));
             } else if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_FLEXIBLE_NAME)) {
                 flexibleDiscountRadioBtn.setSelected(true);
-                bandCombi.getSelectionModel().select(helper.getBandNo(tmpDiscount.getBand()));
+                band1range1.setText(Double.toString(tmpDiscount.getBand1range1()));
+                band1range2.setText(Double.toString(tmpDiscount.getBand1range2()));
+                band1percentage.setText(Double.toString(tmpDiscount.getBand1percent()));
+                band2range1.setText(Double.toString(tmpDiscount.getBand2range1()));
+                band2range2.setText(Double.toString(tmpDiscount.getBand2range2()));
+                band2percentage.setText(Double.toString(tmpDiscount.getBand2percent()));
+                band3range1.setText(Double.toString(tmpDiscount.getBand3range1()));
+                band3range2.setText(Double.toString(tmpDiscount.getBand3range2()));
+                band3percentage.setText(Double.toString(tmpDiscount.getBand3percent()));
             } else if (tmpDiscount.getType().equals(CustomerHelper.DISCOUNT_VARIABLE_NAME)) {
                 variableDiscountRadioBtn.setSelected(true);
                 variableDiscountField.setText(Double.toString(tmpDiscount.getValue()));

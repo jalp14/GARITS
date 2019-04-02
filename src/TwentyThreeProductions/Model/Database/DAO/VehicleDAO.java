@@ -142,10 +142,14 @@ public class VehicleDAO implements IVehicle {
     @Override
     public void delete(Vehicle vehicle) {
         vehicles = getAll();
+        int j = vehicles.size();
         String deleteUser = "DELETE FROM GARAGE.VEHICLE WHERE REGISTRATIONID=?";
+        String resetVehicle = "ALTER TABLE GARAGE.VEHICLE ALTER COLUMN REGISTRATIONID RESTART WITH ?";
         connection = dbConnectivity.connection(connection);
         String args[] = {vehicle.getRegistrationID()};
+        String id[] = {Integer.toString(j)};
         dbConnectivity.writePrepared(deleteUser, connection, args);
+        dbConnectivity.writePrepared(resetVehicle, connection, id);
         vehicles.remove(vehicle);
     }
 }

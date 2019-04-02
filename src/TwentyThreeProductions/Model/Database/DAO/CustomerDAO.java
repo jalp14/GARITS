@@ -125,15 +125,14 @@ public class CustomerDAO implements ICustomer {
     @Override
     public void delete(Customer customer) {
         customers = getAll();
-        int i = customers.size() - 1;
-        // Add -> Reset Auto Incremet
+        int i = customers.size();
         String deleteCustomer = "DELETE FROM GARAGE.CUSTOMER WHERE CUSTOMERID=?";
         String resetCustomerID = "ALTER TABLE GARAGE.CUSTOMER ALTER COLUMN CUSTOMERID RESTART WITH ?";
         connection = dbConnectivity.connection(connection);
         String args[] = {customer.getCustomerID()};
         String id[] = {Integer.toString(i)};
         dbConnectivity.writePrepared(deleteCustomer, connection, args);
-        dbConnectivity.writePrepared(deleteCustomer, connection, id);
+        dbConnectivity.writePrepared(resetCustomerID, connection, id);
         customers.remove(customer);
     }
 }
