@@ -1,9 +1,9 @@
 package TwentyThreeProductions.Controller.Reports;
 
-import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,11 +11,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class EditAutoReports {
-
     private SceneSwitch sceneSwitch;
 
     @FXML
     private StackPane selectUserStackPane;
+
+    @FXML
+    private JFXButton saveBtn;
 
     @FXML
     private Text usernameLbl;
@@ -30,30 +32,25 @@ public class EditAutoReports {
     private JFXButton backBtn;
 
     @FXML
-    private JFXButton removeBtn;
-
-    @FXML
-    private JFXListView<?> autoReportsList;
-
-    @FXML
     private JFXButton viewDetailsBtn;
 
     @FXML
-    private JFXButton newAutoReportBtn;
+    private JFXComboBox<?> reportTypeCombi;
+
+    @FXML
+    private JFXRadioButton weeklyRadioBtn;
+
+    @FXML
+    private JFXRadioButton monthlyRadioBtn;
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-        sceneSwitch.switchScene(NavigationModel.REPORTS_MAIN_ID);
-    }
-
-    @FXML
-    void newAutoReportBtnClicked(ActionEvent event) {
 
     }
 
     @FXML
-    void removeBtnClicked(ActionEvent event) {
-
+    void saveBtnClicked(ActionEvent event) {
+        
     }
 
     @FXML
@@ -62,9 +59,7 @@ public class EditAutoReports {
     }
 
     public void initialize() {
-        sceneSwitch = SceneSwitch.getInstance();
-        sceneSwitch.addScene(selectUserStackPane, NavigationModel.EDIT_AUTO_REPORTS_ID);
-    }
 
+    }
 
 }
