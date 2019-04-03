@@ -23,7 +23,7 @@ public class MechanicDAO implements IMechanic {
     @Override
     public ArrayList<Mechanic> getAll() {
         Statement statement;
-        String query = "SELECT * FROM GARAGE.MECHANIC";
+        String query = "SELECT * FROM GARAGE.FM";
         ResultSet result;
         connection = dbConnectivity.connection(connection);
         try {
@@ -45,16 +45,27 @@ public class MechanicDAO implements IMechanic {
 
     @Override
     public void save(Mechanic mechanic) {
-
+        String[] args = {mechanic.getUsername(), Integer.toString(mechanic.getHourlyRate())};
+        connection = dbConnectivity.connection(connection);
+        String saveQuery = "INSERT INTO GARAGE.FM (USERNAME, HOURLYRATE)\n" +
+                "VALUES (?, ?)";
+        connection = dbConnectivity.connection(connection);
+        dbConnectivity.writePrepared(saveQuery, connection, args);
     }
 
     @Override
     public void update(Mechanic mechanic) {
-
+        String updateQuery = "UPDATE GARAGE.FM SET HOURLYRATE=? WHERE USERNAME=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {Integer.toString(mechanic.getHourlyRate()), mechanic.getUsername()};
+        dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
     @Override
     public void delete(Mechanic mechanic) {
-
+        String deleteUser = "DELETE FROM GARAGE.FM WHERE USERNAME=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {mechanic.getUsername()};
+        dbConnectivity.writePrepared(deleteUser, connection, args);
     }
 }

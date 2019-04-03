@@ -94,7 +94,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXComboBox fx:id="roleCombi" layoutX="193.0" layoutY="502.0" prefHeight="27.0" prefWidth="309.0" />
+            <JFXComboBox fx:id="roleCombi" layoutX="193.0" layoutY="502.0" onAction="#roleSelected" prefHeight="27.0" prefWidth="309.0" />
             <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
                <font>
                   <Font name="Avenir Next Bold" size="20.0" />
@@ -105,6 +105,16 @@
                   <Font name="Avenir Next Bold" size="16.0" />
                </font>
             </Text>
+            <Label fx:id="roleHeading1" layoutX="39.0" layoutY="599.0" prefHeight="32.0" prefWidth="146.0" text="Hourly Rate :">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="hourlyRateField" layoutX="191.0" layoutY="593.0" prefHeight="35.0" prefWidth="309.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
          </children>
       </AnchorPane>
    </children>

@@ -11,9 +11,18 @@ public class User {
     private String userRole;
     private List<Order> orders;
     private List<Report> reports;
+    private int hourlyRate;
 
     public User() {
 
+    }
+
+    public int getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(int hourlyRate) {
+        this.hourlyRate = hourlyRate;
     }
 
     public String getUsername() {

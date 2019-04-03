@@ -1,8 +1,13 @@
 package TwentyThreeProductions.Controller.Reports.NewReport;
 
+import TwentyThreeProductions.Domain.Report;
+import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.ReportDAO;
 import TwentyThreeProductions.Model.Database.DBConnectivity;
+import TwentyThreeProductions.Model.HelperClasses.ReportHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemNotification;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -17,6 +22,8 @@ import net.sf.jasperreports.engine.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class NewStockLevel {
@@ -26,7 +33,9 @@ public class NewStockLevel {
     private JasperReport stockReport;
     private DBConnectivity dbConnectivity;
     private JasperPrint printReport;
-
+    private ReportDAO reportDAO;
+    private String fileName;
+    private String fileLocation;
 
     @FXML
     private StackPane partsMainStackPane;
@@ -61,11 +70,30 @@ public class NewStockLevel {
     @FXML
     void generateReportBtnClicked(ActionEvent event) {
         try {
-            JasperExportManager.exportReportToPdfFile(printReport, "src/TwentyThreeProductions/PDFs/ExportFile/StockReport.pdf");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+            String timeStamp = sdf.format(new Date());
+            fileName = "StockReport" + timeStamp + ".pdf";
+            reportName.setText(fileName);
+            fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
+            JasperExportManager.exportReportToPdfFile(printReport, fileLocation + fileName);
+            saveReportToDB();
         } catch (JRException e) {
             e.printStackTrace();
         }
     }
+
+    public void saveReportToDB() {
+        reportDAO = new ReportDAO();
+        Report report = new Report();
+        report.setReportType(ReportHelper.ReportType.STOCK_LEVEL.toString());
+        report.setUsername(DBLogic.getDBInstance().getUsername());
+        report.setFileLocation(fileName);
+        reportDAO.save(report);
+        SystemNotification notification = new SystemNotification(partsMainStackPane);
+        notification.setNotificationMessage("Stock Report saved as :" + fileName);
+        notification.showNotification(NavigationModel.NEW_STOCK_LEVEL_ID, DBLogic.getDBInstance().getUsername());
+    }
+
 
     public void showReport() {
         File file = new File("src/TwentyThreeProductions/PDFs/Template/Stock.html");
@@ -80,19 +108,15 @@ public class NewStockLevel {
 
     public void setupReport() {
         try {
-            stockReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/Stock.jrxml");
+            stockReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/Stock_Level.jrxml");
 
             dbConnectivity = new DBConnectivity();
             connection = dbConnectivity.connection(connection);
-            connection = null;
-
-            HashMap map = new HashMap();
-
-            map.put("TEST","Works");
 
 
             // PSA : printReport here means view the report
-            printReport = JasperFillManager.fillReport(stockReport, map, connection);
+            printReport = JasperFillManager.fillReport(stockReport, null, connection);
+
 
             JasperExportManager.exportReportToHtmlFile(printReport, "src/TwentyThreeProductions/PDFs/Template/Stock.html");
         } catch (JRException e) {

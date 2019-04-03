@@ -1,7 +1,9 @@
 package TwentyThreeProductions.Controller.Users;
 
+import TwentyThreeProductions.Domain.Mechanic;
 import TwentyThreeProductions.Domain.User;
 import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
 import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -25,7 +27,9 @@ public class EditUserController {
     private UserDAO userDAO;
     private ArrayList<User> currentUsers;
     private User currentUser;
-
+    private MechanicDAO mechanicDAO;
+    private ArrayList<Mechanic> mechanics;
+    private Mechanic mechanic;
 
     @FXML
     private StackPane editUserStackPane;
@@ -47,6 +51,9 @@ public class EditUserController {
 
     @FXML
     private Label fNameHeading;
+
+    @FXML
+    private JFXButton deleteBtn;
 
     @FXML
     private JFXTextField firstNameField;
@@ -75,6 +82,9 @@ public class EditUserController {
     @FXML
     private Label selectUserLabel;
 
+    @FXML
+    private JFXTextField hourlyRateField;
+
 
     @FXML
     private JFXComboBox<Label> roleCombi;
@@ -93,19 +103,44 @@ public class EditUserController {
     @FXML
     void deleteBtnClicked(ActionEvent event) {
         System.out.println("Delete button clicked");
+        if (!(hourlyRateField.isDisabled())) {
+            mechanicDAO = new MechanicDAO();
+            mechanicDAO.delete(mechanic);
+        }
         userDAO = new UserDAO();
         userDAO.delete(currentUser);
+
         SystemAlert systemAlert = new SystemAlert(editUserStackPane, "Deleted Successfully", "Please logout to apply changes");
 
     }
 
     @FXML
+    void roleSelected(ActionEvent event) {
+        if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("MECHANIC"))) {
+            hourlyRateField.setDisable(false);
+            deleteBtn.setDisable(true);
+            deleteBtn.setDisableVisualFocus(true);
+        } else if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("FOREPERSON"))) {
+            hourlyRateField.setDisable(false);
+            deleteBtn.setDisable(true);
+            deleteBtn.setDisableVisualFocus(true);
+        } else {
+            hourlyRateField.setDisable(true);
+        }
+    }
+
+    @FXML
     void currentUserCombiSelected(ActionEvent event) {
         getSelectedUser();
+        getMechanics();
         firstNameField.setText(currentUser.getFirstName());
         lastNameField.setText(currentUser.getLastName());
         usernameField.setText(currentUser.getUsername());
         passwordField.setText(currentUser.getPassword());
+        if (!(mechanic == null)) {
+            hourlyRateField.setText(Integer.toString(mechanic.getHourlyRate()));
+        }
+
         roleCombi.getSelectionModel().select(getRoleNo(currentUser.getUserRole()));
     }
 
@@ -118,6 +153,12 @@ public class EditUserController {
         currentUser.setPassword(passwordField.getText());
         userDAO = new UserDAO();
         userDAO.update(currentUser);
+        if (!(hourlyRateField.isDisabled())) {
+            mechanicDAO = new MechanicDAO();
+            mechanic.setHourlyRate(Integer.parseInt(hourlyRateField.getText()));
+            mechanic.setUsername(usernameField.getText());
+            mechanicDAO.update(mechanic);
+        }
         SystemAlert systemAlert = new SystemAlert(editUserStackPane, "Edited Successfully", "Please logout to apply changes");
 
     }
@@ -126,6 +167,7 @@ public class EditUserController {
         sceneSwitch = SceneSwitch.getInstance();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
+        mechanics = new ArrayList<>();
         injectAvailableUsers();
         setupRole();
     }
@@ -155,8 +197,9 @@ public class EditUserController {
     }
 
     public void injectAvailableUsers() {
-
+        MechanicDAO mechanicDAO = new MechanicDAO();
             userDAO = new UserDAO();
+            mechanics = mechanicDAO.getAll();
             currentUsers = new ArrayList<>();
             currentUsers = userDAO.getAll();
         for (User tmpUser : currentUsers) {
@@ -165,12 +208,21 @@ public class EditUserController {
 
     }
 
+    public void getMechanics() {
+        for (Mechanic mechanic1 : mechanics) {
+            if (mechanic1.getUsername().equals(currentUserCombi.getSelectionModel().getSelectedItem().getText())) {
+                mechanic = mechanic1;
+            }
+        }
+    }
+
     public void getSelectedUser() {
         for (User currentUser1 : currentUsers) {
             if (currentUser1.getUsername().equals(currentUserCombi.getSelectionModel().getSelectedItem().getText())) {
                 currentUser = currentUser1;
             }
         }
+
     }
 
 }

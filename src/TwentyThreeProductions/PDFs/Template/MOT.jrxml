@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MOT" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa6e8d2c-91b2-481f-8eec-1bb87b3dbcca">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="5a543658-7971-4828-80d8-f1b3410b3341"/>
+				<textFieldExpression><![CDATA[cust_full_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="100" height="20" uuid="66bf1f63-8aa1-4418-9772-c199192afc9f"/>
+				<textFieldExpression><![CDATA[house_street_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="100" height="20" uuid="b586aa7b-d31e-49db-ae53-8a7187ebc1ca"/>
+				<textFieldExpression><![CDATA[cust_city]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="100" height="20" uuid="a2a21292-8ed2-4f7b-af67-5d2261a41483"/>
+				<textFieldExpression><![CDATA[cust_postcode]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="100" height="30" uuid="b3638ed7-63db-4719-83ae-c908f35f7e44"/>
+				<textFieldExpression><![CDATA[manuf_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="28" width="100" height="30" uuid="21187ad7-bf94-47b0-b12b-a2ff4a976c61"/>
+				<textFieldExpression><![CDATA[manuf_street]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="59" width="100" height="21" uuid="03b312c1-38a6-48fb-8f58-94665306556d"/>
+				<textFieldExpression><![CDATA[city_postcode]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="0" width="120" height="30" uuid="795c7ccf-3d89-4cd1-b347-57bddd400ecf"/>
+				<textFieldExpression><![CDATA[cust_add_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="5" width="100" height="30" uuid="931bb3b4-0707-4d16-ad4a-e2a0bbf5547e"/>
+				<textFieldExpression><![CDATA[DATE( )]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="77" splitType="Stretch">
+			<textField>
+				<reportElement x="288" y="0" width="142" height="20" uuid="a28de362-f85d-45d9-8076-07fbe7544527"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_invo_no]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="0" width="110" height="30" uuid="7dfd94a2-aaf3-4b6b-80f6-baca455b2f6e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FINAL REMINDER -]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="30" width="180" height="30" uuid="c1c6557c-8e35-4387-8bff-4ce7b964d04c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[vech_reg_no]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="30" width="142" height="30" uuid="44409974-4bd8-4c9c-ba89-9997ebaa6827"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_total_amount]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="5" width="578" height="85" uuid="9c118365-e707-4848-a7ba-57d15a93e4d9"/>
+				<text><![CDATA[Despite two reminders, it appears that we still have not yet received payment of the above invoice, which was posted to you on                                        , for work done on the vehicle(s) listed above.                                                                                                                           												                         Unless you pay the outstanding amount in full within SEVEN DAYS, or contact us with proposals for repayment, we
+will have no option but to refer the matter to our solicitor.
+Please send payment immediately to avoid further action.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="16" width="119" height="17" uuid="8ff41b50-862b-48de-804d-08c3fdd62276"/>
+				<textFieldExpression><![CDATA[cust_invo_date]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="fa683260-5870-4b20-aab8-e0d9866c6272"/>
+				<text><![CDATA[Yours Sincerely,	]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="4" width="100" height="30" uuid="eb64788d-6a87-4529-bf36-23134041c5d7"/>
+				<text><![CDATA[G. Lancaster]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

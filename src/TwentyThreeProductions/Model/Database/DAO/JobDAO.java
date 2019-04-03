@@ -68,6 +68,8 @@ public class JobDAO implements IJob {
         dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
+
+
     @Override
     public void delete(Job job) {
 

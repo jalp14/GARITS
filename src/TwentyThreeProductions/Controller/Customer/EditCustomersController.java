@@ -246,7 +246,7 @@ public class EditCustomersController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
-        sceneSwitch.switchScene(NavigationModel.EDIT_CUSTOMER_ID);
+        sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
         resetView();
     }
 

@@ -16,6 +16,11 @@ public class ReportDAO implements IReport {
     Connection connection;
     DBConnectivity dbConnectivity;
 
+    public ReportDAO() {
+        dbConnectivity = new DBConnectivity();
+        reports = new ArrayList<>();
+    }
+
     @Override
     public ArrayList<Report> getAll() {
         Statement statement;

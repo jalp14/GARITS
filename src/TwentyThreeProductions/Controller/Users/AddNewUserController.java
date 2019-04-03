@@ -1,8 +1,10 @@
 package TwentyThreeProductions.Controller.Users;
 
 
+import TwentyThreeProductions.Domain.Mechanic;
 import TwentyThreeProductions.Domain.User;
 import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.MechanicDAO;
 import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -59,6 +61,9 @@ public class AddNewUserController {
     private Label roleHeading;
 
     @FXML
+    private JFXTextField hourlyRateField;
+
+    @FXML
     private JFXTextField lastNameField;
 
     @FXML
@@ -72,6 +77,8 @@ public class AddNewUserController {
 
     @FXML
     void addUserBtnClicked(ActionEvent event) {
+        Mechanic mechanic = new Mechanic();
+        MechanicDAO mechanicDAO;
        User user = new User();
        user.setUsername(usernameField.getText());
        user.setPassword(passwordField.getText());
@@ -80,6 +87,14 @@ public class AddNewUserController {
        user.setUserRole(roleCombi.getSelectionModel().getSelectedItem().getText());
        UserDAO userDAO = new UserDAO();
        userDAO.save(user);
+
+       if (!(hourlyRateField.isDisabled())) {
+           mechanicDAO = new MechanicDAO();
+           mechanic.setUsername(usernameField.getText());
+           mechanic.setHourlyRate(Integer.parseInt(hourlyRateField.getText()));
+           mechanicDAO.save(mechanic);
+       }
+
        SystemAlert systemAlert = new SystemAlert(addNewUserStackPane, "Success", "Added user");
 
     }
@@ -87,6 +102,17 @@ public class AddNewUserController {
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.USER_MANAGEMENT_ID);
+    }
+
+    @FXML
+    void roleSelected(ActionEvent event) {
+        if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("MECHANIC"))) {
+            hourlyRateField.setDisable(false);
+        } else if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("FOREPERSON"))) {
+            hourlyRateField.setDisable(false);
+        } else {
+            hourlyRateField.setDisable(true);
+        }
     }
 
     public void setupRole() {

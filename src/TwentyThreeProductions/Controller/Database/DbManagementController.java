@@ -3,6 +3,7 @@ package TwentyThreeProductions.Controller.Database;
 import TwentyThreeProductions.Domain.Backup;
 import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.BackupDAO;
+import TwentyThreeProductions.Model.Database.DAO.ReportDAO;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import TwentyThreeProductions.Model.SystemNotification;
