@@ -5,7 +5,7 @@ import java.util.List;
 public class Mechanic {
 
     private String username;
-    private float hourlyRate;
+    private int hourlyRate;
     private List<Job> jobs;
 
     public Mechanic(){}
@@ -18,11 +18,11 @@ public class Mechanic {
         this.username = username;
     }
 
-    public float getHourlyRate() {
+    public int getHourlyRate() {
         return hourlyRate;
     }
 
-    public void setHourlyRate(float hourlyRate) {
+    public void setHourlyRate(int hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
 

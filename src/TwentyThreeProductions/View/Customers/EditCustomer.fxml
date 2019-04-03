@@ -64,7 +64,7 @@
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="latePaymentHeading" layoutX="594.0" layoutY="317.0" prefHeight="32.0" prefWidth="153.0" text="Late payment">
+            <Label fx:id="latePaymentHeading" layoutX="594.0" layoutY="317.0" prefHeight="32.0" prefWidth="153.0" text="Pay Later">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
