@@ -15,6 +15,8 @@ public class Job {
     private String sparePartsUsed;
     private String status;
     private String paidFor;
+    private Date dateCompleted;
+    private String checked;
     private Time duration;
     private List<PartJob> partJobs;
     private List<JobTask> jobTasks;
@@ -91,6 +93,22 @@ public class Job {
 
     public void setPaidFor(String paidFor) {
         this.paidFor = paidFor;
+    }
+
+    public Date getDateCompleted() {
+        return dateCompleted;
+    }
+
+    public void setDateCompleted(Date dateCompleted) {
+        this.dateCompleted = dateCompleted;
+    }
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
     }
 
     public Time getDuration() {

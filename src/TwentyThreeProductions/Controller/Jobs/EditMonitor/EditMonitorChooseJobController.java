@@ -129,10 +129,14 @@ public class EditMonitorChooseJobController {
             }
             Label jobLabel;
             if(j.getRegistrationID() == null) {
-                jobLabel = new Label("Job ID: " + j.getJobID() + " / Date: " + j.getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Part-only job");
+                jobLabel = new Label("Job ID: " + j.getJobID() + " / Date: " + j.getDateBookedIn() +
+                        " / Name: " + customer.getFirstName() + " " + customer.getLastName() +
+                        " / Part-only job / Status: " + j.getStatus() + " / Is Paid: " + j.getPaidFor());
             }
             else {
-                jobLabel = new Label("Job ID: " + j.getJobID() + " / Date: " + j.getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + j.getRegistrationID());
+                jobLabel = new Label("Job ID: " + j.getJobID() + " / Date: " + j.getDateBookedIn() +
+                        " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + j.getRegistrationID() + "" +
+                        " / Status: " + j.getStatus() + " / Is Paid: " + j.getPaidFor());
             }
             jobHashMap.put(jobLabel.getText(), j);
             jobList.getItems().add(jobLabel);

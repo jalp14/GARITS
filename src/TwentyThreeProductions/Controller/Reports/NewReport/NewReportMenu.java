@@ -51,7 +51,7 @@ public class NewReportMenu {
 
     @FXML
     void noVehiclesMonthlyBtnClicked(ActionEvent event) throws IOException {
-        sceneSwitch.activateScene(NavigationModel.NEW_NO_VEHICLES_MONTHLY_ID, backBtn.getScene());
+        sceneSwitch.activateScene(NavigationModel.NEW_NO_VEHICLES_MONTHLY_SETTINGS_ID, backBtn.getScene());
     }
 
     @FXML
@@ -61,6 +61,7 @@ public class NewReportMenu {
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
+
     }
 
 
