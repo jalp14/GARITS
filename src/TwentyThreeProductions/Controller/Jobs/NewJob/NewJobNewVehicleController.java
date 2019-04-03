@@ -86,6 +86,15 @@ public class NewJobNewVehicleController {
     private JFXRadioButton annualServiceRadio;
 
     @FXML
+    private JFXRadioButton firstMotRadio;
+
+    @FXML
+    private Label lastMotDateHeader;
+
+    @FXML
+    private JFXTextField lastMotDateField;
+
+    @FXML
     void motRadioSelected(ActionEvent event) {
         annualServiceRadio.setSelected(false);
         repairsRadio.setSelected(false);
@@ -101,6 +110,19 @@ public class NewJobNewVehicleController {
     void repairsRadioSelected(ActionEvent event) {
         motRadio.setSelected(false);
         annualServiceRadio.setSelected(false);
+    }
+
+    @FXML
+    void firstMotRadioSelected(ActionEvent event) {
+        if(firstMotRadio.isSelected()) {
+            lastMotDateHeader.setVisible(false);
+            lastMotDateField.setText(null);
+            lastMotDateField.setVisible(false);
+        }
+        else {
+            lastMotDateHeader.setVisible(true);
+            lastMotDateField.setVisible(true);
+        }
     }
 
     @FXML
@@ -130,6 +152,12 @@ public class NewJobNewVehicleController {
                     vehicle.setColour(colourField.getText());
                     vehicle.setRegNo(registrationField.getText());
                     vehicle.setVehicleDate(Date.valueOf(vehicleDateField.getText()));
+                    if(firstMotRadio.isSelected()) {
+                        vehicle.setLastMOT(null);
+                    }
+                    else {
+                        vehicle.setLastMOT(Date.valueOf(lastMotDateField.getText()));
+                    }
                     vehicle.setCustomerID(customerReference.getCustomer().getCustomerID());
                     vehicleDAO.save(vehicle);
                     for(Vehicle v: vehicleDAO.getAll()) {
@@ -164,6 +192,7 @@ public class NewJobNewVehicleController {
                             job.setDateBookedIn(sqlDate);
                             job.setStatus("Pending");
                             job.setPaidFor("False");
+                            job.setChecked("False");
                         }
                          if(motRadio.isSelected()) {
                             job.setDescription("MoT job");
@@ -215,6 +244,7 @@ public class NewJobNewVehicleController {
         nameField.clear();
         colourField.clear();
         vehicleDateField.clear();
+        lastMotDateField.clear();
     }
 }
 

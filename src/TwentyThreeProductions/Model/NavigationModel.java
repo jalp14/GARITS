@@ -37,6 +37,7 @@ public class NavigationModel {
     // Jobs
     public static String JOBS_MAIN_URL = "src/TwentyThreeProductions/View/Jobs/JobsMain.fxml";
     // Jobs - Edit/Monitor
+    public static String ADD_NEW_CARD_DETAILS_URL = "src/TwentyThreeProductions/View/Jobs/EditMonitor/AddNewCardDetails.fxml";
     public static String ADD_PART_TO_JOB_URL = "src/TwentyThreeProductions/View/Jobs/EditMonitor/AddPartToJob.fxml";
     public static String ADD_TASK_TO_JOB_URL = "src/TwentyThreeProductions/View/Jobs/EditMonitor/AddTaskToJob.fxml";
     public static String EDIT_MONITOR_CHOOSE_URL = "src/TwentyThreeProductions/View/Jobs/EditMonitor/EditMonitorChooseJob.fxml";
@@ -62,6 +63,7 @@ public class NavigationModel {
     public static String SELECT_REPORT_TO_VIEW_URL = "src/TwentyThreeProductions/View/Reports/SelectReportToView.fxml";
     public static String VIEW_REPORT_URL = "src/TwentyThreeProductions/View/Reports/ViewReport.fxml";
     public static String NEW_AVE_TIME_PRICE_URL = "src/TwentyThreeProductions/View/Reports/NewReports/New_AveTimePrice.fxml";
+    public static String NEW_NO_VEHICLES_MONTHLY_SETTINGS_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewNoVehiclesMonthlySettings.fxml";
     public static String NEW_NO_VEHICLES_MONTHLY_URL = "src/TwentyThreeProductions/View/Reports/NewReports/New_NoVehiclesMonthly.fxml";
     public static String NEW_REPORT_MENU_URL = "src/TwentyThreeProductions/View/Reports/NewReports/NewReportMenu.fxml";
     public static String NEW_STOCK_LEVEL_URL = "src/TwentyThreeProductions/View/Reports/NewReports/New_StockLevel.fxml";
@@ -93,6 +95,7 @@ public class NavigationModel {
     public static String REMOVE_CUSTOMER_ID = "RemoveCustomer";
     public static String SEARCH_CUSTOMER_ID = "SearchCustomer";
     public static String JOBS_MAIN_ID = "JobsMain";
+    public static String ADD_NEW_CARD_DETAILS_ID = "AddNewCardDetails";
     public static String ADD_PART_TO_JOB_ID = "AddPartToJob";
     public static String ADD_TASK_TO_JOB_ID = "AddTaskToJob";
     public static String EDIT_MONITOR_CHOOSE_ID = "EditMonitorChoose";
@@ -121,6 +124,7 @@ public class NavigationModel {
     public static String NEW_AVE_TIME_PRICE_ID = "NewAveTimePrice";
     public static String NEW_REPORT_MENU_ID = "NewReportMenu";
     public static String NEW_STOCK_LEVEL_ID = "NewStockLevel";
+    public static String NEW_NO_VEHICLES_MONTHLY_SETTINGS_ID = "NewNoVehiclesMonthlySettings";
     public static String NEW_NO_VEHICLES_MONTHLY_ID = "NewNoVehiclesMonthly";
 
 
@@ -178,6 +182,8 @@ public class NavigationModel {
             return tmpURL = new File(REMOVE_CUSTOMER_URL).toURI().toURL();
         } else if (name.equals(SEARCH_CUSTOMER_ID)) {
             return tmpURL = new File(SEARCH_CUSTOMER_URL).toURI().toURL();
+        } else if(name.equals(ADD_NEW_CARD_DETAILS_ID)) {
+            return tmpURL = new File(ADD_NEW_CARD_DETAILS_URL).toURI().toURL();
         } else if (name.equals(ADD_PART_TO_JOB_ID)) {
             return tmpURL = new File(ADD_PART_TO_JOB_URL).toURI().toURL();
         } else if (name.equals(ADD_TASK_TO_JOB_ID)) {
@@ -232,6 +238,8 @@ public class NavigationModel {
             return tmpURL = new File(VIEW_REPORT_URL).toURI().toURL();
         } else if (name.equals(NEW_AVE_TIME_PRICE_ID)) {
             return tmpURL = new File(NEW_AVE_TIME_PRICE_URL).toURI().toURL();
+        } else if (name.equals(NEW_NO_VEHICLES_MONTHLY_SETTINGS_ID)) {
+            return tmpURL = new File(NEW_NO_VEHICLES_MONTHLY_SETTINGS_URL).toURI().toURL();
         } else if (name.equals(NEW_NO_VEHICLES_MONTHLY_ID)) {
             return tmpURL = new File(NEW_NO_VEHICLES_MONTHLY_URL).toURI().toURL();
         } else if (name.equals(NEW_REPORT_MENU_ID)) {

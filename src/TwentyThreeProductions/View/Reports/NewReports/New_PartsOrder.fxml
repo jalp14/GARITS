@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<StackPane fx:id="newNoVehiclesMonthlyStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Reports.NewReport.NewNoVehiclesMonthly">
+<StackPane fx:id="partsMainStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Reports.NewReport.NewStockLevel">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
             <children>
@@ -38,7 +38,7 @@
                         <Font name="Avenir Next Bold" size="16.0" />
                     </font>
                 </Text>
-                <Label fx:id="welcomeMessage" layoutX="181.0" layoutY="238.0" prefHeight="50.0" prefWidth="454.0" text="Create report - Number of vehicles booked monthly">
+                <Label fx:id="welcomeMessage" layoutX="181.0" layoutY="238.0" prefHeight="50.0" prefWidth="454.0" text="Create report - Parts Order">
                     <font>
                         <Font name="Avenir Next Bold" size="30.0" />
                     </font>
@@ -64,7 +64,7 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label fx:id="reportName" layoutX="975.0" layoutY="356.0" prefHeight="79.0" prefWidth="220.0" text="NoVehiclesBookedMonthly-12299" wrapText="true">
+            <Label fx:id="reportName" layoutX="975.0" layoutY="356.0" prefHeight="79.0" prefWidth="220.0" text="StockReport-12299" wrapText="true">
                <font>
                   <Font size="24.0" />
                </font>

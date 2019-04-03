@@ -148,6 +148,7 @@ public class NewJobExistingVehicleController {
                 else {
                     job.setStatus("Pending");
                     job.setPaidFor("False");
+                    job.setChecked("False");
                     jobDAO.save(job);
                     SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
                             "Success", "Added job for existing vehicle");

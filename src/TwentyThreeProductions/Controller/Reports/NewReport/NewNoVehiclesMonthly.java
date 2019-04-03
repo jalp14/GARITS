@@ -1,23 +1,41 @@
 package TwentyThreeProductions.Controller.Reports.NewReport;
 
-
+import TwentyThreeProductions.Domain.Customer;
+import TwentyThreeProductions.Domain.Job;
+import TwentyThreeProductions.Model.CustomerReference;
+import TwentyThreeProductions.Model.Database.DAO.CustomerDAO;
+import TwentyThreeProductions.Model.Database.DAO.JobDAO;
+import TwentyThreeProductions.Model.Database.DBConnectivity;
+import TwentyThreeProductions.Model.JobReference;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
+import net.sf.jasperreports.engine.*;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.sql.Connection;
+import java.util.HashMap;
 
 public class NewNoVehiclesMonthly {
 
     private SceneSwitch sceneSwitch;
+    private Connection connection;
+    private JasperReport noVehiclesReport;
+    private DBConnectivity dbConnectivity;
+    private JasperPrint printReport;
+    private JobReference jobReference;
+    private CustomerReference customerReference;
+    private HashMap<String, Object> parameters;
 
     @FXML
-    private StackPane partsMainStackPane;
+    private StackPane newNoVehiclesMonthlyStackPane;
 
     @FXML
     private JFXButton generateReportBtn;
@@ -35,51 +53,10 @@ public class NewNoVehiclesMonthly {
     private JFXButton backBtn;
 
     @FXML
-    private JFXTextField reportNameField;
+    private WebView webView;
 
     @FXML
-    private JFXRadioButton jobTypeRadioAll;
-
-    @FXML
-    private Label fNameHeading;
-
-    @FXML
-    private Label jobTypeHeading;
-
-    @FXML
-    private Label custTypeHeading;
-
-    @FXML
-    private JFXRadioButton jobTypeRadioMoT;
-
-    @FXML
-    private JFXRadioButton jobTypeRadioService;
-
-    @FXML
-    private JFXRadioButton jobTypeRadioRepair;
-
-    @FXML
-    private JFXRadioButton custTypeRadioAll;
-
-    @FXML
-    private JFXRadioButton custTypeRadioCasual;
-
-    @FXML
-    private JFXRadioButton custTypeRadioAccount;
-
-    @FXML
-    private Label periodHeading;
-
-    @FXML
-    private JFXTextField beginField;
-
-    @FXML
-    private JFXTextField endField;
-
-    @FXML
-    void accountHolderRadioClicked(ActionEvent event) {
-
-    }
+    private Label reportName;
 
     @FXML
     void backBtnClicked(ActionEvent event) {
@@ -88,11 +65,78 @@ public class NewNoVehiclesMonthly {
 
     @FXML
     void generateReportBtnClicked(ActionEvent event) {
+        try {
+            JasperExportManager.exportReportToPdfFile(printReport, "src/TwentyThreeProductions/PDFs/ExportFile/NoVehiclesMonthlyReport.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void showReport() {
+        File file = new File("src/TwentyThreeProductions/PDFs/Template/NoVehiclesMonthlyReport.html");
+
+        try {
+            webView.getEngine().load(file.toURI().toURL().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setupReport() {
+        JobDAO jobDAO = new JobDAO();
+        CustomerDAO customerDAO = new CustomerDAO();
+        parameters = new HashMap<>();
+        try {
+            noVehiclesReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/NoVehiclesMonthlyReport.jrxml");
+            for (Job j : jobDAO.getAll()) {
+                if (j.getRegistrationID().isEmpty()) {
+                    continue;
+                }
+                parameters.put("JOBID", j.getJobID());
+                if (jobReference.getJob().getUsername().equals("ANY")) {
+                    parameters.put("USERNAME", j.getUsername());
+                } else if (j.getUsername().equals(jobReference.getJob().getUsername())) {
+                    parameters.put("USERNAME", j.getUsername());
+                } else {
+                    continue;
+                }
+                for (Customer c : customerDAO.getAll()) {
+                    if (customerReference.getCustomer().getCustomerType().equals("ANY")) {
+                        parameters.put("CUSTOMERID", j.getCustomerID());
+                        break;
+                    } else if (c.getCustomerType().equals(customerReference.getCustomer().getCustomerType())
+                            && c.getCustomerID().equals(j.getCustomerID())) {
+                        parameters.put("CUSTOMERID", j.getCustomerID());
+                        break;
+                    }
+                }
+                parameters.put("CARREGISTRATIONID", j.getRegistrationID());
+                if (jobReference.getJob().getDescription().equals("ANY")) {
+                    parameters.put("DESCRIPTION", j.getDescription());
+                } else if (j.getDescription().equals(jobReference.getJob().getDescription())) {
+                    parameters.put("DESCRIPTION", j.getDescription());
+                } else {
+                    continue;
+                }
+                parameters.put("STATUS", j.getStatus());
+                parameters.put("PAIDFOR", j.getPaidFor());
+                printReport = JasperFillManager.fillReport(noVehiclesReport, parameters, new JREmptyDataSource());
+            }
+            JasperExportManager.exportReportToHtmlFile(printReport, "src/TwentyThreeProductions/PDFs/Template/NoVehiclesMonthlyReport.html");
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
+        jobReference = JobReference.getInstance();
+        customerReference = CustomerReference.getInstance();
+        setupReport();
+        showReport();
     }
 
 }
+

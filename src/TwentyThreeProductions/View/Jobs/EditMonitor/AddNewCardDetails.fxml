@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="newJobNewVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewJobNewVehicleController">
+<StackPane fx:id="addNewCardDetailsStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.AddNewCardDetailsController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -32,7 +30,7 @@
                   <Font name="Avenir Next Bold" size="16.0" />
                </font>
             </Text>
-            <Label fx:id="welcomeMessage" layoutX="186.0" layoutY="212.0" prefHeight="68.0" prefWidth="309.0" text="Add vehicle to customer">
+            <Label fx:id="welcomeMessage" layoutX="186.0" layoutY="212.0" prefHeight="68.0" prefWidth="309.0" text="Add card to customer">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
                </font>
@@ -52,7 +50,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="addVehicleBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1030.0" layoutY="665.0" onAction="#addVehicleBtnClicked" prefHeight="48.0" prefWidth="134.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Add vehicle" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="addCardBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1030.0" layoutY="665.0" onAction="#addCardBtnClicked" prefHeight="48.0" prefWidth="134.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Add card details" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -65,75 +63,42 @@
                   <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="regHeading" layoutX="40.0" layoutY="421.0" prefHeight="32.0" prefWidth="146.0" text="Registration">
+            <Label fx:id="cardNumberHeading" layoutX="33.0" layoutY="343.0" prefHeight="32.0" prefWidth="146.0" text="Card Number">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="193.0" layoutY="415.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="cardNumberField" labelFloat="true" layoutX="186.0" layoutY="337.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="nameHeading" layoutX="600.0" layoutY="421.0" prefHeight="32.0" prefWidth="146.0" text="Name">
+            <Label fx:id="nameHeading" layoutX="593.0" layoutY="343.0" prefHeight="32.0" prefWidth="146.0" text="Name">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="vehicleDateHeading" layoutX="40.0" layoutY="543.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date">
+            <Label fx:id="cvvHeading" layoutX="33.0" layoutY="465.0" prefHeight="32.0" prefWidth="146.0" text="CVV">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="colourHeading" alignment="CENTER" layoutX="554.0" layoutY="547.0" prefHeight="32.0" prefWidth="146.0" text="Colour">
+            <Label fx:id="expDateHeading" alignment="CENTER" layoutX="526.0" layoutY="469.0" prefHeight="32.0" prefWidth="167.0" text="Expiration Date">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="nameField" layoutX="688.0" layoutY="418.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="nameField" layoutX="681.0" layoutY="340.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="vehicleDateField" layoutX="193.0" layoutY="537.0" prefHeight="35.0" prefWidth="309.0" promptText="yyyy-mm-dd">
+            <JFXTextField fx:id="cvvField" layoutX="186.0" layoutY="459.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="colourField" layoutX="688.0" layoutY="545.0" prefHeight="35.0" prefWidth="309.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXTextField>
-            <JFXRadioButton fx:id="annualServiceRadio" layoutX="35.0" layoutY="343.0" text="Annual Service">
-               <font>
-                  <Font size="36.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="type" />
-               </toggleGroup>
-            </JFXRadioButton>
-            <JFXRadioButton fx:id="repairsRadio" layoutX="384.0" layoutY="345.0" text="Repairs" toggleGroup="$type">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </JFXRadioButton>
-            <JFXRadioButton fx:id="motRadio" layoutX="617.0" layoutY="344.0" text="MoT" toggleGroup="$type">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </JFXRadioButton>
-            <JFXRadioButton fx:id="firstMotRadio" layoutX="35.0" layoutY="639.0" text="First MoT">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </JFXRadioButton>
-            <Label fx:id="lastMotDateHeader" layoutX="257.0" layoutY="649.0" prefHeight="32.0" prefWidth="146.0" text="Last MoT Date">
-               <font>
-                  <Font name="Avenir Book" size="22.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="lastMotDateField" layoutX="418.0" layoutY="646.0" prefHeight="35.0" prefWidth="309.0" promptText="yyyy-mm-dd">
+            <JFXTextField fx:id="expDateField" layoutX="681.0" layoutY="467.0" prefHeight="35.0" prefWidth="309.0" promptText="mm/yy">
                <font>
                   <Font size="18.0" />
                </font>

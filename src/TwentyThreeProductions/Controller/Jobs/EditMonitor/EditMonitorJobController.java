@@ -3,6 +3,7 @@ package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 import TwentyThreeProductions.Domain.*;
 import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.*;
+import TwentyThreeProductions.Model.HelperClasses.PaymentHelper;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,11 @@ public class EditMonitorJobController {
 
     private JobReference jobReference;
 
+    private PaymentHelper paymentHelper;
+
     private HashMap<String, User> mechanicHashMap;
+
+    private boolean cardPaymentRequired = false;
 
     @FXML
     private StackPane editMonitorJobStackPane;
@@ -74,13 +79,19 @@ public class EditMonitorJobController {
     private Label mechanicHeading2;
 
     @FXML
+    private Label amountHeading;
+
+    @FXML
+    private JFXTextField amountField;
+
+    @FXML
     private JFXCheckBox jobCompletedCheckbox;
 
     @FXML
     private JFXCheckBox jobPaidCheckbox;
 
     @FXML
-    private ToggleGroup type;
+    private ToggleGroup jobType;
 
     @FXML
     private JFXRadioButton motRadio;
@@ -90,6 +101,15 @@ public class EditMonitorJobController {
 
     @FXML
     private JFXRadioButton annualServiceRadio;
+
+    @FXML
+    private ToggleGroup paymentType;
+
+    @FXML
+    private JFXRadioButton cashRadio;
+
+    @FXML
+    private JFXRadioButton cardRadio;
 
     @FXML
     void motRadioSelected(ActionEvent event) {
@@ -157,11 +177,31 @@ public class EditMonitorJobController {
         if(jobPaidCheckbox.isSelected()) {
             jobReference.getJob().setPaidFor("True");
             System.out.println("True");
+            cashRadio.setVisible(true);
+            cardRadio.setVisible(true);
+            amountHeading.setVisible(true);
+            amountField.setVisible(true);
         }
         else {
             jobReference.getJob().setPaidFor("False");
             System.out.println("False");
+            cashRadio.setVisible(false);
+            cardRadio.setVisible(false);
+            amountHeading.setVisible(false);
+            amountField.setVisible(false);
         }
+    }
+
+    @FXML
+    void cashRadioSelected(ActionEvent event) {
+        cardRadio.setSelected(false);
+        cardPaymentRequired = false;
+    }
+
+    @FXML
+    void cardRadioSelected(ActionEvent event) {
+        cashRadio.setSelected(false);
+        cardPaymentRequired = true;
     }
 
     @FXML
@@ -174,8 +214,10 @@ public class EditMonitorJobController {
     }
 
     @FXML
-    void saveBtnClicked(ActionEvent event) {
+    void saveBtnClicked(ActionEvent event) throws IOException {
         Job job = jobReference.getJob();
+        java.util.Date currentDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
         if(!(job.getDescription().equals("Spare parts ordered"))) {
             if (motRadio.isSelected()) {
                 job.setDescription("MoT job");
@@ -189,8 +231,53 @@ public class EditMonitorJobController {
                         "Failure", "No job type selected");
             }
         }
+        if(job.getStatus().equals("Completed")) {
+            job.setDateCompleted(sqlDate);
+        }
+        else {
+            job.setDateCompleted(null);
+        }
         JobDAO jobDAO = new JobDAO();
         jobDAO.update(job);
+        if(job.getPaidFor().equals("True")) {
+            //try {
+                paymentHelper.setAmountPaid(Float.parseFloat(amountField.getText()));
+                if(amountField.getText().isEmpty()) {
+                    SystemAlert systemAlert = new SystemAlert(editMonitorJobStackPane,
+                            "Failure", "No price given");
+                }
+                else if (cashRadio.isSelected()) {
+                    Payment payment = new Payment();
+                    PaymentDAO paymentDAO = new PaymentDAO();
+                    payment.setJobID(job.getJobID());
+                    payment.setCustomerID(job.getCustomerID());
+                    payment.setType("Cash");
+                    payment.setDate(sqlDate);
+                    payment.setAmount(paymentHelper.getAmountPaid());
+                    paymentDAO.saveCash(payment);
+                } else {
+                    motRadio.setSelected(false);
+                    annualServiceRadio.setSelected(false);
+                    repairsRadio.setSelected(false);
+                    jobCompletedCheckbox.setSelected(false);
+                    jobPaidCheckbox.setSelected(false);
+                    taskList.getSelectionModel().select(null);
+                    taskList.getItems().clear();
+                    partList.getSelectionModel().select(null);
+                    partList.getItems().clear();
+                    mechanicComboBox.getSelectionModel().select(null);
+                    mechanicComboBox.getItems().clear();
+                    mechanicHashMap.clear();
+                    refreshList();
+                    sceneSwitch.activateSceneAlways(NavigationModel.ADD_NEW_CARD_DETAILS_ID, backBtn.getScene());
+                }
+            /*}
+            catch(Exception e) {
+                SystemAlert systemAlert = new SystemAlert(editMonitorJobStackPane,
+                        "Failure", "Invalid price given");
+                job.setPaidFor("False");
+            }*/
+        }
         SystemAlert systemAlert = new SystemAlert(editMonitorJobStackPane,
                 "Success", "Saved changes to job");
         motRadio.setSelected(false);
@@ -214,6 +301,7 @@ public class EditMonitorJobController {
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         jobReference = JobReference.getInstance();
+        paymentHelper = PaymentHelper.getInstance();
         mechanicHashMap = new HashMap<>();
         refreshList();
     }
@@ -255,9 +343,17 @@ public class EditMonitorJobController {
         }
         if(jobReference.getJob().getStatus().equals("Completed")) {
             jobCompletedCheckbox.setSelected(true);
+            jobCompletedCheckbox.setDisable(true);
         }
         if(jobReference.getJob().getPaidFor().equals("True")) {
             jobPaidCheckbox.setSelected(true);
+            jobPaidCheckbox.setSelected(true);
+        }
+        else {
+            cashRadio.setVisible(false);
+            cardRadio.setVisible(false);
+            amountHeading.setVisible(false);
+            amountField.setVisible(false);
         }
         Customer customer = new Customer();
         CustomerDAO customerDAO = new CustomerDAO();
