@@ -113,7 +113,7 @@
             </Label>
             <JFXCheckBox fx:id="jobCompletedCheckbox" ellipsisString="" layoutX="783.0" layoutY="520.0" onAction="#jobCompletedCheckboxClicked" prefHeight="19.0" prefWidth="24.0" />
             <JFXCheckBox fx:id="jobPaidCheckbox" ellipsisString="" layoutX="783.0" layoutY="563.0" onAction="#jobPaidCheckboxClicked" prefHeight="19.0" prefWidth="24.0" />
-            <JFXRadioButton layoutX="663.0" layoutY="338.0" text="Repairs">
+            <JFXRadioButton fx:id="repairsRadio" layoutX="663.0" layoutY="338.0" text="Repairs">
                <font>
                   <Font size="36.0" />
                </font>
@@ -121,21 +121,15 @@
                   <ToggleGroup fx:id="type" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="666.0" layoutY="288.0" text="MoT">
+            <JFXRadioButton fx:id="motRadio" layoutX="666.0" layoutY="288.0" text="MoT" toggleGroup="$type">
                <font>
                   <Font size="36.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="type" />
-               </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="662.0" layoutY="391.0" text="Annual Service">
+            <JFXRadioButton fx:id="annualServiceRadio" layoutX="662.0" layoutY="391.0" text="Annual Service" toggleGroup="$type">
                <font>
                   <Font size="36.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="type" />
-               </toggleGroup>
             </JFXRadioButton>
          </children>
       </AnchorPane>

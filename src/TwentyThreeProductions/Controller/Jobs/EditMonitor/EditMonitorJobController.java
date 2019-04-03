@@ -3,13 +3,11 @@ package TwentyThreeProductions.Controller.Jobs.EditMonitor;
 import TwentyThreeProductions.Domain.*;
 import TwentyThreeProductions.Model.*;
 import TwentyThreeProductions.Model.Database.DAO.*;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
@@ -82,6 +80,36 @@ public class EditMonitorJobController {
     private JFXCheckBox jobPaidCheckbox;
 
     @FXML
+    private ToggleGroup type;
+
+    @FXML
+    private JFXRadioButton motRadio;
+
+    @FXML
+    private JFXRadioButton repairsRadio;
+
+    @FXML
+    private JFXRadioButton annualServiceRadio;
+
+    @FXML
+    void motRadioSelected(ActionEvent event) {
+        annualServiceRadio.setSelected(false);
+        repairsRadio.setSelected(false);
+    }
+
+    @FXML
+    void annualServiceRadioSelected(ActionEvent event) {
+        motRadio.setSelected(false);
+        repairsRadio.setSelected(false);
+    }
+
+    @FXML
+    void repairsRadioSelected(ActionEvent event) {
+        motRadio.setSelected(false);
+        annualServiceRadio.setSelected(false);
+    }
+
+    @FXML
     void addPartBtnClick(ActionEvent event) throws IOException {
         sceneSwitch.activateSceneAlways(NavigationModel.ADD_PART_TO_JOB_ID, backBtn.getScene());
     }
@@ -148,10 +176,26 @@ public class EditMonitorJobController {
     @FXML
     void saveBtnClicked(ActionEvent event) {
         Job job = jobReference.getJob();
+        if(!(job.getDescription().equals("Spare parts ordered"))) {
+            if (motRadio.isSelected()) {
+                job.setDescription("MoT job");
+            } else if (annualServiceRadio.isSelected()) {
+                job.setDescription("Annual Service job");
+            } else if (repairsRadio.isSelected()) {
+                job.setDescription("Repairs job");
+            }
+            if (job.getDescription().isEmpty()) {
+                SystemAlert systemAlert = new SystemAlert(editMonitorJobStackPane,
+                        "Failure", "No job type selected");
+            }
+        }
         JobDAO jobDAO = new JobDAO();
         jobDAO.update(job);
         SystemAlert systemAlert = new SystemAlert(editMonitorJobStackPane,
                 "Success", "Saved changes to job");
+        motRadio.setSelected(false);
+        annualServiceRadio.setSelected(false);
+        repairsRadio.setSelected(false);
         jobCompletedCheckbox.setSelected(false);
         jobPaidCheckbox.setSelected(false);
         taskList.getSelectionModel().select(null);
@@ -229,6 +273,26 @@ public class EditMonitorJobController {
         }
         else {
             jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + jobReference.getJob().getRegistrationID());
+        }
+        if(jobReference.getJob().getDescription().equals("Spare parts ordered")) {
+            motRadio.setVisible(false);
+            annualServiceRadio.setVisible(false);
+            repairsRadio.setVisible(false);
+        }
+        else if(jobReference.getJob().getDescription().equals("MoT job")) {
+            motRadio.setSelected(true);
+            annualServiceRadio.setSelected(false);
+            repairsRadio.setSelected(false);
+        }
+        else if(jobReference.getJob().getDescription().equals("Annual Service job")) {
+            motRadio.setSelected(false);
+            annualServiceRadio.setSelected(true);
+            repairsRadio.setSelected(false);
+        }
+        else {
+            motRadio.setSelected(false);
+            annualServiceRadio.setSelected(false);
+            repairsRadio.setSelected(true);
         }
     }
 }

@@ -73,7 +73,7 @@ public class EditMonitorChooseJobController {
         }
         else{
             jobReference.setJob(jobHashMap.get(jobList.getSelectionModel().getSelectedItem().getText()));
-            sceneSwitch.activateScene(NavigationModel.EDIT_MONITOR_JOB_ID, backBtn.getScene());
+            sceneSwitch.activateSceneAlways(NavigationModel.EDIT_MONITOR_JOB_ID, backBtn.getScene());
         }
     }
 

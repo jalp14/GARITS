@@ -8,10 +8,12 @@ import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
 import TwentyThreeProductions.Model.Database.DAO.UserDAO;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
@@ -23,6 +25,8 @@ public class NewJobNewVehicleController {
     private SceneSwitch sceneSwitch;
 
     private CustomerReference customerReference;
+
+    private Job job;
 
     @FXML
     private StackPane newJobNewVehicleStackPane;
@@ -70,6 +74,36 @@ public class NewJobNewVehicleController {
     private JFXTextField vehicleDateField;
 
     @FXML
+    private ToggleGroup type;
+
+    @FXML
+    private JFXRadioButton motRadio;
+
+    @FXML
+    private JFXRadioButton repairsRadio;
+
+    @FXML
+    private JFXRadioButton annualServiceRadio;
+
+    @FXML
+    void motRadioSelected(ActionEvent event) {
+        annualServiceRadio.setSelected(false);
+        repairsRadio.setSelected(false);
+    }
+
+    @FXML
+    void annualServiceRadioSelected(ActionEvent event) {
+        motRadio.setSelected(false);
+        repairsRadio.setSelected(false);
+    }
+
+    @FXML
+    void repairsRadioSelected(ActionEvent event) {
+        motRadio.setSelected(false);
+        annualServiceRadio.setSelected(false);
+    }
+
+    @FXML
     void addVehicleBtnClicked(ActionEvent event) {
         if (registrationField.getText().isEmpty() || nameField.getText().isEmpty() ||
                 colourField.getText().isEmpty() || vehicleDateField.getText().isEmpty()) {
@@ -78,7 +112,6 @@ public class NewJobNewVehicleController {
         } else {
             Vehicle vehicle = new Vehicle();
             VehicleDAO vehicleDAO = new VehicleDAO();
-            Job job = new Job();
             JobDAO jobDAO = new JobDAO();
             UserDAO userDAO = new UserDAO();
             boolean doesRegistrationIDExist = false;
@@ -102,41 +135,55 @@ public class NewJobNewVehicleController {
                     for(Vehicle v: vehicleDAO.getAll()) {
                         vehicle.setRegistrationID(v.getRegistrationID());
                     }
-                    int jobID = 1;
-                    if(!(jobDAO.getAll().isEmpty())) {
-                        for (Job j : jobDAO.getAll()) {
-                            jobID++;
+                        int jobID = 1;
+                        if(!(jobDAO.getAll().isEmpty())) {
+                            for (Job j : jobDAO.getAll()) {
+                                jobID++;
+                            }
                         }
-                    }
-                    job.setJobID(jobID);
-                    boolean isMechanicTableEmpty = false;
-                    if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
-                        job.setUsername(usernameLbl.getText().substring(8));
-                    } else if (userDAO.getMechanics().isEmpty()) {
-                        isMechanicTableEmpty = true;
-                    } else {
-                        for (User u : userDAO.getMechanics()) {
-                            job.setUsername(u.getUsername());
-                            break;
+                        job.setJobID(jobID);
+                        boolean isMechanicTableEmpty = false;
+                        if (usertypeLbl.getText().equals("Mechanic") || usertypeLbl.getText().equals("Foreperson")) {
+                            job.setUsername(usernameLbl.getText().substring(8));
+                        } else if (userDAO.getMechanics().isEmpty()) {
+                            isMechanicTableEmpty = true;
+                        } else {
+                            for (User u : userDAO.getMechanics()) {
+                                job.setUsername(u.getUsername());
+                                break;
+                            }
                         }
-                    }
-                    if (isMechanicTableEmpty) {
-                        SystemAlert systemAlert = new SystemAlert(newJobNewVehicleStackPane,
-                                "Failure", "No mechanic in system database");
-                    } else {
-                        job.setCustomerID(Integer.parseInt(customerReference.getCustomer().getCustomerID()));
-                        job.setRegistrationID(String.valueOf(vehicle.getRegistrationID()));
-                        java.util.Date currentDate = new java.util.Date();
-                        java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-                        job.setDateBookedIn(sqlDate);
-                        job.setDescription("Work done on vehicle");
-                        job.setStatus("Pending");
-                        job.setPaidFor("False");
-                        jobDAO.save(job);
-                        SystemAlert systemAlert = new SystemAlert(newJobNewVehicleStackPane,
-                                "Success", "Job added for new vehicle");
-                        clearInputs();
-                    }
+                        if (isMechanicTableEmpty) {
+                            SystemAlert systemAlert = new SystemAlert(newJobNewVehicleStackPane,
+                                    "Failure", "No mechanic in system database");
+                        } else {
+                            job.setCustomerID(Integer.parseInt(customerReference.getCustomer().getCustomerID()));
+                            job.setRegistrationID(String.valueOf(vehicle.getRegistrationID()));
+                            java.util.Date currentDate = new java.util.Date();
+                            java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+                            job.setDateBookedIn(sqlDate);
+                            job.setStatus("Pending");
+                            job.setPaidFor("False");
+                        }
+                         if(motRadio.isSelected()) {
+                            job.setDescription("MoT job");
+                        }
+                        else if(annualServiceRadio.isSelected()) {
+                            job.setDescription("Annual Service job");
+                        }
+                        else if(repairsRadio.isSelected()) {
+                            job.setDescription("Repairs job");
+                        }
+                        if(job.getDescription().isEmpty()) {
+                            SystemAlert systemAlert = new SystemAlert(newJobNewVehicleStackPane,
+                                    "Failure", "No job type selected");
+                        }
+                        else {
+                            jobDAO.save(job);
+                            SystemAlert systemAlert = new SystemAlert(newJobNewVehicleStackPane,
+                                    "Success", "Job added for new vehicle");
+                            clearInputs();
+                        }
                 } catch (Exception e) {
                     SystemAlert systemAlert = new SystemAlert(newJobNewVehicleStackPane,
                             "Failure", "Invalid input type");
@@ -158,6 +205,7 @@ public class NewJobNewVehicleController {
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerReference = customerReference.getInstance();
+        job = new Job();
         customerNameLbl.setText("Name: " + customerReference.getCustomer().getFirstName() + " " + customerReference.getCustomer().getLastName());
         clearInputs();
     }

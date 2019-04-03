@@ -105,7 +105,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXRadioButton layoutX="35.0" layoutY="343.0" text="Annual Service">
+            <JFXRadioButton fx:id="annualServiceRadio" layoutX="35.0" layoutY="343.0" text="Annual Service">
                <font>
                   <Font size="36.0" />
                </font>
@@ -113,21 +113,15 @@
                   <ToggleGroup fx:id="type" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="384.0" layoutY="345.0" text="Repairs">
+            <JFXRadioButton fx:id="repairsRadio" layoutX="384.0" layoutY="345.0" text="Repairs" toggleGroup="$type">
                <font>
                   <Font size="36.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="type" />
-               </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="617.0" layoutY="344.0" text="MoT">
+            <JFXRadioButton fx:id="motRadio" layoutX="617.0" layoutY="344.0" text="MoT" toggleGroup="$type">
                <font>
                   <Font size="36.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="type" />
-               </toggleGroup>
             </JFXRadioButton>
          </children>
       </AnchorPane>

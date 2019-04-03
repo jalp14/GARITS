@@ -110,6 +110,12 @@ public class AddPartToJobController {
                                     "Success", "Added part to job");
                         }
                         partDAO.update(part);
+                        if(part.getStockLevel() <= part.getThresholdLevel()) {
+                            SystemNotification notification = new SystemNotification(addPartToJobStackPane);
+                            notification.setNotificationMessage("The number of parts has fallen below the threshold, " +
+                                    "please order more as soon as possible");
+                            notification.showNotification(NavigationModel.UPDATE_STOCK_ID, DBLogic.getDBInstance().getUsername());
+                        }
                         partList.getSelectionModel().select(null);
                         partList.getItems().clear();
                         partHashMap.clear();
