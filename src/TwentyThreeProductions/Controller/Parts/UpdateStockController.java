@@ -93,6 +93,13 @@ public class UpdateStockController {
                 SystemAlert systemAlert = new SystemAlert(updateStockStackPane,
                         "Success", "Stock/Threshold updated");
                 stockLevelField.setText(String.valueOf(part.getStockLevel()));
+                thresholdLevelField.setText(String.valueOf(part.getThresholdLevel()));
+                if(part.getStockLevel() <= part.getThresholdLevel()) {
+                    SystemNotification notification = new SystemNotification(updateStockStackPane);
+                    notification.setNotificationMessage("The number of parts has fallen below the threshold, " +
+                            "please order more as soon as possible");
+                    notification.showNotification(NavigationModel.UPDATE_STOCK_ID, DBLogic.getDBInstance().getUsername());
+                }
             }
         }
         catch(Exception e) {

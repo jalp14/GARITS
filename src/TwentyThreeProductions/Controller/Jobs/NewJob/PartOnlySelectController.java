@@ -135,7 +135,7 @@ public class PartOnlySelectController {
                 java.util.Date currentDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
                 job.setDateBookedIn(sqlDate);
-                job.setDescription("Spare part ordered");
+                job.setDescription("Spare parts ordered");
                 job.setStatus("Pending");
                 job.setPaidFor("False");
                 try {
@@ -152,6 +152,12 @@ public class PartOnlySelectController {
                         partJobDAO.save(partJob);
                         SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,
                                 "Success", "Added part-only job");
+                        if(part.getStockLevel() <= part.getThresholdLevel()) {
+                            SystemNotification notification = new SystemNotification(partOnlySelectStackPane);
+                            notification.setNotificationMessage("The number of parts has fallen below the threshold, " +
+                                    "please order more as soon as possible");
+                            notification.showNotification(NavigationModel.UPDATE_STOCK_ID, DBLogic.getDBInstance().getUsername());
+                        }
                         partList.getSelectionModel().select(null);
                         partList.getItems().clear();
                         partHashMap.clear();

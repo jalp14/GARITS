@@ -7,12 +7,15 @@ import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.Database.DAO.JobDAO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class NewJobExistingVehicleController {
@@ -48,10 +51,43 @@ public class NewJobExistingVehicleController {
     private JFXListView<Label> customerVehicleList;
 
     @FXML
+    private ToggleGroup type;
+
+    @FXML
+    private JFXRadioButton motRadio;
+
+    @FXML
+    private JFXRadioButton repairsRadio;
+
+    @FXML
+    private JFXRadioButton annualServiceRadio;
+
+    @FXML
+    void motRadioSelected(ActionEvent event) {
+        annualServiceRadio.setSelected(false);
+        repairsRadio.setSelected(false);
+    }
+
+    @FXML
+    void annualServiceRadioSelected(ActionEvent event) {
+        motRadio.setSelected(false);
+        repairsRadio.setSelected(false);
+    }
+
+    @FXML
+    void repairsRadioSelected(ActionEvent event) {
+        motRadio.setSelected(false);
+        annualServiceRadio.setSelected(false);
+    }
+
+    @FXML
     void backBtnClicked(ActionEvent event) {
         customerVehicleList.getSelectionModel().select(null);
         customerVehicleList.getItems().clear();
         vehicleHashMap.clear();
+        motRadio.setSelected(false);
+        annualServiceRadio.setSelected(false);
+        repairsRadio.setSelected(false);
         refreshList();
         sceneSwitch.switchScene(NavigationModel.NEW_JOB_CAR_MENU_ID);
     }
@@ -63,9 +99,9 @@ public class NewJobExistingVehicleController {
                     "Failure", "No vehicle selected");
         }
         else {
+            Job job = new Job();
             Vehicle vehicle = vehicleHashMap.get(customerVehicleList.getSelectionModel().getSelectedItem().getText());
             Customer customer = customerReference.getCustomer();
-            Job job = new Job();
             VehicleDAO vehicleDAO = new VehicleDAO();
             JobDAO jobDAO = new JobDAO();
             UserDAO userDAO = new UserDAO();
@@ -96,16 +132,30 @@ public class NewJobExistingVehicleController {
                 java.util.Date currentDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
                 job.setDateBookedIn(sqlDate);
-                job.setDescription("Work done on vehicle");
-                job.setStatus("Pending");
-                job.setPaidFor("False");
-                jobDAO.save(job);
-                SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
-                        "Success", "Added job for existing vehicle");
-                customerVehicleList.getSelectionModel().select(null);
-                customerVehicleList.getItems().clear();
-                vehicleHashMap.clear();
-                refreshList();
+                if(motRadio.isSelected()) {
+                    job.setDescription("MoT job");
+                }
+                else if(annualServiceRadio.isSelected()) {
+                    job.setDescription("Annual Service job");
+                }
+                else if(repairsRadio.isSelected()) {
+                    job.setDescription("Repairs job");
+                }
+                if(job.getDescription().isEmpty()) {
+                    SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
+                            "Failure", "No job type selected");
+                }
+                else {
+                    job.setStatus("Pending");
+                    job.setPaidFor("False");
+                    jobDAO.save(job);
+                    SystemAlert systemAlert = new SystemAlert(newJobExistingVehicleStackPane,
+                            "Success", "Added job for existing vehicle");
+                    customerVehicleList.getSelectionModel().select(null);
+                    customerVehicleList.getItems().clear();
+                    vehicleHashMap.clear();
+                    refreshList();
+                }
             }
         }
     }
