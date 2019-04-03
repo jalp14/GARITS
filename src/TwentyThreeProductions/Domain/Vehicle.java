@@ -11,6 +11,7 @@ public class Vehicle {
     private String regNo;
     private String colour;
     private Date vehicleDate;
+    private Date lastMOT;
 
     public Vehicle(){}
 
@@ -44,6 +45,14 @@ public class Vehicle {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getLastMOT() {
+        return lastMOT;
+    }
+
+    public void setLastMOT(Date lastMOT) {
+        this.lastMOT = lastMOT;
     }
 
     public String getRegNo() {

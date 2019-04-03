@@ -42,6 +42,7 @@ public class AddNewCustomerController {
     private ArrayList<Vehicle> vehicles;
     private HashMap<String,Vehicle> vehicleHashMap;
     private RequiredFieldValidator fieldValidator;
+    private Vehicle vehicle;
 
     @FXML
     private StackPane AddNewCustomerStackPane;
@@ -142,14 +143,28 @@ public class AddNewCustomerController {
     @FXML
     private JFXListView<Label> selectedCarList;
 
-    @FXML
-    private JFXComboBox<Label> availableCarsCombi;
 
     @FXML
     private JFXButton addNewCarBtn;
 
     @FXML
     private JFXButton removeCarBtn;
+
+    @FXML
+    private JFXButton confirmCarBtn;
+
+    @FXML
+    void confirmCarBtnClicked(ActionEvent event) {
+        customerDAO = new CustomerDAO();
+        System.out.println("Confirm btn clicked");
+        vehicle = CustomerHelper.getInstance().getVehicle();
+        System.out.println(vehicle.getName());
+        int customerID = customerDAO.getAll().size() + 1;
+        vehicle.setCustomerID(Integer.toString(customerID));
+        Label label = new Label(vehicle.getName() + ":" + vehicle.getRegNo());
+        vehicleHashMap.put(label.getText(), vehicle);
+        selectedCarList.getItems().add(label);
+    }
 
 
     @FXML
@@ -190,7 +205,8 @@ public class AddNewCustomerController {
         latePaymentCheckbox.setSelected(false);
         casualCustomerRadio.setSelected(false);
         accountHolderRadio.setSelected(false);
-        loadCars();
+        selectedCarList.getItems().clear();
+        vehicleHashMap.clear();
     }
 
 
@@ -216,11 +232,16 @@ public class AddNewCustomerController {
         customerRowCount = Integer.toString(customerDAO.getCount());
         System.out.println(customerRowCount);
         for (int j = 0; j < selectedCarList.getItems().size(); j++) {
+            Vehicle tmpVehicle = vehicleHashMap.get(selectedCarList.getItems().get(j).getText());
             String regID = vehicleHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
             System.out.println("Reg ID : " + regID);
-            vehicleDAO.updateCustomer(customerRowCount, regID);
-            System.out.println(vehicles.get(j).getRegistrationID());
+            if (vehicle.getLastMOT() == null) {
+                vehicleDAO.saveWithoutMOT(vehicle);
+            } else {
+                vehicleDAO.save(tmpVehicle);
+            }
         }
+
         if (accountHolderRadio.isSelected()) {
             discountDAO.save(CustomerHelper.getInstance().getDiscount());
         }
@@ -230,16 +251,19 @@ public class AddNewCustomerController {
 
     @FXML
     void addNewCarBtnClicked(ActionEvent event) throws IOException {
-        int i = availableCarsCombi.getSelectionModel().getSelectedIndex();
-        selectedCarList.getItems().add((availableCarsCombi.getItems().get(i)));
-        availableCarsCombi.getItems().remove(i);
+        CustomerHelper.getInstance().setLastCall(NavigationModel.ADD_NEW_CUSTOMER_ID);
+        sceneSwitch.activateScene(NavigationModel.ADD_CUSTOMER_TO_CAR_ID, backBtn.getScene());
     }
 
     @FXML
     void removeCarBtnClicked(ActionEvent event) {
-        int j = selectedCarList.getSelectionModel().getSelectedIndex();
-        availableCarsCombi.getItems().add(selectedCarList.getItems().get(j));
-        selectedCarList.getItems().remove(j);
+        if (selectedCarList.getSelectionModel().getSelectedItem() == null) {
+            SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Error", "Please select a vehicle from the list");
+        } else {
+            int j = selectedCarList.getSelectionModel().getSelectedIndex();
+            vehicleHashMap.remove(selectedCarList.getItems().get(j).getText());
+            selectedCarList.getItems().remove(j);
+        }
     }
 
     public void initialize() {
@@ -252,7 +276,6 @@ public class AddNewCustomerController {
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         vehicleHashMap = new HashMap<>();
-        loadCars();
     }
 
     public void setupFieldValidators() {
@@ -288,19 +311,6 @@ public class AddNewCustomerController {
 
     }
 
-    public void loadCars() {
-        availableCarsCombi.getItems().clear();
-        selectedCarList.getItems().clear();
-        vehicleDAO = new VehicleDAO();
-        vehicles = vehicleDAO.getAvailableVehicles();
-        for (int i = 0; i < vehicles.size(); i++) {
-            Vehicle tmpVehicle = vehicles.get(i);
-            Label tmpLabel = new Label(tmpVehicle.getName());
-            availableCarsCombi.getItems().add(tmpLabel);
-            vehicleHashMap.put(tmpLabel.getText(), tmpVehicle);
-            System.out.println(" Car Hash Map Size : " + vehicleHashMap.size());
-        }
-    }
 
     public String determineType() {
         String type;
