@@ -17,6 +17,7 @@ import net.sf.jasperreports.engine.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.sql.Connection;
+import java.util.HashMap;
 
 public class NewStockLevel {
 
@@ -67,7 +68,7 @@ public class NewStockLevel {
     }
 
     public void showReport() {
-        File file = new File("src/TwentyThreeProductions/PDFs/Template/StockReport.html");
+        File file = new File("src/TwentyThreeProductions/PDFs/Template/Stock.html");
 
         try {
             webView.getEngine().load(file.toURI().toURL().toString());
@@ -79,14 +80,21 @@ public class NewStockLevel {
 
     public void setupReport() {
         try {
-            stockReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/StockLevelReport.jrxml");
+            stockReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/Stock.jrxml");
 
             dbConnectivity = new DBConnectivity();
             connection = dbConnectivity.connection(connection);
-            // PSA : printReport here means view the report
-            printReport = JasperFillManager.fillReport(stockReport, null, connection);
+            connection = null;
 
-            JasperExportManager.exportReportToHtmlFile(printReport, "src/TwentyThreeProductions/PDFs/Template/StockReport.html");
+            HashMap map = new HashMap();
+
+            map.put("TEST","Works");
+
+
+            // PSA : printReport here means view the report
+            printReport = JasperFillManager.fillReport(stockReport, map, connection);
+
+            JasperExportManager.exportReportToHtmlFile(printReport, "src/TwentyThreeProductions/PDFs/Template/Stock.html");
         } catch (JRException e) {
             e.printStackTrace();
         }

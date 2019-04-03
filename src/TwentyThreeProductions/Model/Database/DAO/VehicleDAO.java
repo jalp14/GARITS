@@ -105,6 +105,16 @@ public class VehicleDAO implements IVehicle {
 
     @Override
     public void save(Vehicle vehicle) {
+        String[] args = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString(), vehicle.getLastMOT().toString()};
+        connection = dbConnectivity.connection(connection);
+        String saveQuery = "INSERT INTO GARAGE.VEHICLE (CUSTOMERID, NAME, COLOUR, REGNO, VEHICLEDATE, LASTMOT)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        connection = dbConnectivity.connection(connection);
+        dbConnectivity.writePrepared(saveQuery, connection, args);
+    }
+
+    @Override
+    public void saveWithoutMOT(Vehicle vehicle) {
         String[] args = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString()};
         connection = dbConnectivity.connection(connection);
         String saveQuery = "INSERT INTO GARAGE.VEHICLE (CUSTOMERID, NAME, COLOUR, REGNO, VEHICLEDATE)\n" +
@@ -131,6 +141,15 @@ public class VehicleDAO implements IVehicle {
 
     @Override
     public void update(Vehicle vehicle) {
+        String updateQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=?, NAME=?, COLOUR=?, REGNO=?, VEHICLEDATE=?, LASTMOT=? WHERE REGISTRATIONID=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString(), vehicle.getLastMOT().toString(), vehicle.getRegistrationID()};
+        dbConnectivity.writePrepared(updateQuery, connection, args);
+        System.out.println("Successfully updated ");
+    }
+
+    @Override
+    public void updateWithoutMOT(Vehicle vehicle) {
         String updateQuery = "UPDATE GARAGE.VEHICLE SET CUSTOMERID=?, NAME=?, COLOUR=?, REGNO=?, VEHICLEDATE=? WHERE REGISTRATIONID=?";
         connection = dbConnectivity.connection(connection);
         String args[] = {vehicle.getCustomerID(), vehicle.getName(), vehicle.getColour(), vehicle.getRegNo(), vehicle.getVehicleDate().toString(), vehicle.getRegistrationID()};

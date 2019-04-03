@@ -10,6 +10,8 @@ public interface IVehicle {
     ArrayList<Vehicle> getAvailableVehicles();
     ArrayList<Vehicle> getExistingVehicles(String customerID);
     void save(Vehicle vehicle);
+    void saveWithoutMOT(Vehicle vehicle);
+    void updateWithoutMOT(Vehicle vehicle);
     void updateCustomer(String customerID, String registraionID);
     void removeCustomer(String customerID);
     void update(Vehicle vehicle);

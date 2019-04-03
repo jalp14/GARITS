@@ -1,6 +1,8 @@
 package TwentyThreeProductions.Model.HelperClasses;
 
 import TwentyThreeProductions.Domain.Discount;
+import TwentyThreeProductions.Domain.Vehicle;
+import TwentyThreeProductions.Model.NavigationModel;
 
 public class CustomerHelper {
 
@@ -8,12 +10,23 @@ public class CustomerHelper {
     private Discount discount;
     private int currentCustomerID;
     private boolean isCustomerCasual = false;
+    private Vehicle vehicle;
 
     public static String DISCOUNT_FIXED_NAME = "FIXED";
     public static String DISCOUNT_FLEXIBLE_NAME = "FLEXIBLE";
     public static String DISCOUNT_VARIABLE_NAME = "VARIABLE";
 
+    public String lastCall = "";
+
     private int i;
+
+    public String getLastCall() {
+        return lastCall;
+    }
+
+    public void setLastCall(String lastCall) {
+        this.lastCall = lastCall;
+    }
 
     private CustomerHelper() {}
 
@@ -22,6 +35,14 @@ public class CustomerHelper {
             customerHelper = new CustomerHelper();
         }
         return customerHelper;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public Double getRate(int i) {
