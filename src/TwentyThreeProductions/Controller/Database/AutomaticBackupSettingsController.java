@@ -49,19 +49,22 @@ public class AutomaticBackupSettingsController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        // Take user back to the previous form
         sceneSwitch.switchScene(NavigationModel.DB_MANAGEMENT_ID);
     }
 
     @FXML
     void saveBtnClicked(ActionEvent event) {
+        // Save current settings
         System.out.println(helper.checkDate());
     }
 
     @FXML
     void dateChanged(ActionEvent event) {
+        // If date is changed append the changes to the local file
         if (backupDate.getValue() == null) {
             SystemAlert alert = new SystemAlert(autoBackupSettingsStackPane, "Error", "Please select a date");
-        } else {
+        } else { // Set the next backup date
             helper.setBackupDate(backupDate.getValue().toString());
             System.out.println(backupDate.getValue().toString());
             helper.writeDate();
@@ -70,6 +73,7 @@ public class AutomaticBackupSettingsController {
     }
 
     public void initialize() {
+        // Initialise the current form and set all the necessary constraints
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(autoBackupSettingsStackPane, NavigationModel.AUTOMATIC_BACKUP_SETTINGS_ID);
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());

@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class UserManagementController {
-
+///////////////////////////////// User Management form \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private Stage tmpStage;
     private SceneSwitch sceneSwitch;
 
@@ -41,18 +41,18 @@ public class UserManagementController {
     private JFXButton backBtn;
 
     @FXML
-    void addNewUserBtnClicked(ActionEvent event) throws IOException {
+    void addNewUserBtnClicked(ActionEvent event) throws IOException { // Take user to the add new user form
         System.out.println("Add user btn clicked");
         sceneSwitch.activateScene(NavigationModel.ADD_NEW_USER_ID, backBtn.getScene());
     }
 
     @FXML
-    void backBtnClicked(ActionEvent event) throws IOException {
+    void backBtnClicked(ActionEvent event) throws IOException { // Take user back to the previous form
         sceneSwitch.switchScene(NavigationModel.MAIN_ADMIN_ID);
     }
 
     @FXML
-    void editUserBtnClicked(ActionEvent event) throws IOException {
+    void editUserBtnClicked(ActionEvent event) throws IOException { // Take user to the edit user form
         sceneSwitch.activateScene(NavigationModel.EDIT_USER_ID, backBtn.getScene());
     }
 
@@ -61,7 +61,7 @@ public class UserManagementController {
 
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         System.out.println("New Users Controller");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(usersMainStackPane, NavigationModel.USER_MANAGEMENT_ID);

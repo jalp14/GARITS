@@ -16,7 +16,7 @@ import javax.annotation.processing.Generated;
 import java.io.IOException;
 
 public class MainMechanicController {
-
+/////////////////////////////// Main screen for Mechanic \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
 
     @FXML
@@ -42,11 +42,13 @@ public class MainMechanicController {
 
     @FXML
     void jobsBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the jobs form
         sceneSwitch.activateScene(NavigationModel.JOBS_MAIN_ID, logoutBtn.getScene());
     }
 
     @FXML
     void logoutBtnPressed(ActionEvent event) throws IOException {
+        // Logout the user
         System.out.println("Logout pressed");
         sceneSwitch.resetSceneMap();
         sceneSwitch.activateScene(NavigationModel.LOGIN_ID, logoutBtn.getScene());
@@ -54,11 +56,12 @@ public class MainMechanicController {
 
     @FXML
     void bellBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the notification area
         System.out.println("Bell Btn Clicked");
         sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the form
         System.out.println("Init Mechanic Controller");
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(mainScreenMechanicStackPane, NavigationModel.MAIN_MECHANIC_ID);

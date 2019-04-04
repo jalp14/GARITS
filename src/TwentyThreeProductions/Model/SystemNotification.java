@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SystemNotification {
-
+////////////////////// Unobtrusive notification \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private JFXSnackbar notification;
     private JFXSnackbarLayout notificationLayout;
     private Notification domainNotification;

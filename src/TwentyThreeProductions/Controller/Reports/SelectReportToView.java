@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/////////////////////////////// Report Viewer \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 public class SelectReportToView {
     private SceneSwitch sceneSwitch;
     private ReportDAO reportDAO;
@@ -56,7 +56,7 @@ public class SelectReportToView {
     private JFXListView<Label> reportsList;
 
     @FXML
-    void ViewBtnClicked(ActionEvent event) throws IOException {
+    void ViewBtnClicked(ActionEvent event) throws IOException { // View selected report
         String selectedReport = reportsList.getSelectionModel().getSelectedItem().getText();
         ReportHelper.setViewReportLocation(reportHashMap.get(selectedReport).getFileLocation());
         sceneSwitch.activateScene(NavigationModel.VIEW_REPORT_ID, backBtn.getScene());
@@ -68,7 +68,7 @@ public class SelectReportToView {
     }
 
     @FXML
-    void queryTyped(KeyEvent event) {
+    void queryTyped(KeyEvent event) { // Show reports related to the query
         System.out.println("Query typed");
         reportDAO = new ReportDAO();
         String searchTerm = searchField.getText();
@@ -88,14 +88,14 @@ public class SelectReportToView {
         }
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(SearchCustomerStackPane, NavigationModel.SELECT_REPORT_TO_VIEW_ID);
         reportHashMap = new HashMap<>();
         loadAllReports();
     }
 
-    public void loadAllReports() {
+    public void loadAllReports() { // Load all the available reports in the list
         reportDAO = new ReportDAO();
         reports = new ArrayList<>();
         reports = reportDAO.getAll();

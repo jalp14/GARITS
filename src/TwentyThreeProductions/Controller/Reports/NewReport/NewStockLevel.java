@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class NewStockLevel {
-
+/////////////////////////////// Generate stock report \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private Connection connection;
     private JasperReport stockReport;
@@ -68,7 +68,7 @@ public class NewStockLevel {
     }
 
     @FXML
-    void generateReportBtnClicked(ActionEvent event) {
+    void generateReportBtnClicked(ActionEvent event) { // Export the current stock report as pdf
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
             String timeStamp = sdf.format(new Date());
@@ -86,7 +86,7 @@ public class NewStockLevel {
         }
     }
 
-    public void saveReportToDB(String htmlName) {
+    public void saveReportToDB(String htmlName) { // Save all the report details to the database
         reportDAO = new ReportDAO();
         Report report = new Report();
         report.setReportType(ReportHelper.ReportType.STOCK_LEVEL.toString());
@@ -100,7 +100,7 @@ public class NewStockLevel {
     }
 
 
-    public void showReport() {
+    public void showReport() { // Show report in the application
         File file = new File("src/TwentyThreeProductions/PDFs/Template/Stock.html");
 
         try {
@@ -111,7 +111,7 @@ public class NewStockLevel {
 
     }
 
-    public void setupReport() {
+    public void setupReport() { // Get all the details from the database and generate the report
         try {
             stockReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/Stock_Level.jrxml");
 
@@ -129,7 +129,7 @@ public class NewStockLevel {
         }
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         setupReport();
         showReport();

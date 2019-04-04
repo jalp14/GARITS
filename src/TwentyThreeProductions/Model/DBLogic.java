@@ -4,7 +4,7 @@ import java.sql.*;
 import org.h2.tools.Server;
 
 public class DBLogic {
-
+///////////// Logic of the database for connection \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     // JDBC Drivers
     static final String JDBC_DRIVER = "org.h2.Driver";
     static final String DB_URL = "jdbc:h2:tcp://localhost/~/test";

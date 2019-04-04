@@ -16,8 +16,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class MainAdminController {
-
-
+/////////////////////////// Main Screen for Admin \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
 
     @FXML
@@ -51,18 +50,21 @@ public class MainAdminController {
 
     @FXML
     void bellBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the notifications area
         System.out.println("Bell Btn Clicked");
         sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
     }
 
     @FXML
     void backuprestoreBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the backup/restore form
         System.out.println("Backup/Restore pressed");
         sceneSwitch.activateScene(NavigationModel.DB_MANAGEMENT_ID, logoutBtn.getScene());
     }
 
     @FXML
     void logoutBtnPressed(ActionEvent event) throws IOException {
+        // Logout the user
         System.out.println("Logout pressed");
         sceneSwitch.resetSceneMap();
         sceneSwitch.activateScene(NavigationModel.LOGIN_ID, logoutBtn.getScene());
@@ -71,17 +73,17 @@ public class MainAdminController {
     @FXML
     void notifsBtnClicked(ActionEvent event) {
         System.out.println("Notifications Btn Clicked");
-
     }
 
 
     @FXML
     void usersBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the users form
         System.out.println("Users Clicked");
         sceneSwitch.activateScene(NavigationModel.USER_MANAGEMENT_ID, logoutBtn.getScene());
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(mainScreenAdminStackPane,NavigationModel.MAIN_ADMIN_ID);
         setLblConstraints();
