@@ -5,6 +5,7 @@ import TwentyThreeProductions.Domain.Backup;
 import TwentyThreeProductions.Model.DBLogic;
 import TwentyThreeProductions.Model.Database.DAO.BackupDAO;
 import TwentyThreeProductions.Model.Database.DBServer;
+import TwentyThreeProductions.Model.HelperClasses.ReportHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
 import com.jfoenix.controls.JFXButton;

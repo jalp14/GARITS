@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MOT" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa6e8d2c-91b2-481f-8eec-1bb87b3dbcca">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="cust_name" class="java.lang.String"/>
+	<parameter name="house_street_name" class="java.lang.String"/>
+	<parameter name="cust_city" class="java.lang.String"/>
+	<parameter name="cust_postcode" class="java.lang.String"/>
+	<parameter name="cust_add_name" class="java.lang.String"/>
+	<parameter name="manf_name" class="java.lang.String"/>
+	<parameter name="manf_street" class="java.lang.String"/>
+	<parameter name="manf_city" class="java.lang.String"/>
+	<parameter name="vech_reg_no" class="java.lang.String"/>
+	<parameter name="mot_renewal_date" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cust_name" class="java.lang.String"/>
+	<field name="cust_city" class="java.lang.String"/>
+	<field name="house_street_name" class="java.lang.String"/>
+	<field name="cust_postcode" class="java.lang.String"/>
+	<field name="cust_add_name" class="java.lang.String"/>
+	<field name="manf_name" class="java.lang.String"/>
+	<field name="manf_street" class="java.lang.String"/>
+	<field name="manf_city" class="java.lang.String"/>
+	<field name="vech_reg_no" class="java.lang.String"/>
+	<field name="mot_renewal_date" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="145" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="2" width="100" height="15" uuid="a18d5cda-c85d-44d3-9bbc-efb888eb1455"/>
+				<textFieldExpression><![CDATA[$P{cust_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="17" width="100" height="24" uuid="406d43b3-1a52-4f2e-980f-be4b6e0c73d6"/>
+				<textFieldExpression><![CDATA[$P{house_street_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="46" width="100" height="25" uuid="435403ac-beef-4f6a-8fc6-fec949046358"/>
+				<textFieldExpression><![CDATA[$P{cust_city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="69" width="100" height="19" uuid="f882b4ad-982c-47b3-bf55-562d2ce1407c"/>
+				<textFieldExpression><![CDATA[$P{cust_postcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="0" width="100" height="17" uuid="e20c316c-e4c4-4ab8-8a0a-a97a17af8342"/>
+				<textFieldExpression><![CDATA[$P{manf_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="21" width="100" height="26" uuid="9fb3b308-eed9-41b7-9cec-012ab486d9f0"/>
+				<textFieldExpression><![CDATA[$P{manf_street}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="37" width="100" height="19" uuid="07534399-4ac5-4d0c-94e9-c446c196d29a"/>
+				<textFieldExpression><![CDATA[$P{manf_city}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="11" width="100" height="30" uuid="a4173a1f-c605-4faa-9706-f85f335dcb8a"/>
+				<textFieldExpression><![CDATA[$P{cust_add_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="200" height="30" uuid="7dfd94a2-aaf3-4b6b-80f6-baca455b2f6e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMINDER - MoT TEST DUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="30" width="138" height="19" uuid="3c95694e-21a6-4b70-826e-af4b15d332f6"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle Registration No.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="30" width="110" height="19" uuid="866387d1-da0e-40c5-83e5-8e3f5b41e136"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Renewal Test Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="199" y="30" width="92" height="30" uuid="3ba1d7a4-3176-407e-b86e-910523a72f6f"/>
+				<textFieldExpression><![CDATA[$P{vech_reg_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="31" width="100" height="18" uuid="379325e1-95a7-4a0e-bbdc-6a1b02a58a68"/>
+				<textFieldExpression><![CDATA[$P{mot_renewal_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="5" width="578" height="85" uuid="9c118365-e707-4848-a7ba-57d15a93e4d9"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[According to our records, the above vehicle is due to have its MoT certificate renewed on the date shown.
+
+Account Holders customers such as yourself are assured of our prompt attention, and we hope that you will use our services on this occasion in order to have the necessary test carried out on your vehicle.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="fa683260-5870-4b20-aab8-e0d9866c6272"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Yours Sincerely,	]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="4" width="100" height="30" uuid="eb64788d-6a87-4529-bf36-23134041c5d7"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[G. Lancaster]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

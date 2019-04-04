@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MOT" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa6e8d2c-91b2-481f-8eec-1bb87b3dbcca">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="cust_full_name" class="java.lang.String"/>
+	<parameter name="house_street_name" class="java.lang.String"/>
+	<parameter name="cust_city" class="java.lang.String"/>
+	<parameter name="cust_postcode" class="java.lang.String"/>
+	<parameter name="manuf_name" class="java.lang.String"/>
+	<parameter name="manuf_street" class="java.lang.String"/>
+	<parameter name="city_postcode" class="java.lang.String"/>
+	<parameter name="cust_add_name" class="java.lang.String"/>
+	<parameter name="cust_invo_no" class="java.lang.String"/>
+	<parameter name="vech_reg_no" class="java.lang.String"/>
+	<parameter name="cust_total_amount" class="java.lang.String"/>
+	<parameter name="cust_invo_date" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6d06a709-7af6-4ee6-aed6-cbdbdc4baf36"/>
+				<textFieldExpression><![CDATA[$P{cust_full_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="11" width="100" height="20" uuid="cd1a639d-659f-4347-87d2-615cb6bbd97a"/>
+				<textFieldExpression><![CDATA[$P{house_street_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="31" width="100" height="19" uuid="f2b10130-7f17-459a-90c5-294d521abde0"/>
+				<textFieldExpression><![CDATA[$P{cust_city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="51" width="100" height="19" uuid="a80644fd-a88d-4d71-be70-8ed548140c09"/>
+				<textFieldExpression><![CDATA[$P{cust_postcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="100" height="20" uuid="b9aadf8a-e33b-4c97-b96f-359b11dd05f7"/>
+				<textFieldExpression><![CDATA[$P{manuf_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="491" y="14" width="100" height="21" uuid="2ecd562d-cb0d-424a-a63f-cc3a00d7b00f"/>
+				<textFieldExpression><![CDATA[$P{manuf_street}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="31" width="100" height="19" uuid="ec269107-7b72-47f2-a3fb-6faa0978fca5"/>
+				<textFieldExpression><![CDATA[$P{city_postcode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="29" width="100" height="30" uuid="c6377097-9352-4673-890c-af4ba33af1ac"/>
+				<textFieldExpression><![CDATA[$P{cust_add_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="146" y="1" width="153" height="19" uuid="7dfd94a2-aaf3-4b6b-80f6-baca455b2f6e"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMINDER - INVOICE NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="30" width="80" height="19" uuid="0e505f4f-2912-4207-98b0-e628150b56d6"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Amount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="30" width="138" height="19" uuid="24cfb8a0-f69f-4592-a551-e204a0b13689"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle Registration No.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="283" y="2" width="100" height="18" uuid="00b5309a-5aff-448a-90a0-e64528d0e063"/>
+				<textFieldExpression><![CDATA[$P{cust_invo_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="205" y="31" width="100" height="20" uuid="c795e3f0-8e7f-46f5-8035-650ee83bc5ba"/>
+				<textFieldExpression><![CDATA[$P{vech_reg_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="31" width="100" height="18" uuid="2d0de9ff-475e-423a-9a5d-3a41ebf605de"/>
+				<textFieldExpression><![CDATA[$P{cust_total_amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="5" width="578" height="85" uuid="9c118365-e707-4848-a7ba-57d15a93e4d9"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[According to our records, it appears that we have not yet received payment of the above invoice, which was posted to you on                                          , for work done on the vehicle(s) listed above.
+
+We would appreciate payment at your earliest convenience.
+
+If you have already sent a payment to us recently, please accept our apologies.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="20" width="100" height="20" uuid="03766e64-70b1-416f-b3c8-97c88d7fa631"/>
+				<textFieldExpression><![CDATA[$P{cust_invo_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="fa683260-5870-4b20-aab8-e0d9866c6272"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Yours Sincerely,	]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="4" width="100" height="30" uuid="eb64788d-6a87-4529-bf36-23134041c5d7"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[G. Lancaster]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
