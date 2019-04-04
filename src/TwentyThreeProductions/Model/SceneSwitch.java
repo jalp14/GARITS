@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class SceneSwitch{
-
+//////////////// Manages all the switching between forms \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private Scene scene;
     private Parent parent;
     private Parent currentRoot;

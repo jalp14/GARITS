@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class NavigationModel {
+////////////////////// Manages all the navigation constraints of the system \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     // URLs
     // Login
     public static String LOGIN_URL = "src/TwentyThreeProductions/View/LoginScreen.fxml";

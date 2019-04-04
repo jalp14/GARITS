@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DbRestoreController {
-
+////////////////////////////////// DB Restore Controller \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private DBLogic dbController;
     private SceneSwitch sceneSwitch;
     private String selectedDBName;
@@ -56,14 +56,17 @@ public class DbRestoreController {
 
     @FXML
     void backBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the previous form
         sceneSwitch.switchScene(NavigationModel.DB_MANAGEMENT_ID);
     }
 
     @FXML
-    void restoreBtnClicked(ActionEvent event) {
+    void restoreBtnClicked(ActionEvent event) { // Used to restore backup
         System.out.println("Restore button clicked");
         try {
+            // Get all the available backups from the database
             Backup backup = backupHashMap.get(backupList.getSelectionModel().getSelectedItem().getText());
+            // Run the restore script
             Process proc = Runtime.getRuntime().exec(new String[]{"./restore.sh", backup.getFileLocation()});
             System.out.println("Restarting the sql server");
             DBServer.getInstance().restartServer();

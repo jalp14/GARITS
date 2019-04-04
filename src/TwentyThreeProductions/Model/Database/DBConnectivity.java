@@ -6,10 +6,10 @@ import org.h2.tools.Server;
 import java.sql.*;
 
 public class DBConnectivity implements DBConnectivityInterface {
+/////////////////////////// Provides a generic interface to connect to the database and perform CRUD operations \\\\\\\\\\\\\\\\\\\\\\\\
 
     private Server dbServer;
     private Server webServer;
-
 
     public DBConnectivity() {
         System.out.println("New DBConnectivity instance");

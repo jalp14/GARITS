@@ -18,10 +18,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.jfoenix.controls.JFXButton;
 
-
-
 public class SystemAlert {
-
+/////////////////// Pop up alert \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private JFXDialogLayout dialogLayout;
     private JFXDialog dialog;
     private JFXButton button;

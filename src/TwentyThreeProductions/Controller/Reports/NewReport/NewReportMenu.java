@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class NewReportMenu {
-
+/////////////////////// Generate new report \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
 
     @FXML

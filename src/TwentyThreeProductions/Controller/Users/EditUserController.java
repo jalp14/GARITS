@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class EditUserController {
-
+///////////////////////////////// Edit user details \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private UserDAO userDAO;
     private ArrayList<User> currentUsers;
@@ -101,7 +101,7 @@ public class EditUserController {
     }
 
     @FXML
-    void deleteBtnClicked(ActionEvent event) {
+    void deleteBtnClicked(ActionEvent event) { // Delete the selected User
         System.out.println("Delete button clicked");
         if (!(hourlyRateField.isDisabled())) {
             mechanicDAO = new MechanicDAO();
@@ -109,13 +109,11 @@ public class EditUserController {
         }
         userDAO = new UserDAO();
         userDAO.delete(currentUser);
-
         SystemAlert systemAlert = new SystemAlert(editUserStackPane, "Deleted Successfully", "Please logout to apply changes");
-
     }
 
     @FXML
-    void roleSelected(ActionEvent event) {
+    void roleSelected(ActionEvent event) { // Enable/Disable the hourly rate depending on the type of the user
         if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("MECHANIC"))) {
             hourlyRateField.setDisable(false);
             deleteBtn.setDisable(true);
@@ -130,7 +128,7 @@ public class EditUserController {
     }
 
     @FXML
-    void currentUserCombiSelected(ActionEvent event) {
+    void currentUserCombiSelected(ActionEvent event) { // Show User details based on the user selected from the combo box
         getSelectedUser();
         getMechanics();
         firstNameField.setText(currentUser.getFirstName());
@@ -145,7 +143,7 @@ public class EditUserController {
     }
 
     @FXML
-    void saveBtnClicked(ActionEvent event) {
+    void saveBtnClicked(ActionEvent event) { // Save changes to the database
         currentUser.setFirstName(firstNameField.getText());
         currentUser.setLastName(lastNameField.getText());
         currentUser.setUserRole(roleCombi.getSelectionModel().getSelectedItem().getText());
@@ -163,7 +161,7 @@ public class EditUserController {
 
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
@@ -172,7 +170,7 @@ public class EditUserController {
         setupRole();
     }
 
-    public void setupRole() {
+    public void setupRole() { // Add all the roles to the combo box
         roleCombi.getItems().add(new Label("ADMIN"));
         roleCombi.getItems().add(new Label("FRANCHISEE"));
         roleCombi.getItems().add(new Label("RECEPTIONIST"));
@@ -181,7 +179,7 @@ public class EditUserController {
     }
 
 
-    public int getRoleNo(String userRole) {
+    public int getRoleNo(String userRole) { // Get different types of roles
         if (userRole.equals("ADMIN")) {
             return 0;
         } else if (userRole.equals("FRANCHISEE")) {
@@ -196,7 +194,7 @@ public class EditUserController {
         return -1;
     }
 
-    public void injectAvailableUsers() {
+    public void injectAvailableUsers() { // Add all the available user to the combo box
         MechanicDAO mechanicDAO = new MechanicDAO();
             userDAO = new UserDAO();
             mechanics = mechanicDAO.getAll();
@@ -208,7 +206,7 @@ public class EditUserController {
 
     }
 
-    public void getMechanics() {
+    public void getMechanics() { // Get details of selected mechanic if the user is a mechanic
         for (Mechanic mechanic1 : mechanics) {
             if (mechanic1.getUsername().equals(currentUserCombi.getSelectionModel().getSelectedItem().getText())) {
                 mechanic = mechanic1;
@@ -216,7 +214,7 @@ public class EditUserController {
         }
     }
 
-    public void getSelectedUser() {
+    public void getSelectedUser() { // Get details of selected user
         for (User currentUser1 : currentUsers) {
             if (currentUser1.getUsername().equals(currentUserCombi.getSelectionModel().getSelectedItem().getText())) {
                 currentUser = currentUser1;

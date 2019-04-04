@@ -19,7 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class AddNewUserController {
-
+/////////////////////////// Add new User \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private DBLogic dbLogic;
     private SystemAlert systemAlert;
@@ -76,7 +76,8 @@ public class AddNewUserController {
     private JFXComboBox<Label> roleCombi;
 
     @FXML
-    void addUserBtnClicked(ActionEvent event) {
+    void addUserBtnClicked(ActionEvent event) { // Save all the field details to the user object
+        // Pass User object to the DAO class to add it to the database
         Mechanic mechanic = new Mechanic();
         MechanicDAO mechanicDAO;
        User user = new User();
@@ -87,7 +88,7 @@ public class AddNewUserController {
        user.setUserRole(roleCombi.getSelectionModel().getSelectedItem().getText());
        UserDAO userDAO = new UserDAO();
        userDAO.save(user);
-
+        // if the user is mechanic then also save the hourly rate
        if (!(hourlyRateField.isDisabled())) {
            mechanicDAO = new MechanicDAO();
            mechanic.setUsername(usernameField.getText());
@@ -105,7 +106,7 @@ public class AddNewUserController {
     }
 
     @FXML
-    void roleSelected(ActionEvent event) {
+    void roleSelected(ActionEvent event) { // Enable/Disable the hourly rate depending on the type of the user
         if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("MECHANIC"))) {
             hourlyRateField.setDisable(false);
         } else if ((roleCombi.getSelectionModel().getSelectedItem().getText().equals("FOREPERSON"))) {
@@ -115,7 +116,7 @@ public class AddNewUserController {
         }
     }
 
-    public void setupRole() {
+    public void setupRole() { // Add all the roles to the combo box
         roleCombi.getItems().add(new Label("ADMIN"));
         roleCombi.getItems().add(new Label("FRANCHISEE"));
         roleCombi.getItems().add(new Label("RECEPTIONIST"));
@@ -123,7 +124,7 @@ public class AddNewUserController {
         roleCombi.getItems().add(new Label("MECHANIC"));
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());

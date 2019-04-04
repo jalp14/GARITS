@@ -19,7 +19,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class EditAutoReports {
-
+/////////////////////////// Settings for auto generated reports \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private ReportSettings reportSettings;
     private ReportSettingsDAO reportSettingsDAO;
@@ -66,7 +66,7 @@ public class EditAutoReports {
     }
 
     @FXML
-    void saveBtnClicked(ActionEvent event) {
+    void saveBtnClicked(ActionEvent event) { // Save settings to the database
         reportSettingsDAO = new ReportSettingsDAO();
         reportSettings = new ReportSettings();
 
@@ -84,7 +84,7 @@ public class EditAutoReports {
     }
 
     @FXML
-    void viewDetailsBtnClicked(ActionEvent event) {
+    void viewDetailsBtnClicked(ActionEvent event) { // View current settings
         reportSettingsDAO = new ReportSettingsDAO();
         reportSettings = reportSettingsDAO.getStockSettings();
         if (reportSettings.getFrequency().equals("WEEKLY")) {
@@ -94,7 +94,7 @@ public class EditAutoReports {
         }
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         addTypes();
     }

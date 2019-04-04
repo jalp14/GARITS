@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SettingsController {
-
+//////////////////////// Settings form \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private DBLogic dbController;
     private String selectedDBName;
     private ArrayList<Backup> backups;
@@ -62,7 +62,7 @@ public class SettingsController {
     }
 
     @FXML
-    void restoreBtnClicked(ActionEvent event) {
+    void restoreBtnClicked(ActionEvent event) { // Restore backup of the system
         System.out.println("Restore button clicked");
         try {
             Backup backup = backupHashMap.get(restoreList.getSelectionModel().getSelectedItem().getText());
@@ -75,7 +75,7 @@ public class SettingsController {
         }
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         dbController = DBLogic.getDBInstance();
         sceneSwitch = SceneSwitch.getInstance();
@@ -85,7 +85,7 @@ public class SettingsController {
         loadBackups();
     }
 
-    public void loadBackups() {
+    public void loadBackups() { // Load all the available backups
         BackupDAO backupDAO = new BackupDAO();
         backups = backupDAO.getAll();
         for (int i = 0; i < backups.size(); i++) {

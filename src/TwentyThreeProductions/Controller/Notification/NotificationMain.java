@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NotificationMain {
-
+///////////////////////////// Notification area \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private NotificationDAO notificationDAO;
     private ArrayList<Notification> notifications;
@@ -73,7 +73,7 @@ public class NotificationMain {
     private Label areaLbl;
 
     @FXML
-    void deleteBtnClicked(ActionEvent event) {
+    void deleteBtnClicked(ActionEvent event) { // Delete selected notification
         int i = notificationsList.getSelectionModel().getSelectedIndex();
         Notification tmpNotification = notificationMap.get(notificationsList.getSelectionModel().getSelectedItem());
         notificationDAO = new NotificationDAO();
@@ -82,12 +82,12 @@ public class NotificationMain {
     }
 
     @FXML
-    void goToAreaBtnClicked(ActionEvent event) throws IOException {
+    void goToAreaBtnClicked(ActionEvent event) throws IOException { // Take user to the selected notification area
         sceneSwitch.activateScene(areaLbl.getText(), backBtn.getScene());
     }
 
     @FXML
-    void notifSelected(MouseEvent event) {
+    void notifSelected(MouseEvent event) { // Get details of the selected notifications
         if (!(notificationsList.getSelectionModel().getSelectedItem() == null)) {
             if (!(notificationsList.getSelectionModel().getSelectedItem().getText().equals("No Notifications"))) {
                 Notification tmpNotification = notificationMap.get(notificationsList.getSelectionModel().getSelectedItem());
@@ -101,12 +101,12 @@ public class NotificationMain {
 
 
     @FXML
-    void refreshBtnClicked(ActionEvent event) {
+    void refreshBtnClicked(ActionEvent event) { // refresh the notification list
         setupList();
     }
 
     @FXML
-    void backBtnClicked(ActionEvent event) {
+    void backBtnClicked(ActionEvent event) { // Take user back to the previous form
         if (DBLogic.getDBInstance().getUser_type().equals("ADMIN")) {
             sceneSwitch.switchScene(NavigationModel.MAIN_ADMIN_ID);
         } else if (DBLogic.getDBInstance().getUser_type().equals("FRANCHISEE")) {
@@ -120,7 +120,7 @@ public class NotificationMain {
         }
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         notificationDAO = new NotificationDAO();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController {
-
+//////////////////////////// Login controller \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private URL currentURL;
     private URL previousURL;
@@ -49,18 +49,18 @@ public class LoginController {
     private JFXButton settingsBtn;
 
     @FXML
-    void settingsBtnClicked(ActionEvent event) throws IOException {
+    void settingsBtnClicked(ActionEvent event) throws IOException { // Take user to the settings page
         sceneSwitch.activateScene(NavigationModel.SETTINGS_ID, loginButton.getScene());
     }
 
     @FXML
     void forgotClicked(ActionEvent event) throws IOException  {
         System.out.println("Forgot clicked");
-
     }
 
     @FXML
-    void loginClicked(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+    void loginClicked(ActionEvent event) throws IOException, SQLException, ClassNotFoundException { // Check user details and
+        // if correct take them to the correct form
         System.out.println("Login Clicked");
         // Passing user inputs to the DB
         dbController.setLoginDetails(usernameField.getText(), passwordField.getText());
@@ -76,7 +76,7 @@ public class LoginController {
 
     }
 
-    public void initialize() throws IOException {
+    public void initialize() throws IOException { // Initialise the current form
         System.out.println("New Login Controller");
         System.out.println("System Command Generate DB Element");
         currentURL = new File(NavigationModel.LOGIN_URL).toURI().toURL();

@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Main extends Application {
-
+//////////////////////////// Main class of the system \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private Connection connection;
 
     @Override

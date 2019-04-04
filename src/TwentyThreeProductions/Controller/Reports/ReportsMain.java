@@ -19,10 +19,8 @@ import java.net.MalformedURLException;
 import java.sql.Connection;
 
 public class ReportsMain {
-
+/////////////////////////////////////// Main Report form \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
-
-
 
     @FXML
     private StackPane partsMainStackPane;

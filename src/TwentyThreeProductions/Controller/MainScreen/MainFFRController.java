@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 public class MainFFRController {
-
+////////////////////// Main screen for Franchisee/Foreperson/Receptionist \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
 
     private SettingsHelper settingsHelper;
@@ -56,22 +56,26 @@ public class MainFFRController {
 
    @FXML
    void bellBtnClicked(ActionEvent event) throws IOException {
+      // Take user to the notification area
       System.out.println("Bell Btn Clicked");
       sceneSwitch.activateScene(NavigationModel.NOTIFICATIONS_MAIN_ID, logoutBtn.getScene());
    }
 
    @FXML
    void customersBtnClicked(ActionEvent event) throws IOException {
+      // Take user to the customer form
       sceneSwitch.activateScene(NavigationModel.CUSTOMER_MAIN_ID, logoutBtn.getScene());
    }
 
    @FXML
    void jobsBtnClicked(ActionEvent event) throws IOException {
+      // Take user to the job form
       sceneSwitch.activateScene(NavigationModel.JOBS_MAIN_ID, logoutBtn.getScene());
    }
 
    @FXML
    void logoutBtnPressed(ActionEvent event) throws IOException {
+      // Logout the user
       System.out.println("Logout pressed");
       sceneSwitch.resetSceneMap();
       sceneSwitch.activateScene(NavigationModel.LOGIN_ID, logoutBtn.getScene());
@@ -80,15 +84,17 @@ public class MainFFRController {
 
    @FXML
    void partsBtnClicked(ActionEvent event) throws IOException {
+      // Take user to the part form
       sceneSwitch.activateScene(NavigationModel.PARTS_MAIN_ID, logoutBtn.getScene());
    }
 
    @FXML
    void reportsBtnClicked(ActionEvent event) throws IOException {
+      // Take user to the reports form
       sceneSwitch.activateScene(NavigationModel.REPORTS_MAIN_ID, partsBtn.getScene());
    }
 
-   public void initialize() {
+   public void initialize() { // Initialise the form
        System.out.println("Init FFR Controller");
        sceneSwitch = SceneSwitch.getInstance();
        sceneSwitch.addScene(mainScreenFFRStackPane, NavigationModel.MAIN_FFR_ID);
