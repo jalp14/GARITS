@@ -47,7 +47,7 @@ public class Main extends Application {
         DBServer dbServer = DBServer.getInstance();
         checkForAutomaticBackup();
         checkForAutomaticStockReportGeneration();
-        checkForUpcomingMots();
+        //checkForUpcomingMots();
     }
 
     public void checkForAutomaticBackup() {
@@ -136,7 +136,7 @@ public class Main extends Application {
         }
     }
 
-    public void checkForUpcomingMots() {
+/*    public void checkForUpcomingMots() {
         java.util.Date currentDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
         VehicleDAO vehicleDAO = new VehicleDAO();
@@ -179,7 +179,7 @@ public class Main extends Application {
         }
     }
 
-/*    public void checkForLatePayments() {
+    public void checkForLatePayments() {
         java.util.Date currentDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
         JobDAO jobDAO = new JobDAO();
