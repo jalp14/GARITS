@@ -38,6 +38,8 @@ public class JobsMainController {
     @FXML
     private JFXButton monitorEditJobBtn;
 
+    // The system simply moves back to the main screen for the user, whether they are a mechanic or one of the other users
+    // with access to the Jobs page.
     @FXML
     void backBtnClicked(ActionEvent event) {
         if(usertypeLbl.getText().equals("MECHANIC")) {
@@ -48,16 +50,20 @@ public class JobsMainController {
         }
     }
 
+    // The system moves to the page for monitoring/editing an existing job.
     @FXML
     void monitorEditJobBtnClicked(ActionEvent event) throws IOException {
         sceneSwitch.activateSceneAlways(NavigationModel.EDIT_MONITOR_CHOOSE_ID, backBtn.getScene());
     }
 
+    // The system moves to the page for creating a new job.
     @FXML
     void newJobBtnClicked(ActionEvent event) throws IOException {
         sceneSwitch.activateScene(NavigationModel.NEW_JOB_MENU_ID, backBtn.getScene());
     }
 
+    // This function is called when the page is opened, and simply adds the scene to the list of active scenes and
+    // sets the labels for the username and usertype to the appropriate values from within the system database.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(JobsMainStackPane, NavigationModel.JOBS_MAIN_ID);

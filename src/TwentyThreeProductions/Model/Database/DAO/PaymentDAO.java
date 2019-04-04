@@ -19,6 +19,8 @@ public class PaymentDAO implements IPayment {
         dbConnectivity = new DBConnectivity();
     }
 
+    // This method creates an ArrayList and populates it with every entry for the Payment table currently within the system
+    // database, through the use of SQL statements.
     @Override
     public ArrayList<Payment> getAll() {
         Statement statement;
@@ -50,6 +52,8 @@ public class PaymentDAO implements IPayment {
         return payments;
     }
 
+    // This method sends an SQL query to the system database in which a series of fields, including fields that are unique
+    // to card payments, are added to a new entry within the Payment table.
     @Override
     public void save(Payment payment) {
         String[] args = {String.valueOf(payment.getJobID()), String.valueOf(payment.getCustomerID()), payment.getType(), String.valueOf(payment.getDate()),
@@ -61,6 +65,8 @@ public class PaymentDAO implements IPayment {
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }
 
+    // This method sends an SQL query to the system database in which a series of fields, without the fields that are unique
+    // to card payments, are added to a new entry within the Payment table.
     @Override
     public void saveCash(Payment payment) {
         String[] args = {String.valueOf(payment.getJobID()), String.valueOf(payment.getCustomerID()), payment.getType(), String.valueOf(payment.getDate()),

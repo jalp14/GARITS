@@ -20,6 +20,8 @@ public class JobTaskDAO implements IJobTask {
         dbConnectivity = new DBConnectivity();
     }
 
+    // This method creates an ArrayList and populates it with every entry for the juction table between Job and Task
+    // currently within the system database, through the use of SQL statements.
     @Override
     public ArrayList<JobTask> getAll() {
         Statement statement;
@@ -44,6 +46,8 @@ public class JobTaskDAO implements IJobTask {
         return jobTasks;
     }
 
+    // This method sends an SQL query to the system database in which a series of fields are added to a new entry within
+    // the junction table for Job and Task
     @Override
     public void save(JobTask jobTask) {
         String[] args = {String.valueOf(jobTask.getJobID()), String.valueOf(jobTask.getTaskID()), String.valueOf(jobTask.getAlteredDuration())};
@@ -53,6 +57,8 @@ public class JobTaskDAO implements IJobTask {
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }
 
+    // This method sends an SQL query to the system database in which the stock level is updated for an existing entry
+    // with the specified job and part ID within the junction table for Job and Task
     @Override
     public void update(JobTask jobTask) {
         String updateQuery = "UPDATE GARAGE.JOB_TASK SET ALTEREDDURATION=? WHERE JOBJOBID=? AND TASKTASK_ID=?";

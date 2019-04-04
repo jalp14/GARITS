@@ -124,9 +124,11 @@ public class AddNewPartController {
             part.setPartID(partIDField.getText());
 
             // The system will set the Manufacturer ID to -1, which is a value that cannot be achieved
-            // normally, to check whether a proper ID can be given. The system gets the data for every
-            // manufacturer within the system database and checks to see if the name that was inputted
-            // matches any of the names within the system database. If it does, it will replace the
+            // normally, to check whether a proper ID can be given. If the system cannot find any entry
+            // within the manufacturer table, the system marks a boolean value as true, otherwise it will
+            // remain marked as false, as it was initialised as. If this is the case, the system gets the
+            // data for every manufacturer within the system database and checks to see if the name that was
+            // inputted matches any of the names within the system database. If it does, it will replace the
             // manufacturer ID with the actual ID for the company and break out of the loop.
             part.setManufacturerID(-1);
             boolean isManufacturerTableEmpty = false;
@@ -140,6 +142,10 @@ public class AddNewPartController {
                     }
                 }
             }
+
+            // The system checks whether the boolean value from before was marked as true and, if it is, that
+            // would mean that the manufacturer table is empty, so the system creates an alert stating that it
+            // cannot proceed as the manufacturer table is empty.
             if (isManufacturerTableEmpty) {
                 SystemAlert systemAlert = new SystemAlert(addNewPartStackPane,
                         "Failure", "No manufacturer in system database");
@@ -206,12 +212,15 @@ public class AddNewPartController {
         }
     }
 
+    // The system runs the function for clear the fields before returning to the previous page.
     @FXML
     void backBtnClicked(ActionEvent event) {
         clearFields();
         sceneSwitch.switchScene(NavigationModel.PARTS_MAIN_ID);
     }
 
+    // This function is called when the page is opened, and simply adds the scene to the list of active scenes and
+    // sets the labels for the username and usertype to the appropriate values from within the system database.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(addNewPartStackPane, NavigationModel.ADD_NEW_PART_ID);
@@ -219,6 +228,8 @@ public class AddNewPartController {
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
     }
 
+    // This function clears every value on the page so that they can be re-entered by the user for a new party they
+    // may wish to add.
     public void clearFields() {
         nameField.clear();
         partIDField.clear();
@@ -228,6 +239,8 @@ public class AddNewPartController {
         priceWholeNumField.clear();
         priceDecimalField.clear();
         stockLevelField.clear();
+        thresholdLevelField.clear();
+        descField.clear();
     }
 
 }

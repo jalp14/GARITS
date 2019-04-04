@@ -22,10 +22,10 @@ public class PartDAO implements IPart {
         dbConnectivity = new DBConnectivity();
     }
 
+    // This method creates an ArrayList and populates it with every entry for the Part table currently within the system
+    // database, through the use of SQL statements.
     @Override
     public ArrayList<Part> getAll() {
-        // This method creates an ArrayList and populates it with every entry for the Part table currently within the system
-        // database, through the use of SQL statements.
         Statement statement;
         String query = "SELECT * FROM GARAGE.PART";
         ResultSet result;
@@ -54,10 +54,10 @@ public class PartDAO implements IPart {
         return parts;
     }
 
+    // This method sends an SQL query to the system database in which a series of fields are added to a new entry
+    // within the Part table.
     @Override
     public void save(Part part) {
-        // This method sends an SQL query to the system database in which a series of fields are added to a new entry
-        // within the Part table.
         String[] args = {part.getPartID(), String.valueOf(part.getManufacturerID()), part.getName(), part.getVehicleType(),
                 part.getYear(), String.valueOf(part.getPrice()), String.valueOf(part.getStockLevel()),
                 String.valueOf(part.getThresholdLevel()), part.getDesc()};
@@ -65,12 +65,12 @@ public class PartDAO implements IPart {
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
-}
+    }
 
+    // This method sends an SQL query to the system database in which the stock level field and threshold level field
+    // are updated for an existing entry within the Part table, determined by the part ID.
     @Override
     public void update(Part part) {
-        // This method sends an SQL query to the system database in which the stock level field is updated for an
-        // existing entry within the Part table, determined by the part ID.
         String updateQuery = "UPDATE GARAGE.PART\n" +
                 "SET STOCK_LEVEL = " + part.getStockLevel() +
                 ", THRESHOLD_LEVEL = " + part.getThresholdLevel() +
@@ -79,10 +79,10 @@ public class PartDAO implements IPart {
         dbConnectivity.write(updateQuery, connection);
     }
 
+    // This method sends an SQL query to the system database in which an entry within the Part table is removed,
+    // determined by the part ID.
     @Override
     public void delete(Part part) {
-        // This method sends an SQL query to the system database in which an entry within the Part table is removed,
-        // determined by the part ID.
         String deleteQuery = "DELETE FROM GARAGE.PART\n" +
                 "WHERE PARTID = '" + part.getPartID() + "'";
         connection = dbConnectivity.connection(connection);

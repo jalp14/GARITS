@@ -47,7 +47,7 @@ public class Main extends Application {
         DBServer dbServer = DBServer.getInstance();
         checkForAutomaticBackup();
         checkForAutomaticStockReportGeneration();
-
+        checkForUpcomingMots();
     }
 
     public void checkForAutomaticBackup() {

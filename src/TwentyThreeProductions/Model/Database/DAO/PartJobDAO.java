@@ -23,6 +23,8 @@ public class PartJobDAO implements IPartJob {
         dbConnectivity = new DBConnectivity();
     }
 
+    // This method creates an ArrayList and populates it with every entry for the juction table between Part and Job
+    // currently within the system database, through the use of SQL statements.
     @Override
     public ArrayList<PartJob> getAll() {
         Statement statement;
@@ -47,6 +49,8 @@ public class PartJobDAO implements IPartJob {
         return partJobs;
     }
 
+    // This method sends an SQL query to the system database in which a series of fields are added to a new entry within
+    // the junction table for Part and Job.
     @Override
     public void save(PartJob partJob) {
         String[] args = {String.valueOf(partJob.getJobID()), partJob.getPartID(), partJob.getStockUsed()};
@@ -56,6 +60,8 @@ public class PartJobDAO implements IPartJob {
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }
 
+    // This method sends an SQL query to the system database in which the stock level is updated for an existing entry
+    // with the specified job and part ID within the junction table for Part and Job.
     @Override
     public void update(PartJob partJob) {
         String updateQuery = "UPDATE GARAGE.PART_JOB SET STOCKUSED=? WHERE JOBJOBID=? AND PARTPARTID=?";

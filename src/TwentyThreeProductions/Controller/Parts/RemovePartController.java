@@ -52,6 +52,8 @@ public class RemovePartController {
     @FXML
     private JFXListView<Label> partList;
 
+    // The system clears the currently selected part before refreshing the list and moving back to the previous
+    // page.
     @FXML
     void backBtnClicked(ActionEvent event) {
         partList.getSelectionModel().select(null);
@@ -87,13 +89,20 @@ public class RemovePartController {
 
     @FXML
     void searchBtnClick(ActionEvent event) {
+        // The system clears both the list and the hashmap and prepares the appropriate items in order to correctly
+        // search for available parts.
         PartDAO partDAO = new PartDAO();
         String searchTerm = searchField.getText();
         partList.getItems().clear();
         partHashMap.clear();
+
+        // If the search term inputted by the user is empty, the system refreshes the list with every value available.
         if(searchTerm.isEmpty()) {
             refreshList();
         }
+
+        // Otherwise, it only adds the parts that contain the currently inputted value as either their ID, stock level or
+        // name to the list of available parts.
         else {
             for(Part p: partDAO.getAll()) {
                 if(p.getPartID().contains(searchTerm) || p.getName().contains(searchTerm) || String.valueOf(p.getStockLevel()).contains(searchTerm)) {
@@ -105,6 +114,10 @@ public class RemovePartController {
         }
     }
 
+    // This function is called up when the page is first opened, and it adds the scene to the list of currently
+    // active scenes as well as changing the labels for the username and type with the currently logged in user,
+    // and then finally it initialises\ the hashmap for storing the parts and refresh the list of currently available
+    // parts.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(removePartStackPane, NavigationModel.REMOVE_PART_ID);
@@ -114,6 +127,8 @@ public class RemovePartController {
         refreshList();
     }
 
+    // This function goes through every part in the system database, assigns them to a label to be put in the list
+    // of available items as well as in the hashmap with an appropriate string reference.
     public void refreshList() {
         PartDAO partDAO = new PartDAO();
         for(Part p: partDAO.getAll()) {

@@ -105,6 +105,9 @@ public class MainFFRController {
       userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
    }
 
+   // The system gets the current date and, for every job, checks whether it is a month later than the date a job was completed.
+   // If this is the case and the job has not yet been paid for or already checked, a notification is produced stating that there
+   // is a late payment present, before marking the job as checked.
    public void checkLatePayments() {
       java.util.Date currentDate = new java.util.Date();
       java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
