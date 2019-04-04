@@ -195,7 +195,7 @@ public class AddPartToJobController {
 
     // This function is called when the page is first loaded, and it adds the current scene to the list of active scenes
     // on the system, as well as generates the labels for both the username and usertype of the user currently logged into
-    // the system. After this, the system initalises the static class for returning the job details and the hashmap of the
+    // the system. After this, the system initialises the static class for returning the job details and the hashmap of the
     // parts.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();

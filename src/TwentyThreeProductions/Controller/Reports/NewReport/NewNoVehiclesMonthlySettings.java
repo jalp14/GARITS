@@ -90,24 +90,28 @@ public class NewNoVehiclesMonthlySettings {
     @FXML
     private JFXDatePicker datePicker;
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void custTypeRadioAllSelected(ActionEvent event) {
         custTypeRadioAccount.setSelected(false);
         custTypeRadioCasual.setSelected(false);
     }
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void custTypeRadioAccountSelected(ActionEvent event) {
         custTypeRadioAll.setSelected(false);
         custTypeRadioCasual.setSelected(false);
     }
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void custTypeRadioCasualSelected(ActionEvent event) {
         custTypeRadioAll.setSelected(false);
         custTypeRadioAccount.setSelected(false);
     }
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void jobTypeRadioAllSelected(ActionEvent event) {
         jobTypeRadioMoT.setSelected(false);
@@ -115,6 +119,7 @@ public class NewNoVehiclesMonthlySettings {
         jobTypeRadioService.setSelected(false);
     }
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void jobTypeRadioMoTSelected(ActionEvent event) {
         jobTypeRadioAll.setSelected(false);
@@ -122,6 +127,7 @@ public class NewNoVehiclesMonthlySettings {
         jobTypeRadioService.setSelected(false);
     }
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void jobTypeRadioRepairSelected(ActionEvent event) {
         jobTypeRadioAll.setSelected(false);
@@ -129,6 +135,7 @@ public class NewNoVehiclesMonthlySettings {
         jobTypeRadioService.setSelected(false);
     }
 
+    // Once this button is clicked, all other buttons of the same type are forcibly unclicked
     @FXML
     void jobTypeRadioServiceSelected(ActionEvent event) {
         jobTypeRadioAll.setSelected(false);
@@ -136,6 +143,7 @@ public class NewNoVehiclesMonthlySettings {
         jobTypeRadioRepair.setSelected(false);
     }
 
+    // The system returns to the main page for generating a new report.
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.NEW_REPORT_MENU_ID);
@@ -143,8 +151,13 @@ public class NewNoVehiclesMonthlySettings {
 
     @FXML
     void generateReportBtnClicked(ActionEvent event) throws IOException {
+        // The system creates new objects for both customer and job to pass through to the report as search terms.
         Job job = new Job();
         Customer customer = new Customer();
+
+        // Depending on which job type was selected, the job type of the new job object is set to the appropriate value.
+        // On top of that, the customer type is also set to the appropriate value for the selected customer type. If either
+        // of these fields have been left as blank, however, an alert stating as much is shown.
         if(jobTypeRadioAll.isSelected()) {
             job.setDescription("ANY");
         }
@@ -170,6 +183,9 @@ public class NewNoVehiclesMonthlySettings {
             SystemAlert systemAlert = new SystemAlert(newNoVehiclesMonthlySettingsStackPane,
                     "Failure", "Either job type or customer type not selected");
         }
+        // After this, the username and date for the job object are set to the values that have been inputted by the user.
+        // In the event that these fields are empty, the system searches through all usernames and the jobs from the current
+        // month.
         else {
             if(usernameField.getText().isEmpty()) {
                 job.setUsername("ANY");
@@ -185,12 +201,17 @@ public class NewNoVehiclesMonthlySettings {
             else {
                 job.setDateBookedIn(Date.valueOf(datePicker.getValue()));
             }
+
+            // After this is done, the static classes are set to the appropriate values and the page for actually generating
+            // the reports is moved to.
             jobReference.setJob(job);
             customerReference.setCustomer(customer);
             sceneSwitch.activateSceneAlways(NavigationModel.NEW_NO_VEHICLES_MONTHLY_ID, backBtn.getScene());
         }
     }
 
+    // This function is called when the page is opened, and simply adds the scene to the list of active scenes and
+    // initialises the static classes that will be used on this page.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newNoVehiclesMonthlySettingsStackPane, NavigationModel.NEW_NO_VEHICLES_MONTHLY_SETTINGS_ID);
@@ -198,6 +219,7 @@ public class NewNoVehiclesMonthlySettings {
         customerReference = CustomerReference.getInstance();
     }
 
+    // This function simply sets all of the values that have data that can be inputted back to their default values.
     public void clearInputs() {
         usernameField.clear();
         custTypeRadioAccount.setSelected(false);

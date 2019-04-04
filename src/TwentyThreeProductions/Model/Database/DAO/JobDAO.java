@@ -21,6 +21,8 @@ public class JobDAO implements IJob {
         dbConnectivity = new DBConnectivity();
     }
 
+    // This method creates an ArrayList and populates it with every entry for the Job table currently within the system
+    // database, through the use of SQL statements.
     @Override
     public ArrayList<Job> getAll() {
         Statement statement;
@@ -53,6 +55,8 @@ public class JobDAO implements IJob {
         return jobs;
     }
 
+    // This method sends an SQL query to the system database in which a series of fields are added to a new entry
+    // within the Job table.
     @Override
     public void save(Job job) {
         String[] args = {String.valueOf(job.getJobID()), job.getUsername(), String.valueOf(job.getCustomerID()), job.getRegistrationID(), String.valueOf(job.getDateBookedIn()), job.getDescription(), job.getSparePartsUsed(), job.getStatus(), job.getPaidFor(), job.getChecked()};
@@ -62,6 +66,8 @@ public class JobDAO implements IJob {
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }
 
+    // This method sends an SQL query to the system database in which various different fields are updated for an existing
+    // entry within the Job table, determined by the job ID.
     @Override
     public void update(Job job) {
         String updateQuery = "UPDATE GARAGE.JOB SET USERNAME=?, STATUS=?, PAIDFOR=?, DATECOMPLETED=? WHERE JOBID=?";
@@ -70,6 +76,8 @@ public class JobDAO implements IJob {
         dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
+    // This method sends an SQL query to the system database in which the status of whether the job has been
+    // checked is updated for an existing entry within the Job table, determined by the job ID.
     @Override
     public void setChecked(Job job) {
         String updateQuery = "UPDATE GARAGE.JOB SET CHECKED=? WHERE JOBID=?";
@@ -78,6 +86,8 @@ public class JobDAO implements IJob {
         dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
+    // This method sends an SQL query to the system database in which the customer ID of all entries in the Job table
+    // associated with a specified customer ID are set to null.
     @Override
     public void deleteCustomer(String customerID) {
         String deleteQuery = "UPDATE GARAGE.JOB SET CUSTOMERID=null WHERE CUSTOMERID=?";

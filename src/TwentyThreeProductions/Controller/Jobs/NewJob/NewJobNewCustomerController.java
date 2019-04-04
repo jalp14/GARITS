@@ -137,18 +137,22 @@ public class NewJobNewCustomerController {
     private JFXButton removeCarBtn;
 
 
+    // If this button is selected, the option for configuring discounts is enabled.
     @FXML
     void accountHolderRadioSelected(ActionEvent event) {
         configureBtn.setDisable(false);
         configureBtn.setDisableVisualFocus(false);
     }
 
+    // If this button is selected, the option for configuring discounts is disabled.
     @FXML
     void casualCustomerRadioSelected(ActionEvent event) {
         configureBtn.setDisable(true);
         configureBtn.setDisableVisualFocus(true);
     }
 
+    // If this button is pressed, the system moves to the screen for configuring the customer discount, storying the
+    // current details for the customer.
     @FXML
     void configureBtnClicked(ActionEvent event) throws IOException {
             customerDAO = new CustomerDAO();
@@ -156,12 +160,18 @@ public class NewJobNewCustomerController {
             sceneSwitch.activateScene(NavigationModel.NEW_CUSTOMER_CONFIGURE_DISCOUNT_ID, backBtn.getScene());
     }
 
+    // The system goes back to the previous screen.
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.NEW_JOB_MENU_ID);
     }
 
-
+    // This function adds all of the inputs that the user has generated for the user and adds them to a new object
+    // that is used for adding the customer to the system database. Once the customer has been added to successfully,
+    // they are added to the system database, alongside a new discount if one has been added. In the event that an
+    // unassigned car has been added to them, they will be updated in the database to show they are now assigned to
+    // a customer. Finally, the customer is stored within the static class and the page moves to the screen for selecting
+    // whether to add the job with an existing car, new car or parts only.
     @FXML
     void saveBtnClicked(ActionEvent event) throws IOException {
         String customerRowCount;
@@ -201,6 +211,7 @@ public class NewJobNewCustomerController {
         sceneSwitch.activateSceneAlways(NavigationModel.NEW_JOB_CAR_MENU_ID, backBtn.getScene());
     }
 
+    // The system adds a new car from the selection to the list of cars attached to the customer.
     @FXML
     void addNewCarBtnClicked(ActionEvent event) throws IOException {
         int i = availableCarsCombi.getSelectionModel().getSelectedIndex();
@@ -208,6 +219,7 @@ public class NewJobNewCustomerController {
         availableCarsCombi.getItems().remove(i);
     }
 
+    // The system removes a car from the list of cars attached to the customer.
     @FXML
     void removeCarBtnClicked(ActionEvent event) {
         int j = selectedCarList.getSelectionModel().getSelectedIndex();
@@ -215,6 +227,10 @@ public class NewJobNewCustomerController {
         selectedCarList.getItems().remove(j);
     }
 
+    // This function is called up when the page is first opened, and it adds the scene to the list of currently
+    // active scenes as well as changing the labels for the username and type with the currently logged in user,
+    // and then finally it initialises the hashmap for storing vehicles annd gets the instance of the
+    // static class for storing the customer.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newJobNewCustomerStackPane, NavigationModel.NEW_JOB_NEW_CUSTOMER_ID);
@@ -225,6 +241,7 @@ public class NewJobNewCustomerController {
         loadCars();
     }
 
+    // This function gets a list of all vehicles currently stored in the system database that are currently unassigned.
     public void loadCars() {
         Platform.runLater(() -> {
             vehicleDAO = new VehicleDAO();
@@ -241,6 +258,7 @@ public class NewJobNewCustomerController {
 
     }
 
+    // This function determines what type of customer has been selected for the current customer.
     public String determineType() {
         String type;
         if (accountHolderRadio.isSelected()) {

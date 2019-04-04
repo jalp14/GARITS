@@ -63,6 +63,7 @@ public class NewNoVehiclesMonthly {
         sceneSwitch.switchScene(NavigationModel.NEW_REPORT_MENU_ID);
     }
 
+    // The system saves the report that is currently being viewed to an external PDF file.
     @FXML
     void generateReportBtnClicked(ActionEvent event) {
         try {
@@ -72,6 +73,7 @@ public class NewNoVehiclesMonthly {
         }
     }
 
+    // The system shows the report that has been generated previously
     public void showReport() {
         File file = new File("src/TwentyThreeProductions/PDFs/Template/NoVehiclesMonthlyReport.html");
 
@@ -82,17 +84,22 @@ public class NewNoVehiclesMonthly {
         }
 
     }
-
     public void setupReport() {
+        // The system creates objects that will be used to search for items in the database, as well as a hashmap to store
+        // requested values.
         JobDAO jobDAO = new JobDAO();
         CustomerDAO customerDAO = new CustomerDAO();
         parameters = new HashMap<>();
         try {
             noVehiclesReport = JasperCompileManager.compileReport("src/TwentyThreeProductions/PDFs/Template/NoVehiclesMonthlyReport.jrxml");
             for (Job j : jobDAO.getAll()) {
+                // The job will not be added if it is a part-only job, and the system will instead skip to the next job.
                 if (j.getRegistrationID().isEmpty()) {
                     continue;
                 }
+                // The system then gets the job ID of the job and the username for the job if it is the one that is currently
+                // being searched or there were no restrictions in place. Otherwise, the system will skip that job and move
+                // onto the next one.
                 parameters.put("JOBID", j.getJobID());
                 if (jobReference.getJob().getUsername().equals("ANY")) {
                     parameters.put("USERNAME", j.getUsername());
@@ -101,6 +108,9 @@ public class NewNoVehiclesMonthly {
                 } else {
                     continue;
                 }
+
+                // The system then gets the customer ID for the customer if they match the selected customer type or there was
+                // no restriction selected. Otherwise, the system will move on to the next job.
                 for (Customer c : customerDAO.getAll()) {
                     if (customerReference.getCustomer().getCustomerType().equals("ANY")) {
                         parameters.put("CUSTOMERID", j.getCustomerID());
@@ -111,6 +121,8 @@ public class NewNoVehiclesMonthly {
                         break;
                     }
                 }
+                // The system then gets the car registration for the job and the job type if it matches the one selected
+                // by the user or there was not a job type specified. Otherwise, it moves on to the next job.
                 parameters.put("CARREGISTRATIONID", j.getRegistrationID());
                 if (jobReference.getJob().getDescription().equals("ANY")) {
                     parameters.put("DESCRIPTION", j.getDescription());
@@ -119,6 +131,9 @@ public class NewNoVehiclesMonthly {
                 } else {
                     continue;
                 }
+
+                // Finally, the system gets the statuses of the job before using this data to generate an accurate report
+                // using the settings selected by the user.
                 parameters.put("STATUS", j.getStatus());
                 parameters.put("PAIDFOR", j.getPaidFor());
                 printReport = JasperFillManager.fillReport(noVehiclesReport, parameters, new JREmptyDataSource());
@@ -130,6 +145,8 @@ public class NewNoVehiclesMonthly {
         }
     }
 
+    // The system gets the static classes that will be used on this page, and then attempts to set up the report as well
+    // as display it.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         jobReference = JobReference.getInstance();

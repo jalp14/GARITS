@@ -112,21 +112,21 @@ public class EditMonitorJobController {
     private JFXRadioButton cardRadio;
 
 
-    // Once the button labelled 'MoT' is pressed, the other job type buttons are forcibly unpressed.
+    // Once this is pressed, the other job type buttons are forcibly unpressed.
     @FXML
     void motRadioSelected(ActionEvent event) {
         annualServiceRadio.setSelected(false);
         repairsRadio.setSelected(false);
     }
 
-    // Once the button labelled 'Annual Service' is pressed, the other job type buttons are forcibly unpressed.
+    // Once this is pressed, the other job type buttons are forcibly unpressed.
     @FXML
     void annualServiceRadioSelected(ActionEvent event) {
         motRadio.setSelected(false);
         repairsRadio.setSelected(false);
     }
 
-    // Once the button labelled 'Repairs' is pressed, the other job type buttons are forcibly unpressed.
+    // Once this is pressed, the other job type buttons are forcibly unpressed.
     @FXML
     void repairsRadioSelected(ActionEvent event) {
         motRadio.setSelected(false);
@@ -358,11 +358,16 @@ public class EditMonitorJobController {
     }
 
     public void refreshList() {
+        // The system creates new objects that will be used to query the database to return the currently set values
+        // for the job.
         UserDAO userDAO = new UserDAO();
         JobTaskDAO jobTaskDAO = new JobTaskDAO();
         PartJobDAO partJobDAO = new PartJobDAO();
         TaskDAO taskDAO = new TaskDAO();
         PartDAO partDAO = new PartDAO();
+
+        // The system then generates a list of every mechanic that is stored in the system and adds them to the hashmap.
+        // After this, the mechanic currently applied to the job is selected by default.
         for(User u: userDAO.getMechanics()) {
             Label mechanicLabel = new Label("Username: " + u.getUsername());
             mechanicHashMap.put(mechanicLabel.getText(), u);
@@ -372,6 +377,8 @@ public class EditMonitorJobController {
                 break;
             }
         }
+
+        // The system then generates a list of all the tasks that are currently assigned to the job alongside their duration.
         for(JobTask jt: jobTaskDAO.getAll()) {
             if (jt.getJobID() == jobReference.getJob().getJobID()) {
                 for (Task t : taskDAO.getAll()) {
@@ -382,6 +389,8 @@ public class EditMonitorJobController {
                 }
             }
         }
+        // The system then generates a list of all the part that are currently being used to the job alongside how many are being
+        // used.
         for(PartJob pj: partJobDAO.getAll()) {
             if (pj.getJobID() == jobReference.getJob().getJobID()) {
                 for(Part p: partDAO.getAll()) {
@@ -392,6 +401,7 @@ public class EditMonitorJobController {
                 }
             }
         }
+        // The system then marks all of the checkboxes as selected in the event that they were selected previously.
         if(jobReference.getJob().getStatus().equals("Completed")) {
             jobCompletedCheckbox.setSelected(true);
             jobCompletedCheckbox.setDisable(true);
@@ -406,6 +416,10 @@ public class EditMonitorJobController {
             amountHeading.setVisible(false);
             amountField.setVisible(false);
         }
+
+        // The system then gets the customer that booked this job and uses their name for the label specifying the job
+        // details. As well as the name, the label also uses the date the job was booked in and either the car ID or a
+        // section specifying that this is a parts-only job.
         Customer customer = new Customer();
         CustomerDAO customerDAO = new CustomerDAO();
         for(Customer c: customerDAO.getAll()) {
@@ -421,11 +435,16 @@ public class EditMonitorJobController {
         else {
             jobDetailsLbl.setText("Date: " + jobReference.getJob().getDateBookedIn() + " / Name: " + customer.getFirstName() + " " + customer.getLastName() + " / Car ID: " + jobReference.getJob().getRegistrationID());
         }
+
+        // If the job is a parts-only job, the boxes for selecting a job type are hidden.
         if(jobReference.getJob().getDescription().equals("Spare parts ordered")) {
             motRadio.setVisible(false);
             annualServiceRadio.setVisible(false);
             repairsRadio.setVisible(false);
         }
+
+        // Otherwise, the box that represents the job's type is marked as selected while the other types are marked as
+        // unselected.
         else if(jobReference.getJob().getDescription().equals("MoT job")) {
             motRadio.setSelected(true);
             annualServiceRadio.setSelected(false);

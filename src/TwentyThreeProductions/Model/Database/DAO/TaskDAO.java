@@ -20,6 +20,8 @@ public class TaskDAO implements ITask {
         dbConnectivity = new DBConnectivity();
     }
 
+    // This method creates an ArrayList and populates it with every entry for the Task table currently within the system
+    // database, through the use of SQL statements.
     @Override
     public ArrayList<Task> getAll() {
         Statement statement;

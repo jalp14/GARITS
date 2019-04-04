@@ -71,11 +71,17 @@ public class NewCustomerConfigureDiscountController {
     @FXML
     private JFXTextField fixedDiscountField;
 
+
+    // This function takes the user back to the page for creating the customer.
     @FXML
     void backBtnClicked(ActionEvent event) {
         sceneSwitch.switchScene(NavigationModel.NEW_JOB_NEW_CUSTOMER_ID);
     }
 
+
+    // This function checks the type of discount that was selected and applies the necessary values to the object for it.
+    // After this is done, it is applied to the static classed to be used for the new customer. After this, a notification
+    // alerting the user of this is generated.
     @FXML
     void saveBtnClicked(ActionEvent event) {
         if (fixedDiscountRadioBtn.isSelected()) {
@@ -108,7 +114,10 @@ public class NewCustomerConfigureDiscountController {
 
     }
 
-
+    // This function is called up when the page is first opened, and it adds the scene to the list of currently
+    // active scenes as well as changing the labels for the username and type with the currently logged in user,
+    // and then finally it initialises the instance of the static class for storing the discount as well as an object to
+    // store the discount details. This function also sets up the bands that will be used for the discount.
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(newCustomerConfigureDiscountStackPane, NavigationModel.NEW_CUSTOMER_CONFIGURE_DISCOUNT_ID);
@@ -119,6 +128,7 @@ public class NewCustomerConfigureDiscountController {
         helper = CustomerHelper.getInstance();
     }
 
+    // Sets 3 bands for use within the flexible discount.
     public void setupBands() {
         bandCombi.getItems().add(new Label("Band 1"));
         bandCombi.getItems().add(new Label("Band 2"));
