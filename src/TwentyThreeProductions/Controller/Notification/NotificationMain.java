@@ -106,7 +106,7 @@ public class NotificationMain {
     }
 
     @FXML
-    void backBtnPressed(ActionEvent event) {
+    void backBtnClicked(ActionEvent event) {
         if (DBLogic.getDBInstance().getUser_type().equals("ADMIN")) {
             sceneSwitch.switchScene(NavigationModel.MAIN_ADMIN_ID);
         } else if (DBLogic.getDBInstance().getUser_type().equals("FRANCHISEE")) {

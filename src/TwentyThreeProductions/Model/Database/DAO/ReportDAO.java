@@ -37,6 +37,7 @@ public class ReportDAO implements IReport {
                 report.setReportType(result.getString("REPORTTYPE"));
                 report.setStatus(result.getString("STATUS"));
                 report.setFileLocation(result.getString("FILELOCATION"));
+                report.setHtmlLocation(result.getString("HTMLLOCATION"));
                 reports.add(report);
             }
 
@@ -50,10 +51,10 @@ public class ReportDAO implements IReport {
 
     @Override
     public void save(Report report) {
-        String[] args = {report.getUsername(), report.getReportType(), report.getStatus(), report.getFileLocation()};
+        String[] args = {report.getUsername(), report.getReportType(), report.getStatus(), report.getFileLocation(), report.getHtmlLocation()};
         connection = dbConnectivity.connection(connection);
-        String saveQuery = "INSERT INTO Garage.REPORT (USERNAME, REPORTTYPE, STATUS, FILELOCATION)\n" +
-                "VALUES (?, ?, ?, ?)";
+        String saveQuery = "INSERT INTO Garage.REPORT (USERNAME, REPORTTYPE, STATUS, FILELOCATION, HTMLLOCATION)\n" +
+                "VALUES (?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }

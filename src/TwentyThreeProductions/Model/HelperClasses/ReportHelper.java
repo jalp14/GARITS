@@ -13,6 +13,8 @@ import java.util.HashMap;
 
 public class ReportHelper {
 
+    private static String viewReportLocation;
+
     public ReportHelper() {}
 
 
@@ -22,12 +24,21 @@ public class ReportHelper {
         MOT_REMINDER,
     }
 
-    public static void saveReportToDB(String name) {
+    public static String getViewReportLocation() {
+        return viewReportLocation;
+    }
+
+    public static void setViewReportLocation(String reportLocation) {
+        viewReportLocation = reportLocation;
+    }
+
+    public static void saveReportToDB(String name, String htmlName) {
        ReportDAO reportDAO = new ReportDAO();
         Report report = new Report();
         report.setReportType(ReportHelper.ReportType.STOCK_LEVEL.toString());
         report.setUsername(DBLogic.getDBInstance().getUsername());
         report.setFileLocation(name);
+        report.setHtmlLocation(htmlName);
         reportDAO.save(report);
     }
 
@@ -65,10 +76,12 @@ public class ReportHelper {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
             String timeStamp = sdf.format(new Date());
             String fileName = "MOT" + args[0] + timeStamp + ".pdf";
-            String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            saveReportToDB(fileName);
-            JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
 
+            String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
+            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            saveReportToDB(fileName, htmlName);
+            JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
+            JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
         } catch (JRException e) {
             e.printStackTrace();
         }
@@ -97,8 +110,10 @@ public class ReportHelper {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
             String timeStamp = sdf.format(new Date());
             String fileName = "firstreminder" + args[0] + timeStamp + ".pdf";
+            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            saveReportToDB(fileName);
+            saveReportToDB(fileName, htmlName);
+            JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
             JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
 
         } catch (JRException e) {
@@ -130,8 +145,10 @@ public class ReportHelper {
             String timeStamp = sdf.format(new Date());
             String fileName = "secondreminder" + args[0] + timeStamp + ".pdf";
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            saveReportToDB(fileName);
+            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            saveReportToDB(fileName, htmlName);
             JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
+            JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
 
         } catch (JRException e) {
             e.printStackTrace();
@@ -162,8 +179,10 @@ public class ReportHelper {
             String timeStamp = sdf.format(new Date());
             String fileName = "lastreminder" + args[0] + timeStamp + ".pdf";
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            saveReportToDB(fileName);
+            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            saveReportToDB(fileName, htmlName);
             JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
+            JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
 
         } catch (JRException e) {
             e.printStackTrace();
