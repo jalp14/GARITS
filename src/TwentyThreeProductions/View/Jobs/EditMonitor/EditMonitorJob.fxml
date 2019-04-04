@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="editMonitorJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.EditMonitorJobController">
+<StackPane fx:id="editMonitorJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.EditMonitorJobController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -134,6 +135,25 @@
             <Label fx:id="jobHeading" layoutX="623.0" layoutY="314.0" prefHeight="32.0" prefWidth="102.0" text="Job type">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
+               </font>
+            </Label>
+            <JFXRadioButton fx:id="cashRadio" layoutX="561.0" layoutY="649.0" text="Cash">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="paymentType" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="cardRadio" layoutX="698.0" layoutY="649.0" text="Card" toggleGroup="$paymentType">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXTextField fx:id="amountField" layoutX="673.0" layoutY="690.0" />
+            <Label fx:id="amountHeading" layoutX="565.0" layoutY="686.0" prefHeight="32.0" prefWidth="155.0" text="Amount £">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
          </children>
