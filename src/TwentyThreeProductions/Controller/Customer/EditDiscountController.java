@@ -21,7 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class EditDiscountController {
-
+///////////////////////////////// Edit discout for existing customer \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private DiscountDAO discountDAO;
     private CustomerHelper helper;
@@ -113,9 +113,9 @@ public class EditDiscountController {
     }
 
     @FXML
-    void saveBtnClicked(ActionEvent event) {
+    void saveBtnClicked(ActionEvent event) { // Save the discount details and pass it to the helper class
         domainDiscount = new Discount();
-        if (fixedDiscountRadioBtn.isSelected()) {
+        if (fixedDiscountRadioBtn.isSelected()) { // Check the type of discount and apply the necessary constraints
             domainDiscount.setValue(Double.parseDouble(fixedDiscountField.getText()));
             domainDiscount.setType(CustomerHelper.DISCOUNT_FIXED_NAME);
             domainDiscount.setBand(null);
@@ -132,7 +132,7 @@ public class EditDiscountController {
             domainDiscount.setVatValue(Double.parseDouble(vatDiscount.getText()));
             domainDiscount.setPartValue(Double.parseDouble(partsDiscount.getText()));
             domainDiscount.setPartValue(0);
-        }
+        } // Pass the discount object to the helper class
         if (isNew == true) {
             // 0 for New Discount
             helper.setDiscount(domainDiscount, 0);
@@ -141,7 +141,7 @@ public class EditDiscountController {
             // 1 for existing Discount
             helper.setDiscount(domainDiscount, 1);
             System.out.println("Updating Discount");
-        }
+        }  // Show an unobtrusive notification to show that discount has been set to the customer account
         SystemNotification notification = new SystemNotification(ConfigureDiscountStackPane);
         notification.setNotificationMessage("Discount edited successfully");
         notification.showNotification(NavigationModel.EDIT_DISCOUNT_ID, DBLogic.getDBInstance().getUsername());
@@ -149,13 +149,14 @@ public class EditDiscountController {
     }
 
 
-    public void setupFlexiDiscount() {
+    public void setupFlexiDiscount() { // if flexible discount option is selcted then this function is called
+        // Set all the fields required for a flexible discount and set it to the domain discount
         domainDiscount.setValue(0);
         domainDiscount.setType(CustomerHelper.DISCOUNT_FLEXIBLE_NAME);
         domainDiscount.setCustomerID(helper.getCurrentCustomerID());
         domainDiscount.setVatValue(0);
         domainDiscount.setPartValue(0);
-
+        // setup the bands for the flexible discount
         // Setup bands
         domainDiscount.setBand1range1(Double.parseDouble(band1range1.getText()));
         domainDiscount.setBand1range2(Double.parseDouble(band1range2.getText()));
@@ -168,7 +169,7 @@ public class EditDiscountController {
         domainDiscount.setBand3percent(Double.parseDouble(band3percentage.getText()));
     }
 
-    public void initialize() {
+    public void initialize() { // Initialise the form and apply checks and set constraints
         sceneSwitch = SceneSwitch.getInstance();
         helper = CustomerHelper.getInstance();
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
@@ -185,6 +186,7 @@ public class EditDiscountController {
 
 
     public void setupDiscount() {
+        // Setup any discount associated with the customer account
         discountDAO = new DiscountDAO();
         int currentCustomerID = CustomerHelper.getInstance().getCurrentCustomerID();
         System.out.println("CustomerID : " + currentCustomerID);

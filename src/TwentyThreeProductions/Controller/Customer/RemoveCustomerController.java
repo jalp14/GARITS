@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RemoveCustomerController {
-
+/////////////////////////// Remove a customer from the system \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private ArrayList<Customer> customers;
     private HashMap<String, Customer> customerHashMap;
@@ -61,10 +61,11 @@ public class RemoveCustomerController {
     }
 
     @FXML
-    void removeCustomerBtnClicked(ActionEvent event) {
+    void removeCustomerBtnClicked(ActionEvent event) { // used to delete customer account from the database
+        // Check if user has selected a customer or not
         if (customerList.getSelectionModel().isEmpty()) {
             SystemAlert alert = new SystemAlert(RemoveCustomerStackPane, "Error", "Please select a customer from the list");
-        } else {
+        } else { // load all the customer details into the customer object and pass it to the delete function in the DAO class
             DiscountDAO discountDAO = new DiscountDAO();
             VehicleDAO carDAO = new VehicleDAO();
             CustomerDAO customerDAO = new CustomerDAO();
@@ -73,12 +74,14 @@ public class RemoveCustomerController {
             carDAO.removeCustomer(customer.getCustomerID());
             discountDAO.delete(Integer.parseInt(customer.getCustomerID()));
             customerDAO.delete(customer);
+            // Show alert to let user know it worked
             SystemAlert alert = new SystemAlert(RemoveCustomerStackPane, "Success", "Customer successfully deleted");
         }
     }
 
     @FXML
-    void searchTyped(KeyEvent event) {
+    void searchTyped(KeyEvent event) { // Display customer based on the query in the search field
+        // Called everytime a key is pressed and displays data in real time
         System.out.println("Query typed");
         CustomerDAO customerDAO = new CustomerDAO();
         String searchTerm = searchField.getText();
@@ -100,15 +103,17 @@ public class RemoveCustomerController {
     }
 
     public void initialize() {
+        // Initialise the form and the UI
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(RemoveCustomerStackPane, NavigationModel.REMOVE_CUSTOMER_ID);
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());
         usertypeLbl.setText(DBLogic.getDBInstance().getUser_type());
         customerHashMap = new HashMap<>();
+        // Load all the Customers
         setupListView();
     }
 
-    public void setupListView() {
+    public void setupListView() { // Load all the Customers
         CustomerDAO customerDAO = new CustomerDAO();
         customerList.setExpanded(true);
         customerList.setVerticalGap(10.0);

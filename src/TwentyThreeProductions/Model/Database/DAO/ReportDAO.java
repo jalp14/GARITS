@@ -60,6 +60,18 @@ public class ReportDAO implements IReport {
     }
 
     @Override
+    public String getHtmlLocation(String location) {
+        Statement statement;
+        String[] args = {location};
+        ResultSet resultSet;
+        connection = dbConnectivity.connection(connection);
+        String query = "SELECT * FROM GARAGE.REPORT WHERE FILELOCATION=?";
+        dbConnectivity.writePrepared(query, connection, args);
+        return null;
+    }
+
+
+    @Override
     public void update(Report report) {
 
     }

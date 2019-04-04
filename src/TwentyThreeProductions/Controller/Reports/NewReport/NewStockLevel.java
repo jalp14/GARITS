@@ -75,19 +75,24 @@ public class NewStockLevel {
             fileName = "StockReport" + timeStamp + ".pdf";
             reportName.setText(fileName);
             fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
+            String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
+            String htmlName = "firstreminder" + timeStamp + ".html";
+
+            JasperExportManager.exportReportToHtmlFile(printReport, fileLocation + htmlName);
             JasperExportManager.exportReportToPdfFile(printReport, fileLocation + fileName);
-            saveReportToDB();
+            saveReportToDB(htmlName);
         } catch (JRException e) {
             e.printStackTrace();
         }
     }
 
-    public void saveReportToDB() {
+    public void saveReportToDB(String htmlName) {
         reportDAO = new ReportDAO();
         Report report = new Report();
         report.setReportType(ReportHelper.ReportType.STOCK_LEVEL.toString());
         report.setUsername(DBLogic.getDBInstance().getUsername());
         report.setFileLocation(fileName);
+        report.setHtmlLocation(htmlName);
         reportDAO.save(report);
         SystemNotification notification = new SystemNotification(partsMainStackPane);
         notification.setNotificationMessage("Stock Report saved as :" + fileName);

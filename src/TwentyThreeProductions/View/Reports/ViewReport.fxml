@@ -15,14 +15,6 @@
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
             <children>
-                <JFXButton fx:id="generateReportBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1003.0" layoutY="679.0" onAction="#generateReportBtnClicked" prefHeight="50.0" prefWidth="177.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Open report" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="1003.0">
-                    <font>
-                        <Font name="Avenir Next Bold" size="22.0" />
-                    </font>
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                </JFXButton>
                 <ImageView fitHeight="184.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../GARITSassests/garits.png" />

@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class ReportHelper {
 
     private static String viewReportLocation;
+    private static String reportLocation;
 
     public ReportHelper() {}
 
@@ -22,6 +23,14 @@ public class ReportHelper {
         MOT,
         STOCK_LEVEL,
         MOT_REMINDER,
+    }
+
+    public static String getReportLocation() {
+        return reportLocation;
+    }
+
+    public static void setReportLocation(String reportLocation) {
+        ReportHelper.reportLocation = reportLocation;
     }
 
     public static String getViewReportLocation() {
@@ -78,7 +87,7 @@ public class ReportHelper {
             String fileName = "MOT" + args[0] + timeStamp + ".pdf";
 
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            String htmlName = "firstreminder" + timeStamp + ".html";
             saveReportToDB(fileName, htmlName);
             JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
             JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
@@ -110,7 +119,7 @@ public class ReportHelper {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
             String timeStamp = sdf.format(new Date());
             String fileName = "firstreminder" + args[0] + timeStamp + ".pdf";
-            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            String htmlName = "firstreminder"+ timeStamp + ".html";
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
             saveReportToDB(fileName, htmlName);
             JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
@@ -145,7 +154,7 @@ public class ReportHelper {
             String timeStamp = sdf.format(new Date());
             String fileName = "secondreminder" + args[0] + timeStamp + ".pdf";
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            String htmlName = "firstreminder" + timeStamp + ".html";
             saveReportToDB(fileName, htmlName);
             JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
             JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);
@@ -179,7 +188,7 @@ public class ReportHelper {
             String timeStamp = sdf.format(new Date());
             String fileName = "lastreminder" + args[0] + timeStamp + ".pdf";
             String fileLocation = "src/TwentyThreeProductions/PDFs/ExportFile/";
-            String htmlName = "firstreminder" + args[0] + timeStamp + ".html";
+            String htmlName = "firstreminder" + timeStamp + ".html";
             saveReportToDB(fileName, htmlName);
             JasperExportManager.exportReportToPdfFile(print, fileLocation + fileName);
             JasperExportManager.exportReportToHtmlFile(print, fileLocation + htmlName);

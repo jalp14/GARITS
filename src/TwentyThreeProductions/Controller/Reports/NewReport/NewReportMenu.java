@@ -61,6 +61,7 @@ public class NewReportMenu {
 
     public void initialize() {
         sceneSwitch = SceneSwitch.getInstance();
+        sceneSwitch.addScene(partsMainStackPane, NavigationModel.NEW_REPORT_MENU_ID);
 
     }
 
