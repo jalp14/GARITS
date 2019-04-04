@@ -66,7 +66,7 @@ public class DBConnectivity implements DBConnectivityInterface {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(connection);
+           // closeConnection(connection);
         }
         return false;
     }

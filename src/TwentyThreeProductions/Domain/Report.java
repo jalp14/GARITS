@@ -7,6 +7,7 @@ public class Report {
     private String reportType;
     private String status;
     private String fileLocation;
+    private String htmlLocation;
 
     public Report(){}
 
@@ -36,6 +37,14 @@ public class Report {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getHtmlLocation() {
+        return htmlLocation;
+    }
+
+    public void setHtmlLocation(String htmlLocation) {
+        this.htmlLocation = htmlLocation;
     }
 
     public void setStatus(String status) {

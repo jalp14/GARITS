@@ -124,6 +124,8 @@ public class CustomerDAO implements ICustomer {
 
     @Override
     public void delete(Customer customer) {
+        JobDAO jobDAO = new JobDAO();
+        jobDAO.deleteCustomer(customer.getCustomerID());
         customers = getAll();
         int i = customers.size();
         String deleteCustomer = "DELETE FROM GARAGE.CUSTOMER WHERE CUSTOMERID=?";

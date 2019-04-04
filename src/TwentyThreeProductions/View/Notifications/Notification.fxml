@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="notificationStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Notification.NotificationMain">
+<StackPane fx:id="notificationStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Notification.NotificationMain">
    <children>
       <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -91,11 +91,6 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="logoutBtn" layoutX="1104.0" layoutY="129.0" onAction="#logoutBtnPressed" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
-               <font>
-                  <Font name="Avenir Next Bold" size="13.0" />
-               </font>
-            </JFXButton>
             <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
                <font>
                   <Font name="Avenir Next Bold" size="23.0" />
@@ -106,11 +101,6 @@
                   <Font name="Avenir Book" size="14.0" />
                </font>
             </Text>
-            <ImageView fitHeight="37.0" fitWidth="23.0" layoutX="1066.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../GARITSassests/notifications.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </children>

@@ -78,6 +78,15 @@ public class JobDAO implements IJob {
         dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 
+    @Override
+    public void deleteCustomer(String customerID) {
+        String deleteQuery = "UPDATE GARAGE.JOB SET CUSTOMERID=null WHERE CUSTOMERID=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {customerID};
+        dbConnectivity.writePrepared(deleteQuery, connection, args);
+    }
+
+
 
 
     @Override

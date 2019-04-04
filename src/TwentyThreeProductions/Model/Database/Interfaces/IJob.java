@@ -11,4 +11,5 @@ public interface IJob {
     void update(Job job);
     void setChecked(Job job);
     void delete(Job job);
+    void deleteCustomer(String customerID);
 }
