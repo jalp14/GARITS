@@ -1,7 +1,5 @@
 package TwentyThreeProductions.Controller.Customer;
-
 import TwentyThreeProductions.Domain.Vehicle;
-import TwentyThreeProductions.Model.Database.DAO.VehicleDAO;
 import TwentyThreeProductions.Model.HelperClasses.CustomerHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
@@ -14,92 +12,92 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
 import java.sql.Date;
 import java.time.LocalDate;
 
 public class AddCarToCustomerController {
+/////////////////////////// Add new vehicle to a customer account \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+    // Scene switch variable to allow switching between different forms
     private SceneSwitch sceneSwitch;
+    // Access the vehicle object
     private Vehicle vehicle;
 
-
+    @FXML
+    private StackPane newJobNewVehicleStackPane; // Stack pane of the current form
 
     @FXML
-    private StackPane newJobNewVehicleStackPane;
+    private Text usernameLbl; // username label
 
     @FXML
-    private Text usernameLbl;
+    private Text usertypeLbl; // account type label
 
     @FXML
-    private Text usertypeLbl;
+    private Label welcomeMessage; // welcome label
 
     @FXML
-    private Label welcomeMessage;
+    private JFXButton backBtn; // back button to go to the previous form
 
     @FXML
-    private JFXButton backBtn;
+    private JFXButton addVehicleBtn; // adds a new vehicle
 
     @FXML
-    private JFXButton addVehicleBtn;
+    private Label customerNameLbl; // name of the selected customer
 
     @FXML
-    private Label customerNameLbl;
+    private Label regHeading; // registration label
 
     @FXML
-    private Label regHeading;
+    private JFXTextField registrationField; // current registration of the car
 
     @FXML
-    private JFXTextField registrationField;
+    private Label nameHeading; // car name label
 
     @FXML
-    private Label nameHeading;
+    private Label vehicleDateHeading; // date of purchase label
 
     @FXML
-    private Label vehicleDateHeading;
+    private Label colourHeading; // color of the  car label
 
     @FXML
-    private Label colourHeading;
+    private JFXTextField nameField; // name of the car
 
     @FXML
-    private JFXTextField nameField;
+    private JFXTextField colourField; // color of the car
 
     @FXML
-    private JFXTextField colourField;
+    private JFXDatePicker vehicleDate; // date of purchase of the vehicle
 
     @FXML
-    private JFXDatePicker vehicleDate;
-
-    @FXML
-    private JFXRadioButton firstMOT;
+    private JFXRadioButton firstMOT; // first MoT of the car if any
 
     @FXML
     private Label vehicleDateHeading1;
 
     @FXML
-    private JFXDatePicker lastMOTDate;
+    private JFXDatePicker lastMOTDate; // date when the car had its last MoT
 
     @FXML
-    void firstMOTClicked(ActionEvent event) {
-        if (firstMOT.isSelected()) {
-            lastMOTDate.setDisable(true);
+    void firstMOTClicked(ActionEvent event) { // When the firstMoT button is clicked
+        if (firstMOT.isSelected()) { // check if it's already disabled
+            lastMOTDate.setDisable(true); // if it is then disable the lastMoT date field
         } else {
-            lastMOTDate.setDisable(false);
+            lastMOTDate.setDisable(false); // if no then enable the lastMoT date field
         }
     }
 
 
     @FXML
-    void addVehicleBtnClicked(ActionEvent event) {
-        setupVehicle();
-        CustomerHelper.getInstance().setVehicle(vehicle);
+    void addVehicleBtnClicked(ActionEvent event) { // when the add vehicle button is clicked
+        setupVehicle(); // setup the vehicle details
+        CustomerHelper.getInstance().setVehicle(vehicle); // use the helper class to assign the vehicle object to the customer
     }
 
-    public void setupVehicle() {
+    public void setupVehicle() { // take all the details entered in the field and add them to the vehicle object
         vehicle = new Vehicle();
         LocalDate purchaseDate = vehicleDate.getValue();
         vehicle.setVehicleDate(Date.valueOf(purchaseDate));
-        if (firstMOT.isSelected()) {
+        if (firstMOT.isSelected()) { // if firstMoT is selected then set lastMoT to null
             vehicle.setLastMOT(null);
             vehicle.setRegNo(registrationField.getText());
             vehicle.setColour(colourField.getText());
@@ -116,8 +114,8 @@ public class AddCarToCustomerController {
 
 
     @FXML
-    void backBtnClicked(ActionEvent event) {
-
+    void backBtnClicked(ActionEvent event) { // back button clicked
+        // check which form the user came from by getting the form name from the helper class
         if (CustomerHelper.getInstance().getLastCall().equals(NavigationModel.ADD_NEW_CUSTOMER_ID)) {
             sceneSwitch.switchScene(NavigationModel.ADD_NEW_CUSTOMER_ID);
         } else {
@@ -126,6 +124,7 @@ public class AddCarToCustomerController {
     }
 
     public void initialize() {
+        // Initialize the current scene
         sceneSwitch = SceneSwitch.getInstance();
     }
 

@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class CustomersMainController {
-
+///////////////////////////// Main Customer Form \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
 
     @FXML
@@ -42,25 +42,30 @@ public class CustomersMainController {
 
     @FXML
     void addNewCustomerBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the Add New Customer form
         sceneSwitch.activateScene(NavigationModel.ADD_NEW_CUSTOMER_ID, backBtn.getScene());
     }
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        // Take user to the previous form
         sceneSwitch.switchScene(NavigationModel.MAIN_FFR_ID);
     }
 
     @FXML
     void editCustomerBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the Edit Customer Form
         sceneSwitch.activateScene(NavigationModel.EDIT_CUSTOMER_ID, backBtn.getScene());
     }
 
     @FXML
     void removeCustomerBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the Remove Customer Form
         sceneSwitch.activateScene(NavigationModel.REMOVE_CUSTOMER_ID, backBtn.getScene());
     }
 
     public void initialize() {
+        // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(CustomersMainStackPane, NavigationModel.CUSTOMER_MAIN_ID);
         usernameLbl.setText(DBLogic.getDBInstance().getUsername());

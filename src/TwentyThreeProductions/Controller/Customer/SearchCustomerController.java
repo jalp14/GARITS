@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class SearchCustomerController {
-
+ ///////////////////////////// This controller has been deprecated and not in use anymore \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
 
     @FXML

@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EditCustomersController {
-
+///////////////////////////////// Edit existing customer details \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private CustomerDAO customerDAO;
     private VehicleDAO vehicleDAO;
@@ -169,7 +169,8 @@ public class EditCustomersController {
     private Label selectedCarsHeading;
 
     @FXML
-    void confirmCarBtnClicked(ActionEvent event) throws IOException {
+    void confirmCarBtnClicked(ActionEvent event) throws IOException { // Confirm btn clicked
+        // This functions gets the newly created vehicle object and adds it to the list of cars assigned to the customer
         Vehicle vehicle;
         System.out.println("Confirm btn clicked");
         vehicle = CustomerHelper.getInstance().getVehicle();
@@ -182,6 +183,8 @@ public class EditCustomersController {
 
     @FXML
     void checkDiscountBtnClicked(ActionEvent event) throws IOException {
+        // get the current customer's ID and pass it to the helper class
+        // then take the user to the configure discount form
         System.out.println("Current customer id : " + currentCustomerID);
         CustomerHelper.getInstance().setCustomerCasual(casualCustomerRadio.isSelected());
         CustomerHelper.getInstance().setCurrentCustomerID(Integer.parseInt(currentCustomerID));
@@ -190,20 +193,24 @@ public class EditCustomersController {
 
     @FXML
     void accountHolderRadioSelected(ActionEvent event) {
+        // if the customer account is of type account holder then enable the discount options
         checkDiscountBtn.setDisable(false);
         checkDiscountBtn.setDisableVisualFocus(false);
     }
 
     @FXML
     void casualCustomerRadioSelected(ActionEvent event) {
+        // if the customer account is of type casual then disable the discount options
         checkDiscountBtn.setDisable(true);
         checkDiscountBtn.setDisableVisualFocus(true);
     }
 
     @FXML
-    void selectCustomerBtnClicked(ActionEvent event) {
+    void selectCustomerBtnClicked(ActionEvent event) {// Displays customer details
         System.out.println("Customer Selected");
+        // Get the selected customer and get the customer id
         Customer customer = customerMap.get(selectCustomerCombi.getSelectionModel().getSelectedItem().getText());
+        // Get the customer object from the hash map
         currentCustomerID = customer.getCustomerID();
         // Set all the fields
         firstNameField.setText(customer.getFirstName());
@@ -215,7 +222,7 @@ public class EditCustomersController {
         phoneNoField.setText(customer.getCustomerPhone());
         emailField.setText(customer.getCustomerEmail());
         cityField.setText(customer.getCustomerCity());
-        // Type Determination
+        // Account Type Determination
         if (customer.getCustomerType().equals("ACCOUNT")) {
             accountHolderRadio.setSelected(true);
             checkDiscountBtn.setDisable(false);
@@ -231,27 +238,30 @@ public class EditCustomersController {
         if (!(selectedCarList.getItems().isEmpty())) {
             selectedCarList.getItems().clear();
         }
-
+        // Get all the vehicles associated with customer
         getCars(customer.getCustomerID());
-
+        // Add them to the vehicles list
         loadExistingCars();
 
     }
 
     @FXML
     void addNewCarBtnClicked(ActionEvent event) throws IOException {
+        // Take user to the Add New Car form
         CustomerHelper.getInstance().setLastCall(NavigationModel.EDIT_CUSTOMER_ID);
         sceneSwitch.activateScene(NavigationModel.ADD_CUSTOMER_TO_CAR_ID, backBtn.getScene());
     }
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        // Take the user to the previous form
         sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
         resetView();
     }
 
 
     public void resetView() {
+        // Remove any unsaved changes
         cityField.setText("");
         buildingNameField.setText("");
         emailField.setText("");
@@ -269,6 +279,7 @@ public class EditCustomersController {
 
     @FXML
     void removeCarBtnClicked(ActionEvent event) {
+        // Remove the selected vehicle by dissassociating with the current customer and remove it from the databse
         int j = selectedCarList.getSelectionModel().getSelectedIndex();
         String tmp = selectedCarList.getItems().get(j).getText();
         removedVehicles = new ArrayList<>();
@@ -280,11 +291,13 @@ public class EditCustomersController {
 
     @FXML
     void saveBtnClicked(ActionEvent event) {
+        // Save any changes made to the database
         System.out.println("Save btn clicked");
         discountDAO = new DiscountDAO();
         customerDAO = new CustomerDAO();
         vehicleDAO = new VehicleDAO();
         Customer customer = new Customer();
+        // Get all the details from the field and add it to the Customer object
         customer.setCustomerID(currentCustomerID);
         customer.setFirstName(firstNameField.getText());
         customer.setLastName(lastNameField.getText());
@@ -298,13 +311,14 @@ public class EditCustomersController {
         customer.setCustomerEmail(emailField.getText());
         customer.setLatePayment(latePaymentCheckbox.isSelected());
         customerDAO.update(customer);
-
+        // If any vehicles were removed update the changes to the database
         // Removed vehicles
         if (removedVehicles.size() > 0) {
             for (int l = 0; l < removedVehicles.size(); l++) {
                 vehicleDAO.updateCustomer(null, removedVehicles.get(l));
             }
         }
+        // If any new vehicles are added then update those in the database
         // New vehicles
         for (int j = 0; j < newVehicles.size(); j++) {
             Vehicle tmpVehicle = newVehicles.get(newVehiclesLabel.get(j).getText());
@@ -329,7 +343,7 @@ public class EditCustomersController {
                 discountDAO.delete(Integer.parseInt(currentCustomerID));
             }
 
-
+        // Show a pop up alert to let the user know that customer was updated successfully
             SystemAlert alert = new SystemAlert(EditCustomerStackPane, "Success!", "Updated customer");
 
         }
@@ -337,7 +351,7 @@ public class EditCustomersController {
 
     public void setupFieldValidators() {
         // Add Validators
-        // firstNameField.getValidators().add(fieldValidator);
+        // Every time a key is pressed this will check that valid data is entered
         fieldValidator = new RequiredFieldValidator();
         fieldValidator.setMessage("Empty field");
 
@@ -370,6 +384,7 @@ public class EditCustomersController {
     }
 
     public void initialize() {
+        // Initialise the current form
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(EditCustomerStackPane, NavigationModel.EDIT_CUSTOMER_ID);
         setupFieldValidators();
@@ -381,15 +396,16 @@ public class EditCustomersController {
         newVehicles = new HashMap<>();
         removedVehicles = new ArrayList<>();
         newVehiclesLabel = new ArrayList<>();
+        // Load all the available customers to the drop down menu
         loadCustomers();
     }
 
 
     // Loads all the customers in the db
-    public void loadCustomers() {
+    public void loadCustomers() { // Load all the available customers to the drop down menu
         customerDAO = new CustomerDAO();
+        // Get all the customers
         customers = customerDAO.getAll();
-
         // Add all the customers to the combi box
         for (int i = 0; i < customers.size(); i++) {
             Customer tmpCustomer = customers.get(i);
@@ -401,6 +417,7 @@ public class EditCustomersController {
     }
 
     public void getCars(String customerID) {
+        // Get all the vehicles associated with the Customer specified by the customerID
         vehicleDAO = new VehicleDAO();
         // Existing Vehicles
         existingVehicles = new ArrayList<>();
@@ -422,6 +439,7 @@ public class EditCustomersController {
     }
 
     public String determineType() {
+        // Determine the customer account type
         String type;
         if (accountHolderRadio.isSelected()) {
             type = "ACCOUNT";

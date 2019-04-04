@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AddNewCustomerController {
-
+/////////////////////////////////// Add new customer to the system \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private SceneSwitch sceneSwitch;
     private Customer customer;
     private VehicleDAO vehicleDAO;
@@ -154,7 +154,8 @@ public class AddNewCustomerController {
     private JFXButton confirmCarBtn;
 
     @FXML
-    void confirmCarBtnClicked(ActionEvent event) {
+    void confirmCarBtnClicked(ActionEvent event) { // Confirm btn clicked
+        // This functions gets the newly created vehicle object and adds it to the list of cars assigned to the customer
         customerDAO = new CustomerDAO();
         System.out.println("Confirm btn clicked");
         vehicle = CustomerHelper.getInstance().getVehicle();
@@ -169,18 +170,22 @@ public class AddNewCustomerController {
 
     @FXML
     void accountHolderRadioSelected(ActionEvent event) {
+        // if the customer account is of type account holder then enable the discount options
         configureBtn.setDisable(false);
         configureBtn.setDisableVisualFocus(false);
     }
 
     @FXML
     void casualCustomerRadioSelected(ActionEvent event) {
+        // if the customer account is of type casual then disable the discount options
         configureBtn.setDisable(true);
         configureBtn.setDisableVisualFocus(true);
     }
 
     @FXML
     void configureBtnClicked(ActionEvent event) throws IOException {
+        // get the current customer's ID and pass it to the helper class
+        // then take the user to the configure discount form
         customerDAO = new CustomerDAO();
         CustomerHelper.getInstance().setCurrentCustomerID(customerDAO.getCount() + 1);
         sceneSwitch.activateScene(NavigationModel.CONFIGURE_DISCOUNT_ID, backBtn.getScene());
@@ -188,11 +193,13 @@ public class AddNewCustomerController {
 
     @FXML
     void backBtnClicked(ActionEvent event) {
+        // take the user to the previous form and remoce any unsaved changes
         sceneSwitch.switchScene(NavigationModel.CUSTOMER_MAIN_ID);
         resetView();
     }
 
     public void resetView() {
+        // this function is used to remove any unsaved changes
         cityField.setText("");
         buildingNameField.setText("");
         emailField.setText("");
@@ -211,12 +218,16 @@ public class AddNewCustomerController {
 
 
     @FXML
+    // Used to save customer details
     void saveBtnClicked(ActionEvent event) {
         String customerRowCount;
+        // Get DAO to get the customer, vehicle and discount records
         customerDAO = new CustomerDAO();
+        // setup a new customer object
         customer = new Customer();
         vehicleDAO = new VehicleDAO();
         discountDAO = new DiscountDAO();
+        // set all the details from the field to the object and save it to the database
         customer.setFirstName(firstNameField.getText());
         customer.setLastName(lastNameField.getText());
         customer.setCustomerHouseName(houseNameField.getText());
@@ -231,6 +242,8 @@ public class AddNewCustomerController {
         customerDAO.save(customer);
         customerRowCount = Integer.toString(customerDAO.getCount());
         System.out.println(customerRowCount);
+        // check if there are any vehicle
+        // if there are then assign the customer id to the vehicle objects
         for (int j = 0; j < selectedCarList.getItems().size(); j++) {
             Vehicle tmpVehicle = vehicleHashMap.get(selectedCarList.getItems().get(j).getText());
             String regID = vehicleHashMap.get(selectedCarList.getItems().get(j).getText()).getRegistrationID();
@@ -241,22 +254,26 @@ public class AddNewCustomerController {
                 vehicleDAO.save(tmpVehicle);
             }
         }
-
+        // check if the customer is an account holder
+        // if yes then save the discount
         if (accountHolderRadio.isSelected()) {
             discountDAO.save(CustomerHelper.getInstance().getDiscount());
         }
+        // Show alert for successfully adding the customer
         SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Success!", "Added customer to the db");
 
     }
 
     @FXML
     void addNewCarBtnClicked(ActionEvent event) throws IOException {
+        // take user to the add vehicle form
         CustomerHelper.getInstance().setLastCall(NavigationModel.ADD_NEW_CUSTOMER_ID);
         sceneSwitch.activateScene(NavigationModel.ADD_CUSTOMER_TO_CAR_ID, backBtn.getScene());
     }
 
     @FXML
     void removeCarBtnClicked(ActionEvent event) {
+        // remove selected vehicle by disassociating it from the customer
         if (selectedCarList.getSelectionModel().getSelectedItem() == null) {
             SystemAlert alert = new SystemAlert(AddNewCustomerStackPane, "Error", "Please select a vehicle from the list");
         } else {
@@ -267,6 +284,7 @@ public class AddNewCustomerController {
     }
 
     public void initialize() {
+        // setup the form and enable all the field checks
         sceneSwitch = SceneSwitch.getInstance();
         sceneSwitch.addScene(AddNewCustomerStackPane, NavigationModel.ADD_NEW_CUSTOMER_ID);
         fieldValidator = new RequiredFieldValidator();
@@ -280,7 +298,7 @@ public class AddNewCustomerController {
 
     public void setupFieldValidators() {
         // Add Validators
-       // firstNameField.getValidators().add(fieldValidator);
+        // Every time a key is pressed this will check that valid data is entered
         fieldValidator.setMessage("Empty field");
 
         // Add Image
@@ -313,6 +331,7 @@ public class AddNewCustomerController {
 
 
     public String determineType() {
+        // Determine the type of the customer account
         String type;
         if (accountHolderRadio.isSelected()) {
             type = "ACCOUNT";
