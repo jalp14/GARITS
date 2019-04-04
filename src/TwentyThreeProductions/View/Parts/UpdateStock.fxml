@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="updateStockStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Parts.UpdateStockController">
+<StackPane fx:id="updateStockStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Parts.UpdateStockController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -25,19 +25,9 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
             <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="221.0" prefHeight="48.0" prefWidth="269.0" text="Update stock">
                <font>
-                  <Font name="Avenir Next Bold" size="40.0" />
+                  <Font name="Avenir Next Bold" size="30.0" />
                </font>
             </Label>
             <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="237.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
@@ -63,9 +53,9 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <Label fx:id="partNameLbl" layoutX="187.0" layoutY="277.0" prefHeight="26.0" prefWidth="205.0" text="Part name">
+            <Label fx:id="partNameLbl" layoutX="187.0" layoutY="268.0" prefHeight="26.0" prefWidth="205.0" text="Part name">
                <font>
-                  <Font name="Avenir Next Bold" size="24.0" />
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
             <JFXButton fx:id="reduceStockBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="234.0" layoutY="354.0" onAction="#reduceStockBtnClicked" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="-" textFill="WHITE">
@@ -102,16 +92,26 @@
                </opaqueInsets>
             </JFXButton>
             <JFXTextField fx:id="thresholdLevelField" layoutX="298.0" layoutY="434.0" prefHeight="27.0" prefWidth="52.0" />
-            <Label fx:id="stockLevelLbl" layoutX="33.0" layoutY="358.0" prefHeight="35.0" prefWidth="130.0" text="Stock Level">
+            <Label fx:id="stockLevelLbl" layoutX="33.0" layoutY="358.0" prefHeight="35.0" prefWidth="157.0" text="Stock Level">
                <font>
-                  <Font name="Avenir Next Bold" size="24.0" />
+                  <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="thresholdLevelLbl" layoutX="33.0" layoutY="430.0" prefHeight="35.0" prefWidth="174.0" text="Threshold Level">
+            <Label fx:id="thresholdLevelLbl" layoutX="33.0" layoutY="430.0" prefHeight="35.0" prefWidth="189.0" text="Threshold Level">
                <font>
-                  <Font name="Avenir Next Bold" size="24.0" />
+                  <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </Label>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

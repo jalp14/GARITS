@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="ConfigureDiscountStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.EditDiscountController">
+<StackPane fx:id="ConfigureDiscountStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.EditDiscountController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -53,107 +53,102 @@
             </JFXButton>
             <Label fx:id="customerNameLbl" layoutX="186.0" layoutY="265.0" prefHeight="27.0" prefWidth="591.0" text="Customer name">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <JFXRadioButton fx:id="fixedDiscountRadioBtn" layoutX="165.0" layoutY="356.0" text="Fixed Discount">
+            <JFXRadioButton fx:id="fixedDiscountRadioBtn" layoutX="50.0" layoutY="356.0" text="Fixed Discount">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Avenir Next Bold" size="20.0" />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="discount" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="variableDiscountRadioBtn" layoutX="380.0" layoutY="356.0" text="Variable Discount" toggleGroup="$discount">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXRadioButton>
-            <Label fx:id="discountTypeHeading" layoutX="6.0" layoutY="355.0" prefHeight="27.0" prefWidth="168.0" text="Discount Type :">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
-            <Line endX="26.0" endY="281.0" layoutX="344.0" layoutY="382.0" startX="26.0" startY="-25.0" />
-            <JFXRadioButton fx:id="flexibleDiscountRadioBtn" layoutX="719.0" layoutY="355.0" text="Flexible Discount" toggleGroup="$discount">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXRadioButton>
-            <Line endX="26.0" endY="281.0" layoutX="680.0" layoutY="385.0" startX="26.0" startY="-25.0" />
-            <JFXTextField fx:id="variableDiscountField" layoutX="418.0" layoutY="423.0" promptText="Task" />
-            <Label layoutX="582.0" layoutY="422.0" text="\%">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="fixedDiscountField" layoutX="154.0" layoutY="424.0" />
-            <Label layoutX="318.0" layoutY="423.0" text="\%">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="partsDiscount" layoutX="417.0" layoutY="494.0" promptText="Parts" />
-            <Label layoutX="581.0" layoutY="493.0" text="\%">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="vatDiscount" layoutX="416.0" layoutY="577.0" promptText="VAT" />
-            <Label layoutX="580.0" layoutY="576.0" text="\%">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
+            <JFXRadioButton fx:id="variableDiscountRadioBtn" layoutX="310.0" layoutY="356.0" text="Variable Discount" toggleGroup="$discount">
                <font>
                   <Font name="Avenir Next Bold" size="20.0" />
                </font>
+            </JFXRadioButton>
+            <Line endX="26.0" endY="281.0" layoutX="236.0" layoutY="362.0" startX="26.0" startY="-25.0" />
+            <JFXRadioButton fx:id="flexibleDiscountRadioBtn" layoutX="632.0" layoutY="355.0" text="Flexible Discount" toggleGroup="$discount">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <Line endX="26.0" endY="281.0" layoutX="549.0" layoutY="365.0" startX="26.0" startY="-25.0" />
+            <JFXTextField fx:id="variableDiscountField" layoutX="328.0" layoutY="423.0" promptText="Task" />
+            <Label layoutX="492.0" layoutY="422.0" text="\%">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="fixedDiscountField" layoutX="46.0" layoutY="424.0" />
+            <Label layoutX="210.0" layoutY="423.0" text="\%">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="partsDiscount" layoutX="327.0" layoutY="494.0" promptText="Parts" />
+            <Label layoutX="491.0" layoutY="493.0" text="\%">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="vatDiscount" layoutX="326.0" layoutY="577.0" promptText="VAT" />
+            <Label layoutX="490.0" layoutY="576.0" text="\%">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="632.0" layoutY="410.0" prefHeight="43.0" prefWidth="79.0" text="Band 1">
+               <font>
+                  <Font name="Avenir Book" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="band1range1" layoutX="634.0" layoutY="447.0" prefHeight="26.0" prefWidth="134.0" />
+            <Label layoutX="780.0" layoutY="439.0" prefHeight="43.0" prefWidth="17.0" text="-">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="band1range2" layoutX="804.0" layoutY="447.0" prefHeight="26.0" prefWidth="134.0" />
+            <JFXTextField fx:id="band1percentage" layoutX="959.0" layoutY="447.0" prefHeight="26.0" prefWidth="45.0" promptText="\%" />
+            <Label layoutX="632.0" layoutY="496.0" prefHeight="43.0" prefWidth="79.0" text="Band 2">
+               <font>
+                  <Font name="Avenir Book" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="band2range1" layoutX="633.0" layoutY="528.0" prefHeight="26.0" prefWidth="134.0" />
+            <Label layoutX="779.0" layoutY="520.0" prefHeight="43.0" prefWidth="17.0" text="-">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="band2range2" layoutX="803.0" layoutY="528.0" prefHeight="26.0" prefWidth="134.0" />
+            <JFXTextField fx:id="band2percentage" layoutX="958.0" layoutY="528.0" prefHeight="26.0" prefWidth="45.0" promptText="\%" />
+            <Label layoutX="632.0" layoutY="569.0" prefHeight="43.0" prefWidth="79.0" text="Band 3">
+               <font>
+                  <Font name="Avenir Book" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="band3range1" layoutX="633.0" layoutY="601.0" prefHeight="26.0" prefWidth="134.0" />
+            <Label layoutX="779.0" layoutY="593.0" prefHeight="43.0" prefWidth="17.0" text="-">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="band3range2" layoutX="803.0" layoutY="601.0" prefHeight="26.0" prefWidth="134.0" />
+            <JFXTextField fx:id="band3percentage" layoutX="958.0" layoutY="601.0" prefHeight="26.0" prefWidth="45.0" promptText="\%" />
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
             </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1042.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="145.2734375">
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
                <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
+                  <Font name="Avenir Book" size="14.0" />
                </font>
             </Text>
-            <Label layoutX="719.0" layoutY="410.0" prefHeight="43.0" prefWidth="79.0" text="Band 1">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="band1range1" layoutX="721.0" layoutY="447.0" prefHeight="26.0" prefWidth="134.0" />
-            <Label layoutX="867.0" layoutY="439.0" prefHeight="43.0" prefWidth="17.0" text="-">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="band1range2" layoutX="891.0" layoutY="447.0" prefHeight="26.0" prefWidth="134.0" />
-            <JFXTextField fx:id="band1percentage" layoutX="1046.0" layoutY="447.0" prefHeight="26.0" prefWidth="45.0" promptText="\%" />
-            <Label layoutX="719.0" layoutY="496.0" prefHeight="43.0" prefWidth="79.0" text="Band 2">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="band2range1" layoutX="720.0" layoutY="528.0" prefHeight="26.0" prefWidth="134.0" />
-            <Label layoutX="866.0" layoutY="520.0" prefHeight="43.0" prefWidth="17.0" text="-">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="band2range2" layoutX="890.0" layoutY="528.0" prefHeight="26.0" prefWidth="134.0" />
-            <JFXTextField fx:id="band2percentage" layoutX="1045.0" layoutY="528.0" prefHeight="26.0" prefWidth="45.0" promptText="\%" />
-            <Label layoutX="719.0" layoutY="569.0" prefHeight="43.0" prefWidth="79.0" text="Band 3">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="band3range1" layoutX="720.0" layoutY="601.0" prefHeight="26.0" prefWidth="134.0" />
-            <Label layoutX="866.0" layoutY="593.0" prefHeight="43.0" prefWidth="17.0" text="-">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="band3range2" layoutX="890.0" layoutY="601.0" prefHeight="26.0" prefWidth="134.0" />
-            <JFXTextField fx:id="band3percentage" layoutX="1045.0" layoutY="601.0" prefHeight="26.0" prefWidth="45.0" promptText="\%" />
          </children>
       </AnchorPane>
    </children>

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="newCustomerConfigureDiscountStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewCustomerConfigureDiscountController">
+<StackPane fx:id="newCustomerConfigureDiscountStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewCustomerConfigureDiscountController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -24,16 +24,6 @@
                   <Image url="@../../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
             <Label fx:id="welcomeMessage" layoutX="186.0" layoutY="212.0" prefHeight="68.0" prefWidth="309.0" text="Configure discount">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
@@ -67,76 +57,81 @@
                   <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </Label>
-            <JFXRadioButton fx:id="fixedDiscountRadioBtn" layoutX="165.0" layoutY="356.0" text="Fixed Discount">
+            <JFXRadioButton fx:id="fixedDiscountRadioBtn" layoutX="54.0" layoutY="356.0" text="Fixed Discount">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Avenir Next Bold" size="20.0" />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="discount" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="variableDiscountRadioBtn" layoutX="380.0" layoutY="356.0" text="Variable Discount" toggleGroup="$discount">
+            <JFXRadioButton fx:id="variableDiscountRadioBtn" layoutX="311.0" layoutY="356.0" text="Variable Discount" toggleGroup="$discount">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </JFXRadioButton>
-            <Label fx:id="discountTypeHeading" layoutX="6.0" layoutY="355.0" prefHeight="27.0" prefWidth="168.0" text="Discount Type :">
+            <Line endX="26.0" endY="281.0" layoutX="233.0" layoutY="382.0" startX="26.0" startY="-25.0" />
+            <JFXRadioButton fx:id="flexibleDiscountRadioBtn" layoutX="615.0" layoutY="355.0" text="Flexible Discount" toggleGroup="$discount">
                <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
-            <Line endX="26.0" endY="281.0" layoutX="344.0" layoutY="382.0" startX="26.0" startY="-25.0" />
-            <JFXRadioButton fx:id="flexibleDiscountRadioBtn" layoutX="719.0" layoutY="355.0" text="Flexible Discount" toggleGroup="$discount">
-               <font>
-                  <Font size="20.0" />
+                  <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </JFXRadioButton>
-            <Line endX="26.0" endY="281.0" layoutX="680.0" layoutY="385.0" startX="26.0" startY="-25.0" />
-            <JFXTextField fx:id="variableDiscountField" layoutX="418.0" layoutY="423.0" promptText="Task" />
-            <Label layoutX="582.0" layoutY="422.0" text="\%">
+            <Line endX="26.0" endY="281.0" layoutX="569.0" layoutY="385.0" startX="26.0" startY="-25.0" />
+            <JFXTextField fx:id="variableDiscountField" layoutX="327.0" layoutY="423.0" promptText="Task" />
+            <Label layoutX="491.0" layoutY="422.0" text="\%">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="bandCombi" layoutX="793.0" layoutY="423.0" prefHeight="26.0" prefWidth="126.0" />
-            <Label layoutX="725.0" layoutY="430.0" text="Band">
+            <JFXComboBox fx:id="bandCombi" layoutX="682.0" layoutY="423.0" prefHeight="26.0" prefWidth="126.0" />
+            <Label layoutX="621.0" layoutY="430.0" text="Band">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="fixedDiscountField" layoutX="154.0" layoutY="424.0" />
-            <Label layoutX="318.0" layoutY="423.0" text="\%">
+            <JFXTextField fx:id="fixedDiscountField" layoutX="43.0" layoutY="424.0" />
+            <Label layoutX="207.0" layoutY="423.0" text="\%">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label layoutX="719.0" layoutY="478.0" prefHeight="43.0" prefWidth="180.0" text="£0-£1000 : 1%">
+            <Label layoutX="619.0" layoutY="478.0" prefHeight="43.0" prefWidth="180.0" text="£0-£1000 : 1%">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Avenir Book" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="719.0" layoutY="538.0" prefHeight="43.0" prefWidth="241.0" text="£1001-£5000 : 2%">
+            <Label layoutX="619.0" layoutY="538.0" prefHeight="43.0" prefWidth="241.0" text="£1001-£5000 : 2%">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Avenir Book" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="719.0" layoutY="596.0" prefHeight="43.0" prefWidth="241.0" text="£5001-£10000 : 3%">
+            <Label layoutX="619.0" layoutY="596.0" prefHeight="43.0" prefWidth="241.0" text="£5001-£10000 : 3%">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Avenir Book" size="21.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="partsDiscount" layoutX="418.0" layoutY="477.0" promptText="Parts" />
-            <Label layoutX="582.0" layoutY="476.0" text="\%">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="vatDiscount" layoutX="418.0" layoutY="540.0" promptText="VAT" />
-            <Label layoutX="582.0" layoutY="539.0" text="\%">
+            <JFXTextField fx:id="partsDiscount" layoutX="327.0" layoutY="477.0" promptText="Parts" />
+            <Label layoutX="491.0" layoutY="476.0" text="\%">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
+            <JFXTextField fx:id="vatDiscount" layoutX="327.0" layoutY="540.0" promptText="VAT" />
+            <Label layoutX="491.0" layoutY="539.0" text="\%">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

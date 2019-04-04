@@ -14,7 +14,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXButton fx:id="addNewPartBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="334.0" onAction="#addNewPartBtnClicked" prefHeight="90.0" prefWidth="330.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Add new part" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="33.0">
+            <JFXButton fx:id="addNewPartBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="334.0" onAction="#addNewPartBtnClicked" prefHeight="90.0" prefWidth="338.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Add new part" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="33.0">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../GARITSassests/customers.png" />
+                        <Image url="@../../GARITSassests/add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -39,16 +39,6 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
             <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="114.0" text="Parts">
                <font>
                   <Font name="Avenir Next Bold" size="40.0" />
@@ -69,7 +59,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="removePartBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="451.0" onAction="#removePartBtnClicked" prefHeight="90.0" prefWidth="330.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Remove existing part" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="removePartBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="451.0" onAction="#removePartBtnClicked" prefHeight="90.0" prefWidth="338.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Remove existing part" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -79,12 +69,12 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../GARITSassests/customers.png" />
+                        <Image url="@../../GARITSassests/remove.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="updatePartStockBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="570.0" onAction="#updatePartStockBtnClicked" prefHeight="90.0" prefWidth="330.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Update stock part" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="updatePartStockBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="570.0" onAction="#updatePartStockBtnClicked" prefHeight="90.0" prefWidth="338.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Update stock part" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -94,11 +84,21 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../GARITSassests/customers.png" />
+                        <Image url="@../../GARITSassests/edit.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

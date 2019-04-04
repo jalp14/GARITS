@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="addPartToJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.AddPartToJobController">
+<StackPane fx:id="addPartToJobStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.EditMonitor.AddPartToJobController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -22,16 +22,6 @@
                   <Image url="@../../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
             <Label fx:id="welcomeMessage" layoutX="186.0" layoutY="212.0" prefHeight="68.0" prefWidth="229.0" text="Add part to job">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
@@ -62,20 +52,20 @@
             </JFXButton>
             <Label fx:id="jobDetailsLbl" layoutX="186.0" layoutY="265.0" prefHeight="27.0" prefWidth="591.0" text="Job date, Customer name, Car registration">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="formLabel" layoutX="43.0" layoutY="303.0" prefHeight="32.0" prefWidth="495.0" text="Search by part by car model or name">
+            <Label fx:id="formLabel" layoutX="43.0" layoutY="314.0" prefHeight="32.0" prefWidth="495.0" text="Search by part by car model or name">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="searchField" layoutX="43.0" layoutY="340.0" prefHeight="35.0" prefWidth="374.0">
+            <JFXTextField fx:id="searchField" layoutX="43.0" layoutY="351.0" prefHeight="35.0" prefWidth="374.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="searchBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="424.0" layoutY="336.0" onAction="#searchBtnClick" prefHeight="43.0" prefWidth="102.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Search" textFill="WHITE">
+            <JFXButton fx:id="searchBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="424.0" layoutY="347.0" onAction="#searchBtnClick" prefHeight="43.0" prefWidth="102.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Search" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -83,18 +73,28 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <JFXListView fx:id="partList" layoutX="43.0" layoutY="394.0" prefHeight="309.0" prefWidth="495.0" />
-            <JFXTextField fx:id="stockUsedField" layoutX="561.0" layoutY="518.0" prefHeight="25.0" prefWidth="78.0">
+            <JFXListView fx:id="partList" layoutX="43.0" layoutY="405.0" prefHeight="290.0" prefWidth="484.0" />
+            <JFXTextField fx:id="stockUsedField" layoutX="556.0" layoutY="662.0" prefHeight="25.0" prefWidth="78.0">
                <font>
                   <Font name="Avenir Next Bold" size="15.0" />
                </font>
             </JFXTextField>
             <JFXMasonryPane />
-            <Label fx:id="stockUsedLabel" alignment="CENTER" layoutX="555.0" layoutY="491.0" prefHeight="21.0" prefWidth="91.0" text="Stock Used" textAlignment="CENTER">
+            <Label fx:id="stockUsedLabel" layoutX="555.0" layoutY="635.0" prefHeight="24.0" prefWidth="114.0" text="Stock Used" textAlignment="CENTER">
                <font>
                   <Font name="Avenir Next Bold" size="17.0" />
                </font>
             </Label>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

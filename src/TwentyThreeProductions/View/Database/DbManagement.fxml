@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="dbMngtStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Database.DbManagementController">
+<StackPane fx:id="dbMngtStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Database.DbManagementController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXButton fx:id="newBackupBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="148.0" layoutY="405.0" onAction="#newBackupBtnClicked" prefHeight="90.0" prefWidth="356.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text=" Create new backup" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="148.0">
+            <JFXButton fx:id="newBackupBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="330.0" onAction="#newBackupBtnClicked" prefHeight="90.0" prefWidth="392.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Create new backup" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="33.0">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../GARITSassests/customers.png" />
+                        <Image url="@../../GARITSassests/newbackup.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -54,7 +54,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="restoreBackupBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="693.0" layoutY="405.0" onAction="#restoreBackupBtnClicked" prefHeight="90.0" prefWidth="356.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Restore existing backup" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="restoreBackupBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="445.0" onAction="#restoreBackupBtnClicked" prefHeight="90.0" prefWidth="392.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="   Restore existing backup" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -64,27 +64,34 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../GARITSassests/customers.png" />
+                        <Image url="@../../GARITSassests/existbackup.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backupSettings" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="418.0" layoutY="590.0" onAction="#backupSettingsClicked" prefHeight="60.0" prefWidth="334.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Automatic Backup Settings" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="backupSettings" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="33.0" layoutY="555.0" onAction="#backupSettingsClicked" prefHeight="90.0" prefWidth="392.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Automatic Backup Settings" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GARITSassests/backupsettings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Next Bold" size="23.0" />
                </font>
             </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1042.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="145.2734375">
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
                <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
+                  <Font name="Avenir Book" size="14.0" />
                </font>
             </Text>
          </children>

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="selectUserStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Reports.EditAutoReports">
+<StackPane fx:id="selectUserStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Reports.EditAutoReports">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
             <children>
@@ -21,17 +21,7 @@
                         <Image url="@../../GARITSassests/garits.png" />
                     </image>
                 </ImageView>
-                <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-                    <font>
-                        <Font name="Avenir Next Bold" size="20.0" />
-                    </font>
-                </Text>
-                <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-                    <font>
-                        <Font name="Avenir Next Bold" size="16.0" />
-                    </font>
-                </Text>
-                <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="229.0" prefHeight="68.0" prefWidth="293.0" text="Automatic Reports">
+                <Label fx:id="welcomeMessage" layoutX="187.0" layoutY="227.0" prefHeight="68.0" prefWidth="293.0" text="Automatic Reports">
                     <font>
                         <Font name="Avenir Next Bold" size="30.0" />
                     </font>
@@ -51,31 +41,31 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="viewDetailsBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="314.0" layoutY="319.0" onAction="#viewDetailsBtnClicked" prefHeight="48.0" prefWidth="172.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="View details" textAlignment="RIGHT" textFill="WHITE">
+                <JFXButton fx:id="viewDetailsBtn" alignment="CENTER" ellipsisString="  " layoutX="331.0" layoutY="324.0" onAction="#viewDetailsBtnClicked" prefHeight="19.0" prefWidth="150.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="View details" textAlignment="RIGHT" textFill="WHITE">
                     <font>
-                        <Font name="Avenir Next Bold" size="22.0" />
+                        <Font name="Avenir Next Bold" size="18.0" />
                     </font>
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
                 </JFXButton>
             <JFXComboBox fx:id="reportTypeCombi" layoutX="40.0" layoutY="317.0" prefHeight="43.0" prefWidth="265.0" />
-            <JFXRadioButton fx:id="weeklyRadioBtn" layoutX="35.0" layoutY="482.0" text="Weekly">
+            <JFXRadioButton fx:id="weeklyRadioBtn" layoutX="35.0" layoutY="458.0" text="Weekly">
                <font>
-                  <Font size="21.0" />
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </JFXRadioButton>
-            <Label layoutX="33.0" layoutY="418.0" prefHeight="48.0" prefWidth="347.0" text="Report Generation Frequency">
+            <Label layoutX="33.0" layoutY="394.0" prefHeight="48.0" prefWidth="347.0" text="Report Generation Frequency">
                <font>
-                  <Font size="22.0" />
+                  <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </Label>
-            <JFXRadioButton fx:id="monthlyRadioBtn" layoutX="35.0" layoutY="538.0" text="Monthly">
+            <JFXRadioButton fx:id="monthlyRadioBtn" layoutX="35.0" layoutY="514.0" text="Monthly">
                <font>
-                  <Font size="21.0" />
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </JFXRadioButton>
-            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="27.0" layoutY="588.0" onAction="#saveBtnClicked" prefHeight="48.0" prefWidth="172.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save " textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1044.0" layoutY="669.0" onAction="#saveBtnClicked" prefHeight="48.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -83,6 +73,16 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1026.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1064.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </children>

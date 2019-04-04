@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../GARITSassests/customers.png" />
+                        <Image url="@../../../GARITSassests/add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -34,16 +34,6 @@
                   <Image url="@../../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
             <Label fx:id="welcomeMessage" layoutX="178.0" layoutY="217.0" prefHeight="68.0" prefWidth="441.0" text="Choose car for new job">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
@@ -74,14 +64,14 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../GARITSassests/customers.png" />
+                        <Image url="@../../../GARITSassests/add.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
             <Label fx:id="customerNameLbl" layoutX="178.0" layoutY="270.0" prefHeight="30.0" prefWidth="375.0" text="Customer name">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
             <JFXButton fx:id="partOnlyBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="34.0" layoutY="562.0" onAction="#partOnlyBtnClicked" prefHeight="90.0" prefWidth="241.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Part only" textAlignment="RIGHT" textFill="WHITE">
@@ -94,11 +84,21 @@
                <graphic>
                   <ImageView fitHeight="71.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../GARITSassests/customers.png" />
+                        <Image url="@../../../GARITSassests/parts.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
