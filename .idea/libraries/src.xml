@@ -1,9 +1,14 @@
 <component name="libraryTable">
   <library name="src">
-    <CLASSES />
-    <JAVADOC />
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Java Content/jasperreports-6.7.1/dist" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../Java Content/jasperreports-6.7.1/dist/docs/api" />
+    </JAVADOC>
     <SOURCES>
-      <root url="file://$USER_HOME$/Downloads/jasperreports-6.7.1/src" />
+      <root url="file://$PROJECT_DIR$/../Java Content/jasperreports-6.7.1/src" />
     </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../Java Content/jasperreports-6.7.1/dist" recursive="false" />
   </library>
 </component>

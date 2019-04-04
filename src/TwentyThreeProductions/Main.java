@@ -1,12 +1,8 @@
 package TwentyThreeProductions;
 
-import TwentyThreeProductions.Domain.Backup;
-import TwentyThreeProductions.Domain.Report;
-import TwentyThreeProductions.Domain.ReportSettings;
+import TwentyThreeProductions.Domain.*;
 import TwentyThreeProductions.Model.DBLogic;
-import TwentyThreeProductions.Model.Database.DAO.BackupDAO;
-import TwentyThreeProductions.Model.Database.DAO.ReportDAO;
-import TwentyThreeProductions.Model.Database.DAO.ReportSettingsDAO;
+import TwentyThreeProductions.Model.Database.DAO.*;
 import TwentyThreeProductions.Model.Database.DBConnectivity;
 import TwentyThreeProductions.Model.Database.DBHelper;
 import TwentyThreeProductions.Model.Database.DBServer;
@@ -139,6 +135,91 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public void checkForUpcomingMots() {
+        java.util.Date currentDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+        VehicleDAO vehicleDAO = new VehicleDAO();
+        CustomerDAO customerDAO = new CustomerDAO();
+        ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
+        ReportHelper reportHelper = new ReportHelper();
+        for(Vehicle v: vehicleDAO.getAll()) {
+            if(v.getLastMOT().equals(null)) {
+                Date firstMotDate = v.getVehicleDate();
+                firstMotDate.setYear(firstMotDate.getYear() + 3);
+                if(sqlDate.equals(firstMotDate)) {
+                    String[] parameters = new String[9];
+                    for(Customer c: customerDAO.getAll()) {
+                        if(v.getCustomerID().equals(c.getCustomerID())) {
+                            parameters[0] = "Dear " +c.getFirstName() + " " + c.getLastName() + ",";
+                            parameters[1] = c.getCustomerHouseName() + ", " + c.getCustomerStreetName();
+                            parameters[2] = c.getCustomerPostcode();
+                        }
+                    }
+                    parameters[8] = v.getRegNo();
+                    parameters[9] = String.valueOf(firstMotDate);
+                    reportHelper.generateMOTDueReminder(parameters);
+                }
+            }
+            Date nextMotDate = v.getLastMOT();
+            nextMotDate.setYear(nextMotDate.getYear() + 1);
+            if(sqlDate.equals(nextMotDate)) {
+                String[] parameters = new String[9];
+                for(Customer c: customerDAO.getAll()) {
+                    if(v.getCustomerID().equals(c.getCustomerID())) {
+                        parameters[0] = "Dear " +c.getFirstName() + " " + c.getLastName() + ",";
+                        parameters[1] = c.getCustomerHouseName() + ", " + c.getCustomerStreetName();
+                        parameters[2] = c.getCustomerPostcode();
+                    }
+                }
+                parameters[8] = v.getRegNo();
+                parameters[9] = String.valueOf(nextMotDate);
+                reportHelper.generateMOTDueReminder(parameters);
+            }
+        }
+    }
+
+/*    public void checkForLatePayments() {
+        java.util.Date currentDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+        JobDAO jobDAO = new JobDAO();
+        CustomerDAO customerDAO = new CustomerDAO();
+        ReportHelper reportHelper = new ReportHelper();
+        for(Job j: jobDAO.getAll()) {
+            if(j.getStatus().equals("Completed") && j.getPaidFor().equals("False")) {
+                Date firstLateReminderDate = j.getDateCompleted();
+                firstLateReminderDate.setMonth(firstLateReminderDate.getMonth() + 1);
+                if(sqlDate.equals(firstLateReminderDate)) {
+                    String[] parameters = new String[9];
+                    for(Customer c: customerDAO.getAll()) {
+                        if(v.getCustomerID().equals(c.getCustomerID())) {
+                            parameters[0] = "Dear " +c.getFirstName() + " " + c.getLastName() + ",";
+                            parameters[1] = c.getCustomerHouseName() + ", " + c.getCustomerStreetName();
+                            parameters[2] = c.getCustomerPostcode();
+                        }
+                    }
+                    parameters[8] = v.getRegNo();
+                    parameters[9] = String.valueOf(firstMotDate);
+                    reportHelper.generateMOTDueReminder(parameters);
+                }
+            }
+            Date nextMotDate = v.getLastMOT();
+            nextMotDate.setYear(nextMotDate.getYear() + 1);
+            if(sqlDate.equals(nextMotDate)) {
+                String[] parameters = new String[9];
+                for(Customer c: customerDAO.getAll()) {
+                    if(v.getCustomerID().equals(c.getCustomerID())) {
+                        parameters[0] = "Dear " +c.getFirstName() + " " + c.getLastName() + ",";
+                        parameters[1] = c.getCustomerHouseName() + ", " + c.getCustomerStreetName();
+                        parameters[2] = c.getCustomerPostcode();
+                    }
+                }
+                parameters[8] = v.getRegNo();
+                parameters[9] = String.valueOf(nextMotDate);
+                reportHelper.generateMOTDueReminder(parameters);
+            }
+        }
+    }*/
 
     public static void main(String[] args) {
         launch(args);

@@ -110,7 +110,9 @@ public class MainFFRController {
       java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
       JobDAO jobDAO = new JobDAO();
       for(Job j: jobDAO.getAll()) {
-         if(j.getDateCompleted().equals(Date.valueOf(settingsHelper.setupNextMonth())) && j.getPaidFor().equals("False") && j.getChecked().equals("False")) {
+         Date latePaymentDate = j.getDateCompleted();
+         latePaymentDate.setMonth(latePaymentDate.getMonth() + 1);
+         if(sqlDate.after(latePaymentDate) && j.getPaidFor().equals("False") && j.getChecked().equals("False")) {
             SystemNotification notification = new SystemNotification(mainScreenFFRStackPane);
             notification.setNotificationMessage("There is a completed job that has not been paid for " +
                     "in one month.");
