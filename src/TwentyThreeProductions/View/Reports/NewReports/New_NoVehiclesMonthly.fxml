@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,13 +11,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.web.WebView?>
 
-<StackPane fx:id="newNoVehiclesMonthlyStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Reports.NewReport.NewNoVehiclesMonthly">
+<StackPane fx:id="partsMainStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Reports.NewReport.NewNoVehiclesMonthly">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
             <children>
-                <JFXButton fx:id="generateReportBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="944.0" layoutY="656.0" onAction="#generateReportBtnClicked" prefHeight="50.0" prefWidth="212.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save Report" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="944.0">
+                <JFXButton fx:id="generateReportBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="944.0" layoutY="656.0" onAction="#generateReportBtnClicked" prefHeight="50.0" prefWidth="212.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Generate report" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="944.0">
                     <font>
                         <Font name="Avenir Next Bold" size="22.0" />
                     </font>
@@ -28,17 +29,7 @@
                         <Image url="@../../../GARITSassests/garits.png" />
                     </image>
                 </ImageView>
-                <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-                    <font>
-                        <Font name="Avenir Next Bold" size="20.0" />
-                    </font>
-                </Text>
-                <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-                    <font>
-                        <Font name="Avenir Next Bold" size="16.0" />
-                    </font>
-                </Text>
-                <Label fx:id="welcomeMessage" layoutX="181.0" layoutY="238.0" prefHeight="50.0" prefWidth="454.0" text="Create report - Number of vehicles booked monthly">
+                <Label fx:id="welcomeMessage" layoutX="181.0" layoutY="238.0" prefHeight="50.0" prefWidth="692.0" text="Create report - No. vehicles booked in monthly ">
                     <font>
                         <Font name="Avenir Next Bold" size="30.0" />
                     </font>
@@ -58,17 +49,74 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-            <WebView fx:id="webView" layoutX="46.0" layoutY="311.0" prefHeight="392.0" prefWidth="826.0" />
-            <Label layoutX="875.0" layoutY="367.0" prefHeight="25.0" prefWidth="94.0" text="Name :">
+            <JFXTextField fx:id="reportNameField" layoutX="190.0" layoutY="314.0" prefHeight="27.0" prefWidth="276.0" />
+            <JFXRadioButton fx:id="jobTypeRadioAll" layoutX="195.0" layoutY="361.0" onAction="#accountHolderRadioClicked" text="All">
                <font>
-                  <Font size="26.0" />
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <Label fx:id="fNameHeading" layoutX="38.0" layoutY="311.0" prefHeight="30.0" prefWidth="80.0" text="Name">
+               <font>
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="reportName" layoutX="975.0" layoutY="356.0" prefHeight="79.0" prefWidth="220.0" text="NoVehiclesBookedMonthly-12299" wrapText="true">
+            <Label fx:id="jobTypeHeading" layoutX="37.0" layoutY="353.0" prefHeight="30.0" prefWidth="110.0" text="Job type">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Avenir Next Bold" size="20.0" />
                </font>
             </Label>
+            <Label fx:id="custTypeHeading" layoutX="36.0" layoutY="493.0" prefHeight="30.0" prefWidth="149.0" text="Customer type" wrapText="true">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXRadioButton fx:id="jobTypeRadioMoT" layoutX="195.0" layoutY="392.0" onAction="#accountHolderRadioClicked" text="MoT">
+               <font>
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="jobTypeRadioService" layoutX="195.0" layoutY="422.0" onAction="#accountHolderRadioClicked" text="Annual service">
+               <font>
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="jobTypeRadioRepair" layoutX="195.0" layoutY="451.0" onAction="#accountHolderRadioClicked" text="Repair">
+               <font>
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="custTypeRadioAll" layoutX="196.0" layoutY="494.0" onAction="#accountHolderRadioClicked" text="All">
+               <font>
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="custTypeRadioCasual" layoutX="196.0" layoutY="525.0" onAction="#accountHolderRadioClicked" text="Casual">
+               <font>
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="custTypeRadioAccount" layoutX="196.0" layoutY="555.0" onAction="#accountHolderRadioClicked" text="Account holder">
+               <font>
+                  <Font name="Avenir Book" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <Label fx:id="periodHeading" layoutX="41.0" layoutY="602.0" prefHeight="30.0" prefWidth="75.0" text="Period" wrapText="true">
+               <font>
+                  <Font name="Avenir Next Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="beginField" layoutX="193.0" layoutY="603.0" prefHeight="27.0" prefWidth="276.0" promptText="Begin" />
+            <JFXTextField fx:id="endField" layoutX="194.0" layoutY="647.0" prefHeight="27.0" prefWidth="276.0" promptText="End" />
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </children>

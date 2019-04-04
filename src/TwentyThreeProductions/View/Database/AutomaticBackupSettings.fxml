@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="autoBackupSettingsStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Database.AutomaticBackupSettingsController">
+<StackPane fx:id="autoBackupSettingsStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Database.AutomaticBackupSettingsController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -20,9 +20,9 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Label fx:id="welcomeMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="331.0" layoutY="229.0" prefHeight="68.0" prefWidth="546.0" text="Automatic Backup Settings" textAlignment="CENTER">
+            <Label fx:id="welcomeMessage" contentDisplay="CENTER" layoutX="179.0" layoutY="236.0" prefHeight="68.0" prefWidth="546.0" text="Automatic Backup Settings" textAlignment="CENTER">
                <font>
-                  <Font name="Avenir Next Bold" size="40.0" />
+                  <Font name="Avenir Next Bold" size="30.0" />
                </font>
             </Label>
             <JFXButton fx:id="backBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="33.0" layoutY="245.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Back" textFill="WHITE">
@@ -40,7 +40,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="saveBtn" alignment="BASELINE_LEFT" buttonType="RAISED" ellipsisString="  " layoutX="993.0" layoutY="676.0" onAction="#saveBtnClicked" prefHeight="50.0" prefWidth="186.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save Settings" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="saveBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1067.0" layoutY="676.0" onAction="#saveBtnClicked" prefHeight="50.0" prefWidth="112.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Save" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="22.0" />
                </font>
@@ -48,40 +48,40 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
-            <Label layoutX="34.0" layoutY="352.0" prefHeight="60.0" prefWidth="224.0" text="Last Backup :">
+            <Label layoutX="33.0" layoutY="316.0" prefHeight="60.0" prefWidth="191.0" text="Last Backup :">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="lastBackupLbl" layoutX="245.0" layoutY="354.0" prefHeight="60.0" prefWidth="292.0" text="N/A">
+            <Label fx:id="lastBackupLbl" layoutX="245.0" layoutY="319.0" prefHeight="60.0" prefWidth="292.0" text="N/A">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="470.0" prefHeight="60.0" prefWidth="266.0" text="Set Backup Date :">
+            <Label layoutX="33.0" layoutY="369.0" prefHeight="60.0" prefWidth="202.0" text="Set Backup Date :">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </Label>
-            <JFXDatePicker fx:id="backupDate" defaultColor="#ed0932" editable="false" layoutX="321.0" layoutY="487.0" onAction="#dateChanged" promptText="Select Date" />
-            <Label layoutX="34.0" layoutY="583.0" prefHeight="60.0" prefWidth="224.0" text="Next Backup :">
+            <JFXDatePicker fx:id="backupDate" defaultColor="#ed0932" editable="false" layoutX="246.0" layoutY="385.0" onAction="#dateChanged" promptText="Select Date" />
+            <Label layoutX="33.0" layoutY="422.0" prefHeight="60.0" prefWidth="191.0" text="Next Backup :">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Avenir Next Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="nextBackupLbl" layoutX="245.0" layoutY="585.0" prefHeight="60.0" prefWidth="292.0" text="N/A">
+            <Label fx:id="nextBackupLbl" layoutX="245.0" layoutY="424.0" prefHeight="60.0" prefWidth="292.0" text="N/A">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Next Bold" size="23.0" />
                </font>
             </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1042.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="145.2734375">
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
                <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
+                  <Font name="Avenir Book" size="14.0" />
                </font>
             </Text>
          </children>

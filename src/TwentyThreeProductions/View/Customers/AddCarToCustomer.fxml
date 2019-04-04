@@ -10,10 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="newJobNewVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.AddCarToCustomerController">
+<StackPane fx:id="newJobNewVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.AddCarToCustomerController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -22,16 +23,6 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
             <Label fx:id="welcomeMessage" layoutX="186.0" layoutY="212.0" prefHeight="68.0" prefWidth="383.0" text="Add vehicle to customer">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
@@ -62,56 +53,78 @@
             </JFXButton>
             <Label fx:id="customerNameLbl" layoutX="186.0" layoutY="265.0" prefHeight="27.0" prefWidth="591.0" text="Customer name">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Book" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="regHeading" layoutX="6.0" layoutY="389.0" prefHeight="32.0" prefWidth="180.0" text="Registration No">
+            <Label fx:id="regHeading" layoutX="28.0" layoutY="393.0" prefHeight="32.0" prefWidth="180.0" text="Registration No.">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="193.0" layoutY="383.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="registrationField" labelFloat="true" layoutX="194.0" layoutY="383.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="nameHeading" layoutX="95.0" layoutY="440.0" prefHeight="32.0" prefWidth="146.0" text="Name">
+            <Label fx:id="nameHeading" layoutX="28.0" layoutY="446.0" prefHeight="32.0" prefWidth="146.0" text="Name">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="vehicleDateHeading" layoutX="16.0" layoutY="560.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date">
+            <Label fx:id="vehicleDateHeading" layoutX="28.0" layoutY="550.0" prefHeight="32.0" prefWidth="146.0" text="Vehicle Date">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="colourHeading" alignment="CENTER" layoutX="42.0" layoutY="495.0" prefHeight="32.0" prefWidth="146.0" text="Colour">
+            <Label fx:id="colourHeading" alignment="CENTER" layoutX="23.0" layoutY="498.0" prefHeight="32.0" prefWidth="75.0" text="Colour">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="nameField" layoutX="183.0" layoutY="437.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="nameField" layoutX="194.0" layoutY="437.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="colourField" layoutX="176.0" layoutY="493.0" prefHeight="35.0" prefWidth="309.0">
+            <JFXTextField fx:id="colourField" layoutX="194.0" layoutY="493.0" prefHeight="35.0" prefWidth="309.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXDatePicker fx:id="vehicleDate" layoutX="190.0" layoutY="556.0" />
-            <JFXRadioButton fx:id="firstMOT" layoutX="614.0" layoutY="397.0" onAction="#firstMOTClicked" prefHeight="31.0" prefWidth="192.0" text="First MOT">
+            <JFXDatePicker fx:id="vehicleDate" layoutX="194.0" layoutY="552.0" />
+            <JFXRadioButton fx:id="firstMOT" layoutX="614.0" layoutY="386.0" onAction="#firstMOTClicked" prefHeight="31.0" prefWidth="192.0" text="First MOT">
                <font>
-                  <Font size="26.0" />
+                  <Font name="Avenir Book" size="22.0" />
                </font>
             </JFXRadioButton>
-            <Label fx:id="vehicleDateHeading1" layoutX="610.0" layoutY="463.0" prefHeight="32.0" prefWidth="172.0" text="Last MOT Date">
+            <Label fx:id="vehicleDateHeading1" layoutX="610.0" layoutY="427.0" prefHeight="32.0" prefWidth="172.0" text="Last MOT Date">
                <font>
                   <Font name="Avenir Book" size="22.0" />
                </font>
             </Label>
-            <JFXDatePicker fx:id="lastMOTDate" layoutX="808.0" layoutY="459.0" />
+            <JFXDatePicker fx:id="lastMOTDate" layoutX="807.0" layoutY="428.0" />
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1026.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1064.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
+            <Label fx:id="regHeading1" layoutX="28.0" layoutY="335.0" prefHeight="32.0" prefWidth="180.0" text="Vehicle details">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <Line endX="373.5" layoutX="129.0" layoutY="372.0" startX="-100.0" />
+            <Label fx:id="regHeading11" layoutX="612.0" layoutY="332.0" prefHeight="32.0" prefWidth="180.0" text="MOT information">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
+            <Line endX="281.0" layoutX="713.0" layoutY="369.0" startX="-100.0" />
          </children>
       </AnchorPane>
    </children>

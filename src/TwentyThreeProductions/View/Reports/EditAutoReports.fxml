@@ -2,9 +2,11 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,13 +66,16 @@
                <font>
                   <Font size="21.0" />
                </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="freq" />
+               </toggleGroup>
             </JFXRadioButton>
             <Label layoutX="33.0" layoutY="418.0" prefHeight="48.0" prefWidth="347.0" text="Report Generation Frequency">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <JFXRadioButton fx:id="monthlyRadioBtn" layoutX="35.0" layoutY="538.0" text="Monthly">
+            <JFXRadioButton fx:id="monthlyRadioBtn" layoutX="35.0" layoutY="538.0" text="Monthly" toggleGroup="$freq">
                <font>
                   <Font size="21.0" />
                </font>
@@ -83,6 +88,12 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
+            <JFXDatePicker fx:id="nextDate" layoutX="458.0" layoutY="494.0" />
+            <Label layoutX="322.0" layoutY="484.0" prefHeight="48.0" prefWidth="116.0" text="Next Date">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

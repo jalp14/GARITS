@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="AddNewCustomerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.AddNewCustomerController">
+<StackPane fx:id="AddNewCustomerStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Customer.AddNewCustomerController">
     <children>
         <AnchorPane fx:id="customerMainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
             <children>
@@ -25,16 +25,6 @@
                         <Image url="@../../GARITSassests/garits.png" />
                     </image>
                 </ImageView>
-                <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="893.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="295.5">
-                    <font>
-                        <Font name="Avenir Next Bold" size="20.0" />
-                    </font>
-                </Text>
-                <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1042.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="145.2734375">
-                    <font>
-                        <Font name="Avenir Next Bold" size="16.0" />
-                    </font>
-                </Text>
                 <Label fx:id="welcomeMessage" layoutX="191.0" layoutY="237.0" prefHeight="43.0" prefWidth="288.0" text="Add new customer">
                     <font>
                         <Font name="Avenir Next Bold" size="30.0" />
@@ -73,9 +63,9 @@
                         <Font name="Avenir Book" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="latePaymentHeading" layoutX="594.0" layoutY="317.0" prefHeight="32.0" prefWidth="153.0" text="Pay Later">
+                <Label fx:id="latePaymentHeading" layoutX="594.0" layoutY="317.0" prefHeight="32.0" prefWidth="153.0" text="Pay later">
                     <font>
-                        <Font name="Avenir Book" size="22.0" />
+                        <Font name="Avenir Book" size="20.0" />
                     </font>
                 </Label>
                 <JFXCheckBox fx:id="latePaymentCheckbox" ellipsisString="" layoutX="758.0" layoutY="324.0" prefHeight="19.0" prefWidth="13.0" />
@@ -107,25 +97,25 @@
                         <Font name="Avenir Book" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="emailHeading" layoutX="38.0" layoutY="642.0" prefHeight="19.0" prefWidth="153.0" text="Email">
+                <Label fx:id="emailHeading" layoutX="38.0" layoutY="644.0" prefHeight="19.0" prefWidth="153.0" text="Email">
                     <font>
                         <Font name="Avenir Book" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="phoneNoHeading" layoutX="38.0" layoutY="679.0" prefHeight="19.0" prefWidth="153.0" text="Phone number">
+                <Label fx:id="phoneNoHeading" layoutX="38.0" layoutY="681.0" prefHeight="19.0" prefWidth="153.0" text="Phone number">
                     <font>
                         <Font name="Avenir Book" size="20.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="firstNameField" layoutX="191.0" layoutY="361.0" prefHeight="27.0" prefWidth="256.0" />
-                <JFXTextField fx:id="lastNameField" layoutX="191.0" layoutY="401.0" prefHeight="27.0" prefWidth="256.0" />
-                <JFXTextField fx:id="buildingNameField" layoutX="191.0" layoutY="484.0" prefHeight="27.0" prefWidth="256.0" />
-                <JFXTextField fx:id="postcodeField" layoutX="191.0" layoutY="569.0" prefHeight="27.0" prefWidth="256.0" />
-                <JFXTextField fx:id="cityField" layoutX="191.0" layoutY="606.0" prefHeight="27.0" prefWidth="256.0" />
-                <JFXTextField fx:id="emailField" layoutX="191.0" layoutY="644.0" prefHeight="27.0" prefWidth="256.0" />
-                <JFXTextField fx:id="phoneNoField" layoutX="191.0" layoutY="681.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="firstNameField" layoutX="194.0" layoutY="361.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="lastNameField" layoutX="194.0" layoutY="401.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="buildingNameField" layoutX="194.0" layoutY="484.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="postcodeField" layoutX="194.0" layoutY="569.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="cityField" layoutX="194.0" layoutY="606.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="emailField" layoutX="194.0" layoutY="644.0" prefHeight="27.0" prefWidth="256.0" />
+                <JFXTextField fx:id="phoneNoField" layoutX="194.0" layoutY="681.0" prefHeight="27.0" prefWidth="256.0" />
                 <Line endX="-100.0" endY="409.0" layoutX="666.0" layoutY="316.0" startX="-100.0" />
-                <JFXButton fx:id="addNewCarBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="773.0" layoutY="458.0" onAction="#addNewCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new car" textFill="WHITE">
+                <JFXButton fx:id="addNewCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="759.0" layoutY="458.0" onAction="#addNewCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Add new car" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="18.0" />
                     </font>
@@ -133,7 +123,7 @@
                         <Insets />
                     </opaqueInsets>
                 </JFXButton>
-                <JFXButton fx:id="removeCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="598.0" layoutY="681.0" onAction="#removeCarBtnClicked" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Remove" textFill="WHITE">
+                <JFXButton fx:id="removeCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="915.0" layoutY="524.0" onAction="#removeCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Remove car" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="18.0" />
                     </font>
@@ -141,23 +131,23 @@
                         <Insets />
                     </opaqueInsets>
                 </JFXButton>
-            <Label fx:id="discountHeading" alignment="CENTER" layoutX="585.0" layoutY="382.0" prefHeight="32.0" prefWidth="114.0" text="Discount">
+            <Label fx:id="discountHeading" layoutX="594.0" layoutY="382.0" prefHeight="32.0" prefWidth="114.0" text="Discount">
                <font>
-                  <Font name="Avenir Book" size="22.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <JFXListView fx:id="selectedCarList" layoutX="591.0" layoutY="556.0" prefHeight="118.0" prefWidth="433.0" />
-            <Label fx:id="availableCarsHeading" alignment="CENTER" layoutX="587.0" layoutY="455.0" prefHeight="32.0" prefWidth="167.0" text="Available Cars">
+            <JFXListView fx:id="selectedCarList" layoutX="591.0" layoutY="556.0" prefHeight="118.0" prefWidth="460.0" />
+            <Label fx:id="availableCarsHeading" layoutX="594.0" layoutY="455.0" prefHeight="32.0" prefWidth="167.0" text="Available Cars">
                <font>
-                  <Font name="Avenir Book" size="22.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="selectedCarsHeading" alignment="CENTER" layoutX="588.0" layoutY="524.0" prefHeight="32.0" prefWidth="154.0" text="Selected Cars">
+            <Label fx:id="selectedCarsHeading" layoutX="595.0" layoutY="524.0" prefHeight="32.0" prefWidth="154.0" text="Selected Cars">
                <font>
-                  <Font name="Avenir Book" size="22.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <JFXButton fx:id="configureBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="729.0" layoutY="385.0" onAction="#configureBtnClicked" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Configure" textFill="WHITE">
+            <JFXButton fx:id="configureBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="759.0" layoutY="385.0" onAction="#configureBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Configure" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="18.0" />
                </font>
@@ -170,14 +160,14 @@
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="streetNameField" layoutX="191.0" layoutY="528.0" prefHeight="27.0" prefWidth="256.0" />
-            <Label fx:id="address1Heading2" layoutX="41.0" layoutY="441.0" prefHeight="19.0" prefWidth="153.0" text="House Name">
+            <JFXTextField fx:id="streetNameField" layoutX="194.0" layoutY="528.0" prefHeight="27.0" prefWidth="256.0" />
+            <Label fx:id="address1Heading2" layoutX="38.0" layoutY="441.0" prefHeight="19.0" prefWidth="153.0" text="House Name">
                <font>
                   <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
             <JFXTextField fx:id="houseNameField" layoutX="194.0" layoutY="443.0" prefHeight="27.0" prefWidth="256.0" />
-            <JFXButton fx:id="confirmCarBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="  " layoutX="928.0" layoutY="458.0" onAction="#confirmCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Confirm car" textFill="WHITE">
+            <JFXButton fx:id="confirmCarBtn" alignment="BASELINE_CENTER" ellipsisString="  " layoutX="914.0" layoutY="458.0" onAction="#confirmCarBtnClicked" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt; -fx-padding: 0px;" text="Confirm car" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="18.0" />
                </font>
@@ -185,6 +175,16 @@
                   <Insets />
                </opaqueInsets>
             </JFXButton>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </children>

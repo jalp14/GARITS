@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MOT" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa6e8d2c-91b2-481f-8eec-1bb87b3dbcca">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="290e79f2-db4e-4d35-bf54-f7c4cec5ec7e">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="task_list_dataset" uuid="ce9c1d7c-8134-4d7f-852e-29813d5e0e6a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="list_of_work" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="ItemDataset" uuid="38b0ce2b-1cd2-4272-9154-c98598c478ce">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="parts_used_table" uuid="b9e338c2-9c5e-4c85-882b-4a31d41531c3">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="TableDataset" uuid="6aea0084-8774-43c5-8286-32d2f4686f90">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="name" class="java.lang.String"/>
+		<field name="partno" class="java.lang.String"/>
+		<field name="unitcost" class="java.lang.Double"/>
+		<field name="quantity" class="java.lang.Integer"/>
+		<field name="cost" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="DescWork" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="table_data" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="5a543658-7971-4828-80d8-f1b3410b3341"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_full_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="100" height="20" uuid="66bf1f63-8aa1-4418-9772-c199192afc9f"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[house_street_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="100" height="20" uuid="b586aa7b-d31e-49db-ae53-8a7187ebc1ca"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_city]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="100" height="20" uuid="a2a21292-8ed2-4f7b-af67-5d2261a41483"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_postcode]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="100" height="30" uuid="b3638ed7-63db-4719-83ae-c908f35f7e44"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[manuf_name]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="28" width="100" height="30" uuid="21187ad7-bf94-47b0-b12b-a2ff4a976c61"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[manuf_street]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="59" width="100" height="21" uuid="03b312c1-38a6-48fb-8f58-94665306556d"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[city_postcode]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="490" y="0" width="100" height="30" uuid="931bb3b4-0707-4d16-ad4a-e2a0bbf5547e"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATE( )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="120" height="20" uuid="795c7ccf-3d89-4cd1-b347-57bddd400ecf"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_add_name]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="91" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="30" width="80" height="19" uuid="c1c6557c-8e35-4387-8bff-4ce7b964d04c"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[vech_reg_no]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="30" width="120" height="30" uuid="44409974-4bd8-4c9c-ba89-9997ebaa6827"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_total_amount]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="79" height="20" uuid="29975f8b-3e2a-4334-81ba-9b413731500d"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cust_invo_no]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="203" y="1" width="79" height="19" uuid="f63146fd-43b8-4b15-a8c2-fc8a0f1c97cd"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE NO.: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="30" width="138" height="19" uuid="b6d54336-1afd-4579-ac7a-b419f6627c57"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle Registration No.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="30" width="80" height="19" uuid="1a7c881d-7897-4a34-ae6c-b26bd5f82746"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Amount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="50" width="38" height="19" uuid="c33a2df2-81da-4c9f-b2d5-f6d7638813ce"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Make:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="39" y="50" width="180" height="19" uuid="0dd60af7-0d38-4e67-b63f-84ab9e4e2b69"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[vech_make]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="491" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="23" width="100" height="13" uuid="9c118365-e707-4848-a7ba-57d15a93e4d9"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Description of work:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="-19" width="38" height="19" uuid="00fc2e8e-79d7-4048-a638-441f47a016ff"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Colour:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="-19" width="180" height="19" uuid="2223a0c2-e3d8-4e20-8820-c0f7a2fcb7af"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[vech_model]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="410" width="568" height="30" uuid="035b35ec-c881-4c53-a9c9-6b5bc5d2aef1"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Thank you for your valued custom. We look forward to receiving your payment in due course.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="fa683260-5870-4b20-aab8-e0d9866c6272"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Yours Sincerely,	]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="4" width="100" height="20" uuid="eb64788d-6a87-4529-bf36-23134041c5d7"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[G. Lancaster]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="26" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="newJobExistingVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewJobExistingVehicleController">
+<StackPane fx:id="newJobExistingVehicleStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.Jobs.NewJob.NewJobExistingVehicleController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -22,17 +22,7 @@
                   <Image url="@../../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <Text fx:id="usernameLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="997.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Jimin" textAlignment="RIGHT" wrappingWidth="188.5">
-               <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="usertypeLbl" fill="WHITE" fontSmoothingType="LCD" layoutX="1133.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-               <font>
-                  <Font name="Avenir Next Bold" size="16.0" />
-               </font>
-            </Text>
-            <Label fx:id="welcomeMessage" layoutX="178.0" layoutY="217.0" prefHeight="68.0" prefWidth="474.0" text="Choose existing vehicle for new job">
+            <Label fx:id="welcomeMessage" layoutX="178.0" layoutY="217.0" prefHeight="68.0" prefWidth="536.0" text="Choose existing vehicle for new job">
                <font>
                   <Font name="Avenir Next Bold" size="30.0" />
                </font>
@@ -54,7 +44,7 @@
             </JFXButton>
             <Label fx:id="customerNameLbl" layoutX="178.0" layoutY="270.0" prefHeight="30.0" prefWidth="375.0" text="Customer name">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </Label>
             <JFXButton fx:id="nextBtn" alignment="CENTER" buttonType="RAISED" ellipsisString="  " layoutX="1051.0" layoutY="665.0" onAction="#nextBtnClicked" prefHeight="48.0" prefWidth="114.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Next" textAlignment="RIGHT" textFill="WHITE">
@@ -66,24 +56,34 @@
                </opaqueInsets>
             </JFXButton>
             <JFXListView fx:id="customerVehicleList" layoutX="33.0" layoutY="317.0" prefHeight="270.0" prefWidth="408.0" />
-            <JFXRadioButton fx:id="motRadio" layoutX="546.0" layoutY="351.0" text="MoT">
+            <JFXRadioButton fx:id="motRadio" layoutX="472.0" layoutY="321.0" text="MoT">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="type" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="annualServiceRadio" layoutX="544.0" layoutY="408.0" text="Annual Service" toggleGroup="$type">
+            <JFXRadioButton fx:id="annualServiceRadio" layoutX="472.0" layoutY="360.0" text="Annual Service" toggleGroup="$type">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="repairsRadio" layoutX="545.0" layoutY="474.0" text="Repairs" toggleGroup="$type">
+            <JFXRadioButton fx:id="repairsRadio" layoutX="472.0" layoutY="400.0" text="Repairs" toggleGroup="$type">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Avenir Book" size="20.0" />
                </font>
             </JFXRadioButton>
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+               <font>
+                  <Font name="Avenir Next Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="usertypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

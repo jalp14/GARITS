@@ -7,14 +7,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="mainScreenAdminStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.MainScreen.MainAdminController">
+<StackPane fx:id="mainScreenAdminStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwentyThreeProductions.Controller.MainScreen.MainAdminController">
    <children>
       <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXButton fx:id="usersBtn" alignment="BASELINE_LEFT" layoutX="389.0" layoutY="350.0" onAction="#usersBtnClicked" prefHeight="101.0" prefWidth="195.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Users" textAlignment="RIGHT" textFill="WHITE">
+            <JFXButton fx:id="usersBtn" alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="380.0" layoutY="348.0" onAction="#usersBtnClicked" prefHeight="101.0" prefWidth="205.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="  Users" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="26.0" />
                </font>
@@ -29,7 +30,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backuprestoreBtn" alignment="BASELINE_CENTER" ellipsisString="          " layoutX="632.0" layoutY="348.0" onAction="#backuprestoreBtnClicked" prefHeight="101.0" prefWidth="215.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Backup/ Restore" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+            <JFXButton fx:id="backuprestoreBtn" alignment="BASELINE_CENTER" buttonType="RAISED" ellipsisString="          " layoutX="632.0" layoutY="348.0" onAction="#backuprestoreBtnClicked" prefHeight="101.0" prefWidth="205.0" style="-fx-background-color: #ff1640; -fx-background-radius: 10pt;" text="Backup / Restore" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Avenir Next Bold" size="26.0" />
                </font>
@@ -49,32 +50,33 @@
                   <Image url="@../../GARITSassests/garits.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="logoutBtn" layoutX="1117.0" layoutY="78.0" onAction="#logoutBtnPressed" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
+            <JFXButton fx:id="logoutBtn" layoutX="1104.0" layoutY="129.0" onAction="#logoutBtnPressed" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 6pt;" text="Logout" textFill="#f8f7f7">
                <font>
                   <Font name="Avenir Next Bold" size="13.0" />
                </font>
             </JFXButton>
-            <Label fx:id="welcomeMessage" alignment="CENTER" layoutX="289.0" layoutY="211.0" prefHeight="68.0" prefWidth="600.0" text="Welcome, Jimin">
+            <Label fx:id="welcomeMessage" alignment="CENTER" layoutY="206.0" prefHeight="68.0" prefWidth="1202.0" text="Welcome, User">
                <font>
-                  <Font name="Avenir Next Bold" size="47.0" />
+                  <Font name="Avenir Book" size="47.0" />
                </font>
             </Label>
-            <Text fx:id="usernameLbl" fill="WHITE" layoutX="930.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
+            <Text fx:id="usernameLbl" fill="WHITE" layoutX="1027.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jimin" textAlignment="RIGHT" wrappingWidth="150.5">
                <font>
-                  <Font name="Avenir Next Bold" size="20.0" />
+                  <Font name="Avenir Next Bold" size="23.0" />
                </font>
             </Text>
-            <Text fx:id="userTypeLbl" fill="WHITE" layoutX="968.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
+            <Text fx:id="userTypeLbl" fill="WHITE" layoutX="1065.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="RIGHT" wrappingWidth="112.00000000000011">
                <font>
-                  <Font name="Avenir Next Bold" size="13.0" />
+                  <Font name="Avenir Book" size="14.0" />
                </font>
             </Text>
             <JFXButton fx:id="bellBtn" buttonType="RAISED" layoutX="991.0" layoutY="70.0" onAction="#bellBtnClicked" prefHeight="34.0" prefWidth="15.0" text=" " />
-            <ImageView fitHeight="37.0" fitWidth="23.0" layoutX="1086.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="37.0" fitWidth="23.0" layoutX="1066.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../GARITSassests/notifications.png" />
                </image>
             </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="5.0" layoutX="498.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="215.0" />
          </children>
       </AnchorPane>
    </children>
