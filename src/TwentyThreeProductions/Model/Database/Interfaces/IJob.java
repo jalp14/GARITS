@@ -9,5 +9,6 @@ public interface IJob {
     ArrayList<Job> getAll();
     void save(Job job);
     void update(Job job);
+    void setChecked(Job job);
     void delete(Job job);
 }

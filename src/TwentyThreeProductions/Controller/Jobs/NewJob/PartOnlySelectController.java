@@ -138,6 +138,7 @@ public class PartOnlySelectController {
                 job.setDescription("Spare parts ordered");
                 job.setStatus("Pending");
                 job.setPaidFor("False");
+                job.setChecked("False");
                 try {
                     if (Integer.parseInt(stockUsedField.getText()) < 1 || part.getStockLevel() < Integer.parseInt(stockUsedField.getText())) {
                         SystemAlert systemAlert = new SystemAlert(partOnlySelectStackPane,

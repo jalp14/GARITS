@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -118,19 +119,38 @@
                   <Font size="36.0" />
                </font>
                <toggleGroup>
-                  <ToggleGroup fx:id="type" />
+                  <ToggleGroup fx:id="jobType" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="motRadio" layoutX="666.0" layoutY="288.0" text="MoT" toggleGroup="$type">
+            <JFXRadioButton fx:id="motRadio" layoutX="666.0" layoutY="288.0" text="MoT" toggleGroup="$jobType">
                <font>
                   <Font size="36.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="annualServiceRadio" layoutX="662.0" layoutY="391.0" text="Annual Service" toggleGroup="$type">
+            <JFXRadioButton fx:id="annualServiceRadio" layoutX="662.0" layoutY="391.0" text="Annual Service" toggleGroup="$jobType">
                <font>
                   <Font size="36.0" />
                </font>
             </JFXRadioButton>
+            <JFXRadioButton fx:id="cashRadio" layoutX="565.0" layoutY="624.0" text="Cash">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="paymentType" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="cardRadio" layoutX="698.0" layoutY="624.0" text="Card" toggleGroup="$paymentType">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXTextField fx:id="amountField" layoutX="673.0" layoutY="690.0" />
+            <Label fx:id="amountHeading" layoutX="565.0" layoutY="686.0" prefHeight="32.0" prefWidth="155.0" text="Amount £">
+               <font>
+                  <Font name="Avenir Book" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

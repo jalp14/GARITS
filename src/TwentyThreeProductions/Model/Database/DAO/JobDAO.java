@@ -41,6 +41,8 @@ public class JobDAO implements IJob {
                 job.setSparePartsUsed(result.getString("SPAREPARTSUSED"));
                 job.setStatus(result.getString("STATUS"));
                 job.setPaidFor(result.getString("PAIDFOR"));
+                job.setDateCompleted(result.getDate("DATECOMPLETED"));
+                job.setChecked(result.getString("CHECKED"));
                 jobs.add(job);
             }
         } catch (SQLException e) {
@@ -53,18 +55,26 @@ public class JobDAO implements IJob {
 
     @Override
     public void save(Job job) {
-        String[] args = {String.valueOf(job.getJobID()), job.getUsername(), String.valueOf(job.getCustomerID()), job.getRegistrationID(), String.valueOf(job.getDateBookedIn()), job.getDescription(), job.getSparePartsUsed(), job.getStatus(), job.getPaidFor()};
-        String saveQuery = "INSERT INTO GARAGE.JOB (JOBID, USERNAME, CUSTOMERID, CARREGISTRATIONID, DATEBOOKEDIN, DESCRIPTION, SPAREPARTSUSED, STATUS, PAIDFOR)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String[] args = {String.valueOf(job.getJobID()), job.getUsername(), String.valueOf(job.getCustomerID()), job.getRegistrationID(), String.valueOf(job.getDateBookedIn()), job.getDescription(), job.getSparePartsUsed(), job.getStatus(), job.getPaidFor(), job.getChecked()};
+        String saveQuery = "INSERT INTO GARAGE.JOB (JOBID, USERNAME, CUSTOMERID, CARREGISTRATIONID, DATEBOOKEDIN, DESCRIPTION, SPAREPARTSUSED, STATUS, PAIDFOR, CHECKED)\n" +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection = dbConnectivity.connection(connection);
         dbConnectivity.writePrepared(saveQuery, connection, args);
     }
 
     @Override
     public void update(Job job) {
-        String updateQuery = "UPDATE GARAGE.JOB SET USERNAME=?, STATUS=?, PAIDFOR=? WHERE JOBID=?";
+        String updateQuery = "UPDATE GARAGE.JOB SET USERNAME=?, STATUS=?, PAIDFOR=?, DATECOMPLETED=? WHERE JOBID=?";
         connection = dbConnectivity.connection(connection);
-        String args[] = {job.getUsername(), job.getStatus(), job.getPaidFor(), String.valueOf(job.getJobID())};
+        String args[] = {job.getUsername(), job.getStatus(), job.getPaidFor(), String.valueOf(job.getDateCompleted()), String.valueOf(job.getJobID())};
+        dbConnectivity.writePrepared(updateQuery, connection, args);
+    }
+
+    @Override
+    public void setChecked(Job job) {
+        String updateQuery = "UPDATE GARAGE.JOB SET CHECKED=? WHERE JOBID=?";
+        connection = dbConnectivity.connection(connection);
+        String args[] = {job.getChecked(), String.valueOf(job.getJobID())};
         dbConnectivity.writePrepared(updateQuery, connection, args);
     }
 

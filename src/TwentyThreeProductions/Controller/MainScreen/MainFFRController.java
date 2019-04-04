@@ -1,8 +1,12 @@
 package TwentyThreeProductions.Controller.MainScreen;
 
+import TwentyThreeProductions.Domain.Job;
 import TwentyThreeProductions.Model.DBLogic;
+import TwentyThreeProductions.Model.Database.DAO.JobDAO;
+import TwentyThreeProductions.Model.HelperClasses.SettingsHelper;
 import TwentyThreeProductions.Model.NavigationModel;
 import TwentyThreeProductions.Model.SceneSwitch;
+import TwentyThreeProductions.Model.SystemNotification;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,10 +16,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Date;
 
 public class MainFFRController {
 
     private SceneSwitch sceneSwitch;
+
+    private SettingsHelper settingsHelper;
 
    @FXML
    private StackPane mainScreenFFRStackPane;
@@ -86,6 +93,9 @@ public class MainFFRController {
        sceneSwitch = SceneSwitch.getInstance();
        sceneSwitch.addScene(mainScreenFFRStackPane, NavigationModel.MAIN_FFR_ID);
        setLblConstraints();
+       if(userTypeLbl.getText().equals("FRANCHISEE")) {
+          checkLatePayments();
+       }
    }
 
 
@@ -95,4 +105,19 @@ public class MainFFRController {
       userTypeLbl.setText(DBLogic.getDBInstance().getUser_type());
    }
 
+   public void checkLatePayments() {
+      java.util.Date currentDate = new java.util.Date();
+      java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+      JobDAO jobDAO = new JobDAO();
+      for(Job j: jobDAO.getAll()) {
+         if(j.getDateCompleted().equals(Date.valueOf(settingsHelper.setupNextMonth())) && j.getPaidFor().equals("False") && j.getChecked().equals("False")) {
+            SystemNotification notification = new SystemNotification(mainScreenFFRStackPane);
+            notification.setNotificationMessage("There is a completed job that has not been paid for " +
+                    "in one month.");
+            notification.showNotification(NavigationModel.JOBS_MAIN_ID, DBLogic.getDBInstance().getUsername());
+            j.setChecked("True");
+            jobDAO.setChecked(j);
+         }
+      }
+   }
 }

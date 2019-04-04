@@ -1,14 +1,19 @@
 package TwentyThreeProductions.Domain;
 
+import java.sql.Date;
+
 public class Payment {
 
     private int paymentID;
     private int jobID;
     private int customerID;
-    private String vehicleType;
-    private int year;
-    private float price;
-    private int stockLevel;
+    private String type;
+    private Date date;
+    private float amount;
+    private int cardNumber;
+    private int cvv;
+    private String cardName;
+    private String expiryDate;
 
     public Payment(){}
 
@@ -36,35 +41,59 @@ public class Payment {
         this.customerID = customerID;
     }
 
-    public String getVehicleType() {
-        return vehicleType;
+    public String getType() {
+        return type;
     }
 
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getYear() {
-        return year;
+    public Date getDate() {
+        return date;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public float getPrice() {
-        return price;
+    public float getAmount() {
+        return amount;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 
-    public int getStockLevel() {
-        return stockLevel;
+    public int getCardNumber() {
+        return cardNumber;
     }
 
-    public void setStockLevel(int stockLevel) {
-        this.stockLevel = stockLevel;
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public int getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
     }
 }
