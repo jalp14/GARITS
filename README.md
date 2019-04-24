@@ -85,6 +85,6 @@ Click Apply
 
 - Switch over to cloud-based DB for cross-platform functionality 
 
-- Allow multiple instances of different platforms 
+- Allow multi-instance running on different platforms 
 
 - Make it work with GARITSiOS
