@@ -20,7 +20,6 @@
 - Reports only work partially 
 
 
-
 ## Downloads
 
 - [IntelliJ Ultimate](https://www.jetbrains.com/idea/download/#section=windows)
@@ -30,8 +29,7 @@
 - [OpenJFX](https://openjfx.io/)
 
 
-
-## Setup
+## Setting up the SDKs
 
 Move the OpenJFX SDK in your Docuemnts Folder
 
@@ -78,6 +76,31 @@ javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED
 
 Click Apply
 
+## Setting up the Project Dependencies
+
+- Download GARITS from Moodle and extract it from the zip folder
+- Make sure OpenJFX 11 is installed using the installer provided with the download
+- Make sure OpenJDK 11 is downloaded and extracted in the Documents folder
+- To make sure the database works correctly, copy test.mv.db and test.trace.db files from the GARITS folder
+to your home directory.
+
+Home directory is in different location depending on the OS:
+- Windows : C:\Users\Username/
+- macOS : /Users/Username/
+- Linux : /home/username/
+
+## Resolving Dependency Errors
+
+All the dependencies are located in the following folder : GARITS/src/TwentyThreeProductions/GARITSpayload
+
+- Navigate to GARITS/jasperdepend folder
+- Extract both dist.zip and src.zip to your Documents folder
+- To make sure all the external libraries work correctly with GARITS follow the below steps (IntelliJ):
+1. File -> Project Structure -> Libraries
+2. Click on a library that is highlighted in red
+3. Click on the ‘-‘ sign to remove that library
+4. Click on the ‘+’ sign and select the library that you just removed
+5. Repeat for any library that is highlighted in red
 
 ## Future Plans 
 
