@@ -1,12 +1,6 @@
 # GARITS
 
 
-
-## Planned Features 
-
-https://docs.google.com/document/d/1cHOFNcVIK1OWNApO_lTYs3NArSjsSaeqyVOjFu4Yy1I/edit
-
-
 ## Requirements
 
 - IntelliJ Ultimate
@@ -16,6 +10,14 @@ https://docs.google.com/document/d/1cHOFNcVIK1OWNApO_lTYs3NArSjsSaeqyVOjFu4Yy1I/
 - OpenJFX
 
 - Some Patience
+
+## Notes 
+
+- Works fully on macOS and Linux 
+
+- Works partially on Windows (Backup/Restore doesnt work -_- ) 
+
+- Reports only work partially 
 
 
 
@@ -77,27 +79,12 @@ javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED
 Click Apply
 
 
+## Future Plans 
 
- ## Backup/Restore Command (Ignore this)
- 
- Navigate to the assests folder and open a cmd/termial window and run :
- 
- `` java -cp h2*.jar org.h2.tools.Backup -file "~/backup.zip" -dir "~" ``
- 
- ## How SceneSwitch works
- 
- **Initialising view for the first time**
- 
- - Get instance of SceneSwitch and call the func : `` activateScene(String name, Scene scene) ``
- 
- - This will present the view on your main screen
- 
- - Inside the `` initialize() `` method for the view you just activated, instantiate SceneSwitch and call the func `` addScene(Parent parent, String name) ``
- 
- - This will add the current parent(view) to SceneMap
- 
- **Switching between scenes**
- 
- - To switch to a different scene call the func `` switchScene(String name) ``
- 
- - This will change the parent(view) to the specified one given that you have initialised it before 
+- Do some housekeeping and make it more stable 
+
+- Switch over to cloud-based DB for cross-platform functionality 
+
+- Allow multiple instances of different platforms 
+
+- Make it work with GARITSiOS
