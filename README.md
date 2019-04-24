@@ -78,7 +78,7 @@ Click Apply
 
 ## Setting up the Project Dependencies
 
-- Download GARITS from Moodle and extract it from the zip folder
+- Download GARITS and extract it from the zip folder
 - Make sure OpenJFX 11 is installed using the installer provided with the download
 - Make sure OpenJDK 11 is downloaded and extracted in the Documents folder
 - To make sure the database works correctly, copy test.mv.db and test.trace.db files from the GARITS folder
